@@ -2,6 +2,10 @@ import os
 import json
 from datetime import datetime, timedelta
 from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()  # This loads the .env file
+
 
 # API key comes from environment (set OPENAI_API_KEY in GitHub secrets / local env)
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
