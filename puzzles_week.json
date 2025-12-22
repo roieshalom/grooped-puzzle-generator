@@ -1,0 +1,331 @@
+[
+  {
+    "id": "2",
+    "date": "11.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Common Musical Instruments",
+        "words": [
+          "VIOLIN",
+          "TRUMPET",
+          "PIANO",
+          "FLUTE"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Types of Coffee Drinks",
+        "words": [
+          "LATTE",
+          "MOCHA",
+          "ESPRESSO",
+          "CAPPUCCINO"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Can Follow 'Light'",
+        "words": [
+          "YEAR",
+          "HOUSE",
+          "BULB",
+          "SHADE"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Can Mean Both Emotions and Colors",
+        "words": [
+          "BLUE",
+          "GREEN",
+          "PINK",
+          "GRAY"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "date": "12.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Types of Knives",
+        "words": [
+          "CHEF",
+          "BUTTER",
+          "PARING",
+          "BREAD"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Words That Can Follow 'Light'",
+        "words": [
+          "HOUSE",
+          "YEAR",
+          "FLASH",
+          "RAIN"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Famous Jazz Musicians",
+        "words": [
+          "MILES",
+          "DUKE",
+          "ELLA",
+          "COLTRANE"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Can Mean 'Soft or Gentle'",
+        "words": [
+          "TENDER",
+          "MILD",
+          "LIGHT",
+          "SWEET"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "date": "13.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "European Capitals",
+        "words": [
+          "PARIS",
+          "VIENNA",
+          "BERLIN",
+          "OSLO"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Words That Can Precede 'Ball'",
+        "words": [
+          "CRYSTAL",
+          "SNOW",
+          "PIN",
+          "GLASS"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Classical Music Terms",
+        "words": [
+          "ALLEGRO",
+          "FORTE",
+          "ADAGIO",
+          "DORIAN"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "English Words with Multiple Pronunciations",
+        "words": [
+          "LEAD",
+          "BASS",
+          "WIND",
+          "TEAR"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "date": "14.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Classical Musical Instruments",
+        "words": [
+          "VIOLIN",
+          "FLUTE",
+          "OBOE",
+          "CELLO"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Types of Angles",
+        "words": [
+          "ACUTE",
+          "OBTUSE",
+          "RIGHT",
+          "REFLEX"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Can Follow 'Green'",
+        "words": [
+          "HOUSE",
+          "LIGHT",
+          "HORN",
+          "CARD"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Change Meaning When Capitalized",
+        "words": [
+          "POLISH",
+          "MARCH",
+          "BASS",
+          "MARCH"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "date": "15.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Types of Coffee Drinks",
+        "words": [
+          "LATTE",
+          "ESPRESSO",
+          "CAPPUCCINO",
+          "MOCHA"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Words That Can Follow 'Light'",
+        "words": [
+          "YEAR",
+          "BULB",
+          "FOOT",
+          "SHADE"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Famous Mathematicians",
+        "words": [
+          "GAUSS",
+          "NOETHER",
+          "EULER",
+          "TURING"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Are Also Colors But Not In The Color Set",
+        "words": [
+          "OLIVE",
+          "ROSE",
+          "JADE",
+          "PEACH"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "date": "16.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Types of Clouds",
+        "words": [
+          "CUMULUS",
+          "STRATUS",
+          "CIRRUS",
+          "NIMBUS"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Words That Can Follow 'Blue'",
+        "words": [
+          "BERRY",
+          "MOON",
+          "PRINT",
+          "CHIP"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Famous Female Authors",
+        "words": [
+          "AUSTEN",
+          "WOOLF",
+          "ANGELOU",
+          "ATWOOD"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words Commonly Used in Chess",
+        "words": [
+          "CHECK",
+          "MATE",
+          "CASTLE",
+          "PAWN"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "date": "17.12.2025",
+    "language": "en",
+    "categories": [
+      {
+        "name": "Types of Cheese",
+        "words": [
+          "BRIE",
+          "GOUDA",
+          "FETA",
+          "SWISS"
+        ],
+        "difficulty": "yellow"
+      },
+      {
+        "name": "Words That Can Follow 'Light'",
+        "words": [
+          "HOUSE",
+          "YEAR",
+          "SPEED",
+          "NIGHT"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Mythological Creatures",
+        "words": [
+          "PHOENIX",
+          "HYDRA",
+          "CYCLOPS",
+          "GRIFFIN"
+        ],
+        "difficulty": "green"
+      },
+      {
+        "name": "Words That Can Mean Both a Color and an Emotion",
+        "words": [
+          "BLUE",
+          "GREEN",
+          "YELLOW",
+          "GRAY"
+        ],
+        "difficulty": "blue"
+      }
+    ]
+  }
+]
