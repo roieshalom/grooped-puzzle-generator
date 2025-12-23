@@ -1,53 +1,57 @@
 [
   {
-    "_test_marker": "ok-20251222",
+    "language": "en",
     "categories": [
       {
-        "difficulty": "yellow",
         "name": "Common Types of Clouds",
         "words": [
           "SHASHA",
           "CUMULUS",
           "STRATUS",
           "NIMBUS"
-        ]
+        ],
+        "difficulty": "yellow"
       },
       {
-        "difficulty": "green",
         "name": "Words That Can Follow 'Glass'",
         "words": [
           "CEILING",
           "HOUSE",
           "PAPER",
           "BOTTLE"
-        ]
+        ],
+        "difficulty": "green"
       },
       {
-        "difficulty": "green",
-        "name": "Classical Music Terms",
+        "name": "Types of Dance",
         "words": [
-          "FORTE",
-          "ALLEGRO",
-          "CRESCENDO",
-          "DIMINUENDO"
-        ]
+          "BALLET",
+          "SALSA",
+          "TANGO",
+          "HIPHOP"
+        ],
+        "difficulty": "purple"
       },
       {
-        "difficulty": "blue",
         "name": "Words That Are Both Colors and Emotions",
         "words": [
           "BLUE",
           "CRIMSON",
           "GRAY",
           "ROSE"
-        ]
+        ],
+        "difficulty": "blue"
       }
     ],
-    "date": "11.12.2025",
     "id": "2",
-    "language": "en"
+    "date": "11.12.2025"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",
@@ -95,6 +99,11 @@
     "language": "en"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",
@@ -142,6 +151,11 @@
     "language": "en"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",
@@ -189,6 +203,11 @@
     "language": "en"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",
@@ -236,6 +255,11 @@
     "language": "en"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",
@@ -283,6 +307,11 @@
     "language": "en"
   },
   {
+    "_validation": {
+      "duplicate_words": [],
+      "errors": [],
+      "valid": true
+    },
     "categories": [
       {
         "difficulty": "yellow",

@@ -113,7 +113,7 @@ No extra text, no explanations, just JSON.
     response = client.chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
-            {"role": "system", "content": "You are an expert Connections puzzle generator."},
+            {"role": "system", "content": "You are an expert Grooped puzzle generator."},
             {"role": "user", "content": prompt},
         ],
         temperature=0.8,

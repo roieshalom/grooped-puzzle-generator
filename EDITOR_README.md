@@ -14,7 +14,7 @@ Quick start:
 
 3. Open in your browser:
 
-    http://127.0.0.1:5000
+    http://127.0.0.1:5001
 
 Notes:
 - Saves update `puzzles_week.json` in place. By default backups are **off** — uncheck or leave unchecked **Create backup on save** (the checkbox is unchecked by default) to keep this behavior; check it if you want a timestamped backup (`puzzles_week.json.bak.YYYYMMDD_HHMMSS`) created before each save.
