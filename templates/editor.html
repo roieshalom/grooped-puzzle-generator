@@ -15,8 +15,24 @@
     body {
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       background: white;
-      padding: 40px;
+      padding: 40px 20px;
       color: #333;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
     }
     .date-nav {
       display: flex;
@@ -64,6 +80,12 @@
       align-items: flex-start;
       gap: 12px;
       margin-bottom: 20px;
+      min-width: 0; /* Allow shrinking */
+    }
+    @media (max-width: 480px) {
+      .category {
+        gap: 8px;
+      }
     }
     .color-square-wrapper {
       position: relative;
@@ -130,6 +152,7 @@
     }
     .category-content {
       flex: 1;
+      min-width: 0; /* Allow shrinking */
     }
     .category-name-input {
       flex: 1;
@@ -140,19 +163,44 @@
       background: #f5f5f5;
       font-size: 14px;
       box-sizing: border-box;
+      min-width: 0; /* Allow shrinking */
+    }
+    @media (max-width: 480px) {
+      .category-name-input {
+        padding: 10px;
+        font-size: 13px;
+      }
     }
     .words-row {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .word-input {
       flex: 1;
+      min-width: 0;
       padding: 10px;
       border: 1px solid #e0e0e0;
       border-radius: 2px;
       background: #f5f5f5;
       font-size: 13px;
       text-transform: uppercase;
+      box-sizing: border-box;
+    }
+    /* On small screens, show 2 words per row */
+    @media (max-width: 600px) {
+      .word-input {
+        flex: 0 0 calc(50% - 5px);
+        min-width: calc(50% - 5px);
+      }
+    }
+    /* On very small screens, ensure proper sizing */
+    @media (max-width: 400px) {
+      .word-input {
+        flex: 0 0 calc(50% - 5px);
+        font-size: 12px;
+        padding: 8px;
+      }
     }
     .word-input.duplicate {
       background: #ffe6e6;
@@ -164,10 +212,21 @@
       align-items: stretch;
       gap: 10px;
       margin-bottom: 10px;
+      min-width: 0; /* Allow shrinking */
     }
     .category-header .category-name-input {
       flex: 1;
       margin-bottom: 0;
+      min-width: 0; /* Allow shrinking */
+    }
+    @media (max-width: 480px) {
+      .category-header {
+        gap: 8px;
+      }
+      .regenerate-btn {
+        min-width: 40px;
+        padding: 10px;
+      }
     }
     .regenerate-btn {
       padding: 12px;
@@ -192,27 +251,61 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    .title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 24px;
-      font-weight: normal;
-      margin-bottom: 30px;
-      color: #2c3e50;
-      line-height: 1.6;
-    }
     .top-bar {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       margin-bottom: 30px;
       padding-bottom: 20px;
       border-bottom: 1px solid #e0e0e0;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    @media (max-width: 600px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .title {
+        width: 100%;
+      }
+      .actions {
+        width: 100%;
+      }
+      .action-btn {
+        flex: 1;
+      }
+    }
+    .title {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 24px;
+      font-weight: normal;
+      color: #2c3e50;
+      line-height: 1.6;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .title {
+        font-size: 18px;
+      }
+    }
+    @media (max-width: 480px) {
+      .title {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 400px) {
+      .title {
+        font-size: 12px;
+      }
     }
     .actions {
       display: flex;
       gap: 10px;
       align-items: center;
-      padding-top: 0;
+      flex-wrap: wrap;
+      flex-shrink: 0;
     }
     .action-btn {
       padding: 10px 24px;
@@ -223,6 +316,13 @@
       cursor: pointer;
       font-family: inherit;
       transition: all 0.2s;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .action-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
     }
     .action-btn.save {
       background: #3498db;
@@ -232,11 +332,11 @@
       background: #2980b9;
     }
     .action-btn.reload {
-      background: #95a5a6;
+      background: #e74c3c;
       color: white;
     }
     .action-btn.reload:hover {
-      background: #7f8c8d;
+      background: #c0392b;
     }
     .status {
       position: fixed;
@@ -276,6 +376,16 @@
     .validation-errors li {
       margin: 4px 0;
     }
+    .puzzle-content {
+      margin-top: 30px;
+      min-width: 0; /* Prevent overflow */
+      max-width: 100%;
+    }
+    @media (max-width: 480px) {
+      .puzzle-content {
+        margin-top: 20px;
+      }
+    }
     .action-btn.export {
       background: #27ae60;
       color: white;
@@ -286,29 +396,58 @@
     .action-btn.export:disabled {
       background: #95a5a6;
       cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .action-btn.loading {
+      position: relative;
+      color: transparent;
+      pointer-events: none;
+    }
+    .action-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    .action-btn.success {
+      background: #27ae60 !important;
+    }
+    .action-btn.success::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1 class="title">Puzzle Editor 3000</h1>
-  <!-- Version: 2024-12-22-23:15 -->
-  <div class="top-bar">
-    <div class="date-nav">
-      <button class="nav-btn" id="prevDate" title="previous puzzle">◀</button>
-      <span id="puzzleCounter" style="margin: 0 10px; color: #666; font-size: 14px;">-</span>
-      <button class="nav-btn" id="nextDate" title="next puzzle">▶</button>
-      <input type="text" class="lang-input" id="langInput" placeholder="Language" style="margin-left: 15px;" />
-    </div>
+  <div class="container">
+    <div class="top-bar">
+    <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
     <div class="actions">
-      <button class="action-btn save" id="saveBtn">SAVE</button>
+      <button class="action-btn save" id="saveBtn">Save</button>
       <button class="action-btn reload" id="reloadBtn">Revert</button>
-      <button class="action-btn export" id="exportBtn" style="background: #27ae60; color: white;">Export to Repo</button>
+      <button class="action-btn export" id="exportBtn">Export</button>
     </div>
   </div>
   
   <div id="validationErrors" class="validation-errors" style="display: none;"></div>
 
-  <div style="margin-top: 30px;">
+  <div class="puzzle-content">
     <div class="category" data-color="purple" data-category-index="0">
       <div class="color-square-wrapper">
         <div class="color-square purple" data-current-color="purple"></div>
@@ -415,6 +554,8 @@
   <script>
     let puzzles = [];
     let currentIndex = 0;
+    let lastSavedState = null; // Store the last saved puzzle state
+    let hasUnsavedChanges = false;
     
     const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
     const colorToDifficulty = {
@@ -428,19 +569,67 @@
       document.getElementById('status').textContent = msg;
     }
 
+
+    // Get current form data as JSON string for comparison
+    function getCurrentStateString() {
+      const puzzle = collectData();
+      // Remove _validation field for comparison
+      const cleanPuzzle = {...puzzle};
+      delete cleanPuzzle._validation;
+      return JSON.stringify(cleanPuzzle);
+    }
+
+    // Check if there are unsaved changes
+    function checkUnsavedChanges() {
+      if (!lastSavedState) {
+        hasUnsavedChanges = false;
+        return false;
+      }
+      const currentState = getCurrentStateString();
+      hasUnsavedChanges = currentState !== lastSavedState;
+      updateExportButtonState();
+      return hasUnsavedChanges;
+    }
+
+    // Update export button enabled/disabled state
+    function updateExportButtonState() {
+      const exportBtn = document.getElementById('exportBtn');
+      exportBtn.disabled = hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
+    }
+
+    // Set button loading state
+    function setButtonLoading(buttonId, loading) {
+      const btn = document.getElementById(buttonId);
+      if (loading) {
+        btn.classList.add('loading');
+        btn.disabled = true;
+      } else {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+      updateExportButtonState(); // Re-check export state
+    }
+
+    // Set button success state (shows checkmark)
+    function setButtonSuccess(buttonId, duration = 1500) {
+      const btn = document.getElementById(buttonId);
+      btn.classList.add('success');
+      setTimeout(() => {
+        btn.classList.remove('success');
+        updateExportButtonState();
+      }, duration);
+    }
+
     function updateUI() {
       if (puzzles.length === 0) {
-        document.getElementById('puzzleCounter').textContent = 'No puzzles';
+        setStatus('No puzzles');
+        lastSavedState = null;
+        updateExportButtonState();
         return;
       }
       
-      const puzzle = puzzles[currentIndex];
-      
-      // Update counter
-      document.getElementById('puzzleCounter').textContent = `${currentIndex + 1} / ${puzzles.length}`;
-      
-      // Language
-      document.getElementById('langInput').value = puzzle.language || 'en';
+      const puzzle = puzzles[0];  // Always use first puzzle
+      if (!puzzle) return;
 
       const categories = puzzle.categories || [];
       
@@ -481,12 +670,14 @@
         }
       }
 
-      document.getElementById('prevDate').disabled = currentIndex === 0;
-      document.getElementById('nextDate').disabled = currentIndex === puzzles.length - 1;
-      
       // Show validation errors and highlight duplicate words
       showValidationErrors(puzzle);
       highlightDuplicateWords(puzzle);
+      
+      // Update saved state after UI is updated
+      lastSavedState = getCurrentStateString();
+      hasUnsavedChanges = false;
+      updateExportButtonState();
     }
     
     function showValidationErrors(puzzle) {
@@ -523,18 +714,24 @@
     }
 
     function collectData() {
+      // Start with existing puzzle data to preserve all fields
+      const existingPuzzle = puzzles.length > 0 && puzzles[0] ? puzzles[0] : {};
       const puzzle = {
-        language: document.getElementById('langInput').value || 'en',
-        categories: []
+        ...existingPuzzle,  // Preserve existing fields
+        language: existingPuzzle.language || 'en',
+        categories: []  // Will rebuild from form
       };
       
-      // Keep existing ID/date if they exist (for backwards compat)
-      if (puzzles[currentIndex] && puzzles[currentIndex].id) {
-        puzzle.id = puzzles[currentIndex].id;
+      // Ensure ID and date are preserved
+      if (existingPuzzle.id) {
+        puzzle.id = existingPuzzle.id;
       }
-      if (puzzles[currentIndex] && puzzles[currentIndex].date) {
-        puzzle.date = puzzles[currentIndex].date;
+      if (existingPuzzle.date) {
+        puzzle.date = existingPuzzle.date;
       }
+      
+      // Remove _validation field (internal use only)
+      delete puzzle._validation;
 
       // Collect categories in order by their index
       for (let i = 0; i < 4; i++) {
@@ -546,7 +743,9 @@
           const words = Array.from(wordInputs).map(inp => inp.value.trim().toUpperCase()).filter(w => w);
           const currentColor = categoryEl.dataset.color || difficultyToColor[i] || 'purple';
 
-          if (name || words.some(w => w)) {
+          // Always add category if it has either name or words (or both)
+          // This ensures we collect all 4 categories from the form
+          if (name || words.length > 0) {
             puzzle.categories.push({
               name: name,
               words: words.length === 4 ? words : words.concat(Array(4 - words.length).fill('')),
@@ -572,7 +771,7 @@
         }
         currentIndex = 0;
         updateUI();
-        setStatus(`Loaded ${puzzles.length} puzzles`);
+        setStatus('Puzzle loaded');
       } catch (e) {
         setStatus('Load failed');
         alert('Load failed: ' + e);
@@ -581,39 +780,42 @@
 
     async function save() {
       setStatus('Saving...');
+      setButtonLoading('saveBtn', true);
       try {
         const puzzle = collectData();
-        puzzles[currentIndex] = puzzle;
+        puzzles[0] = puzzle;
 
         const r = await fetch('/api/puzzle', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(puzzles)
+          body: JSON.stringify(puzzle)  // Send single puzzle, not array
         });
         const res = await r.json();
         if (!r.ok) throw new Error(res.error || JSON.stringify(res));
+        
+        // Update puzzle with validation data from server response
+        if (res.puzzle) {
+          puzzles[0] = res.puzzle;
+        }
+        
+        // Validate and highlight duplicates on the saved puzzle
+        showValidationErrors(puzzles[0]);
+        highlightDuplicateWords(puzzles[0]);
+        
+        // Update saved state
+        lastSavedState = getCurrentStateString();
+        hasUnsavedChanges = false;
+        updateExportButtonState();
+        
         setStatus('Saved');
-        // Reload to get fresh validation
-        load();
+        setButtonLoading('saveBtn', false);
+        setButtonSuccess('saveBtn');
       } catch (e) {
         setStatus('Save failed');
+        setButtonLoading('saveBtn', false);
         alert('Save failed: ' + e);
       }
     }
-
-    document.getElementById('prevDate').addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateUI();
-      }
-    });
-
-    document.getElementById('nextDate').addEventListener('click', () => {
-      if (currentIndex < puzzles.length - 1) {
-        currentIndex++;
-        updateUI();
-      }
-    });
 
     document.getElementById('saveBtn').addEventListener('click', save);
     document.getElementById('reloadBtn').addEventListener('click', () => {
@@ -621,14 +823,56 @@
         load();
       }
     });
+    
+    document.getElementById('exportBtn').addEventListener('click', async () => {
+      if (puzzles.length === 0 || !puzzles[0]) {
+        alert('No puzzle to export');
+        return;
+      }
+      
+      if (hasUnsavedChanges) {
+        alert('Please save the puzzle before exporting.');
+        return;
+      }
+      
+      setStatus('Exporting...');
+      setButtonLoading('exportBtn', true);
+      try {
+        const puzzle = collectData();
+        
+        const r = await fetch('/api/export', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(puzzle)
+        });
+        const res = await r.json();
+        if (!r.ok) throw new Error(res.error || JSON.stringify(res));
+        
+        setStatus('Exported! Loading next puzzle...');
+        setButtonLoading('exportBtn', false);
+        setButtonSuccess('exportBtn');
+        
+        // Load next puzzle
+        await load();
+      } catch (e) {
+        setStatus('Export failed');
+        setButtonLoading('exportBtn', false);
+        alert('Export failed: ' + e);
+      }
+    });
 
-    document.querySelectorAll('.word-input').forEach(inp => {
+    // Track input changes for unsaved changes detection
+    document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
       inp.addEventListener('input', (e) => {
-        e.target.value = e.target.value.toUpperCase();
-        // Update duplicate highlighting after input
-        if (puzzles[currentIndex]) {
-          highlightDuplicateWords(puzzles[currentIndex]);
+        if (inp.classList.contains('word-input')) {
+          e.target.value = e.target.value.toUpperCase();
+          // Update duplicate highlighting after input
+          if (puzzles.length > 0 && puzzles[0]) {
+            highlightDuplicateWords(puzzles[0]);
+          }
         }
+        // Check for unsaved changes
+        checkUnsavedChanges();
       });
     });
 
@@ -674,6 +918,9 @@
         
         // Close all dropdowns
         document.querySelectorAll('.color-dropdown').forEach(d => d.classList.remove('show'));
+        
+        // Check for unsaved changes after color change
+        checkUnsavedChanges();
       });
     });
 
@@ -697,21 +944,34 @@
         };
         const difficulty = difficultyMap[currentColor] || 'medium';
         
+        const nameInput = categoryEl.querySelector('.category-name-input');
+        const wordInputs = categoryEl.querySelectorAll('.word-input');
+        
+        // Check if all words are empty
+        const allWordsEmpty = Array.from(wordInputs).every(inp => !inp.value.trim());
+        const categoryName = nameInput.value.trim();
+        
+        // If all words are empty and category name is provided, use category name as prompt
+        let apiUrl = `/api/regenerate-category?difficulty=${difficulty}`;
+        if (allWordsEmpty && categoryName) {
+          apiUrl += `&category_name=${encodeURIComponent(categoryName)}`;
+        }
+        
         btn.disabled = true;
         btn.textContent = '...';
-        setStatus('Regenerating category...');
+        setStatus(allWordsEmpty && categoryName ? 'Generating words for category...' : 'Regenerating category...');
         
         try {
-          const r = await fetch(`/api/regenerate-category?difficulty=${difficulty}&puzzle_index=${currentIndex}`, {
+          const r = await fetch(apiUrl, {
             method: 'GET'
           });
           if (r.ok) {
             const category = await r.json();
-            const nameInput = categoryEl.querySelector('.category-name-input');
-            const wordInputs = categoryEl.querySelectorAll('.word-input');
             
-            // Update category name
-            nameInput.value = category.name;
+            // Only update category name if it wasn't provided by user (or was empty)
+            if (!allWordsEmpty || !categoryName) {
+              nameInput.value = category.name;
+            }
             
             // Update all 4 words
             category.words.forEach((word, idx) => {
@@ -721,10 +981,11 @@
             });
             
             setStatus('Category regenerated');
-            // Trigger input events to update highlighting
+            // Trigger input events to update highlighting and check unsaved changes
             wordInputs.forEach(inp => {
               inp.dispatchEvent(new Event('input'));
             });
+            nameInput.dispatchEvent(new Event('input'));
           } else {
             const error = await r.json();
             alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
@@ -738,7 +999,12 @@
       });
     });
 
+    // Initialize export button state
+    updateExportButtonState();
+    
+    // Load on page load
     load();
   </script>
+  </div>
 </body>
 </html>

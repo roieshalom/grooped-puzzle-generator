@@ -12,15 +12,19 @@ from flask import Flask, render_template, jsonify, request, abort, make_response
 import json
 import os
 import shutil
-from datetime import datetime
+from datetime import datetime, timedelta
 import sys
+import subprocess
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
-APP_DIR = os.path.dirname(__file__)
-JSON_PATH = os.path.join(APP_DIR, 'puzzles_week.json')
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+# Path to puzzles.json in the grooped repository
+parent_dir = os.path.dirname(APP_DIR)
+GROOPED_REPO_DIR = os.path.join(parent_dir, 'grooped')
+JSON_PATH = os.path.join(GROOPED_REPO_DIR, 'puzzles.json')
 
 # Add current directory to path for imports
 sys.path.insert(0, APP_DIR)
@@ -43,33 +47,209 @@ app = Flask(__name__)
 
 
 def _read_json():
-    with open(JSON_PATH, 'r', encoding='utf-8') as fh:
-        return json.load(fh)
+    """Read all puzzles from puzzles.json, filtering out published ones for editor."""
+    try:
+        with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
+        
+        # Handle both formats: array directly or object with "puzzles" key
+        if isinstance(data, list):
+            all_puzzles = data
+        elif isinstance(data, dict) and 'puzzles' in data:
+            all_puzzles = data['puzzles']
+            if not isinstance(all_puzzles, list):
+                all_puzzles = []
+        else:
+            all_puzzles = []
+        
+        # Filter out non-dict items and published puzzles - editor only shows draft/reviewed/approved
+        return [p for p in all_puzzles if isinstance(p, dict) and p.get('status') != 'published']
+    except FileNotFoundError:
+        return []
 
 
-def _write_json(obj, make_backup=False):
-    """Write JSON atomically. By default do NOT create backups unless explicitly requested.
-
-    If make_backup is True and the original file exists, create a timestamped backup
-    before replacing the file. Writes are done to a temporary file and renamed into
-    place using os.replace() for atomicity.
+def _save_puzzles_to_json(updated_puzzles, make_backup=False):
+    """Save puzzles to puzzles.json, updating existing or appending new ones.
+    
+    - If puzzle has an existing ID, update it in place
+    - If puzzle is new (no ID or ID doesn't exist), append with auto-assigned ID/date
+    - Preserves all existing puzzles including published ones
     """
     bak_path = None
-    # create a backup of the existing file only if requested and the file exists
+    use_object_format = False
+    
+    # Load all existing puzzles (including published)
+    try:
+        with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
+        
+        # Handle both formats: array directly or object with "puzzles" key
+        if isinstance(data, list):
+            all_existing = data
+            use_object_format = False
+        elif isinstance(data, dict) and 'puzzles' in data:
+            all_existing = data['puzzles']
+            if not isinstance(all_existing, list):
+                all_existing = []
+            use_object_format = True
+        else:
+            all_existing = []
+            use_object_format = False
+    except FileNotFoundError:
+        all_existing = []
+        use_object_format = False
+    
+    # create a backup if requested
     if make_backup and os.path.exists(JSON_PATH):
         ts = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
         bak_path = JSON_PATH + f'.bak.{ts}'
         shutil.copy2(JSON_PATH, bak_path)
-
+    
+    # Filter out any non-dict items from all_existing (defensive)
+    all_existing = [p for p in all_existing if isinstance(p, dict)]
+    
+    # Create index of existing puzzles by ID
+    existing_by_id = {str(p.get('id')): i for i, p in enumerate(all_existing) if isinstance(p, dict) and p.get('id')}
+    
+    # Calculate starting IDs and dates for new puzzles
+    from puzzle_manager import get_next_id, get_next_date
+    next_id = get_next_id(all_existing)
+    next_date = get_next_date(all_existing)
+    
+    current_id = next_id
+    current_date_obj = datetime.strptime(next_date, "%d.%m.%Y") if next_date else datetime.now()
+    
+    puzzles_to_append = []
+    
+    for puzzle in updated_puzzles:
+        # Skip if not a dict
+        if not isinstance(puzzle, dict):
+            continue
+        puzzle_id = str(puzzle.get('id', ''))
+        
+        # If puzzle has an existing ID, update it
+        if puzzle_id and puzzle_id in existing_by_id:
+            idx = existing_by_id[puzzle_id]
+            # Update existing puzzle (preserve ID and date if they exist)
+            if not puzzle.get('date') and all_existing[idx].get('date'):
+                puzzle['date'] = all_existing[idx]['date']
+            all_existing[idx] = puzzle
+        else:
+            # New puzzle - assign ID and date if missing
+            if not puzzle.get('id'):
+                puzzle['id'] = current_id
+                try:
+                    current_id = str(int(current_id) + 1)
+                except (ValueError, TypeError):
+                    current_id = "1"
+            
+            if not puzzle.get('date'):
+                puzzle['date'] = current_date_obj.strftime("%d.%m.%Y")
+                current_date_obj = current_date_obj + timedelta(days=1)
+            
+            puzzles_to_append.append(puzzle)
+    
+    # Append new puzzles to existing ones
+    all_existing.extend(puzzles_to_append)
+    
+    # Write back all puzzles in same format as original
     tmp_path = JSON_PATH + '.tmp'
     with open(tmp_path, 'w', encoding='utf-8') as fh:
-        json.dump(obj, fh, indent=2, ensure_ascii=False)
+        if use_object_format:
+            json.dump({'puzzles': all_existing}, fh, indent=2, ensure_ascii=False)
+        else:
+            json.dump(all_existing, fh, indent=2, ensure_ascii=False)
         fh.flush()
         os.fsync(fh.fileno())
-
+    
     # atomic replace
     os.replace(tmp_path, JSON_PATH)
     return bak_path
+
+
+def _commit_and_push(message="Update puzzles", additional_files=None, git_repo_dir=None):
+    """Commit and push changes to git repository.
+    
+    Args:
+        message: Commit message
+        additional_files: List of additional file paths to include (absolute paths)
+        git_repo_dir: Directory of git repository (defaults to grooped repo)
+    
+    Returns (success: bool, output: str, error: str)
+    """
+    if git_repo_dir is None:
+        git_repo_dir = GROOPED_REPO_DIR
+    
+    try:
+        # Check if we're in a git repository
+        result = subprocess.run(
+            ['git', 'rev-parse', '--git-dir'],
+            cwd=git_repo_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if result.returncode != 0:
+            return False, "", "Not a git repository"
+        
+        # Add the JSON file (relative to git repo)
+        json_file_rel = os.path.relpath(JSON_PATH, git_repo_dir)
+        files_to_add = [json_file_rel]
+        if additional_files:
+            for f in additional_files:
+                rel_path = os.path.relpath(f, git_repo_dir)
+                files_to_add.append(rel_path)
+        
+        result = subprocess.run(
+            ['git', 'add'] + files_to_add,
+            cwd=git_repo_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if result.returncode != 0:
+            return False, result.stdout, result.stderr
+        
+        # Check if there are changes to commit
+        result = subprocess.run(
+            ['git', 'diff', '--cached', '--quiet'],
+            cwd=git_repo_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if result.returncode == 0:
+            # No changes to commit
+            return True, "No changes to commit", ""
+        
+        # Commit
+        result = subprocess.run(
+            ['git', 'commit', '-m', message],
+            cwd=git_repo_dir,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        if result.returncode != 0:
+            return False, result.stdout, result.stderr
+        
+        # Push to remote
+        result = subprocess.run(
+            ['git', 'push'],
+            cwd=git_repo_dir,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        if result.returncode != 0:
+            return False, result.stdout, result.stderr
+        
+        return True, "Committed and pushed successfully", ""
+        
+    except subprocess.TimeoutExpired:
+        return False, "", "Git operation timed out"
+    except Exception as e:
+        return False, "", str(e)
 
 
 @app.route('/')
@@ -84,77 +264,162 @@ def index():
 
 @app.route('/api/puzzle', methods=['GET'])
 def get_puzzle():
+    """Return only the first non-published puzzle (one at a time)."""
     try:
+        # Read puzzles (already filters out published)
         data = _read_json()
-        # Filter out published puzzles (they're in the other repo)
-        data = [p for p in data if p.get('status') != 'published']
-        # Add validation info with duplicate word detection
-        published = load_published_puzzles()
+        
+        # Return only the first puzzle
+        if not data:
+            return jsonify([])
+        
+        puzzle = data[0] if data else None
+        if not puzzle:
+            return jsonify([])
+        
+        # Load published puzzles for validation (from same file, filter by status)
+        try:
+            with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+                file_data = json.load(fh)
+            
+            # Handle both formats: array directly or object with "puzzles" key
+            if isinstance(file_data, list):
+                all_puzzles = file_data
+            elif isinstance(file_data, dict) and 'puzzles' in file_data:
+                all_puzzles = file_data['puzzles']
+                if not isinstance(all_puzzles, list):
+                    all_puzzles = []
+            else:
+                all_puzzles = []
+            
+            published = [p for p in all_puzzles if isinstance(p, dict) and p.get('status') == 'published']
+        except FileNotFoundError:
+            published = []
+        
         published_words = set()
         for p in published:
-            for cat in p.get('categories', []):
-                for word in cat.get('words', []):
-                    published_words.add(word.upper().strip())
+            if isinstance(p, dict):
+                for cat in p.get('categories', []):
+                    if isinstance(cat, dict):
+                        for word in cat.get('words', []):
+                            if isinstance(word, str):
+                                published_words.add(word.upper().strip())
         
-        for puzzle in data:
+        # Validate the puzzle
+        if isinstance(puzzle, dict):
             is_valid, errors = validate_puzzle(puzzle, published)
             # Find duplicate words for highlighting
             duplicate_words = set()
             puzzle_words = []
             for cat in puzzle.get('categories', []):
-                for word in cat.get('words', []):
-                    word_upper = word.upper().strip()
-                    if word_upper in published_words or word_upper in puzzle_words:
-                        duplicate_words.add(word_upper)
-                    puzzle_words.append(word_upper)
+                if isinstance(cat, dict):
+                    for word in cat.get('words', []):
+                        if isinstance(word, str):
+                            word_upper = word.upper().strip()
+                            if word_upper in published_words or word_upper in puzzle_words:
+                                duplicate_words.add(word_upper)
+                            puzzle_words.append(word_upper)
             
             puzzle['_validation'] = {
                 'valid': is_valid, 
                 'errors': errors,
                 'duplicate_words': list(duplicate_words)
             }
+        
+        return jsonify([puzzle])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    return jsonify(data)
 
 
 @app.route('/api/puzzle', methods=['POST'])
 def save_puzzle():
-    # Expecting JSON body
-    data = request.get_json(silent=True)
-    if data is None:
+    """Save puzzle without changing puzzles.json - just validates and returns updated puzzle."""
+    puzzle_data = request.get_json(silent=True)
+    if puzzle_data is None:
         return jsonify({'error': 'Invalid or missing JSON body'}), 400
     
-    # Filter out published puzzles
-    data = [p for p in data if p.get('status') != 'published']
+    # Handle both single puzzle or array (for backward compatibility)
+    if isinstance(puzzle_data, list):
+        if len(puzzle_data) == 0:
+            return jsonify({'error': 'No puzzle to save'}), 400
+        puzzle = puzzle_data[0]  # Take first puzzle
+    elif isinstance(puzzle_data, dict):
+        puzzle = puzzle_data
+    else:
+        return jsonify({'error': 'Expected puzzle object or array'}), 400
+    
+    # Ensure it's a dict and not published
+    if not isinstance(puzzle, dict) or puzzle.get('status') == 'published':
+        return jsonify({'error': 'Cannot save published puzzle'}), 400
+    
+    # Validate puzzle structure
+    if 'categories' not in puzzle:
+        puzzle['categories'] = []
+    if 'language' not in puzzle:
+        puzzle['language'] = 'en'
     
     # ensure serializable
     try:
-        json.dumps(data)
+        json.dumps(puzzle)
     except Exception as e:
         return jsonify({'error': f'JSON serialization failed: {e}'}), 400
 
-    # support ?backup=0 or ?backup=false to skip creating a backup
-    # Default is '0' so backups are opt-in and will not be created unless requested
-    backup_param = request.args.get('backup', '0').lower()
-    make_backup = not (backup_param in ('0', 'false', 'no', 'off'))
-
+    # Load published puzzles for validation
     try:
-        bak = _write_json(data, make_backup=make_backup)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+            file_data = json.load(fh)
+        
+        if isinstance(file_data, list):
+            all_puzzles = file_data
+        elif isinstance(file_data, dict) and 'puzzles' in file_data:
+            all_puzzles = file_data['puzzles']
+            if not isinstance(all_puzzles, list):
+                all_puzzles = []
+        else:
+            all_puzzles = []
+        
+        published = [p for p in all_puzzles if isinstance(p, dict) and p.get('status') == 'published']
+    except FileNotFoundError:
+        published = []
+    
+    # Add validation info (same as GET endpoint)
+    published_words = set()
+    for p in published:
+        if isinstance(p, dict):
+            for cat in p.get('categories', []):
+                if isinstance(cat, dict):
+                    for word in cat.get('words', []):
+                        if isinstance(word, str):
+                            published_words.add(word.upper().strip())
+    
+    from puzzle_validator import validate_puzzle
+    is_valid, errors = validate_puzzle(puzzle, published)
+    
+    # Find duplicate words for highlighting
+    duplicate_words = set()
+    puzzle_words = []
+    for cat in puzzle.get('categories', []):
+        if isinstance(cat, dict):
+            for word in cat.get('words', []):
+                if isinstance(word, str):
+                    word_upper = word.upper().strip()
+                    if word_upper in published_words or word_upper in puzzle_words:
+                        duplicate_words.add(word_upper)
+                    puzzle_words.append(word_upper)
+    
+    puzzle['_validation'] = {
+        'valid': is_valid, 
+        'errors': errors,
+        'duplicate_words': list(duplicate_words)
+    }
 
-    resp = {'ok': True}
-    if bak:
-        resp['backup'] = os.path.basename(bak)
-    else:
-        resp['backup'] = None
+    resp = {'ok': True, 'puzzle': puzzle}
     return jsonify(resp)
 
 
 @app.route('/api/regenerate-category', methods=['GET'])
 def regenerate_category():
-    """Regenerate a single category."""
+    """Regenerate a single category - either completely new or words for a given category name."""
     try:
         # Ensure .env is loaded before importing - try multiple times
         load_dotenv()
@@ -163,29 +428,53 @@ def regenerate_category():
         if os.path.exists(env_path):
             load_dotenv(dotenv_path=env_path, override=True)
         
-        from regenerate_single_category import generate_single_category
+        from regenerate_single_category import generate_single_category, generate_words_for_category
         
         difficulty = request.args.get('difficulty', 'medium')
+        category_name = request.args.get('category_name', '').strip()  # Optional: if provided, generate words for this category
+        
         difficulty_map = {
             "easy": "yellow",
             "medium": "green",
             "hard": "blue",
         }
         
-        # Get existing categories from current puzzle to avoid duplicates
-        puzzle_index = request.args.get('puzzle_index', type=int)
-        existing_categories = []
-        if puzzle_index is not None:
+        # If category_name is provided and not empty, generate words for that category
+        if category_name:
+            raw = generate_words_for_category(category_name, difficulty)
+        else:
+            # Load ALL categories from puzzles.json to avoid duplicates
+            existing_category_names = set()
             try:
-                data = _read_json()
-                data = [p for p in data if p.get('status') != 'published']
-                if 0 <= puzzle_index < len(data):
-                    existing_categories = data[puzzle_index].get('categories', [])
+                with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+                    file_data = json.load(fh)
+                
+                # Handle both formats
+                if isinstance(file_data, list):
+                    all_puzzles = file_data
+                elif isinstance(file_data, dict) and 'puzzles' in file_data:
+                    all_puzzles = file_data['puzzles']
+                    if not isinstance(all_puzzles, list):
+                        all_puzzles = []
+                else:
+                    all_puzzles = []
+                
+                # Extract all category names from all puzzles
+                for puzzle in all_puzzles:
+                    if isinstance(puzzle, dict):
+                        for cat in puzzle.get('categories', []):
+                            if isinstance(cat, dict):
+                                cat_name = cat.get('name', '').strip().lower()
+                                if cat_name:
+                                    existing_category_names.add(cat_name)
             except:
-                pass  # If we can't get existing, just continue
-        
-        # Generate single category
-        raw = generate_single_category(difficulty, existing_categories)
+                pass  # If we can't load, continue without existing names
+            
+            # Convert to list format for generate_single_category
+            existing_categories = [{'name': name} for name in existing_category_names]
+            
+            # Generate completely new category (not a variation)
+            raw = generate_single_category(difficulty, existing_categories)
         
         diff = raw.get("difficulty", difficulty)
         color = difficulty_map.get(diff, "green")
@@ -204,28 +493,132 @@ def regenerate_category():
 
 @app.route('/api/export', methods=['POST'])
 def export_approved():
-    """Export all puzzles and remove them from editor."""
+    """Mark current puzzle as published and save to puzzles.json."""
     try:
-        data = _read_json()
-        # Filter out published puzzles
-        data = [p for p in data if p.get('status') != 'published']
+        # Get the current puzzle from request (the one being exported)
+        puzzle = request.get_json(silent=True)
+        if not puzzle:
+            return jsonify({'error': 'No puzzle to export'}), 400
         
-        if not data:
-            return jsonify({'error': 'No puzzles to export'}), 400
+        # Handle array format (take first)
+        if isinstance(puzzle, list):
+            if len(puzzle) == 0:
+                return jsonify({'error': 'No puzzle to export'}), 400
+            puzzle = puzzle[0]
         
-        # Export all puzzles to file
-        export_path = os.path.join(APP_DIR, 'puzzles_approved.json')
-        with open(export_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+        if not isinstance(puzzle, dict):
+            return jsonify({'error': 'Invalid puzzle format'}), 400
         
-        # Remove all from editor (they're now exported)
-        _write_json([])
+        # Mark as published
+        puzzle['status'] = 'published'
         
-        return jsonify({
+        # Load all existing puzzles
+        try:
+            with open(JSON_PATH, 'r', encoding='utf-8') as fh:
+                file_data = json.load(fh)
+            
+            # Handle both formats
+            if isinstance(file_data, list):
+                all_puzzles = file_data
+                use_object_format = False
+            elif isinstance(file_data, dict) and 'puzzles' in file_data:
+                all_puzzles = file_data['puzzles']
+                if not isinstance(all_puzzles, list):
+                    all_puzzles = []
+                use_object_format = True
+            else:
+                all_puzzles = []
+                use_object_format = False
+        except FileNotFoundError:
+            all_puzzles = []
+            use_object_format = False
+        
+        # Ensure puzzle has ID and date before publishing
+        from puzzle_manager import get_next_id, get_next_date
+        
+        puzzle_id = str(puzzle.get('id', ''))
+        if not puzzle_id:
+            # Assign new ID
+            puzzle['id'] = get_next_id(all_puzzles)
+            puzzle_id = puzzle['id']
+        
+        if not puzzle.get('date'):
+            # Assign date based on existing puzzles
+            puzzle['date'] = get_next_date(all_puzzles)
+        
+        # Ensure language is set
+        if 'language' not in puzzle:
+            puzzle['language'] = 'en'
+        
+        # Ensure categories exist - if empty, something went wrong with collection
+        if 'categories' not in puzzle or not puzzle.get('categories'):
+            return jsonify({'error': 'Puzzle has no categories. Cannot export empty puzzle.'}), 400
+        
+        # Find and update existing puzzle by ID, then move to end when published
+        updated = False
+        puzzle_to_export = None
+        index_to_remove = None
+        
+        for i, p in enumerate(all_puzzles):
+            if isinstance(p, dict) and str(p.get('id', '')) == puzzle_id:
+                # Merge existing puzzle with exported data to preserve any missing fields
+                # But prioritize the exported puzzle's categories (from form)
+                existing_puzzle = p.copy()
+                existing_puzzle.update(puzzle)  # Update with exported data
+                # Ensure categories from export are used (they come from the form)
+                if puzzle.get('categories'):
+                    existing_puzzle['categories'] = puzzle['categories']
+                existing_puzzle['status'] = 'published'
+                puzzle_to_export = existing_puzzle
+                index_to_remove = i
+                updated = True
+                break
+        
+        if updated:
+            # Remove from current position
+            all_puzzles.pop(index_to_remove)
+            # Append to end
+            all_puzzles.append(puzzle_to_export)
+        else:
+            # New puzzle - mark as published and append
+            puzzle['status'] = 'published'
+            all_puzzles.append(puzzle)
+        
+        # Write back
+        tmp_path = JSON_PATH + '.tmp'
+        with open(tmp_path, 'w', encoding='utf-8') as fh:
+            if use_object_format:
+                json.dump({'puzzles': all_puzzles}, fh, indent=2, ensure_ascii=False)
+            else:
+                json.dump(all_puzzles, fh, indent=2, ensure_ascii=False)
+            fh.flush()
+            os.fsync(fh.fileno())
+        
+        os.replace(tmp_path, JSON_PATH)
+        
+        # Auto-commit and push to git
+        git_enabled = os.getenv('AUTO_GIT_COMMIT', 'true').lower() in ('true', '1', 'yes', 'on')
+        git_status = {}
+        if git_enabled:
+            commit_msg = f"Export puzzle to published - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+            git_success, git_output, git_error = _commit_and_push(commit_msg, git_repo_dir=GROOPED_REPO_DIR)
+            git_status = {
+                'success': git_success,
+                'message': git_output if git_success else git_error
+            }
+        else:
+            git_status = {
+                'success': None,
+                'message': 'Auto-commit disabled'
+            }
+        
+        resp = {
             'ok': True,
-            'exported': len(data),
-            'export_file': 'puzzles_approved.json'
-        })
+            'exported': 1,
+            'git': git_status,
+            'next_puzzle': True  # Indicates there should be a next puzzle
+        }
+        return jsonify(resp)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

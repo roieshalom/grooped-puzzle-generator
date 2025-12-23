@@ -44,6 +44,8 @@ python edit_puzzles.py
 
 Then open `http://127.0.0.1:5001` in your browser.
 
+**Auto-commit to Git**: The editor automatically commits and pushes changes to the git repository when you save puzzles. To disable this, set the environment variable `AUTO_GIT_COMMIT=false` in your `.env` file.
+
 ## Project Structure
 
 - `puzzle_generator.py` - Main script for generating puzzles using OpenAI

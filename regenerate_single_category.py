@@ -45,10 +45,12 @@ def generate_single_category(difficulty="medium", existing_categories=None):
     existing_names = [cat.get('name', '').lower() for cat in (existing_categories or [])]
     
     prompt = f"""
-You create a single category for a "Connections"-style word puzzle.
+You create a completely NEW category for a "Connections"-style word puzzle.
 
-REQUIREMENTS:
-- Create ONE category with difficulty: {difficulty}
+CRITICAL REQUIREMENTS:
+- Create a COMPLETELY NEW category - NOT a variation, NOT a slight rename, NOT similar words
+- The category must be UNIQUE and DISTINCT from existing categories
+- Category must have difficulty: {difficulty}
 - The category must have exactly 4 words
 - Category name should be short and human-friendly
 - Words should be in UPPERCASE
@@ -58,8 +60,10 @@ DIFFICULTY LEVELS:
 - "medium": Requires light general knowledge or mild wordplay (e.g., "Words that can follow 'light'", "Types of fabric")
 - "hard": Abstract or wordplay-based (e.g., "Words that are both colors and emotions", "Idioms with 'break'")
 
-AVOID DUPLICATES:
-Do NOT create categories with these names: {', '.join(existing_names) if existing_names else 'none'}
+EXISTING CATEGORIES TO AVOID (create something completely different):
+{', '.join(existing_names) if existing_names else 'none'}
+
+IMPORTANT: Do NOT create a category similar to any of the above. Create something completely new and different in both name and concept.
 
 OUTPUT FORMAT:
 Return ONLY valid JSON with this exact structure:
@@ -87,4 +91,51 @@ No extra text, no explanations, just JSON.
         return json.loads(puzzle_json)
     except Exception as e:
         raise Exception(f"Failed to generate category: {str(e)}")
+
+
+def generate_words_for_category(category_name, difficulty="medium"):
+    """
+    Generate 4 words for a given category name.
+    This is used when the user writes a category name and wants words generated for it.
+    """
+    prompt = f"""
+You are generating words for a "Connections"-style word puzzle category.
+
+CATEGORY NAME: {category_name}
+
+REQUIREMENTS:
+- Generate exactly 4 words that fit this category
+- Words should be in UPPERCASE
+- Words should be clear, recognizable, and appropriate for a word puzzle
+- Difficulty level: {difficulty}
+  - "easy": Common, concrete words
+  - "medium": Requires some general knowledge
+  - "hard": More abstract or wordplay-based
+
+OUTPUT FORMAT:
+Return ONLY valid JSON with this exact structure:
+{{
+  "name": "{category_name}",
+  "difficulty": "{difficulty}",
+  "words": ["WORD1", "WORD2", "WORD3", "WORD4"]
+}}
+
+No extra text, no explanations, just JSON.
+"""
+    
+    try:
+        client = get_client()
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert at generating words for word puzzle categories. Always return valid JSON only."},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.7,
+            response_format={"type": "json_object"},
+        )
+        puzzle_json = response.choices[0].message.content
+        return json.loads(puzzle_json)
+    except Exception as e:
+        raise Exception(f"Failed to generate words for category: {str(e)}")
 
