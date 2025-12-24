@@ -517,30 +517,27 @@ def regenerate_category():
 
 @app.route('/api/export', methods=['POST'])
 def export_approved():
-    """Mark current puzzle as published and save to puzzles.json."""
+    """Append current puzzle as a new published puzzle at the end of puzzles.json."""
     try:
         # Get the current puzzle from request (the one being exported)
         puzzle = request.get_json(silent=True)
         if not puzzle:
             return jsonify({'error': 'No puzzle to export'}), 400
-        
+
         # Handle array format (take first)
         if isinstance(puzzle, list):
             if len(puzzle) == 0:
                 return jsonify({'error': 'No puzzle to export'}), 400
             puzzle = puzzle[0]
-        
+
         if not isinstance(puzzle, dict):
             return jsonify({'error': 'Invalid puzzle format'}), 400
-        
-        # Mark as published
-        puzzle['status'] = 'published'
-        
-        # Load all existing puzzles
+
+        # Load all existing puzzles from puzzles.json
         try:
             with open(JSON_PATH, 'r', encoding='utf-8') as fh:
                 file_data = json.load(fh)
-            
+
             # Handle both formats
             if isinstance(file_data, list):
                 all_puzzles = file_data
@@ -556,64 +553,33 @@ def export_approved():
         except FileNotFoundError:
             all_puzzles = []
             use_object_format = False
-        
-        # Ensure puzzle has ID and date before publishing
-        from puzzle_manager import get_next_id, get_next_date
-        
-        puzzle_id = str(puzzle.get('id', ''))
-        if not puzzle_id:
-            # Assign new ID
-            puzzle['id'] = get_next_id(all_puzzles)
-            puzzle_id = puzzle['id']
-        
-        if not puzzle.get('date'):
-            # Assign date based on existing puzzles
-            puzzle['date'] = get_next_date(all_puzzles)
-        
-        # Ensure language is set
-        if 'language' not in puzzle:
-            puzzle['language'] = 'en'
-        
+
         # Ensure categories exist - if empty, something went wrong with collection
         if 'categories' not in puzzle or not puzzle.get('categories'):
             return jsonify({'error': 'Puzzle has no categories. Cannot export empty puzzle.'}), 400
-        
-        # Find and update existing puzzle by ID, then move to end when published
-        updated = False
-        puzzle_to_export = None
-        index_to_remove = None
-        
-        for i, p in enumerate(all_puzzles):
-            if isinstance(p, dict) and str(p.get('id', '')) == puzzle_id:
-                # Merge existing puzzle with exported data to preserve any missing fields
-                # But prioritize the exported puzzle's categories (from form)
-                existing_puzzle = p.copy()
-                existing_puzzle.update(puzzle)  # Update with exported data
-                # Ensure categories from export are used (they come from the form)
-                if puzzle.get('categories'):
-                    existing_puzzle['categories'] = puzzle['categories']
-                existing_puzzle['status'] = 'published'
-                puzzle_to_export = existing_puzzle
-                index_to_remove = i
-                updated = True
-                break
-        
-        if updated:
-            # Remove from current position
-            all_puzzles.pop(index_to_remove)
-            # Append to end
-            all_puzzles.append(puzzle_to_export)
-        else:
-            # New puzzle - mark as published and append
-            puzzle['status'] = 'published'
-            all_puzzles.append(puzzle)
-        
+
+                # Compute next ID and next date based on ALL existing puzzles
+        from puzzle_manager import get_next_id, get_next_date
+        next_id = get_next_id(all_puzzles)
+        next_date = get_next_date(all_puzzles)
+
+        # Build a clean puzzle object with fields in desired order
+        # and WITHOUT status
+        ordered_puzzle = {
+            "date": next_date,
+            "id": next_id,
+            "language": puzzle.get("language", "en"),
+            "categories": puzzle.get("categories", []),
+        }
+
+        # Append to the end without touching existing puzzles
+        all_puzzles.append(ordered_puzzle)
+
         # Write back
-        # Ensure directory exists
         json_dir = os.path.dirname(JSON_PATH)
         if json_dir and not os.path.exists(json_dir):
             os.makedirs(json_dir, exist_ok=True)
-        
+
         tmp_path = JSON_PATH + '.tmp'
         try:
             with open(tmp_path, 'w', encoding='utf-8') as fh:
@@ -623,18 +589,17 @@ def export_approved():
                     json.dump(all_puzzles, fh, indent=2, ensure_ascii=False)
                 fh.flush()
                 os.fsync(fh.fileno())
-            
+
             os.replace(tmp_path, JSON_PATH)
         except Exception as write_error:
-            # Clean up temp file if it exists
             if os.path.exists(tmp_path):
                 try:
                     os.remove(tmp_path)
                 except:
                     pass
             raise Exception(f"Failed to write to {JSON_PATH}: {str(write_error)}")
-        
-        # Auto-commit and push to git
+
+        # Auto-commit and push to git (same as before)
         git_enabled = os.getenv('AUTO_GIT_COMMIT', 'true').lower() in ('true', '1', 'yes', 'on')
         git_status = {}
         if git_enabled:
@@ -652,16 +617,15 @@ def export_approved():
                 'message': 'Auto-commit disabled'
             }
             print("Git auto-commit is disabled")
-        
-        # Log successful export
-        print(f"Export successful: Puzzle ID {puzzle.get('id')} marked as published and saved to {JSON_PATH}")
+
+        print(f"Export successful: NEW Puzzle ID {puzzle.get('id')} appended to {JSON_PATH}")
         print(f"Total puzzles after export: {len(all_puzzles)}")
-        
+
         resp = {
             'ok': True,
             'exported': 1,
             'git': git_status,
-            'next_puzzle': True,  # Indicates there should be a next puzzle
+            'next_puzzle': True,
             'puzzle_id': puzzle.get('id'),
             'file_path': JSON_PATH
         }
@@ -673,30 +637,3 @@ def export_approved():
         print(f"Export error: {error_msg}")
         print(f"Traceback: {error_trace}")
         return jsonify({'error': error_msg, 'traceback': error_trace}), 500
-
-
-if __name__ == '__main__':
-    # Configuration for production vs development
-    # In production, use environment variables to configure
-    host = os.getenv('FLASK_HOST', '127.0.0.1')
-    port = int(os.getenv('FLASK_PORT', '5001'))
-    # Default to debug=True for localhost, False for production (0.0.0.0)
-    debug_env = os.getenv('FLASK_DEBUG', '')
-    if debug_env:
-        debug = debug_env.lower() in ('true', '1', 'yes', 'on')
-    else:
-        # Auto-enable debug mode for localhost - force True for development
-        debug = True  # Always enable debug for localhost development
-    
-    # Enable template auto-reload in development
-    app.config['TEMPLATES_AUTO_RELOAD'] = True  # Always enable template reload
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable static file caching
-    
-    # Log startup
-    print(f"Starting Flask app on {host}:{port}")
-    print(f"Editor available at: http://{host}:{port}/editor")
-    print(f"Debug mode: {debug}")
-    print(f"Template auto-reload: {app.config['TEMPLATES_AUTO_RELOAD']}")
-    print(f"JSON_PATH: {JSON_PATH}")
-    
-    app.run(host=host, port=port, debug=debug)
