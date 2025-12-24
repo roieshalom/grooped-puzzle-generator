@@ -1,3 +1,2 @@
 flask
-# Optional pin if you prefer a specific version, e.g.:
-# flask==2.2.5
+python-dotenv
