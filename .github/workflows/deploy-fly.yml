@@ -15,10 +15,13 @@ jobs:
       - name: Setup Fly.io CLI
         uses: superfly/flyctl-actions/setup-flyctl@master
       
+      - name: Set Fly.io auth token
+        run: echo "$FLY_API_TOKEN" | flyctl auth login --interactive=false
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      
       - name: Deploy to Fly.io
-        run: |
-          flyctl apps list
-          flyctl deploy --remote-only --app grooped-editor
+        run: flyctl deploy --remote-only --app grooped-editor
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
