@@ -48,7 +48,7 @@ except ImportError:
     def get_next_date(puzzles=None, start_date=None):
         return datetime.now().strftime("%d.%m.%Y")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=None)  # Disable static file serving
 
 
 def _read_json():
@@ -266,6 +266,15 @@ def index():
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
     return response
+
+
+@app.errorhandler(404)
+def catch_all(error):
+    """Catch-all route to ensure Flask handles all requests."""
+    # If it's not an API route, serve the editor
+    if not request.path.startswith('/api/'):
+        return index()
+    return jsonify({'error': 'Not found'}), 404
 
 
 @app.route('/api/puzzle', methods=['GET'])
@@ -638,4 +647,10 @@ if __name__ == '__main__':
     
     # Enable template auto-reload in development
     app.config['TEMPLATES_AUTO_RELOAD'] = debug
+    
+    # Log startup
+    print(f"Starting Flask app on {host}:{port}")
+    print(f"Editor available at: http://{host}:{port}/editor")
+    print(f"JSON_PATH: {JSON_PATH}")
+    
     app.run(host=host, port=port, debug=debug)
