@@ -17,12 +17,13 @@ COPY . .
 # Clone grooped repo
 RUN git clone https://github.com/roieshalom/grooped.git grooped || true
 
-# Expose port (Fly.io uses 8080 by default, but we'll use env var)
+# Expose port (Fly.io uses 8080 by default)
 EXPOSE 8080
 
 # Set environment variables
 ENV FLASK_HOST=0.0.0.0
 ENV FLASK_PORT=8080
+ENV PYTHONUNBUFFERED=1
 
 # Run the application
 CMD ["python3", "edit_puzzles.py"]
