@@ -25,5 +25,5 @@ ENV FLASK_HOST=0.0.0.0
 ENV FLASK_PORT=8080
 ENV PYTHONUNBUFFERED=1
 
-# Run the application (use exec form to catch errors)
-CMD python3 -u edit_puzzles.py
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
+
