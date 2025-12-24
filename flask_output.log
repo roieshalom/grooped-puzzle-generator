@@ -2,58 +2,9 @@ Starting Flask app on 127.0.0.1:5001
 Editor available at: http://127.0.0.1:5001/editor
 Debug mode: False
 Template auto-reload: True
-JSON_PATH: /var/www/grooped/puzzles.json
+JSON_PATH: /Users/roieshalom/ CURSOR/grooped/puzzles.json
  * Serving Flask app 'edit_puzzles'
  * Debug mode: off
 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5001
 [33mPress CTRL+C to quit[0m
-127.0.0.1 - - [24/Dec/2025 18:05:12] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:39] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:39] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:40] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:40] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:54] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:54] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:54] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:06:54] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:15] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:15] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:16] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:16] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:48] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:48] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:48] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:07:48] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:08:08] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:08:08] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:08:08] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:08:08] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:09:30] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:09:30] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:09:30] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:09:30] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:10:39] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:10:39] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:10:39] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:10:39] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:22:39] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:22:40] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:22:40] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:22:40] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:27:23] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:27:23] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:27:23] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:45] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:45] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:45] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:48] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /editor HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /api/puzzle HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:28:49] "GET /favicon.ico HTTP/1.1" 200 -
-127.0.0.1 - - [24/Dec/2025 18:29:27] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 -

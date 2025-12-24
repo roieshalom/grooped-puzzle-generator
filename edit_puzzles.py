@@ -24,9 +24,10 @@ APP_DIR = os.path.dirname(os.path.abspath(__file__))
 # Path to puzzles.json in the grooped repository
 # Can be overridden with GROOPED_REPO_DIR environment variable
 grooped_repo_dir = os.getenv('GROOPED_REPO_DIR')
-if grooped_repo_dir:
+if grooped_repo_dir and os.path.exists(grooped_repo_dir):
     GROOPED_REPO_DIR = grooped_repo_dir
 else:
+    # Fallback to relative path if env var not set or path doesn't exist
     parent_dir = os.path.dirname(APP_DIR)
     GROOPED_REPO_DIR = os.path.join(parent_dir, 'grooped')
 JSON_PATH = os.path.join(GROOPED_REPO_DIR, 'puzzles.json')
@@ -608,23 +609,39 @@ def export_approved():
             all_puzzles.append(puzzle)
         
         # Write back
-        tmp_path = JSON_PATH + '.tmp'
-        with open(tmp_path, 'w', encoding='utf-8') as fh:
-            if use_object_format:
-                json.dump({'puzzles': all_puzzles}, fh, indent=2, ensure_ascii=False)
-            else:
-                json.dump(all_puzzles, fh, indent=2, ensure_ascii=False)
-            fh.flush()
-            os.fsync(fh.fileno())
+        # Ensure directory exists
+        json_dir = os.path.dirname(JSON_PATH)
+        if json_dir and not os.path.exists(json_dir):
+            os.makedirs(json_dir, exist_ok=True)
         
-        os.replace(tmp_path, JSON_PATH)
+        tmp_path = JSON_PATH + '.tmp'
+        try:
+            with open(tmp_path, 'w', encoding='utf-8') as fh:
+                if use_object_format:
+                    json.dump({'puzzles': all_puzzles}, fh, indent=2, ensure_ascii=False)
+                else:
+                    json.dump(all_puzzles, fh, indent=2, ensure_ascii=False)
+                fh.flush()
+                os.fsync(fh.fileno())
+            
+            os.replace(tmp_path, JSON_PATH)
+        except Exception as write_error:
+            # Clean up temp file if it exists
+            if os.path.exists(tmp_path):
+                try:
+                    os.remove(tmp_path)
+                except:
+                    pass
+            raise Exception(f"Failed to write to {JSON_PATH}: {str(write_error)}")
         
         # Auto-commit and push to git
         git_enabled = os.getenv('AUTO_GIT_COMMIT', 'true').lower() in ('true', '1', 'yes', 'on')
         git_status = {}
         if git_enabled:
             commit_msg = f"Export puzzle to published - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+            print(f"Attempting git commit/push to {GROOPED_REPO_DIR}...")
             git_success, git_output, git_error = _commit_and_push(commit_msg, git_repo_dir=GROOPED_REPO_DIR)
+            print(f"Git result: success={git_success}, output={git_output}, error={git_error}")
             git_status = {
                 'success': git_success,
                 'message': git_output if git_success else git_error
@@ -634,16 +651,28 @@ def export_approved():
                 'success': None,
                 'message': 'Auto-commit disabled'
             }
+            print("Git auto-commit is disabled")
+        
+        # Log successful export
+        print(f"Export successful: Puzzle ID {puzzle.get('id')} marked as published and saved to {JSON_PATH}")
+        print(f"Total puzzles after export: {len(all_puzzles)}")
         
         resp = {
             'ok': True,
             'exported': 1,
             'git': git_status,
-            'next_puzzle': True  # Indicates there should be a next puzzle
+            'next_puzzle': True,  # Indicates there should be a next puzzle
+            'puzzle_id': puzzle.get('id'),
+            'file_path': JSON_PATH
         }
         return jsonify(resp)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        import traceback
+        error_msg = str(e)
+        error_trace = traceback.format_exc()
+        print(f"Export error: {error_msg}")
+        print(f"Traceback: {error_trace}")
+        return jsonify({'error': error_msg, 'traceback': error_trace}), 500
 
 
 if __name__ == '__main__':
