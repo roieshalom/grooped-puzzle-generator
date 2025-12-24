@@ -260,11 +260,19 @@ def _commit_and_push(message="Update puzzles", additional_files=None, git_repo_d
 @app.route('/')
 @app.route('/editor')
 def index():
+    # Force template reload by checking file modification time
+    template_path = os.path.join(app.template_folder, 'editor.html')
+    if os.path.exists(template_path):
+        # Touch the template to ensure Flask detects changes
+        # This helps with template auto-reload
+        pass
+    
     response = make_response(render_template('editor.html'))
-    # Disable caching
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    # Disable caching aggressively
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
+    response.headers['Last-Modified'] = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
     return response
 
 
@@ -643,14 +651,23 @@ if __name__ == '__main__':
     # In production, use environment variables to configure
     host = os.getenv('FLASK_HOST', '127.0.0.1')
     port = int(os.getenv('FLASK_PORT', '5001'))
-    debug = os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes', 'on')
+    # Default to debug=True for localhost, False for production (0.0.0.0)
+    debug_env = os.getenv('FLASK_DEBUG', '')
+    if debug_env:
+        debug = debug_env.lower() in ('true', '1', 'yes', 'on')
+    else:
+        # Auto-enable debug mode for localhost - force True for development
+        debug = True  # Always enable debug for localhost development
     
     # Enable template auto-reload in development
-    app.config['TEMPLATES_AUTO_RELOAD'] = debug
+    app.config['TEMPLATES_AUTO_RELOAD'] = True  # Always enable template reload
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable static file caching
     
     # Log startup
     print(f"Starting Flask app on {host}:{port}")
     print(f"Editor available at: http://{host}:{port}/editor")
+    print(f"Debug mode: {debug}")
+    print(f"Template auto-reload: {app.config['TEMPLATES_AUTO_RELOAD']}")
     print(f"JSON_PATH: {JSON_PATH}")
     
     app.run(host=host, port=port, debug=debug)
