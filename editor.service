@@ -1,0 +1,21 @@
+[Unit]
+Description=Grooped Puzzle Editor Flask App
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/grooped-puzzle-generator
+Environment="PATH=/usr/bin:/usr/local/bin"
+Environment="FLASK_HOST=127.0.0.1"
+Environment="FLASK_PORT=5001"
+Environment="FLASK_DEBUG=False"
+Environment="GROOPED_REPO_DIR=/path/to/grooped"
+Environment="AUTO_GIT_COMMIT=true"
+ExecStart=/usr/bin/python3 /path/to/grooped-puzzle-generator/edit_puzzles.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+

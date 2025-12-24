@@ -22,8 +22,13 @@ load_dotenv()
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 # Path to puzzles.json in the grooped repository
-parent_dir = os.path.dirname(APP_DIR)
-GROOPED_REPO_DIR = os.path.join(parent_dir, 'grooped')
+# Can be overridden with GROOPED_REPO_DIR environment variable
+grooped_repo_dir = os.getenv('GROOPED_REPO_DIR')
+if grooped_repo_dir:
+    GROOPED_REPO_DIR = grooped_repo_dir
+else:
+    parent_dir = os.path.dirname(APP_DIR)
+    GROOPED_REPO_DIR = os.path.join(parent_dir, 'grooped')
 JSON_PATH = os.path.join(GROOPED_REPO_DIR, 'puzzles.json')
 
 # Add current directory to path for imports
@@ -253,6 +258,7 @@ def _commit_and_push(message="Update puzzles", additional_files=None, git_repo_d
 
 
 @app.route('/')
+@app.route('/editor')
 def index():
     response = make_response(render_template('editor.html'))
     # Disable caching
@@ -624,7 +630,12 @@ def export_approved():
 
 
 if __name__ == '__main__':
-    # Use 127.0.0.1 only to keep it local
-    # Enable debug to prevent template caching
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(host='127.0.0.1', port=5001, debug=True)
+    # Configuration for production vs development
+    # In production, use environment variables to configure
+    host = os.getenv('FLASK_HOST', '127.0.0.1')
+    port = int(os.getenv('FLASK_PORT', '5001'))
+    debug = os.getenv('FLASK_DEBUG', 'False').lower() in ('true', '1', 'yes', 'on')
+    
+    # Enable template auto-reload in development
+    app.config['TEMPLATES_AUTO_RELOAD'] = debug
+    app.run(host=host, port=port, debug=debug)
