@@ -10,1002 +10,131 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: white;
-      padding: 40px 20px;
-      color: #333;
-      overflow-x: hidden; /* Prevent horizontal scrolling */
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    @media (max-width: 768px) {
-      body {
-        padding: 20px;
-      }
-    }
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-      }
-    }
-    .date-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .nav-btn {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 14px;
-      color: #666;
-      padding: 0;
-    }
-    .nav-btn:hover {
-      color: #000;
-    }
-    .nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-    input[type="text"] {
-      padding: 10px 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 2px;
-      font-size: 14px;
-      background: #f5f5f5;
-      color: #333;
-      font-family: inherit;
-    }
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #999;
-      background: #fafafa;
-    }
-    .lang-input {
-      width: 100px;
-      margin-left: 15px;
-    }
-    .category {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 20px;
-      min-width: 0; /* Allow shrinking */
-    }
-    @media (max-width: 480px) {
-      .category {
-        gap: 8px;
-      }
-    }
-    .color-square-wrapper {
-      position: relative;
-      flex-shrink: 0;
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .color-square {
-      width: 20px;
-      height: 20px;
-      border-radius: 2px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.2s;
-    }
-    .color-square:hover {
-      border-color: #333;
-      transform: scale(1.1);
-    }
-    .color-square.purple { background: #9b59b6; }
-    .color-square.green { background: #27ae60; }
-    .color-square.blue { background: #3498db; }
-    .color-square.orange { background: #e67e22; }
-    .color-arrow {
-      font-size: 10px;
-      color: #999;
-      cursor: pointer;
-      user-select: none;
-    }
-    .color-square-wrapper:hover .color-arrow {
-      color: #666;
-    }
-    .color-dropdown {
-      position: absolute;
-      top: 28px;
-      left: 0;
-      z-index: 100;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      display: none;
-      padding: 4px;
-    }
-    .color-dropdown.show {
-      display: flex;
-      flex-direction: row;
-      gap: 4px;
-    }
-    .color-option {
-      width: 20px;
-      height: 20px;
-      border-radius: 2px;
-      cursor: pointer;
-      display: block;
-      border: 1px solid rgba(0,0,0,0.2);
-      flex-shrink: 0;
-    }
-    .color-option:hover {
-      transform: scale(1.15);
-      border-color: #333;
-    }
-    .category-content {
-      flex: 1;
-      min-width: 0; /* Allow shrinking */
-    }
-    .category-name-input {
-      flex: 1;
-      padding: 12px;
-      margin-bottom: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 2px;
-      background: #f5f5f5;
-      font-size: 14px;
-      box-sizing: border-box;
-      min-width: 0; /* Allow shrinking */
-    }
-    @media (max-width: 480px) {
-      .category-name-input {
-        padding: 10px;
-        font-size: 13px;
-      }
-    }
-    .words-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .word-input {
-      flex: 1;
-      min-width: 0;
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 2px;
-      background: #f5f5f5;
-      font-size: 13px;
-      text-transform: uppercase;
-      box-sizing: border-box;
-    }
-    /* On small screens, show 2 words per row */
-    @media (max-width: 600px) {
-      .word-input {
-        flex: 0 0 calc(50% - 5px);
-        min-width: calc(50% - 5px);
-      }
-    }
-    /* On very small screens, ensure proper sizing */
-    @media (max-width: 400px) {
-      .word-input {
-        flex: 0 0 calc(50% - 5px);
-        font-size: 12px;
-        padding: 8px;
-      }
-    }
-    .word-input.duplicate {
-      background: #ffe6e6;
-      border-color: #dc3545;
-      color: #721c24;
-    }
-    .category-header {
-      display: flex;
-      align-items: stretch;
-      gap: 10px;
-      margin-bottom: 10px;
-      min-width: 0; /* Allow shrinking */
-    }
-    .category-header .category-name-input {
-      flex: 1;
-      margin-bottom: 0;
-      min-width: 0; /* Allow shrinking */
-    }
-    @media (max-width: 480px) {
-      .category-header {
-        gap: 8px;
-      }
-      .regenerate-btn {
-        min-width: 40px;
-        padding: 10px;
-      }
-    }
-    .regenerate-btn {
-      padding: 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 2px;
-      background: #f5f5f5;
-      color: #333;
-      font-size: 14px;
-      cursor: pointer;
-      font-family: inherit;
-      min-width: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-    .regenerate-btn:hover {
-      background: #eeeeee;
-      border-color: #999;
-    }
-    .regenerate-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #e0e0e0;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    @media (max-width: 600px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .title {
-        width: 100%;
-      }
-      .actions {
-        width: 100%;
-      }
-      .action-btn {
-        flex: 1;
-      }
-    }
-    .title {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 24px;
-      font-weight: normal;
-      color: #2c3e50;
-      line-height: 1.6;
-      margin: 0;
-      flex-shrink: 0;
-    }
-    @media (max-width: 768px) {
-      .title {
-        font-size: 160%;
-        text-align: center;
-      }
-    }
-    @media (max-width: 480px) {
-      .title {
-        font-size: 100%;
-      }
-    }
-    @media (max-width: 400px) {
-      .title {
-        font-size: 100%;
-      }
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      flex-shrink: 0;
-    }
-    .action-btn {
-      padding: 10px 24px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    @media (max-width: 480px) {
-      .action-btn {
-        padding: 10px 16px;
-        font-size: 13px;
-      }
-    }
-    .action-btn.save {
-      background: #3498db;
-      color: white;
-    }
-    .action-btn.save:hover {
-      background: #2980b9;
-    }
-    .action-btn.reload {
-      background: #e74c3c;
-      color: white;
-    }
-    .action-btn.reload:hover {
-      background: #c0392b;
-    }
-    .status {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      font-size: 11px;
-      color: #999;
-    }
-    .status-select {
-      padding: 8px 12px;
-      border: 1px solid #e0e0e0;
-      border-radius: 2px;
-      font-size: 14px;
-      background: #f5f5f5;
-      color: #333;
-      font-family: inherit;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-    .validation-errors {
-      background: #fff3cd;
-      border: 1px solid #ffc107;
-      border-radius: 4px;
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      color: #856404;
-    }
-    .validation-errors.has-errors {
-      background: #f8d7da;
-      border-color: #dc3545;
-      color: #721c24;
-    }
-    .validation-errors ul {
-      margin: 8px 0 0 0;
-      padding-left: 20px;
-    }
-    .validation-errors li {
-      margin: 4px 0;
-    }
-    .puzzle-content {
-      margin-top: 30px;
-      min-width: 0; /* Prevent overflow */
-      max-width: 100%;
-    }
-    @media (max-width: 480px) {
-      .puzzle-content {
-        margin-top: 20px;
-      }
-    }
-    .action-btn.export {
-      background: #27ae60;
-      color: white;
-    }
-    .action-btn.export:hover {
-      background: #229954;
-    }
-    .action-btn.export:disabled {
-      background: #95a5a6;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-    .action-btn.loading {
-      position: relative;
-      color: transparent;
-      pointer-events: none;
-    }
-    .action-btn.loading::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-    }
-    @keyframes spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    .action-btn.success {
-      background: #27ae60 !important;
-    }
-    .action-btn.success::after {
-      content: '✓';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  </style>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='editor.css') }}">
 </head>
 <body>
   <div class="container">
     <div class="top-bar">
-    <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
-    <div class="actions">
-      <button class="action-btn save" id="saveBtn">Save</button>
-      <button class="action-btn reload" id="reloadBtn">Revert</button>
-      <button class="action-btn export" id="exportBtn">Export</button>
+      <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
+      <div class="actions">
+        <button class="action-btn save" id="saveBtn">Save</button>
+        <button class="action-btn reload" id="reloadBtn">Revert</button>
+        <button class="action-btn export" id="exportBtn">Export</button>
+      </div>
     </div>
+
+    <div id="validationErrors" class="validation-errors" style="display: none;"></div>
+
+    <div class="puzzle-content">
+      <!-- Category 0 -->
+      <div class="category" data-color="purple" data-category-index="0">
+        <div class="color-square-wrapper">
+          <div class="color-square purple" data-current-color="purple"></div>
+          <span class="color-arrow">▼</span>
+          <div class="color-dropdown">
+            <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
+            <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
+            <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
+            <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
+          </div>
+        </div>
+        <div class="category-content">
+          <div class="category-header">
+            <input type="text" class="category-name-input" data-category="0" placeholder="category name" />
+            <button class="regenerate-btn" data-category="0" title="Regenerate this category">🔄</button>
+          </div>
+          <div class="words-row">
+            <input type="text" class="word-input" data-category="0" data-word="0" placeholder="word" />
+            <input type="text" class="word-input" data-category="0" data-word="1" placeholder="word" />
+            <input type="text" class="word-input" data-category="0" data-word="2" placeholder="word" />
+            <input type="text" class="word-input" data-category="0" data-word="3" placeholder="word" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 1 -->
+      <div class="category" data-color="green" data-category-index="1">
+        <div class="color-square-wrapper">
+          <div class="color-square green" data-current-color="green"></div>
+          <span class="color-arrow">▼</span>
+          <div class="color-dropdown">
+            <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
+            <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
+            <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
+            <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
+          </div>
+        </div>
+        <div class="category-content">
+          <div class="category-header">
+            <input type="text" class="category-name-input" data-category="1" placeholder="category name" />
+            <button class="regenerate-btn" data-category="1" title="Regenerate this category">🔄</button>
+          </div>
+          <div class="words-row">
+            <input type="text" class="word-input" data-category="1" data-word="0" placeholder="word" />
+            <input type="text" class="word-input" data-category="1" data-word="1" placeholder="word" />
+            <input type="text" class="word-input" data-category="1" data-word="2" placeholder="word" />
+            <input type="text" class="word-input" data-category="1" data-word="3" placeholder="word" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="category" data-color="blue" data-category-index="2">
+        <div class="color-square-wrapper">
+          <div class="color-square blue" data-current-color="blue"></div>
+          <span class="color-arrow">▼</span>
+          <div class="color-dropdown">
+            <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
+            <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
+            <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
+            <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
+          </div>
+        </div>
+        <div class="category-content">
+          <div class="category-header">
+            <input type="text" class="category-name-input" data-category="2" placeholder="category name" />
+            <button class="regenerate-btn" data-category="2" title="Regenerate this category">🔄</button>
+          </div>
+          <div class="words-row">
+            <input type="text" class="word-input" data-category="2" data-word="0" placeholder="word" />
+            <input type="text" class="word-input" data-category="2" data-word="1" placeholder="word" />
+            <input type="text" class="word-input" data-category="2" data-word="2" placeholder="word" />
+            <input type="text" class="word-input" data-category="2" data-word="3" placeholder="word" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="category" data-color="orange" data-category-index="3">
+        <div class="color-square-wrapper">
+          <div class="color-square orange" data-current-color="orange"></div>
+          <span class="color-arrow">▼</span>
+          <div class="color-dropdown">
+            <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
+            <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
+            <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
+            <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
+          </div>
+        </div>
+        <div class="category-content">
+          <div class="category-header">
+            <input type="text" class="category-name-input" data-category="3" placeholder="category name" />
+            <button class="regenerate-btn" data-category="3" title="Regenerate this category">🔄</button>
+          </div>
+          <div class="words-row">
+            <input type="text" class="word-input" data-category="3" data-word="0" placeholder="word" />
+            <input type="text" class="word-input" data-category="3" data-word="1" placeholder="word" />
+            <input type="text" class="word-input" data-category="3" data-word="2" placeholder="word" />
+            <input type="text" class="word-input" data-category="3" data-word="3" placeholder="word" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status" id="status">Ready</div>
   </div>
-  
-  <div id="validationErrors" class="validation-errors" style="display: none;"></div>
 
-  <div class="puzzle-content">
-    <div class="category" data-color="purple" data-category-index="0">
-      <div class="color-square-wrapper">
-        <div class="color-square purple" data-current-color="purple"></div>
-        <span class="color-arrow">▼</span>
-        <div class="color-dropdown">
-          <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
-          <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
-          <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
-          <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
-        </div>
-      </div>
-      <div class="category-content">
-        <div class="category-header">
-          <input type="text" class="category-name-input" data-category="0" placeholder="category name" />
-          <button class="regenerate-btn" data-category="0" title="Regenerate this category">🔄</button>
-        </div>
-        <div class="words-row">
-          <input type="text" class="word-input" data-category="0" data-word="0" placeholder="word" />
-          <input type="text" class="word-input" data-category="0" data-word="1" placeholder="word" />
-          <input type="text" class="word-input" data-category="0" data-word="2" placeholder="word" />
-          <input type="text" class="word-input" data-category="0" data-word="3" placeholder="word" />
-        </div>
-      </div>
-    </div>
-
-    <div class="category" data-color="green" data-category-index="1">
-      <div class="color-square-wrapper">
-        <div class="color-square green" data-current-color="green"></div>
-        <span class="color-arrow">▼</span>
-        <div class="color-dropdown">
-          <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
-          <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
-          <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
-          <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
-        </div>
-      </div>
-      <div class="category-content">
-        <div class="category-header">
-          <input type="text" class="category-name-input" data-category="1" placeholder="category name" />
-          <button class="regenerate-btn" data-category="1" title="Regenerate this category">🔄</button>
-        </div>
-        <div class="words-row">
-          <input type="text" class="word-input" data-category="1" data-word="0" placeholder="word" />
-          <input type="text" class="word-input" data-category="1" data-word="1" placeholder="word" />
-          <input type="text" class="word-input" data-category="1" data-word="2" placeholder="word" />
-          <input type="text" class="word-input" data-category="1" data-word="3" placeholder="word" />
-        </div>
-      </div>
-    </div>
-
-    <div class="category" data-color="blue" data-category-index="2">
-      <div class="color-square-wrapper">
-        <div class="color-square blue" data-current-color="blue"></div>
-        <span class="color-arrow">▼</span>
-        <div class="color-dropdown">
-          <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
-          <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
-          <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
-          <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
-        </div>
-      </div>
-      <div class="category-content">
-        <div class="category-header">
-          <input type="text" class="category-name-input" data-category="2" placeholder="category name" />
-          <button class="regenerate-btn" data-category="2" title="Regenerate this category">🔄</button>
-        </div>
-        <div class="words-row">
-          <input type="text" class="word-input" data-category="2" data-word="0" placeholder="word" />
-          <input type="text" class="word-input" data-category="2" data-word="1" placeholder="word" />
-          <input type="text" class="word-input" data-category="2" data-word="2" placeholder="word" />
-          <input type="text" class="word-input" data-category="2" data-word="3" placeholder="word" />
-        </div>
-      </div>
-    </div>
-
-    <div class="category" data-color="orange" data-category-index="3">
-      <div class="color-square-wrapper">
-        <div class="color-square orange" data-current-color="orange"></div>
-        <span class="color-arrow">▼</span>
-        <div class="color-dropdown">
-          <div class="color-option purple" data-color="purple" style="background: #9b59b6;"></div>
-          <div class="color-option green" data-color="green" style="background: #27ae60;"></div>
-          <div class="color-option blue" data-color="blue" style="background: #3498db;"></div>
-          <div class="color-option orange" data-color="orange" style="background: #e67e22;"></div>
-        </div>
-      </div>
-      <div class="category-content">
-        <div class="category-header">
-          <input type="text" class="category-name-input" data-category="3" placeholder="category name" />
-          <button class="regenerate-btn" data-category="3" title="Regenerate this category">🔄</button>
-        </div>
-        <div class="words-row">
-          <input type="text" class="word-input" data-category="3" data-word="0" placeholder="word" />
-          <input type="text" class="word-input" data-category="3" data-word="1" placeholder="word" />
-          <input type="text" class="word-input" data-category="3" data-word="2" placeholder="word" />
-          <input type="text" class="word-input" data-category="3" data-word="3" placeholder="word" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="status" id="status">Ready</div>
-
-  <script>
-    let puzzles = [];
-    let currentIndex = 0;
-    let lastSavedState = null; // Store the last saved puzzle state
-    let hasUnsavedChanges = false;
-    
-    const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
-    const colorToDifficulty = {
-      'purple': 'yellow',
-      'green': 'green', 
-      'blue': 'blue',
-      'orange': 'purple'
-    };
-
-    function setStatus(msg) {
-      document.getElementById('status').textContent = msg;
-    }
-
-
-    // Get current form data as JSON string for comparison
-    function getCurrentStateString() {
-      const puzzle = collectData();
-      // Remove _validation field for comparison
-      const cleanPuzzle = {...puzzle};
-      delete cleanPuzzle._validation;
-      return JSON.stringify(cleanPuzzle);
-    }
-
-    // Check if there are unsaved changes
-    function checkUnsavedChanges() {
-      if (!lastSavedState) {
-        hasUnsavedChanges = false;
-        return false;
-      }
-      const currentState = getCurrentStateString();
-      hasUnsavedChanges = currentState !== lastSavedState;
-      updateExportButtonState();
-      return hasUnsavedChanges;
-    }
-
-    // Update export button enabled/disabled state
-    function updateExportButtonState() {
-      const exportBtn = document.getElementById('exportBtn');
-      exportBtn.disabled = hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
-    }
-
-    // Set button loading state
-    function setButtonLoading(buttonId, loading) {
-      const btn = document.getElementById(buttonId);
-      if (loading) {
-        btn.classList.add('loading');
-        btn.disabled = true;
-      } else {
-        btn.classList.remove('loading');
-        btn.disabled = false;
-      }
-      updateExportButtonState(); // Re-check export state
-    }
-
-    // Set button success state (shows checkmark)
-    function setButtonSuccess(buttonId, duration = 1500) {
-      const btn = document.getElementById(buttonId);
-      btn.classList.add('success');
-      setTimeout(() => {
-        btn.classList.remove('success');
-        updateExportButtonState();
-      }, duration);
-    }
-
-    function updateUI() {
-      if (puzzles.length === 0) {
-        setStatus('No puzzles');
-        lastSavedState = null;
-        updateExportButtonState();
-        return;
-      }
-      
-      const puzzle = puzzles[0];  // Always use first puzzle
-      if (!puzzle) return;
-
-      const categories = puzzle.categories || [];
-      
-      // Map difficulty to color based on position (default mapping)
-      categories.forEach((cat, idx) => {
-        const diff = cat.difficulty || 'yellow';
-        const defaultColor = difficultyToColor[idx] || 'purple';
-        // Find which color this difficulty maps to
-        const color = Object.keys(colorToDifficulty).find(c => colorToDifficulty[c] === diff) || defaultColor;
-        
-        const categoryEl = document.querySelector(`.category[data-category-index="${idx}"]`);
-        if (categoryEl) {
-          // Update the category's color
-          categoryEl.dataset.color = color;
-          const colorSquare = categoryEl.querySelector('.color-square');
-          if (colorSquare) {
-            colorSquare.className = `color-square ${color}`;
-            colorSquare.dataset.currentColor = color;
-          }
-          
-          const nameInput = categoryEl.querySelector('.category-name-input');
-          if (nameInput) nameInput.value = cat.name || '';
-          
-          const words = cat.words || [];
-          words.forEach((word, wordIdx) => {
-            const wordInput = categoryEl.querySelector(`.word-input[data-word="${wordIdx}"]`);
-            if (wordInput) wordInput.value = word || '';
-          });
-        }
-      });
-
-      // Clear categories that don't have data
-      for (let i = categories.length; i < 4; i++) {
-        const categoryEl = document.querySelector(`.category[data-category-index="${i}"]`);
-        if (categoryEl) {
-          categoryEl.querySelector('.category-name-input').value = '';
-          categoryEl.querySelectorAll('.word-input').forEach(inp => inp.value = '');
-        }
-      }
-
-      // Show validation errors and highlight duplicate words
-      showValidationErrors(puzzle);
-      highlightDuplicateWords(puzzle);
-      
-      // Update saved state after UI is updated
-      lastSavedState = getCurrentStateString();
-      hasUnsavedChanges = false;
-      updateExportButtonState();
-    }
-    
-    function showValidationErrors(puzzle) {
-      const errorsDiv = document.getElementById('validationErrors');
-      const validation = puzzle._validation || {valid: true, errors: []};
-      
-      if (!validation.valid && validation.errors.length > 0) {
-        errorsDiv.style.display = 'block';
-        errorsDiv.className = 'validation-errors has-errors';
-        errorsDiv.innerHTML = '<strong>⚠️ Validation Errors:</strong><ul>' +
-          validation.errors.map(e => `<li>${e}</li>`).join('') +
-          '</ul>';
-      } else {
-        errorsDiv.style.display = 'none';
-      }
-    }
-    
-    function highlightDuplicateWords(puzzle) {
-      const validation = puzzle._validation || {duplicate_words: []};
-      const duplicateWords = new Set((validation.duplicate_words || []).map(w => w.toUpperCase()));
-      
-      // Clear all duplicate highlighting first
-      document.querySelectorAll('.word-input').forEach(inp => {
-        inp.classList.remove('duplicate');
-      });
-      
-      // Highlight duplicate words
-      document.querySelectorAll('.word-input').forEach(inp => {
-        const word = inp.value.toUpperCase().trim();
-        if (word && duplicateWords.has(word)) {
-          inp.classList.add('duplicate');
-        }
-      });
-    }
-
-    function collectData() {
-      // Start with existing puzzle data to preserve all fields
-      const existingPuzzle = puzzles.length > 0 && puzzles[0] ? puzzles[0] : {};
-      const puzzle = {
-        ...existingPuzzle,  // Preserve existing fields
-        language: existingPuzzle.language || 'en',
-        categories: []  // Will rebuild from form
-      };
-      
-      // Ensure ID and date are preserved
-      if (existingPuzzle.id) {
-        puzzle.id = existingPuzzle.id;
-      }
-      if (existingPuzzle.date) {
-        puzzle.date = existingPuzzle.date;
-      }
-      
-      // Remove _validation field (internal use only)
-      delete puzzle._validation;
-
-      // Collect categories in order by their index
-      for (let i = 0; i < 4; i++) {
-        const categoryEl = document.querySelector(`.category[data-category-index="${i}"]`);
-        if (categoryEl) {
-          const nameInput = categoryEl.querySelector('.category-name-input');
-          const wordInputs = categoryEl.querySelectorAll('.word-input');
-          const name = nameInput.value.trim();
-          const words = Array.from(wordInputs).map(inp => inp.value.trim().toUpperCase()).filter(w => w);
-          const currentColor = categoryEl.dataset.color || difficultyToColor[i] || 'purple';
-
-          // Always add category if it has either name or words (or both)
-          // This ensures we collect all 4 categories from the form
-          if (name || words.length > 0) {
-            puzzle.categories.push({
-              name: name,
-              words: words.length === 4 ? words : words.concat(Array(4 - words.length).fill('')),
-              difficulty: colorToDifficulty[currentColor] || 'yellow'
-            });
-          }
-        }
-      }
-
-      return puzzle;
-    }
-
-    async function load() {
-      setStatus('Loading...');
-      try {
-        const r = await fetch('/api/puzzle');
-        if (!r.ok) throw new Error('Failed to load');
-        puzzles = await r.json();
-        if (!Array.isArray(puzzles)) puzzles = [];
-        if (puzzles.length === 0) {
-          setStatus('No puzzles found');
-          return;
-        }
-        currentIndex = 0;
-        updateUI();
-        setStatus('Puzzle loaded');
-      } catch (e) {
-        setStatus('Load failed');
-        alert('Load failed: ' + e);
-      }
-    }
-
-    async function save() {
-      setStatus('Saving...');
-      setButtonLoading('saveBtn', true);
-      try {
-        const puzzle = collectData();
-        puzzles[0] = puzzle;
-
-        const r = await fetch('/api/puzzle', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(puzzle)  // Send single puzzle, not array
-        });
-        const res = await r.json();
-        if (!r.ok) throw new Error(res.error || JSON.stringify(res));
-        
-        // Update puzzle with validation data from server response
-        if (res.puzzle) {
-          puzzles[0] = res.puzzle;
-        }
-        
-        // Validate and highlight duplicates on the saved puzzle
-        showValidationErrors(puzzles[0]);
-        highlightDuplicateWords(puzzles[0]);
-        
-        // Update saved state
-        lastSavedState = getCurrentStateString();
-        hasUnsavedChanges = false;
-        updateExportButtonState();
-        
-        setStatus('Saved');
-        setButtonLoading('saveBtn', false);
-        setButtonSuccess('saveBtn');
-      } catch (e) {
-        setStatus('Save failed');
-        setButtonLoading('saveBtn', false);
-        alert('Save failed: ' + e);
-      }
-    }
-
-    document.getElementById('saveBtn').addEventListener('click', save);
-    document.getElementById('reloadBtn').addEventListener('click', () => {
-      if (confirm('Reload from disk? Unsaved changes will be lost.')) {
-        load();
-      }
-    });
-    
-    document.getElementById('exportBtn').addEventListener('click', async () => {
-      if (puzzles.length === 0 || !puzzles[0]) {
-        alert('No puzzle to export');
-        return;
-      }
-      
-      if (hasUnsavedChanges) {
-        alert('Please save the puzzle before exporting.');
-        return;
-      }
-      
-      setStatus('Exporting...');
-      setButtonLoading('exportBtn', true);
-      try {
-        const puzzle = collectData();
-        
-        const r = await fetch('/api/export', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(puzzle)
-        });
-        const res = await r.json();
-        if (!r.ok) throw new Error(res.error || JSON.stringify(res));
-        
-        setStatus('Exported! Loading next puzzle...');
-        setButtonLoading('exportBtn', false);
-        setButtonSuccess('exportBtn');
-        
-        // Load next puzzle
-        await load();
-      } catch (e) {
-        setStatus('Export failed');
-        setButtonLoading('exportBtn', false);
-        alert('Export failed: ' + e);
-      }
-    });
-
-    // Track input changes for unsaved changes detection
-    document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
-      inp.addEventListener('input', (e) => {
-        if (inp.classList.contains('word-input')) {
-          e.target.value = e.target.value.toUpperCase();
-          // Update duplicate highlighting after input
-          if (puzzles.length > 0 && puzzles[0]) {
-            highlightDuplicateWords(puzzles[0]);
-          }
-        }
-        // Check for unsaved changes
-        checkUnsavedChanges();
-      });
-    });
-
-    // Color square and arrow click handlers
-    document.querySelectorAll('.color-square-wrapper').forEach(wrapper => {
-      wrapper.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const dropdown = wrapper.querySelector('.color-dropdown');
-        // Close all other dropdowns
-        document.querySelectorAll('.color-dropdown').forEach(d => {
-          if (d !== dropdown) d.classList.remove('show');
-        });
-        // Toggle this dropdown
-        dropdown.classList.toggle('show');
-      });
-    });
-
-    // Color option selection handlers
-    document.querySelectorAll('.color-option').forEach(option => {
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const newColor = option.dataset.color;
-        const categoryEl = option.closest('.category');
-        const oldColor = categoryEl.dataset.color;
-        
-        // If selecting a color that's already used by another category, swap them
-        if (newColor !== oldColor) {
-          const otherCategory = document.querySelector(`.category[data-color="${newColor}"]`);
-          if (otherCategory) {
-            // Swap colors
-            otherCategory.dataset.color = oldColor;
-            const otherSquare = otherCategory.querySelector('.color-square');
-            otherSquare.className = `color-square ${oldColor}`;
-            otherSquare.dataset.currentColor = oldColor;
-          }
-          
-          // Update this category's color
-          categoryEl.dataset.color = newColor;
-          const square = categoryEl.querySelector('.color-square');
-          square.className = `color-square ${newColor}`;
-          square.dataset.currentColor = newColor;
-        }
-        
-        // Close all dropdowns
-        document.querySelectorAll('.color-dropdown').forEach(d => d.classList.remove('show'));
-        
-        // Check for unsaved changes after color change
-        checkUnsavedChanges();
-      });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.color-dropdown').forEach(d => d.classList.remove('show'));
-    });
-
-    // Regenerate category buttons
-    document.querySelectorAll('.regenerate-btn').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        const categoryIdx = parseInt(btn.dataset.category);
-        const categoryEl = document.querySelector(`.category[data-category-index="${categoryIdx}"]`);
-        const currentColor = categoryEl.dataset.color;
-        const difficultyMap = {
-          'purple': 'easy',
-          'green': 'medium',
-          'blue': 'medium',
-          'orange': 'hard'
-        };
-        const difficulty = difficultyMap[currentColor] || 'medium';
-        
-        const nameInput = categoryEl.querySelector('.category-name-input');
-        const wordInputs = categoryEl.querySelectorAll('.word-input');
-        
-        // Check if all words are empty
-        const allWordsEmpty = Array.from(wordInputs).every(inp => !inp.value.trim());
-        const categoryName = nameInput.value.trim();
-        
-        // If all words are empty and category name is provided, use category name as prompt
-        let apiUrl = `/api/regenerate-category?difficulty=${difficulty}`;
-        if (allWordsEmpty && categoryName) {
-          apiUrl += `&category_name=${encodeURIComponent(categoryName)}`;
-        }
-        
-        btn.disabled = true;
-        btn.textContent = '...';
-        setStatus(allWordsEmpty && categoryName ? 'Generating words for category...' : 'Regenerating category...');
-        
-        try {
-          const r = await fetch(apiUrl, {
-            method: 'GET'
-          });
-          if (r.ok) {
-            const category = await r.json();
-            
-            // Only update category name if it wasn't provided by user (or was empty)
-            if (!allWordsEmpty || !categoryName) {
-              nameInput.value = category.name;
-            }
-            
-            // Update all 4 words
-            category.words.forEach((word, idx) => {
-              if (wordInputs[idx]) {
-                wordInputs[idx].value = word;
-              }
-            });
-            
-            setStatus('Category regenerated');
-            // Trigger input events to update highlighting and check unsaved changes
-            wordInputs.forEach(inp => {
-              inp.dispatchEvent(new Event('input'));
-            });
-            nameInput.dispatchEvent(new Event('input'));
-          } else {
-            const error = await r.json();
-            alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
-          }
-        } catch (e) {
-          alert('Error regenerating category: ' + e);
-        } finally {
-          btn.disabled = false;
-          btn.textContent = '🔄';
-        }
-      });
-    });
-
-    // Initialize export button state
-    updateExportButtonState();
-    
-    // Load on page load
-    load();
-  </script>
-  </div>
+  <script src="{{ url_for('static', filename='editor.js') }}"></script>
 </body>
 </html>
