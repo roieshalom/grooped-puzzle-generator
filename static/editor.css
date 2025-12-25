@@ -386,9 +386,24 @@ input[type="text"]:focus {
 @keyframes spin {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
 .action-btn.success {
-  background: #27ae60 !important;
+  position: relative;
+  color: transparent;              /* hide label */
+  background: #27ae60 !important;  /* strong green */
 }
+
+.action-btn.success::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .action-btn.success::after {
   content: '✓';
   position: absolute;
