@@ -324,6 +324,41 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   }
 });
 
+document.getElementById('generateBtn').addEventListener('click', async () => {
+  if (!confirm('Replace current puzzle with a new generated puzzle? Unsaved changes will be lost.')) {
+    return;
+  }
+
+  setStatus('Generating new puzzle...');
+  setButtonLoading('generateBtn', true);
+  try {
+    const r = await fetch('/api/generate-puzzle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({})
+    });
+    const res = await r.json();
+    if (!r.ok) {
+      throw new Error(res.error || JSON.stringify(res));
+    }
+
+    if (!res || !res.categories) {
+      throw new Error('Invalid puzzle from generator');
+    }
+
+    puzzles = [res];
+    currentIndex = 0;
+    updateUI();
+    setStatus('New puzzle generated');
+    setButtonSuccess('generateBtn');
+  } catch (e) {
+    setStatus('Generate failed');
+    setButtonLoading('generateBtn', false);
+    alert('Failed to generate puzzle: ' + e);
+  }
+});
+
+
 // Track input changes for unsaved changes detection
 document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
   inp.addEventListener('input', (e) => {

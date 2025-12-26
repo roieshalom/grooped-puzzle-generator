@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "name": "Common Spices",
+      "words": [
+        "BASIL",
+        "GINGER",
+        "PARSLEY",
+        "THYME"
+      ],
+      "difficulty": "yellow"
+    },
+    {
+      "name": "Circuit Elements",
+      "words": [
+        "RESISTOR",
+        "CAPACITOR",
+        "INDUCTOR",
+        "DIODE"
+      ],
+      "difficulty": "purple"
+    },
+    {
+      "name": "Fictional Realms",
+      "words": [
+        "MIDDLE-EARTH",
+        "WAKANDA",
+        "NARNIA",
+        "HOGWARTS"
+      ],
+      "difficulty": "green"
+    },
+    {
+      "name": "Culinary Techniques",
+      "words": [
+        "SAUTE",
+        "BLANCH",
+        "GLAZE",
+        "BRAISE"
+      ],
+      "difficulty": "blue"
+    }
+  ],
+  "date": null,
+  "id": null,
+  "language": "en",
+  "_validation": {
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
+  }
+}

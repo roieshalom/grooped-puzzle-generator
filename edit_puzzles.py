@@ -31,6 +31,7 @@ else:
     parent_dir = os.path.dirname(APP_DIR)
     GROOPED_REPO_DIR = os.path.join(parent_dir, 'grooped')
 JSON_PATH = os.path.join(GROOPED_REPO_DIR, 'puzzles.json')
+DRAFT_PUZZLE_PATH = os.path.join(APP_DIR, 'draft_puzzle.json')
 
 # Add current directory to path for imports
 sys.path.insert(0, APP_DIR)
@@ -58,7 +59,6 @@ from banned_categories import (
 
 app = Flask(__name__, static_folder='static')
 
-
 def _read_json():
     """Read all puzzles from puzzles.json, filtering out published ones for editor."""
     try:
@@ -79,7 +79,6 @@ def _read_json():
         return [p for p in all_puzzles if isinstance(p, dict) and p.get('status') != 'published']
     except FileNotFoundError:
         return []
-
 
 def _save_puzzles_to_json(updated_puzzles, make_backup=False):
     """Save puzzles to puzzles.json, updating existing or appending new ones.
@@ -179,7 +178,6 @@ def _save_puzzles_to_json(updated_puzzles, make_backup=False):
     os.replace(tmp_path, JSON_PATH)
     return bak_path
 
-
 def _commit_and_push(message="Update puzzles", additional_files=None, git_repo_dir=None):
     """Commit and push changes to git repository.
 
@@ -264,7 +262,6 @@ def _commit_and_push(message="Update puzzles", additional_files=None, git_repo_d
     except Exception as e:
         return False, "", str(e)
 
-
 @app.route('/')
 @app.route('/editor')
 def index():
@@ -283,7 +280,6 @@ def index():
     response.headers['Last-Modified'] = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
     return response
 
-
 @app.errorhandler(404)
 def catch_all(error):
     """Catch-all route to ensure Flask handles all requests."""
@@ -291,7 +287,6 @@ def catch_all(error):
     if not request.path.startswith('/api/'):
         return index()
     return jsonify({'error': 'Not found'}), 404
-
 
 # ---- banned categories API ----
 
@@ -303,7 +298,6 @@ def get_banned_categories():
         return jsonify(categories)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 @app.route('/api/banned-categories', methods=['POST'])
 def post_banned_category():
@@ -318,21 +312,42 @@ def post_banned_category():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+def _read_draft_puzzle():
+    """Read the single draft puzzle from draft_puzzle.json, or None if missing/invalid."""
+    try:
+        if not os.path.exists(DRAFT_PUZZLE_PATH):
+            return None
+        with open(DRAFT_PUZZLE_PATH, 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
+        if isinstance(data, dict):
+            return data
+        elif isinstance(data, list) and data:
+            return data[0]
+        return None
+    except Exception:
+        return None
+
+def _write_draft_puzzle(puzzle: dict):
+    """Write a single draft puzzle to draft_puzzle.json."""
+    with open(DRAFT_PUZZLE_PATH, 'w', encoding='utf-8') as fh:
+        json.dump(puzzle, fh, indent=2, ensure_ascii=False)
 
 @app.route('/api/puzzle', methods=['GET'])
 def get_puzzle():
-    """Return only the first non-published puzzle (one at a time)."""
+    """Return draft puzzle if present, otherwise first non-published puzzle."""
     try:
-        # Read puzzles (already filters out published)
-        data = _read_json()
-
-        # Return only the first puzzle
-        if not data:
-            return jsonify([])
-
-        puzzle = data[0] if data else None
-        if not puzzle:
-            return jsonify([])
+        # 1) Try draft_puzzle.json
+        draft = _read_draft_puzzle()
+        if draft:
+            puzzle = draft
+        else:
+            # 2) Fallback to first non-published puzzle from puzzles.json
+            data = _read_json()
+            if not data:
+                return jsonify([])
+            puzzle = data[0]
+            if not puzzle:
+                return jsonify([])
 
         # Load published puzzles for validation (from same file, filter by status)
         try:
@@ -386,7 +401,6 @@ def get_puzzle():
         return jsonify([puzzle])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 @app.route('/api/puzzle', methods=['POST'])
 def save_puzzle():
@@ -470,9 +484,59 @@ def save_puzzle():
         'duplicate_words': list(duplicate_words)
     }
 
+    # Save to draft_puzzle.json
+    try:
+        _write_draft_puzzle(puzzle)
+    except Exception:
+        # If draft saving fails, we still return the puzzle; you can log this later.
+        pass
+
     resp = {'ok': True, 'puzzle': puzzle}
     return jsonify(resp)
 
+@app.route('/api/generate-puzzle', methods=['POST'])
+def generate_puzzle():
+    """Generate a full new puzzle (4 categories) using puzzle_generator and store as draft."""
+    try:
+        from puzzle_generator import generate_connections_puzzle
+
+        raw = generate_connections_puzzle()
+        difficulty_map = {
+            "easy": "yellow",
+            "medium": "green",
+            "hard": "blue",
+        }
+
+        categories = []
+        for cat in raw.get("categories", []):
+            diff = cat.get("difficulty", "medium")
+            color = difficulty_map.get(diff, "green")
+            words_upper = [w.upper() for w in cat.get("words", [])]
+            categories.append(
+                {
+                    "name": cat.get("name", ""),
+                    "words": words_upper,
+                    "difficulty": color,
+                }
+            )
+
+        puzzle = {
+            "id": None,
+            "date": None,
+            "language": "en",
+            "categories": categories,
+        }
+
+        # Save generated puzzle as the current draft
+        try:
+            _write_draft_puzzle(puzzle)
+        except Exception:
+            pass
+
+        return jsonify(puzzle)
+    except Exception as e:
+        import traceback
+        return jsonify({'error': str(e), 'traceback': traceback.format_exc()}), 500
 
 @app.route('/api/regenerate-category', methods=['GET'])
 def regenerate_category():
@@ -559,7 +623,6 @@ def regenerate_category():
     except Exception as e:
         import traceback
         return jsonify({'error': str(e), 'traceback': traceback.format_exc()}), 500
-
 
 @app.route('/api/export', methods=['POST'])
 def export_approved():
@@ -664,7 +727,7 @@ def export_approved():
             }
             print("Git auto-commit is disabled")
 
-        print(f"Export successful: NEW Puzzle ID {puzzle.get('id')} appended to {JSON_PATH}")
+        print(f"Export successful: NEW Puzzle ID {ordered_puzzle.get('id')} appended to {JSON_PATH}")
         print(f"Total puzzles after export: {len(all_puzzles)}")
 
         resp = {
@@ -672,7 +735,7 @@ def export_approved():
             'exported': 1,
             'git': git_status,
             'next_puzzle': True,
-            'puzzle_id': puzzle.get('id'),
+            'puzzle_id': ordered_puzzle.get('id'),
             'file_path': JSON_PATH
         }
         return jsonify(resp)
