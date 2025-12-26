@@ -205,29 +205,31 @@ input[type="text"]:focus {
   }
 }
 
-.regenerate-btn {
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 2px;
-  background: #f5f5f5;
-  color: #333;
-  font-size: 14px;
+.regenerate-btn,
+.ban-btn {
+  background-color: #74bdee;  /* or whatever your top buttons use */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;        /* match top buttons */
   cursor: pointer;
-  font-family: inherit;
-  min-width: 44px;
-  display: flex;
+}
+
+.regenerate-btn {
+  width: 32px;               /* keep your existing size */
+  height: 32px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
 }
-.regenerate-btn:hover {
-  background: #eeeeee;
-  border-color: #999;
+
+.ban-btn {
+  height: 32px;              /* same height as regenerate */
+  width: 32px;              /* auto width to fit text */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.regenerate-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+
 
 .top-bar {
   display: flex;
@@ -296,7 +298,7 @@ input[type="text"]:focus {
   }
 }
 .action-btn.save {
-  background: #3498db;
+  background: #74bdee;
   color: white;
 }
 .action-btn.save:hover { background: #2980b9; }
