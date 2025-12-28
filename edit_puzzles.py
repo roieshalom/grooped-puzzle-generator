@@ -708,6 +708,16 @@ def export_approved():
                     pass
             raise Exception(f"Failed to write to {JSON_PATH}: {str(write_error)}")
 
+        # After successfully writing puzzles.json, add this puzzle's categories to banned list
+        try:
+            for cat in puzzle.get('categories', []):
+                if isinstance(cat, dict):
+                    name = cat.get('name', '').strip()
+                    if name:
+                        add_banned_category(name)
+        except Exception as ban_err:
+            print(f"Warning: failed to add exported categories to banned list: {ban_err}")
+
         # Auto-commit and push to git (same as before)
         git_enabled = os.getenv('AUTO_GIT_COMMIT', 'true').lower() in ('true', '1', 'yes', 'on')
         git_status = {}

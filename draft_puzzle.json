@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Common Spices",
+      "name": "Famous Birds",
       "words": [
-        "BASIL",
-        "GINGER",
-        "PARSLEY",
-        "THYME"
+        "EAGLE",
+        "PARROT",
+        "SPARROW",
+        "FALCON"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Circuit Elements",
+      "name": "Weather Phenomena",
       "words": [
-        "RESISTOR",
-        "CAPACITOR",
-        "INDUCTOR",
-        "DIODE"
-      ],
-      "difficulty": "purple"
-    },
-    {
-      "name": "Fictional Realms",
-      "words": [
-        "MIDDLE-EARTH",
-        "WAKANDA",
-        "NARNIA",
-        "HOGWARTS"
+        "TORNADO",
+        "HURRICANE",
+        "LIGHTNING",
+        "FLOOD"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Culinary Techniques",
+      "name": "Famous Quizzes",
       "words": [
-        "SAUTE",
-        "BLANCH",
-        "GLAZE",
-        "BRAISE"
+        "JEOPARDY",
+        "TRIVIA",
+        "QUIZSHOW",
+        "BRAINTEASER"
+      ],
+      "difficulty": "green"
+    },
+    {
+      "name": "Dance Styles",
+      "words": [
+        "BALLET",
+        "TANGO",
+        "SWING",
+        "HIPHOP"
       ],
       "difficulty": "blue"
     }

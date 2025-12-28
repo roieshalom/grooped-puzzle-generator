@@ -1,0 +1,9 @@
+[
+  {
+    "id": "test-001",
+    "date": "29.12.2025",
+    "status": "draft",
+    "title": "Test Puzzle",
+    "groups": [["A","B"],["C","D"]]
+  }
+]

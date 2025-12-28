@@ -15,6 +15,24 @@ function setStatus(msg) {
   document.getElementById('status').textContent = msg;
 }
 
+function showInlineMessage(text, type = 'info', duration = 3000) {
+  const box = document.getElementById('messageBox');
+  if (!box) return;
+
+  box.textContent = text;
+  box.style.display = 'inline-flex';
+
+  box.classList.remove('success', 'error', 'info');
+  if (type) box.classList.add(type);
+
+  clearTimeout(showInlineMessage._timeout);
+  if (duration > 0) {
+    showInlineMessage._timeout = setTimeout(() => {
+      box.style.display = 'none';
+    }, duration);
+  }
+}
+
 function showBanMessage(msg) {
   const el = document.getElementById('banStatus');
   if (!el) return;
@@ -222,18 +240,29 @@ async function load() {
   try {
     const r = await fetch('/api/puzzle');
     if (!r.ok) throw new Error('Failed to load');
-    puzzles = await r.json();
-    if (!Array.isArray(puzzles)) puzzles = [];
+    const res = await r.json();
+
+    // Normalize: backend returns [puzzle]
+    if (Array.isArray(res) && res.length > 0 && res[0]) {
+      puzzles = [res[0]];
+    } else {
+      puzzles = [];
+    }
+
     if (puzzles.length === 0) {
       setStatus('No puzzles found');
+      updateExportButtonState();
       return;
     }
+
     currentIndex = 0;
     updateUI();
     setStatus('Puzzle loaded');
+    showInlineMessage('Puzzle loaded', 'info', 2000);
   } catch (e) {
     setStatus('Load failed');
     alert('Load failed: ' + e);
+    showInlineMessage('Load failed', 'error', 4000);
   }
 }
 
@@ -252,8 +281,9 @@ async function save() {
     const res = await r.json();
     if (!r.ok) throw new Error(res.error || JSON.stringify(res));
 
+    // Normalize: backend returns { ok: true, puzzle: { ... } }
     if (res.puzzle) {
-      puzzles[0] = res.puzzle;
+      puzzles = [res.puzzle];
     }
 
     showValidationErrors(puzzles[0]);
@@ -265,25 +295,27 @@ async function save() {
 
     setStatus('Saved');
     setButtonSuccess('saveBtn');
+    showInlineMessage('Puzzle saved', 'success', 3000);
   } catch (e) {
     setStatus('Save failed');
     setButtonLoading('saveBtn', false);
     alert('Save failed: ' + e);
+    showInlineMessage('Save failed', 'error', 4000);
   }
 }
 
 document.getElementById('reloadBtn').addEventListener('click', async () => {
-  if (!confirm('Reload from disk? Unsaved changes will be lost.')) return;
-
   setStatus('Reloading...');
   setButtonLoading('reloadBtn', true);
   try {
     await load();
     setStatus('Reloaded');
     setButtonSuccess('reloadBtn');
+    showInlineMessage('Puzzle reloaded from disk', 'info', 3000);
   } catch (e) {
     setStatus('Reload failed');
     alert('Reload failed: ' + e);
+    showInlineMessage('Reload failed', 'error', 4000);
   } finally {
     setButtonLoading('reloadBtn', false);
   }
@@ -315,20 +347,18 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 
     setStatus('Exported! Loading next puzzle...');
     setButtonSuccess('exportBtn');
+    showInlineMessage('Puzzle exported', 'success', 4000);
 
     await load();
   } catch (e) {
     setStatus('Export failed');
     setButtonLoading('exportBtn', false);
     alert('Export failed: ' + e);
+    showInlineMessage('Export failed', 'error', 4000);
   }
 });
 
 document.getElementById('generateBtn').addEventListener('click', async () => {
-  if (!confirm('Replace current puzzle with a new generated puzzle? Unsaved changes will be lost.')) {
-    return;
-  }
-
   setStatus('Generating new puzzle...');
   setButtonLoading('generateBtn', true);
   try {
@@ -351,13 +381,14 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
     updateUI();
     setStatus('New puzzle generated');
     setButtonSuccess('generateBtn');
+    showInlineMessage('New puzzle generated', 'info', 3000);
   } catch (e) {
     setStatus('Generate failed');
     setButtonLoading('generateBtn', false);
     alert('Failed to generate puzzle: ' + e);
+    showInlineMessage('Generate failed', 'error', 4000);
   }
 });
-
 
 // Track input changes for unsaved changes detection
 document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
@@ -487,12 +518,15 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
         inp.dispatchEvent(new Event('input'));
       });
       nameInput.dispatchEvent(new Event('input'));
+      showInlineMessage('Category regenerated', 'info', 3000);
     } else {
       const error = await r.json();
       alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
+      showInlineMessage('Category regeneration failed', 'error', 4000);
     }
   } catch (e) {
     alert('Error regenerating category: ' + e);
+    showInlineMessage('Category regeneration failed', 'error', 4000);
   } finally {
     if (regenBtn) {
       regenBtn.disabled = false;
@@ -524,11 +558,14 @@ async function banAndReplaceCategory(categoryIdx) {
       throw new Error(res.error || 'Failed to ban category');
     }
     showBanMessage(`Category banned: "${categoryName}"`);
+    showInlineMessage(`Category banned: "${categoryName}"`, 'info', 3000);
     await regenerateCategoryForIndex(categoryIdx, { usePromptIfEmpty: false });
   } catch (e) {
     alert('Failed to ban category: ' + e);
+    showInlineMessage('Failed to ban category', 'error', 4000);
   }
 }
+
 document.getElementById('saveBtn').addEventListener('click', () => {
   save();
 });
