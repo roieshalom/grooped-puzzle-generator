@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Famous Birds",
+      "name": "Common Kitchen Appliances",
       "words": [
-        "EAGLE",
-        "PARROT",
-        "SPARROW",
-        "FALCON"
+        "TOASTER",
+        "FRIDGE",
+        "MICROWAVE",
+        "KETTLE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Weather Phenomena",
+      "name": "3D design applications",
       "words": [
-        "TORNADO",
-        "HURRICANE",
-        "LIGHTNING",
-        "FLOOD"
+        "BLENDER",
+        "MAYA",
+        "SKETCHUP",
+        "CINEMA4D"
+      ],
+      "difficulty": "purple"
+    },
+    {
+      "name": "Extinct civilizations",
+      "words": [
+        "KHMER EMPIRE",
+        "INCA",
+        "AZTEC",
+        "SUMER"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Famous Quizzes",
+      "name": "Women names",
       "words": [
-        "JEOPARDY",
-        "TRIVIA",
-        "QUIZSHOW",
-        "BRAINTEASER"
-      ],
-      "difficulty": "green"
-    },
-    {
-      "name": "Dance Styles",
-      "words": [
-        "BALLET",
-        "TANGO",
-        "SWING",
-        "HIPHOP"
+        "ISABELLA",
+        "SOPHIA",
+        "VANESSA",
+        "NATALIE"
       ],
       "difficulty": "blue"
     }
