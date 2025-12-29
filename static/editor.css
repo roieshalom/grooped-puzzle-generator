@@ -212,6 +212,7 @@ input[type="text"]:focus {
   border: none;
   border-radius: 6px;        /* match top buttons */
   cursor: pointer;
+  transition: all 0.2s ease;  /* Smooth hover */
 }
 
 .regenerate-btn {
@@ -222,6 +223,12 @@ input[type="text"]:focus {
   justify-content: center;
 }
 
+.regenerate-btn:hover,
+.ban-btn:hover {
+  background: #4782a9;  /* Slightly darker like other buttons */
+  border-color: #999;
+}
+
 .ban-btn {
   height: 32px;              /* same height as regenerate */
   width: 32px;              /* auto width to fit text */
@@ -230,6 +237,17 @@ input[type="text"]:focus {
   justify-content: center;
 }
 
+#generateBtn {
+  background: #8b5cf6 !important;
+  color: white !important;
+  border: 1px solid #7c3aed !important;
+  transition: all 0.2s ease !important;
+}
+
+#generateBtn:hover {
+  background: #7c3aed !important;  /* Darker purple */
+  border-color: #6d28d9 !important;
+}
 
 .top-bar {
   display: flex;
