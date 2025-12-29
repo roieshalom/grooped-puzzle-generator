@@ -397,6 +397,17 @@ def get_puzzle():
                 'errors': errors,
                 'duplicate_words': list(duplicate_words)
             }
+            
+            print(f"BEFORE: {len(puzzle.get('categories', []))} categories")
+            # REMOVE DUPLICATE CATEGORIES - always serve unique ones to frontend
+            seen = set()
+            unique_categories = []
+            for cat in puzzle.get('categories', []):
+                if cat.get('name', '') not in seen:
+                    seen.add(cat.get('name', ''))
+                    unique_categories.append(cat)
+            puzzle['categories'] = unique_categories
+
 
         return jsonify([puzzle])
     except Exception as e:

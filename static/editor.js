@@ -376,17 +376,16 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       throw new Error('Invalid puzzle from generator');
     }
 
-    // Remove duplicate categories - keep only unique names
-    const seen = new Set();
-    res.categories = res.categories.filter(cat => {
-      if (seen.has(cat.name)) return false;
-      seen.add(cat.name);
-      return true;
+    // Assign 4 unique colors: yellow, green, blue, purple
+    const uniqueColors = ['yellow', 'green', 'blue', 'purple'];
+    res.categories.forEach((cat, index) => {
+        cat.difficulty = uniqueColors[index % uniqueColors.length];
     });
-
+    
     puzzles = [res];
     currentIndex = 0;
     updateUI();
+
     setStatus('New puzzle generated (unique categories)');
     setButtonSuccess('generateBtn');
     showInlineMessage('New puzzle generated - unique categories', 'info', 3000);
@@ -397,6 +396,16 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
     showInlineMessage('Generate failed', 'error', 4000);
   }
 });
+
+    puzzles = [res];
+    
+    // REMOVE DUPLICATES immediately after generate
+    const seen = new Set();
+    res.categories = res.categories.filter(cat => {
+        if (seen.has(cat.name)) return false;
+        seen.add(cat.name);
+        return true;
+    });
 
 
 // Track input changes for unsaved changes detection

@@ -4,42 +4,42 @@
   "language": "en",
   "categories": [
     {
-      "name": "Types of Cheese",
+      "name": "Types of Hats",
       "words": [
-        "BRIE",
-        "GOUDA",
-        "FETA",
-        "CAMEMBERT"
+        "FEDORA",
+        "BERET",
+        "BOWLER",
+        "PANAMA"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Writers of Famous Dystopian Novels",
+      "name": "Words That Can Follow \"Light\"",
       "words": [
-        "ORWELL",
-        "ATWOOD",
-        "HUXLEY",
-        "BRADBURY"
+        "HOUSE",
+        "YEAR",
+        "SHOW",
+        "BULB"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Parts of a Computer",
+      "name": "Famous Chess Openings",
       "words": [
-        "MOTHERBOARD",
-        "CACHE",
-        "BUS",
-        "KERNEL"
+        "SICILIAN",
+        "RUY LOPEZ",
+        "KING’S GAMBIT",
+        "FRENCH"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words That Can Precede 'Light' or 'House'",
+      "name": "Words That Can Mean Both a Feeling and a Color",
       "words": [
-        "FIRE",
+        "BLUE",
         "GREEN",
-        "FLASH",
-        "BREAK"
+        "ROSE",
+        "GRAY"
       ],
       "difficulty": "blue"
     }
