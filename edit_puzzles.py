@@ -519,6 +519,14 @@ def generate_puzzle():
                     "difficulty": color,
                 }
             )
+        # REMOVE DUPLICATE CATEGORIES - keep only unique names
+        seen = set()
+        unique_categories = []
+        for cat in categories:
+            if cat['name'] not in seen:
+                seen.add(cat['name'])
+                unique_categories.append(cat)
+        categories = unique_categories
 
         puzzle = {
             "id": None,

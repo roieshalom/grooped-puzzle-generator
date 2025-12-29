@@ -4,42 +4,42 @@
   "language": "en",
   "categories": [
     {
-      "name": "Common Kitchen Appliances",
+      "name": "Types of Cheese",
       "words": [
-        "BLENDER",
-        "TOASTER",
-        "MICROWAVE",
-        "GRATER"
+        "BRIE",
+        "GOUDA",
+        "FETA",
+        "CAMEMBERT"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Words That Can Follow 'Stone'",
+      "name": "Writers of Famous Dystopian Novels",
       "words": [
-        "WALL",
-        "AGE",
-        "COLD",
-        "FRUIT"
+        "ORWELL",
+        "ATWOOD",
+        "HUXLEY",
+        "BRADBURY"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Types of Logical Fallacies",
+      "name": "Parts of a Computer",
       "words": [
-        "STRAWMAN",
-        "SLIPPERY SLOPE",
-        "RED HERRING",
-        "APPEAL TO AUTHORITY"
+        "MOTHERBOARD",
+        "CACHE",
+        "BUS",
+        "KERNEL"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words That Can Mean Both a Color and an Emotion",
+      "name": "Words That Can Precede 'Light' or 'House'",
       "words": [
-        "BLUE",
+        "FIRE",
         "GREEN",
-        "BLACK",
-        "YELLOW"
+        "FLASH",
+        "BREAK"
       ],
       "difficulty": "blue"
     }
