@@ -1,52 +1,48 @@
 {
+  "id": null,
+  "date": null,
+  "language": "en",
   "categories": [
     {
-      "name": "Famous Cheeses",
+      "name": "Colors with multiple hues",
       "words": [
-        "CHEDDAR",
-        "BRIE",
-        "GORGONZOLA",
-        "MOZZARELLA"
+        "MUSTARD",
+        "ROSE",
+        "IVORY",
+        "JADE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Mythical Colors",
+      "name": "Words that can precede 'house'",
       "words": [
-        "CERULEAN",
-        "SANGUINE",
-        "AMBER",
-        "VIOLET"
+        "GHOST",
+        "TERROR",
+        "MUSTARD",
+        "FUNK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Occupations in the Legal Field",
+      "name": "Music genres",
       "words": [
-        "BARRISTER",
-        "ARBITRATOR",
-        "NOTARY",
-        "MEDIATOR"
+        "FUNK",
+        "ROSE",
+        "JAZZ",
+        "BLUES"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words that can mean 'to speak' or 'to claim' (homonyms/wordplay)",
+      "name": "Figurative states of mind",
       "words": [
-        "ASSERT",
-        "QUOTE",
-        "VOICE",
-        "CLAIM"
+        "BLUES",
+        "GHOST",
+        "IVORY",
+        "TERROR"
       ],
       "difficulty": "blue"
     }
   ],
-  "date": null,
-  "id": null,
-  "language": "en",
-  "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
-  }
+  "design_notes": "MUSTARD and ROSE tempt solvers between Colors and other categories: MUSTARD fits both as a color and a 'house' type, ROSE is both a color and a music-related word (Rose as a jazz album). GHOST and TERROR appear in both the 'house' group and as figurative mental states, creating placement dilemmas. BLUES also overlaps Music and figurative mood categories, requiring close attention to final grouping."
 }

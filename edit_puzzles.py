@@ -530,6 +530,7 @@ def generate_puzzle():
                     "difficulty": color,
                 }
             )
+
         # REMOVE DUPLICATE CATEGORIES - keep only unique names
         seen = set()
         unique_categories = []
@@ -544,6 +545,8 @@ def generate_puzzle():
             "date": None,
             "language": "en",
             "categories": categories,
+            # pass through short explanation from the model (may be missing)
+            "design_notes": raw.get("design_notes", ""),
         }
 
         # Save generated puzzle as the current draft

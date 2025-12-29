@@ -134,15 +134,28 @@ function updateUI() {
     }
   }
 
-  // Show validation errors and highlight duplicate words
+   // Show validation errors and highlight duplicate words
   showValidationErrors(puzzle);
   highlightDuplicateWords(puzzle);
+
+  // Show brief design notes under the categories
+  const notesEl = document.getElementById('designNotes');
+  if (notesEl) {
+    if (puzzle.design_notes) {
+      notesEl.textContent = puzzle.design_notes;
+      notesEl.style.display = 'block';
+    } else {
+      notesEl.textContent = '';
+      notesEl.style.display = 'none';
+    }
+  }
 
   // Update saved state after UI is updated
   lastSavedState = getCurrentStateString();
   hasUnsavedChanges = false;
   updateExportButtonState();
 }
+
 
 function showValidationErrors(puzzle) {
   const errorsDiv = document.getElementById('validationErrors');
@@ -219,6 +232,20 @@ function collectData() {
   }
 
   return puzzle;
+}
+
+function hasWithinPuzzleDuplicates(puzzle) {
+  const seen = new Set();
+  const dups = new Set();
+  (puzzle.categories || []).forEach(cat => {
+    (cat.words || []).forEach(w => {
+      const word = (w || '').toUpperCase().trim();
+      if (!word) return;
+      if (seen.has(word)) dups.add(word);
+      seen.add(word);
+    });
+  });
+  return Array.from(dups);
 }
 
 async function load() {
@@ -337,6 +364,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('generateBtn').addEventListener('click', async () => {
+  console.log('GENERATE CLICKED');
   setStatus('Generating new puzzle...');
   setButtonLoading('generateBtn', true);
   try {
@@ -354,29 +382,39 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       throw new Error('Invalid puzzle from generator');
     }
 
-    // Assign 4 unique colors: yellow, green, blue, purple (no duplicate greens)
+    // Assign 4 unique colors: yellow, green, blue, purple
     const uniqueColors = ['yellow', 'green', 'blue', 'purple'];
     res.categories.forEach((cat, index) => {
       cat.difficulty = uniqueColors[index % uniqueColors.length];
     });
 
-    // REMOVE DUPLICATES immediately after generate
-    const seen = new Set();
+    // Remove duplicate category names
+    const seenNames = new Set();
     res.categories = res.categories.filter(cat => {
-      if (seen.has(cat.name)) return false;
-      seen.add(cat.name);
+      const name = cat.name || '';
+      if (seenNames.has(name)) return false;
+      seenNames.add(name);
       return true;
     });
 
+    // Show puzzle in UI
     puzzles = [res];
     currentIndex = 0;
-    updateUI();
+    updateUI();  // shows categories + runs showValidationErrors + highlightDuplicateWords
     setButtonSuccess('generateBtn');
-    setStatus('New puzzle generated - unique colors', 'info', 3000);
+    setStatus('New puzzle generated', 'success', 3000);
+    // Immediately round-trip through backend to get validation (including duplicates)
+    try {
+    await save();  // uses the same puzzle, just adds _validation and duplicate_words
+    } catch (e) {
+  // If validation/save fails, we at least still show the generated puzzle
+    }
+
   } catch (e) {
     setStatus('Generate failed', 'error', 4000);
-    setButtonLoading('generateBtn', false);
     alert('Failed to generate puzzle: ' + e);
+  } finally {
+    setButtonLoading('generateBtn', false);
   }
 });
 
