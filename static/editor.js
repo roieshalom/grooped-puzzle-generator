@@ -376,12 +376,20 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       throw new Error('Invalid puzzle from generator');
     }
 
+    // Remove duplicate categories - keep only unique names
+    const seen = new Set();
+    res.categories = res.categories.filter(cat => {
+      if (seen.has(cat.name)) return false;
+      seen.add(cat.name);
+      return true;
+    });
+
     puzzles = [res];
     currentIndex = 0;
     updateUI();
-    setStatus('New puzzle generated');
+    setStatus('New puzzle generated (unique categories)');
     setButtonSuccess('generateBtn');
-    showInlineMessage('New puzzle generated', 'info', 3000);
+    showInlineMessage('New puzzle generated - unique categories', 'info', 3000);
   } catch (e) {
     setStatus('Generate failed');
     setButtonLoading('generateBtn', false);
@@ -389,6 +397,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
     showInlineMessage('Generate failed', 'error', 4000);
   }
 });
+
 
 // Track input changes for unsaved changes detection
 document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
