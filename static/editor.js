@@ -11,10 +11,7 @@ const colorToDifficulty = {
   'orange': 'purple'
 };
 
-function setStatus(msg) {
-  document.getElementById('status').textContent = msg;
-}
-
+// Inline status / message helper
 function setStatus(text, type = 'info', duration = 3000) {
   const box = document.getElementById('messageBox');
   if (!box) return;
@@ -89,7 +86,7 @@ function setButtonSuccess(buttonId, duration = 1500) {
 
 function updateUI() {
   if (puzzles.length === 0) {
-    setStatus('No puzzles');
+    setStatus('No puzzles', 'info', 2000);
     lastSavedState = null;
     updateExportButtonState();
     return;
@@ -239,19 +236,17 @@ async function load() {
     }
 
     if (puzzles.length === 0) {
-      setStatus('No puzzles found');
+      setStatus('No puzzles found', 'info', 2000);
       updateExportButtonState();
       return;
     }
 
     currentIndex = 0;
     updateUI();
-    setStatus('Puzzle loaded');
     setStatus('Puzzle loaded', 'info', 2000);
   } catch (e) {
-    setStatus('Load failed');
-    alert('Load failed: ' + e);
     setStatus('Load failed', 'error', 4000);
+    alert('Load failed: ' + e);
   }
 }
 
@@ -282,14 +277,12 @@ async function save() {
     hasUnsavedChanges = false;
     updateExportButtonState();
 
-    setStatus('Saved');
     setButtonSuccess('saveBtn');
     setStatus('Puzzle saved', 'success', 3000);
   } catch (e) {
-    setStatus('Save failed');
+    setStatus('Save failed', 'error', 4000);
     setButtonLoading('saveBtn', false);
     alert('Save failed: ' + e);
-    setStatus('Save failed', 'error', 4000);
   }
 }
 
@@ -298,13 +291,11 @@ document.getElementById('reloadBtn').addEventListener('click', async () => {
   setButtonLoading('reloadBtn', true);
   try {
     await load();
-    setStatus('Reloaded');
     setButtonSuccess('reloadBtn');
     setStatus('Puzzle reloaded from disk', 'info', 3000);
   } catch (e) {
-    setStatus('Reload failed');
-    alert('Reload failed: ' + e);
     setStatus('Reload failed', 'error', 4000);
+    alert('Reload failed: ' + e);
   } finally {
     setButtonLoading('reloadBtn', false);
   }
@@ -334,16 +325,14 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     const res = await r.json();
     if (!r.ok) throw new Error(res.error || JSON.stringify(res));
 
-    setStatus('Exported! Loading next puzzle...');
     setButtonSuccess('exportBtn');
     setStatus('Puzzle exported', 'success', 4000);
 
     await load();
   } catch (e) {
-    setStatus('Export failed');
+    setStatus('Export failed', 'error', 4000);
     setButtonLoading('exportBtn', false);
     alert('Export failed: ' + e);
-    setStatus('Export failed', 'error', 4000);
   }
 });
 
@@ -371,20 +360,25 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       cat.difficulty = uniqueColors[index % uniqueColors.length];
     });
 
+    // REMOVE DUPLICATES immediately after generate
+    const seen = new Set();
+    res.categories = res.categories.filter(cat => {
+      if (seen.has(cat.name)) return false;
+      seen.add(cat.name);
+      return true;
+    });
+
     puzzles = [res];
     currentIndex = 0;
     updateUI();
-    setStatus('New puzzle generated');
     setButtonSuccess('generateBtn');
     setStatus('New puzzle generated - unique colors', 'info', 3000);
   } catch (e) {
-    setStatus('Generate failed');
+    setStatus('Generate failed', 'error', 4000);
     setButtonLoading('generateBtn', false);
     alert('Failed to generate puzzle: ' + e);
-    setStatus('Generate failed', 'error', 4000);
   }
 });
-
 
 // Track input changes for unsaved changes detection
 document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
@@ -490,7 +484,7 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   const regenBtn = categoryEl.querySelector('.regenerate-btn');
   if (regenBtn) {
     regenBtn.disabled = true;
-    regenBtn.textContent = '...';
+    regenBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
   }
   setStatus(allWordsEmpty && categoryName && usePromptIfEmpty ? 'Generating words for category...' : 'Regenerating category...');
 
@@ -509,12 +503,11 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
         }
       });
 
-      setStatus('Category regenerated');
+      setStatus('Category regenerated', 'info', 3000);
       wordInputs.forEach(inp => {
         inp.dispatchEvent(new Event('input'));
       });
       nameInput.dispatchEvent(new Event('input'));
-      setStatus('Category regenerated', 'info', 3000);
     } else {
       const error = await r.json();
       alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
@@ -526,7 +519,7 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   } finally {
     if (regenBtn) {
       regenBtn.disabled = false;
-      regenBtn.textContent = '<i class="fas fa-sync-alt"></i>';
+      regenBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
     }
   }
 }
@@ -553,7 +546,6 @@ async function banAndReplaceCategory(categoryIdx) {
     if (!r.ok || !res.ok) {
       throw new Error(res.error || 'Failed to ban category');
     }
-    setStatus(`Category banned: "${categoryName}"`);
     setStatus(`Category banned: "${categoryName}"`, 'info', 3000);
     await regenerateCategoryForIndex(categoryIdx, { usePromptIfEmpty: false });
   } catch (e) {
@@ -570,6 +562,5 @@ document.getElementById('saveBtn').addEventListener('click', () => {
 updateExportButtonState();
 
 // Load on page load
-setStatus('Ready');  // Set initial status
+setStatus('Ready', 'info', 2000);
 load();
-
