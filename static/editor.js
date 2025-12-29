@@ -15,7 +15,7 @@ function setStatus(msg) {
   document.getElementById('status').textContent = msg;
 }
 
-function showInlineMessage(text, type = 'info', duration = 3000) {
+function setStatus(text, type = 'info', duration = 3000) {
   const box = document.getElementById('messageBox');
   if (!box) return;
 
@@ -25,23 +25,12 @@ function showInlineMessage(text, type = 'info', duration = 3000) {
   box.classList.remove('success', 'error', 'info');
   if (type) box.classList.add(type);
 
-  clearTimeout(showInlineMessage._timeout);
+  clearTimeout(setStatus._timeout);
   if (duration > 0) {
-    showInlineMessage._timeout = setTimeout(() => {
+    setStatus._timeout = setTimeout(() => {
       box.style.display = 'none';
     }, duration);
   }
-}
-
-function showBanMessage(msg) {
-  const el = document.getElementById('banStatus');
-  if (!el) return;
-  el.textContent = msg;
-  el.style.display = 'block';
-  clearTimeout(showBanMessage._timeout);
-  showBanMessage._timeout = setTimeout(() => {
-    el.style.display = 'none';
-  }, 2500);
 }
 
 // Get current form data as JSON string for comparison
@@ -258,11 +247,11 @@ async function load() {
     currentIndex = 0;
     updateUI();
     setStatus('Puzzle loaded');
-    showInlineMessage('Puzzle loaded', 'info', 2000);
+    setStatus('Puzzle loaded', 'info', 2000);
   } catch (e) {
     setStatus('Load failed');
     alert('Load failed: ' + e);
-    showInlineMessage('Load failed', 'error', 4000);
+    setStatus('Load failed', 'error', 4000);
   }
 }
 
@@ -295,12 +284,12 @@ async function save() {
 
     setStatus('Saved');
     setButtonSuccess('saveBtn');
-    showInlineMessage('Puzzle saved', 'success', 3000);
+    setStatus('Puzzle saved', 'success', 3000);
   } catch (e) {
     setStatus('Save failed');
     setButtonLoading('saveBtn', false);
     alert('Save failed: ' + e);
-    showInlineMessage('Save failed', 'error', 4000);
+    setStatus('Save failed', 'error', 4000);
   }
 }
 
@@ -311,11 +300,11 @@ document.getElementById('reloadBtn').addEventListener('click', async () => {
     await load();
     setStatus('Reloaded');
     setButtonSuccess('reloadBtn');
-    showInlineMessage('Puzzle reloaded from disk', 'info', 3000);
+    setStatus('Puzzle reloaded from disk', 'info', 3000);
   } catch (e) {
     setStatus('Reload failed');
     alert('Reload failed: ' + e);
-    showInlineMessage('Reload failed', 'error', 4000);
+    setStatus('Reload failed', 'error', 4000);
   } finally {
     setButtonLoading('reloadBtn', false);
   }
@@ -347,14 +336,14 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 
     setStatus('Exported! Loading next puzzle...');
     setButtonSuccess('exportBtn');
-    showInlineMessage('Puzzle exported', 'success', 4000);
+    setStatus('Puzzle exported', 'success', 4000);
 
     await load();
   } catch (e) {
     setStatus('Export failed');
     setButtonLoading('exportBtn', false);
     alert('Export failed: ' + e);
-    showInlineMessage('Export failed', 'error', 4000);
+    setStatus('Export failed', 'error', 4000);
   }
 });
 
@@ -376,36 +365,25 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       throw new Error('Invalid puzzle from generator');
     }
 
-    // Assign 4 unique colors: yellow, green, blue, purple
+    // Assign 4 unique colors: yellow, green, blue, purple (no duplicate greens)
     const uniqueColors = ['yellow', 'green', 'blue', 'purple'];
     res.categories.forEach((cat, index) => {
-        cat.difficulty = uniqueColors[index % uniqueColors.length];
+      cat.difficulty = uniqueColors[index % uniqueColors.length];
     });
-    
+
     puzzles = [res];
     currentIndex = 0;
     updateUI();
-
-    setStatus('New puzzle generated (unique categories)');
+    setStatus('New puzzle generated');
     setButtonSuccess('generateBtn');
-    showInlineMessage('New puzzle generated - unique categories', 'info', 3000);
+    setStatus('New puzzle generated - unique colors', 'info', 3000);
   } catch (e) {
     setStatus('Generate failed');
     setButtonLoading('generateBtn', false);
     alert('Failed to generate puzzle: ' + e);
-    showInlineMessage('Generate failed', 'error', 4000);
+    setStatus('Generate failed', 'error', 4000);
   }
 });
-
-    puzzles = [res];
-    
-    // REMOVE DUPLICATES immediately after generate
-    const seen = new Set();
-    res.categories = res.categories.filter(cat => {
-        if (seen.has(cat.name)) return false;
-        seen.add(cat.name);
-        return true;
-    });
 
 
 // Track input changes for unsaved changes detection
@@ -536,15 +514,15 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
         inp.dispatchEvent(new Event('input'));
       });
       nameInput.dispatchEvent(new Event('input'));
-      showInlineMessage('Category regenerated', 'info', 3000);
+      setStatus('Category regenerated', 'info', 3000);
     } else {
       const error = await r.json();
       alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
-      showInlineMessage('Category regeneration failed', 'error', 4000);
+      setStatus('Category regeneration failed', 'error', 4000);
     }
   } catch (e) {
     alert('Error regenerating category: ' + e);
-    showInlineMessage('Category regeneration failed', 'error', 4000);
+    setStatus('Category regeneration failed', 'error', 4000);
   } finally {
     if (regenBtn) {
       regenBtn.disabled = false;
@@ -575,12 +553,12 @@ async function banAndReplaceCategory(categoryIdx) {
     if (!r.ok || !res.ok) {
       throw new Error(res.error || 'Failed to ban category');
     }
-    showBanMessage(`Category banned: "${categoryName}"`);
-    showInlineMessage(`Category banned: "${categoryName}"`, 'info', 3000);
+    setStatus(`Category banned: "${categoryName}"`);
+    setStatus(`Category banned: "${categoryName}"`, 'info', 3000);
     await regenerateCategoryForIndex(categoryIdx, { usePromptIfEmpty: false });
   } catch (e) {
     alert('Failed to ban category: ' + e);
-    showInlineMessage('Failed to ban category', 'error', 4000);
+    setStatus('Failed to ban category', 'error', 4000);
   }
 }
 
@@ -592,4 +570,6 @@ document.getElementById('saveBtn').addEventListener('click', () => {
 updateExportButtonState();
 
 // Load on page load
+setStatus('Ready');  // Set initial status
 load();
+

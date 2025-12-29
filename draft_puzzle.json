@@ -4,42 +4,42 @@
   "language": "en",
   "categories": [
     {
-      "name": "Types of Hats",
+      "name": "Famous Board Games",
       "words": [
-        "FEDORA",
-        "BERET",
-        "BOWLER",
-        "PANAMA"
+        "MONOPOLY",
+        "CLUE",
+        "RISK",
+        "CATAN"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Words That Can Follow \"Light\"",
+      "name": "Words That Can Follow LIGHT",
       "words": [
-        "HOUSE",
         "YEAR",
-        "SHOW",
-        "BULB"
+        "BULB",
+        "WAVE",
+        "HOUSE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Famous Chess Openings",
+      "name": "Fruits That Are Also Color Names",
       "words": [
-        "SICILIAN",
-        "RUY LOPEZ",
-        "KING’S GAMBIT",
-        "FRENCH"
+        "ORANGE",
+        "PLUM",
+        "MELON",
+        "LIME"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words That Can Mean Both a Feeling and a Color",
+      "name": "Words with Multiple Meanings Related to Time",
       "words": [
-        "BLUE",
-        "GREEN",
-        "ROSE",
-        "GRAY"
+        "SPRING",
+        "SEASON",
+        "SECOND",
+        "DATE"
       ],
       "difficulty": "blue"
     }
