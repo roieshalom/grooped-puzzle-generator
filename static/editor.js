@@ -526,7 +526,7 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   } finally {
     if (regenBtn) {
       regenBtn.disabled = false;
-      regenBtn.textContent = '🔄';
+      regenBtn.textContent = '<i class="fas fa-sync-alt"></i>';
     }
   }
 }

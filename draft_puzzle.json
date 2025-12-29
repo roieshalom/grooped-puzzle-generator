@@ -4,42 +4,42 @@
   "language": "en",
   "categories": [
     {
-      "name": "Famous Board Games",
+      "name": "Musical Instruments",
       "words": [
-        "MONOPOLY",
-        "CLUE",
-        "RISK",
-        "CATAN"
+        "VIOLIN",
+        "PIANO",
+        "DRUM",
+        "FLUTE"
       ],
       "difficulty": "yellow"
+    },
+    {
+      "name": "Types of Clouds",
+      "words": [
+        "CIRRUS",
+        "CUMULUS",
+        "STRATUS",
+        "NIMBUS"
+      ],
+      "difficulty": "green"
     },
     {
       "name": "Words That Can Follow LIGHT",
       "words": [
         "YEAR",
         "BULB",
-        "WAVE",
-        "HOUSE"
+        "SHADE",
+        "WAVE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Fruits That Are Also Color Names",
+      "name": "Words Often Used as Emotions or Descriptions",
       "words": [
-        "ORANGE",
-        "PLUM",
-        "MELON",
-        "LIME"
-      ],
-      "difficulty": "green"
-    },
-    {
-      "name": "Words with Multiple Meanings Related to Time",
-      "words": [
-        "SPRING",
-        "SEASON",
-        "SECOND",
-        "DATE"
+        "BLUE",
+        "HOT",
+        "COLD",
+        "SHARP"
       ],
       "difficulty": "blue"
     }
