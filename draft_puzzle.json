@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Musical Instruments",
+      "name": "Famous Cheeses",
       "words": [
-        "VIOLIN",
-        "PIANO",
-        "DRUM",
-        "FLUTE"
+        "CHEDDAR",
+        "BRIE",
+        "GORGONZOLA",
+        "MOZZARELLA"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Types of Clouds",
+      "name": "Mythical Colors",
       "words": [
-        "CIRRUS",
-        "CUMULUS",
-        "STRATUS",
-        "NIMBUS"
+        "CERULEAN",
+        "SANGUINE",
+        "AMBER",
+        "VIOLET"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words That Can Follow LIGHT",
+      "name": "Occupations in the Legal Field",
       "words": [
-        "YEAR",
-        "BULB",
-        "SHADE",
-        "WAVE"
+        "BARRISTER",
+        "ARBITRATOR",
+        "NOTARY",
+        "MEDIATOR"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words Often Used as Emotions or Descriptions",
+      "name": "Words that can mean 'to speak' or 'to claim' (homonyms/wordplay)",
       "words": [
-        "BLUE",
-        "HOT",
-        "COLD",
-        "SHARP"
+        "ASSERT",
+        "QUOTE",
+        "VOICE",
+        "CLAIM"
       ],
       "difficulty": "blue"
     }
