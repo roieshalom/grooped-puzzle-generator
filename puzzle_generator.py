@@ -20,6 +20,7 @@ GOAL
   - 1 easy category,
   - 2 medium categories,
   - 1 hard category.
+  - 16 different words or terms, no repeats!
 - Each category must have exactly 4 words (16 total).
 - The puzzle should feel fair but non-trivial for adults.
 - The main source of interest should be how the whole set of 16 words interacts:
@@ -104,20 +105,21 @@ COLOR ASSIGNMENT RULES
 - Color is purely visual and does NOT need to correlate with difficulty.
 
 MISDIRECTING / TEMPTATION WORDS
-- Design the puzzle so that 2–4 of the 16 words LOOK like they could belong to a different, obvious category, but actually belong only to their true category.
+- Design the puzzle so that 2-4 of the 16 words LOOK like they could belong to a different, obvious category, but actually belong only to their true category.
 - Example pattern (do NOT copy literally):
   - There might be 5 color words overall, but only 4 belong to the “Colors” category; the extra color word belongs to a different category.
 - Use such misdirections so categories feel slightly entangled, but the final solution must still feel fair.
 
 UNIQUENESS & VARIETY RULES
-- Within a single puzzle:
-  - Do NOT repeat the same high-level category idea twice (no two “Classical composers”, no two “Words that can follow LIGHT”, etc.).
-  - Do NOT reuse any word in more than one category.
+- Within this single 4x4 puzzle:
+  - Absolutely NO word may appear more than once in the 16-word grid.
+  - Treat any repeated word as a hard error: if any word appears twice (even with different casing), regenerate the puzzle mentally and only output a version where all 16 words are distinct.
+  - Do not “reuse” the same word in two different categories, even if its meaning changes between categories.
 - Across puzzles in general:
   - Avoid overusing identical patterns like “Words that can follow FIRE/LIGHT/BREAK”, “Types of clouds”, “Common fruits”, “Common pets”, “Common colors”.
   - If you revisit a broad theme (like music, weather, colors), twist it into a clearly different and more challenging angle.
-- Avoid having all four categories be simple, flat lists; at least one or two should rely on multi-meaning or cross-context words.
 
+  
 QUALITY CHECK BEFORE OUTPUT
 - Check that:
   - Categories are distinguishable once their ideas are revealed, even if they look similar at first.
@@ -142,18 +144,29 @@ Return the result ONLY as strict JSON with this exact structure:
 No extra text, no explanations, just JSON.
 """
 
-    response = client.chat.completions.create(
-        model="gpt-4.1-mini",
-        messages=[
-            {"role": "system", "content": "You are an expert Grooped puzzle generator."},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.8,
-        response_format={"type": "json_object"},
-    )
-    puzzle_json = response.choices[0].message.content
-    return json.loads(puzzle_json)
+# NEW: loop until we get 16 unique words
+    while True:
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert Grooped puzzle generator."},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.8,
+            response_format={"type": "json_object"},
+        )
+        puzzle_json = response.choices[0].message.content
+        data = json.loads(puzzle_json)
 
+        # HARD uniqueness check – no repeated word string in the 16‑word grid
+        words = []
+        for cat in data["categories"]:
+            for w in cat["words"]:
+                words.append(w.upper().strip())
+
+        if len(words) == 16 and len(set(words)) == 16:
+            return data
+        # otherwise loop again and regenerate
 
 def build_week_of_puzzles(start_id=1, start_date_str="11.12.2025", language="en"):
     day = datetime.strptime(start_date_str, "%d.%m.%Y")

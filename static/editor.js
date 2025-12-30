@@ -399,16 +399,17 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 
     // Show puzzle in UI
     puzzles = [res];
-    currentIndex = 0;
-    updateUI();  // shows categories + runs showValidationErrors + highlightDuplicateWords
-    setButtonSuccess('generateBtn');
-    setStatus('New puzzle generated', 'success', 3000);
-    // Immediately round-trip through backend to get validation (including duplicates)
-    try {
-    await save();  // uses the same puzzle, just adds _validation and duplicate_words
-    } catch (e) {
-  // If validation/save fails, we at least still show the generated puzzle
-    }
+currentIndex = 0;
+updateUI();
+setButtonSuccess('generateBtn');
+setStatus('New puzzle generated', 'success', 3000);
+
+// Trigger backend validation so duplicate words show right away
+try {
+  await save();
+} catch (e) {
+  // ignore here; errors already surfaced in save()
+}
 
   } catch (e) {
     setStatus('Generate failed', 'error', 4000);

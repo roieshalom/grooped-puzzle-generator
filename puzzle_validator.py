@@ -82,7 +82,7 @@ def validate_puzzle(puzzle: Dict, published_puzzles: List[Dict] = None) -> Tuple
     if len(puzzle['categories']) != 4:
         errors.append(f"Expected 4 categories, found {len(puzzle['categories'])}")
     
-    # Check for duplicate words within the puzzle
+    # Check for duplicate words within the puzzle (only inside this 16‑word grid)
     puzzle_words = []
     for cat in puzzle['categories']:
         for word in cat.get('words', []):
@@ -91,10 +91,11 @@ def validate_puzzle(puzzle: Dict, published_puzzles: List[Dict] = None) -> Tuple
                 errors.append(f"Duplicate word '{word_upper}' within this puzzle")
             puzzle_words.append(word_upper)
     
-    # Check for duplicate words with published puzzles
-    for word in puzzle_words:
-        if word in published_words:
-            errors.append(f"Word '{word}' already exists in published puzzles")
+    # NOTE: removed cross‑puzzle duplicate check so words can repeat in future puzzles
+    # If you ever want to turn this back on, uncomment:
+    # for word in puzzle_words:
+    #     if word in published_words:
+    #         errors.append(f"Word '{word}' already exists in published puzzles")
     
     # Check for duplicate category names
     puzzle_categories = []
@@ -143,4 +144,3 @@ if __name__ == "__main__":
     print(f"Valid: {is_valid}")
     if errors:
         print("Errors:", errors)
-

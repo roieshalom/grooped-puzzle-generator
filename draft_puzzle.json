@@ -1,48 +1,53 @@
 {
-  "id": null,
-  "date": null,
-  "language": "en",
   "categories": [
     {
-      "name": "Colors with multiple hues",
+      "name": "Precious Metals & Elements",
       "words": [
-        "MUSTARD",
-        "ROSE",
-        "IVORY",
-        "JADE"
+        "GOLD",
+        "SILVER",
+        "PLATINUM",
+        "COPPER"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Words that can precede 'house'",
+      "name": "Jazz Musicians",
       "words": [
-        "GHOST",
-        "TERROR",
-        "MUSTARD",
-        "FUNK"
+        "MILES",
+        "DIZZY",
+        "COLTRANE",
+        "ELLA"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Music genres",
+      "name": "Words Commonly Used as Both Verbs and Nouns",
       "words": [
-        "FUNK",
-        "ROSE",
-        "JAZZ",
-        "BLUES"
-      ],
-      "difficulty": "green"
-    },
-    {
-      "name": "Figurative states of mind",
-      "words": [
-        "BLUES",
-        "GHOST",
-        "IVORY",
-        "TERROR"
+        "STRIKE",
+        "CAST",
+        "SPRING",
+        "JAM"
       ],
       "difficulty": "blue"
+    },
+    {
+      "name": "English Language Verb Tenses",
+      "words": [
+        "PAST",
+        "PRESENT",
+        "FUTURE",
+        "PERFECT"
+      ],
+      "difficulty": "purple"
     }
   ],
-  "design_notes": "MUSTARD and ROSE tempt solvers between Colors and other categories: MUSTARD fits both as a color and a 'house' type, ROSE is both a color and a music-related word (Rose as a jazz album). GHOST and TERROR appear in both the 'house' group and as figurative mental states, creating placement dilemmas. BLUES also overlaps Music and figurative mood categories, requiring close attention to final grouping."
+  "date": null,
+  "design_notes": "The words 'Spring' and 'Jam' tempt confusion between the verb/noun group and the verb tense group because 'Spring' is both a noun and a time reference, while 'Jam' could suggest a musical context linked to jazz. 'Gold' and 'Silver' may initially feel like color words but belong only in metals. The verb tense category uses words that also have other meanings, deepening the ambiguity between abstract time concepts and concrete actions.",
+  "id": null,
+  "language": "en",
+  "_validation": {
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
+  }
 }
