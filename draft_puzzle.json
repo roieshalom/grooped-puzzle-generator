@@ -1,48 +1,48 @@
 {
   "categories": [
     {
-      "name": "Precious Metals & Elements",
+      "name": "Sanwiches",
       "words": [
-        "GOLD",
-        "SILVER",
-        "PLATINUM",
-        "COPPER"
+        "SUB",
+        "HOAGIE",
+        "CLUB",
+        "BLT"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Jazz Musicians",
+      "name": "Global public transort",
       "words": [
-        "MILES",
-        "DIZZY",
-        "COLTRANE",
-        "ELLA"
+        "SUBWAY",
+        "TRAMWAY",
+        "FERRY",
+        "BICYCLE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words Commonly Used as Both Verbs and Nouns",
+      "name": "Weather Tools",
       "words": [
-        "STRIKE",
-        "CAST",
-        "SPRING",
-        "JAM"
+        "BAROMETER",
+        "ANEMOMETER",
+        "HYGROMETER",
+        "THERMOMETER"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "English Language Verb Tenses",
+      "name": "Cinematic Paradoxes",
       "words": [
-        "PAST",
-        "PRESENT",
-        "FUTURE",
-        "PERFECT"
+        "INCEPTION",
+        "MATRIX",
+        "TWILIGHT",
+        "INTERSTELLAR"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "The words 'Spring' and 'Jam' tempt confusion between the verb/noun group and the verb tense group because 'Spring' is both a noun and a time reference, while 'Jam' could suggest a musical context linked to jazz. 'Gold' and 'Silver' may initially feel like color words but belong only in metals. The verb tense category uses words that also have other meanings, deepening the ambiguity between abstract time concepts and concrete actions.",
+  "design_notes": "The easy category is concrete with words that share the literal or idiomatic meaning of 'breaking.' The medium categories overlap through ambiguous words: 'Miles' looks like a distance unit but belongs to jazz musicians, while 'Swing' might tempt solvers toward jazz musicians or the sports/music category but is strictly in the dual sports/music group. 'Dawn' could be a tricky breakable 'time' or a poetic name but belongs only in things to break. The hard category is abstract, combining terms that appear in both music and sports, creating placement tension with jazz musicians and 'break' words.",
   "id": null,
   "language": "en",
   "_validation": {

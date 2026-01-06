@@ -87,9 +87,29 @@ AVOID SELLING WEAK OR ONE-WAY AMBIGUITY
 - A word only counts as a “decoy” if it is genuinely plausible in more than one of the current categories, not just because a rare or obscure reading exists.
 - When designing the four categories, think about the full set: ensure that some tricky words connect two or more of the actual categories to each other, creating tension in the solve.
 
+BANNED CATEGORY STYLES
+- The game has a history of banned categories.
+-- Avoid any category that is:
+-- A flat taxonomy: “types of X”, “kinds of X”, “common X”, “basic X”, “famous X”, “classic X”, “X terms”, “X concepts”, “X constructs”, “X elements”, “X tools”, “X roles”.
+-- A simple domain list: foods, colors, weather, animals, office items, musical genres, sports, holidays, mythical creatures, vacation spots, landmarks, body parts, kitchen items, vegetables, fruits, drinks, board games, film genres, etc., unless it is twisted into a very specific, surprising angle.
+-- Purely abstract pseudo-philosophical sets (“abstract concepts”, “cognitive constructs”, “temporal paradoxes”, “metaphysical states”, “cultural constructs”, “hidden forces”, “phantom connections”, etc.).
+-- Formulaic wordplay templates like:
+--- “words that can follow X / precede X”,
+--- “things you can break/catch/draw/press”,
+--- “words that can mean both X and Y”,
+--- “idioms with '[word]’”, “phrases with '[word]’”.
+- If a category sounds like something you might find in a vocabulary worksheet or a trivia list (e.g., “types of berries”, “kitchen appliances”), treat it as banned style, even if the title wording is new.
+
+CONCRETE BANNED CATEGORIES
+- The following category names and very similar phrasings are strictly banned (examples, not a full list): “common pets”, “types of clouds”, “vegetables”, “weather terms”, “office supplies”, “board games”, “famous landmarks”, “music genres”, “kitchen tools”, “classical music composers”, “mythical creatures”, “winter sports”, “vacation spots”, “wonders of the world”, “types of trees”, “types of tea”, “types of sandwiches”, “programming languages”, “nautical terms”, “art movements”, “legal terms”, “film genres”, “root vegetables”, “tropical fruits”, “water sports”.
+- Do not:
+-- reuse these exact names,
+-- paraphrase them (“well-known landmarks” for “famous landmarks”),
+-- or create categories that are effectively the same idea.
+
 DIFFICULTY MIX
 - EASY category:
-  - Concrete and recognizable, but avoid trivial “kids’ list” themes like “Common fruits”, “Common animals”, “Primary colors”, “Kitchen utensils”, or “Common pets”.
+  - Concrete and recognizable, but avoid trivial “kids' list” themes like “Common fruits”, “Common animals”, “Primary colors”, “Kitchen utensils”, or “Common pets”.
   - Even here, try to introduce at least one word whose meaning or usage could make solvers pause.
 - MEDIUM categories:
   - Still concrete, but require either light general knowledge or mild wordplay.
@@ -119,7 +139,15 @@ UNIQUENESS & VARIETY RULES
   - Avoid overusing identical patterns like “Words that can follow FIRE/LIGHT/BREAK”, “Types of clouds”, “Common fruits”, “Common pets”, “Common colors”.
   - If you revisit a broad theme (like music, weather, colors), twist it into a clearly different and more challenging angle.
 
-  
+RELATIONSHIP & STYLE FILTER
+- Before finalizing categories, mentally compare each new category idea against the banned styles and banned examples.
+-- If it could be described as “types of X”, “common X”, “famous X”, “X terms”, “X concepts”, or “X elements”, discard it and invent a more situational, story-driven, or context-crossing idea.
+- At least 2 of the 4 categories must be:
+-- Defined by an underlying relationship or scenario (e.g., “things that unexpectedly share a verb”, “items that all appear in a very specific situation”) rather than by a simple domain like “animals” or “colors”.
+- When designing categories, always ask:
+-- “Could this be a banned style (textbook list, trivia list, meta ‘concepts’, word-follow template)?”
+-- If yes, reject and redesign.
+
 QUALITY CHECK BEFORE OUTPUT
 - Check that:
   - Categories are distinguishable once their ideas are revealed, even if they look similar at first.
@@ -139,7 +167,9 @@ Return the result ONLY as strict JSON with this exact structure:
       "words": ["word1", "word2", "word3", "word4"]
     }
   ],
-  "design_notes": "Very short explanation (2–3 sentences max) of the puzzle’s twists: which words are decoys, what overlap or ambiguity you used between categories, and any notable misdirections."
+  "design_notes": "Very short explanation (2-3 sentences max) of the puzzle's twists: which words are decoys, what overlap or ambiguity you used between categories, and any notable misdirections.
+  The puzzle must not contain any repeated words; if you used an idea that would require reusing a word, adjust the categories or word choices so all 16 words are unique.
+"
 }
 No extra text, no explanations, just JSON.
 """
