@@ -1,53 +1,57 @@
 {
   "categories": [
     {
-      "name": "Sandwiches",
+      "name": "Important discoveries- NOT invensions",
       "words": [
-        "BLT",
-        "CLUB",
-        "SUB",
-        "BREAKFAST"
+        "PENICILLIN",
+        "GRAVITY",
+        "RADIOACTIVITY",
+        "DNA"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Public transport, \"way\" removed",
+      "name": "Culinary Cuts",
       "words": [
-        "TRAM",
-        "RAIL",
-        "SKY",
-        "BUS"
+        "WA-GIRI",
+        "CHIFFONADE",
+        "MACEDOINE",
+        "DICE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Electrical connectors",
+      "name": "Types of boots",
       "words": [
-        "D-SUB",
-        "BARREL",
-        "USB",
-        "BANANA"
+        "COWBOY",
+        "ENGINEER",
+        "HIKING",
+        "MUKLUKS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Special meals",
+      "name": "Phantom Forces",
       "words": [
-        "TEA",
-        "TAPAS",
-        "SIU YEH",
-        "AIRLINE"
+        "GRAVITY",
+        "MAGNETISM",
+        "FRICTION",
+        "ELECTRICITY"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "The easy category is concrete with words that share the literal or idiomatic meaning of 'breaking.' The medium categories overlap through ambiguous words: 'Miles' looks like a distance unit but belongs to jazz musicians, while 'Swing' might tempt solvers toward jazz musicians or the sports/music category but is strictly in the dual sports/music group. 'Dawn' could be a tricky breakable 'time' or a poetic name but belongs only in things to break. The hard category is abstract, combining terms that appear in both music and sports, creating placement tension with jazz musicians and 'break' words.",
+  "design_notes": "‘Cloud’ and ‘Chip’ tempt between Technology and natural or physical categories but belong only to Technology. ‘Buff’ and ‘Azure’ look like just colors but have strong alternate meanings (buff as a person or texture, azure as a place name or concept). ‘Swing’ and ‘Rollercoaster’ both imply movement but classify into Jazz and Track categories, respectively, creating overlap. The hard category leverages polysemy of colors with dual meanings for ambiguity.",
   "id": null,
   "language": "en",
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'GRAVITY' within this puzzle"
+    ],
+    "duplicate_words": [
+      "GRAVITY"
+    ]
   }
 }
