@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Sanwiches",
+      "name": "Sandwiches",
       "words": [
-        "SUB",
-        "HOAGIE",
+        "BLT",
         "CLUB",
-        "BLT"
+        "SUB",
+        "BREAKFAST"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Global public transort",
+      "name": "Public transport, \"way\" removed",
       "words": [
-        "SUBWAY",
-        "TRAMWAY",
-        "FERRY",
-        "BICYCLE"
+        "TRAM",
+        "RAIL",
+        "SKY",
+        "BUS"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Weather Tools",
+      "name": "Electrical connectors",
       "words": [
-        "BAROMETER",
-        "ANEMOMETER",
-        "HYGROMETER",
-        "THERMOMETER"
+        "D-SUB",
+        "BARREL",
+        "USB",
+        "BANANA"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Cinematic Paradoxes",
+      "name": "Special meals",
       "words": [
-        "INCEPTION",
-        "MATRIX",
-        "TWILIGHT",
-        "INTERSTELLAR"
+        "TEA",
+        "TAPAS",
+        "SIU YEH",
+        "AIRLINE"
       ],
       "difficulty": "purple"
     }
