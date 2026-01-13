@@ -1,57 +1,53 @@
 {
   "categories": [
     {
-      "name": "Important discoveries- NOT invensions",
+      "name": "names and types of Red",
       "words": [
-        "PENICILLIN",
-        "GRAVITY",
-        "RADIOACTIVITY",
-        "DNA"
+        "COQUELICOT",
+        "CINNABAR",
+        "VERMILION",
+        "SINOPER"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Culinary Cuts",
+      "name": "names and types of blue",
       "words": [
-        "WA-GIRI",
-        "CHIFFONADE",
-        "MACEDOINE",
-        "DICE"
+        "CERULEAN",
+        "SMALT",
+        "AZURITE",
+        "COBALT"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Types of boots",
+      "name": "names and types of green",
       "words": [
-        "COWBOY",
-        "ENGINEER",
-        "HIKING",
-        "MUKLUKS"
+        "OLIVE",
+        "EMERALD",
+        "SAGE",
+        "MALACHITE"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Phantom Forces",
+      "name": "names and types of yellow",
       "words": [
-        "GRAVITY",
-        "MAGNETISM",
-        "FRICTION",
-        "ELECTRICITY"
+        "SAFFRON",
+        "OCHRE",
+        "DAFFODIL",
+        "CITRINE"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "‘Cloud’ and ‘Chip’ tempt between Technology and natural or physical categories but belong only to Technology. ‘Buff’ and ‘Azure’ look like just colors but have strong alternate meanings (buff as a person or texture, azure as a place name or concept). ‘Swing’ and ‘Rollercoaster’ both imply movement but classify into Jazz and Track categories, respectively, creating overlap. The hard category leverages polysemy of colors with dual meanings for ambiguity.",
+  "design_notes": "SILVER and IRON tempt as metals or colors but belong to 'Sharp/Metallic'; ROSE and GREEN could fit colors or literary names but are in feelings/colors; IVORY and RUSTY sound like colors or materials but are literary character names here; BASS might seem a fish or instrument but is a musician role. The puzzle plays on color-word ambiguity overlapping with feelings and character names.",
   "id": null,
   "language": "en",
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'GRAVITY' within this puzzle"
-    ],
-    "duplicate_words": [
-      "GRAVITY"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
