@@ -30,6 +30,24 @@ function setStatus(text, type = 'info', duration = 3000) {
   }
 }
 
+// Full‑puzzle overlay helper
+function setPuzzleLoading(loading) {
+  const overlay = document.getElementById('puzzleOverlay');
+  if (!overlay) return;
+  overlay.classList.toggle('show', loading);
+}
+
+// Per‑category overlay helper
+function setCategoryLoading(categoryIdx, loading) {
+  const categoryEl = document.querySelector(
+    `.category[data-category-index="${categoryIdx}"]`
+  );
+  if (!categoryEl) return;
+  const overlay = categoryEl.querySelector('.category-overlay');
+  if (!overlay) return;
+  overlay.classList.toggle('show', loading);
+}
+
 // Get current form data as JSON string for comparison
 function getCurrentStateString() {
   const puzzle = collectData();
@@ -102,9 +120,13 @@ function updateUI() {
     const diff = cat.difficulty || 'yellow';
     const defaultColor = difficultyToColor[idx] || 'purple';
     // Find which color this difficulty maps to
-    const color = Object.keys(colorToDifficulty).find(c => colorToDifficulty[c] === diff) || defaultColor;
+    const color = Object.keys(colorToDifficulty).find(
+      c => colorToDifficulty[c] === diff
+    ) || defaultColor;
 
-    const categoryEl = document.querySelector(`.category[data-category-index="${idx}"]`);
+    const categoryEl = document.querySelector(
+      `.category[data-category-index="${idx}"]`
+    );
     if (categoryEl) {
       // Update the category's color
       categoryEl.dataset.color = color;
@@ -119,7 +141,9 @@ function updateUI() {
 
       const words = cat.words || [];
       words.forEach((word, wordIdx) => {
-        const wordInput = categoryEl.querySelector(`.word-input[data-word="${wordIdx}"]`);
+        const wordInput = categoryEl.querySelector(
+          `.word-input[data-word="${wordIdx}"]`
+        );
         if (wordInput) wordInput.value = word || '';
       });
     }
@@ -127,14 +151,18 @@ function updateUI() {
 
   // Clear categories that don't have data
   for (let i = categories.length; i < 4; i++) {
-    const categoryEl = document.querySelector(`.category[data-category-index="${i}"]`);
+    const categoryEl = document.querySelector(
+      `.category[data-category-index="${i}"]`
+    );
     if (categoryEl) {
       categoryEl.querySelector('.category-name-input').value = '';
-      categoryEl.querySelectorAll('.word-input').forEach(inp => inp.value = '');
+      categoryEl.querySelectorAll('.word-input').forEach(
+        inp => inp.value = ''
+      );
     }
   }
 
-   // Show validation errors and highlight duplicate words
+  // Show validation errors and highlight duplicate words
   showValidationErrors(puzzle);
   highlightDuplicateWords(puzzle);
 
@@ -156,7 +184,6 @@ function updateUI() {
   updateExportButtonState();
 }
 
-
 function showValidationErrors(puzzle) {
   const errorsDiv = document.getElementById('validationErrors');
   const validation = puzzle._validation || { valid: true, errors: [] };
@@ -164,7 +191,8 @@ function showValidationErrors(puzzle) {
   if (!validation.valid && validation.errors.length > 0) {
     errorsDiv.style.display = 'block';
     errorsDiv.className = 'validation-errors has-errors';
-    errorsDiv.innerHTML = '<strong>⚠️ Validation Errors:</strong><ul>' +
+    errorsDiv.innerHTML =
+      '<strong>⚠️ Validation Errors:</strong><ul>' +
       validation.errors.map(e => `<li>${e}</li>`).join('') +
       '</ul>';
   } else {
@@ -174,7 +202,9 @@ function showValidationErrors(puzzle) {
 
 function highlightDuplicateWords(puzzle) {
   const validation = puzzle._validation || { duplicate_words: [] };
-  const duplicateWords = new Set((validation.duplicate_words || []).map(w => w.toUpperCase()));
+  const duplicateWords = new Set(
+    (validation.duplicate_words || []).map(w => w.toUpperCase())
+  );
 
   // Clear all duplicate highlighting first
   document.querySelectorAll('.word-input').forEach(inp => {
@@ -212,19 +242,27 @@ function collectData() {
 
   // Collect categories in order by their index
   for (let i = 0; i < 4; i++) {
-    const categoryEl = document.querySelector(`.category[data-category-index="${i}"]`);
+    const categoryEl = document.querySelector(
+      `.category[data-category-index="${i}"]`
+    );
     if (categoryEl) {
       const nameInput = categoryEl.querySelector('.category-name-input');
       const wordInputs = categoryEl.querySelectorAll('.word-input');
       const name = nameInput.value.trim();
-      const words = Array.from(wordInputs).map(inp => inp.value.trim().toUpperCase()).filter(w => w);
-      const currentColor = categoryEl.dataset.color || difficultyToColor[i] || 'purple';
+      const words = Array.from(wordInputs)
+        .map(inp => inp.value.trim().toUpperCase())
+        .filter(w => w);
+      const currentColor =
+        categoryEl.dataset.color || difficultyToColor[i] || 'purple';
 
       // Always add category if it has either name or words (or both)
       if (name || words.length > 0) {
         puzzle.categories.push({
           name: name,
-          words: words.length === 4 ? words : words.concat(Array(4 - words.length).fill('')),
+          words:
+            words.length === 4
+              ? words
+              : words.concat(Array(4 - words.length).fill('')),
           difficulty: colorToDifficulty[currentColor] || 'yellow'
         });
       }
@@ -367,6 +405,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
   console.log('GENERATE CLICKED');
   setStatus('Generating new puzzle...');
   setButtonLoading('generateBtn', true);
+  setPuzzleLoading(true);   // show full‑puzzle overlay
   try {
     const r = await fetch('/api/generate-puzzle', {
       method: 'POST',
@@ -399,23 +438,23 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 
     // Show puzzle in UI
     puzzles = [res];
-currentIndex = 0;
-updateUI();
-setButtonSuccess('generateBtn');
-setStatus('New puzzle generated', 'success', 3000);
+    currentIndex = 0;
+    updateUI();
+    setButtonSuccess('generateBtn');
+    setStatus('New puzzle generated', 'success', 3000);
 
-// Trigger backend validation so duplicate words show right away
-try {
-  await save();
-} catch (e) {
-  // ignore here; errors already surfaced in save()
-}
-
+    // Trigger backend validation so duplicate words show right away
+    try {
+      await save();
+    } catch (e) {
+      // ignore here; errors already surfaced in save()
+    }
   } catch (e) {
     setStatus('Generate failed', 'error', 4000);
     alert('Failed to generate puzzle: ' + e);
   } finally {
     setButtonLoading('generateBtn', false);
+    setPuzzleLoading(false);  // hide full‑puzzle overlay
   }
 });
 
@@ -453,7 +492,9 @@ document.querySelectorAll('.color-option').forEach(option => {
     const oldColor = categoryEl.dataset.color;
 
     if (newColor !== oldColor) {
-      const otherCategory = document.querySelector(`.category[data-color="${newColor}"]`);
+      const otherCategory = document.querySelector(
+        `.category[data-color="${newColor}"]`
+      );
       if (otherCategory) {
         otherCategory.dataset.color = oldColor;
         const otherSquare = otherCategory.querySelector('.color-square');
@@ -467,14 +508,18 @@ document.querySelectorAll('.color-option').forEach(option => {
       square.dataset.currentColor = newColor;
     }
 
-    document.querySelectorAll('.color-dropdown').forEach(d => d.classList.remove('show'));
+    document.querySelectorAll('.color-dropdown').forEach(
+      d => d.classList.remove('show')
+    );
     checkUnsavedChanges();
   });
 });
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', () => {
-  document.querySelectorAll('.color-dropdown').forEach(d => d.classList.remove('show'));
+  document.querySelectorAll('.color-dropdown').forEach(
+    d => d.classList.remove('show')
+  );
 });
 
 // Regenerate category buttons
@@ -497,7 +542,9 @@ document.querySelectorAll('.ban-btn').forEach(btn => {
 
 async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   const { usePromptIfEmpty } = options;
-  const categoryEl = document.querySelector(`.category[data-category-index="${categoryIdx}"]`);
+  const categoryEl = document.querySelector(
+    `.category[data-category-index="${categoryIdx}"]`
+  );
   if (!categoryEl) return;
 
   const currentColor = categoryEl.dataset.color;
@@ -512,7 +559,9 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   const nameInput = categoryEl.querySelector('.category-name-input');
   const wordInputs = categoryEl.querySelectorAll('.word-input');
 
-  const allWordsEmpty = Array.from(wordInputs).every(inp => !inp.value.trim());
+  const allWordsEmpty = Array.from(wordInputs).every(
+    inp => !inp.value.trim()
+  );
   const categoryName = nameInput.value.trim();
 
   let apiUrl = `/api/regenerate-category?difficulty=${difficulty}`;
@@ -525,7 +574,12 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
     regenBtn.disabled = true;
     regenBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
   }
-  setStatus(allWordsEmpty && categoryName && usePromptIfEmpty ? 'Generating words for category...' : 'Regenerating category...');
+  setCategoryLoading(categoryIdx, true);
+  setStatus(
+    allWordsEmpty && categoryName && usePromptIfEmpty
+      ? 'Generating words for category...'
+      : 'Regenerating category...'
+  );
 
   try {
     const r = await fetch(apiUrl, { method: 'GET' });
@@ -560,11 +614,14 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
       regenBtn.disabled = false;
       regenBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
     }
+    setCategoryLoading(categoryIdx, false);
   }
 }
 
 async function banAndReplaceCategory(categoryIdx) {
-  const categoryEl = document.querySelector(`.category[data-category-index="${categoryIdx}"]`);
+  const categoryEl = document.querySelector(
+    `.category[data-category-index="${categoryIdx}"]`
+  );
   if (!categoryEl) return;
 
   const nameInput = categoryEl.querySelector('.category-name-input');
@@ -574,6 +631,9 @@ async function banAndReplaceCategory(categoryIdx) {
     alert('No category name to ban.');
     return;
   }
+
+  setCategoryLoading(categoryIdx, true);
+  setStatus(`Banning category "${categoryName}"...`, 'info', 3000);
 
   try {
     const r = await fetch('/api/banned-categories', {
@@ -590,6 +650,10 @@ async function banAndReplaceCategory(categoryIdx) {
   } catch (e) {
     alert('Failed to ban category: ' + e);
     setStatus('Failed to ban category', 'error', 4000);
+  } finally {
+    // regenerateCategoryForIndex will hide the overlay in its finally,
+    // but make sure we do not leave it stuck if regenerate fails early
+    setCategoryLoading(categoryIdx, false);
   }
 }
 

@@ -13,152 +13,156 @@ client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 def generate_connections_puzzle():
     prompt = """
-You create “Connections”-style word puzzles for adults.
+You create Connections-style 4x4 word puzzles for adults.
 
 GOAL
-- Create one 4x4 Connections-style puzzle with:
-  - 1 easy category,
-  - 2 medium categories,
-  - 1 hard category.
-  - 16 different words or terms, no repeats!
-- Each category must have exactly 4 words (16 total).
-- The puzzle should feel fair but non-trivial for adults.
-- The main source of interest should be how the whole set of 16 words interacts:
-  - Some words should have multiple plausible meanings or contexts, so they could seem to fit more than one category at first glance.
-  - The satisfying part is deciding where an ambiguous word truly belongs, not just recognizing a simple list.
 
-GLOBAL DESIGN PRINCIPLES
-- Prefer categories that come from different meanings or contexts of words, not flat “textbook lists”.
-- Ambiguity should come from real-world overlap and multiple interpretations (e.g., “MAYA” could be a person’s name, an ancient civilization, or a 3D graphics program), not just sharing prefixes/suffixes.
-- Avoid puzzles where all four categories are basic lists like “kitchen utensils”, “colors”, “weather tools”, “common animals”, etc.
+Create 1 puzzle with 4 categories:
 
-ALLOWED CATEGORY TYPES (PATTERNS TO IMITATE, NOT COPY)
-BASIC TAXONOMY (EVERYDAY CATEGORIES)
-- Animals: mammals, birds, insects, sea creatures, farm animals, pets.
-- Foods & drinks: fruits, vegetables, meats, dairy, beverages, cuisines.
-- Colors and shades.
-- Body parts.
-- Plants & nature (trees, flowers, natural phenomena).
-- Objects & places: furniture, clothing, vehicles, tools, geographic locations.
-- Use these sparingly and try to give them an interesting, less obvious twist (e.g., a sub-theme or double meaning), rather than a flat “school worksheet” list.
+1 easy, 2 medium, 1 hard.
 
-PROFESSIONAL & ACADEMIC
-- Occupations and roles (medical, legal, educational, technical, etc.).
-- Academic subjects (STEM, humanities, languages, arts).
-- Sports terms, positions, or equipment.
+Each category has exactly 4 words (16 total), all words unique (no repeats).
 
-FUNCTIONAL CATEGORIES (ACTIONS & PROPERTIES)
-- Action-based: things you can “break” (record, silence, dawn, fast), “catch” (ball, cold, fire, breath), “draw” (picture, card, curtain, blood), “run” (business, race, water), etc.
-- Property-based: things that are hot/cold/sharp/round/soft, heavy/light, loud/quiet, etc.
+The puzzle should feel fair but non-trivial: familiar words, but not childish textbook lists.
+​
 
-WORDPLAY & LINGUISTIC TRICKS
-- Word structure: palindromes, anagrams, rhyming words, homophones, alliteration.
-- Compound words & phrases: words that can go before/after a common word (like FIRE-: ant, drill, island, opal), fill-in-the-blank phrases (“RAIN___”: bow, coat, forest, maker), words that follow a given word, hidden compounds.
-- Letter/number play: shared letter patterns, words formed by adding/removing a letter.
+BOARD-LEVEL DESIGN
 
-CULTURAL & KNOWLEDGE-BASED
-- Entertainment: movie or TV franchises and characters, music genres, song or album titles, book titles, video or board games.
-- Brands & companies: tech companies, car brands, fashion brands, fast food chains, etc.
-- Historical & cultural: historical figures, leaders, mythology and folklore, well-known actors/musicians/athletes, fairy-tale or story characters.
+Think in terms of the whole 16-word board, not separate lists.
 
-ABSTRACT & CONCEPTUAL
-- Emotions & mental states (happy, sad, anxious, calm, etc.).
-- Personality traits.
-- Time & measurement: time periods, units, dates, seasons, eras.
-- Thematic sets: wedding-related, school-related, weather-related, money-related, types of “language”, etc.
-- Idioms & expressions, slang terms, phrasal verbs.
-- Multiple-meaning words or context-dependent words (strongly encouraged for at least some of the puzzle).
+Between all 16 words, there should be:
 
-OVERLAP & AMBIGUITY REQUIREMENTS
-- Design the 16 words as a *system*: at least a few words should reasonably appear to fit more than one category before the solution is known.
-- Ambiguous words should get their interest from:
-- multiple meanings (homonyms, polysemy),
-- belonging to different cultural domains,
-- or being used in very different contexts.
-- However, in the final solution, each word must belong to exactly one category.
+At least 3 and at most 5 genuine decoy words.
 
-STRONG OVERLAP RULES (BOARD DESIGN, NOT JUST NOTESׁ)
-- At least 3-5 words must be genuine placement dilemmas: a reasonable solver should hesitate between two categories that actually appear on this board (for example, “ROSE” could go in either COLORS or DRINKS, both present).
-- Do not rely on imaginary categories. Do not use ambiguity like “MARK could be a person’s name” if there is no NAMES/PEOPLE category on this board.
-- Prefer overlaps where each competing category is real and concrete on the grid (e.g., profession vs. tool, color vs. drink, city vs. surname), so the solver must choose between existing groups, not hypothetical ones.
+A decoy is a word that a reasonable adult solver could seriously place in two different categories that actually exist on THIS board before seeing the solution.
 
-AVOID SELLING WEAK OR ONE-WAY AMBIGUITY
-- Words like CIDER or PUNCH should primarily support the DRINKS category and should not be counted as strong decoys for COLORS.
-- A word only counts as a “decoy” if it is genuinely plausible in more than one of the current categories, not just because a rare or obscure reading exists.
-- When designing the four categories, think about the full set: ensure that some tricky words connect two or more of the actual categories to each other, creating tension in the solve.
+Decoys must be natural:
 
-BANNED CATEGORY STYLES
-- The game has a history of banned categories.
--- Avoid any category that is:
--- A flat taxonomy: “types of X”, “kinds of X”, “common X”, “basic X”, “famous X”, “classic X”, “X terms”, “X concepts”, “X constructs”, “X elements”, “X tools”, “X roles”.
--- A simple domain list: foods, colors, weather, animals, office items, musical genres, sports, holidays, mythical creatures, vacation spots, landmarks, body parts, kitchen items, vegetables, fruits, drinks, board games, film genres, etc., unless it is twisted into a very specific, surprising angle.
--- Purely abstract pseudo-philosophical sets (“abstract concepts”, “cognitive constructs”, “temporal paradoxes”, “metaphysical states”, “cultural constructs”, “hidden forces”, “phantom connections”, etc.).
--- Formulaic wordplay templates like:
---- “words that can follow X / precede X”,
---- “things you can break/catch/draw/press”,
---- “words that can mean both X and Y”,
---- “idioms with '[word]’”, “phrases with '[word]’”.
-- If a category sounds like something you might find in a vocabulary worksheet or a trivia list (e.g., “types of berries”, “kitchen appliances”), treat it as banned style, even if the title wording is new.
+Use common meanings or well-known references, not obscure or niche interpretations.
 
-CONCRETE BANNED CATEGORIES
-- The following category names and very similar phrasings are strictly banned (examples, not a full list): “common pets”, “types of clouds”, “vegetables”, “weather terms”, “office supplies”, “board games”, “famous landmarks”, “music genres”, “kitchen tools”, “classical music composers”, “mythical creatures”, “winter sports”, “vacation spots”, “wonders of the world”, “types of trees”, “types of tea”, “types of sandwiches”, “programming languages”, “nautical terms”, “art movements”, “legal terms”, “film genres”, “root vegetables”, “tropical fruits”, “water sports”.
-- Do not:
--- reuse these exact names,
--- paraphrase them (“well-known landmarks” for “famous landmarks”),
--- or create categories that are effectively the same idea.
+A valid explanation should be short and direct (“X is both a ___ and a ___”), not a long story.
+
+Do not count as decoys:
+
+Connections that need a long or far-fetched explanation.
+
+Vague thematic links like “this feels literary/jazzy/morning-ish” without a concrete shared role.
+
+Design at least one pair of categories that are close in concept (e.g., professions vs tools, genres vs moods, roles vs relationships), so ambiguity arises from related categories, not four unrelated lists.
+​
+
+The “wink” is allowed: small patterns or references that solvers might notice (like BLOOD / SWEAT / TEARS, or BUS / SUB / D-SUB / USB in another puzzle), as long as the final solution is still clear and fair.
+
+CATEGORY STYLE
+
+Avoid school-worksheet and trivia-list categories:
+
+No simple “types of X / kinds of X / common X / famous X / X terms / X concepts”.
+
+Avoid basic, instantly-recognizable sets like “Common kitchen herbs”, “Colors”, “Card games”, “Legal terms”, unless they are twisted into a specific, surprising angle.
+
+Categories should feel like something an adult would enjoy:
+
+Everyday domains (people, culture, body, objects, events) are fine.
+
+Give them a clear, grounded twist or scenario instead of flat taxonomy.
+
+At least some categories should cross contexts or meanings, not just list items in the same domain.
+​
+
+GOOD PUZZLE EXAMPLE (IMITATE THIS LEVEL)
+This puzzle is a good style example:
+
+BROTHERS — WRIGHT, BLOOD, MARX, WARNER
+
+MUSIC GENRES — BLUES, FOLK, HOUSE, SWING
+
+PHILOSOPHERS — KANT, NIETZSCHE, PLATO, SARTRE
+
+FLUIDS IN OUR BODY — LYMPH, TEARS, SWEAT, SALIVA
+
+Why it works:
+
+The topics are diverse (pop culture, biology, philosophy, music) and require light general knowledge, but nothing too niche.
+
+Words are familiar but not childish (no “dog / cat / red / blue” style lists).
+
+Clear, natural decoys based on overlaps on this board:
+
+BLUES: music genre and part of the expression “having the blues”.
+
+MARX: philosopher and one of the Marx Brothers.
+
+BLOOD: links BROTHERS (blood brothers) and FLUIDS.
+
+BLOOD / SWEAT / TEARS: appear together as a phrase / band name, tempting a solver to group them.
+
+The whole board interacts: the fun comes from placing ambiguous words between real categories on this board, not from obscure tricks.
+​
+
+BAD PUZZLE EXAMPLE (AVOID THIS STYLE)
+This puzzle is NOT suitable for adults:
+
+COMMON KITCHEN HERBS — BASIL, OREGANO, THYME, PARSLEY
+
+COLORS ASSOCIATED WITH EMOTIONS OR MOODS — BLUE, GREEN, GRAY, BLACK
+
+WORDS RELATED TO COURTROOM/LEGAL ACTIONS — APPEAL, CHARGE, TRIAL, SENTENCE
+
+COMPOUND WORDS FORMED BY ADDING A TYPE OF TREE — PINEAPPLE, MAPLE, BIRCH, CEDAR
+
+Why it fails:
+
+Categories are flat taxonomies (“common herbs”, “colors”, “legal terms”, “tree compounds”) with no real twist.
+
+There are essentially NO decoys: each category is extremely distinct and solved immediately.
+
+This feels like a vocabulary exercise for kids, not an adult puzzle.
+​
 
 DIFFICULTY MIX
-- EASY category:
-  - Concrete and recognizable, but avoid trivial “kids' list” themes like “Common fruits”, “Common animals”, “Primary colors”, “Kitchen utensils”, or “Common pets”.
-  - Even here, try to introduce at least one word whose meaning or usage could make solvers pause.
-- MEDIUM categories:
-  - Still concrete, but require either light general knowledge or mild wordplay.
-  - Should feel somewhat confusable with at least one other category.
-- HARD category:
-  - Abstract or wordplay-based.
-  - At least 2 of its words should look like they belong in some other category at first glance.
-  - Not just another straightforward list (avoid plain “Classical composers”, “Types of birds”, etc., as the hard group).
 
-COLOR ASSIGNMENT RULES
-- Assign one of [yellow, green, blue, purple] to each category.
-- Each category must have a different color (all 4 colors used exactly once).
-- Color is purely visual and does NOT need to correlate with difficulty.
+EASY category:
 
-MISDIRECTING / TEMPTATION WORDS
-- Design the puzzle so that 2-4 of the 16 words LOOK like they could belong to a different, obvious category, but actually belong only to their true category.
-- Example pattern (do NOT copy literally):
-  - There might be 5 color words overall, but only 4 belong to the “Colors” category; the extra color word belongs to a different category.
-- Use such misdirections so categories feel slightly entangled, but the final solution must still feel fair.
+Concrete and recognizable, but not “Common kitchen herbs”, “Colors”, “Common animals”, etc.
 
-UNIQUENESS & VARIETY RULES
-- Within this single 4x4 puzzle:
-  - Absolutely NO word may appear more than once in the 16-word grid.
-  - Treat any repeated word as a hard error: if any word appears twice (even with different casing), regenerate the puzzle mentally and only output a version where all 16 words are distinct.
-  - Do not “reuse” the same word in two different categories, even if its meaning changes between categories.
-- Across puzzles in general:
-  - Avoid overusing identical patterns like “Words that can follow FIRE/LIGHT/BREAK”, “Types of clouds”, “Common fruits”, “Common pets”, “Common colors”.
-  - If you revisit a broad theme (like music, weather, colors), twist it into a clearly different and more challenging angle.
+May include 1 decoy word that could plausibly fit a harder category.
 
-RELATIONSHIP & STYLE FILTER
-- Before finalizing categories, mentally compare each new category idea against the banned styles and banned examples.
--- If it could be described as “types of X”, “common X”, “famous X”, “X terms”, “X concepts”, or “X elements”, discard it and invent a more situational, story-driven, or context-crossing idea.
-- At least 2 of the 4 categories must be:
--- Defined by an underlying relationship or scenario (e.g., “things that unexpectedly share a verb”, “items that all appear in a very specific situation”) rather than by a simple domain like “animals” or “colors”.
-- When designing categories, always ask:
--- “Could this be a banned style (textbook list, trivia list, meta ‘concepts’, word-follow template)?”
--- If yes, reject and redesign.
+MEDIUM categories:
 
-QUALITY CHECK BEFORE OUTPUT
-- Check that:
-  - Categories are distinguishable once their ideas are revealed, even if they look similar at first.
-  - There is at least one temptation word that looks like it belongs in another group but ends up in just one.
-  - Some ambiguity and overlap comes from multiple meanings or contexts, not just superficial spelling tricks.
-  - No two categories are essentially the same idea with different wording.
-  - No word is duplicated across categories.
-- If the puzzle feels trivial, repetitive, or too similar to standard textbook lists, revise it mentally and only then output the JSON.
+Still concrete, may require light general knowledge or mild wordplay.
+
+Should be confusable with at least one other category on this board.
+
+HARD category:
+
+Can be more abstract or wordplay-based.
+
+At least 2 of its words should look like they belong in other categories at first glance.
+
+The underlying idea must be clear and explainable once revealed.
+​
+
+UNIQUENESS & VARIETY
+
+No word may appear more than once in the 16-word grid (case-insensitive).
+
+Avoid repeating the same category idea across puzzles unless the angle is clearly different and more interesting than a simple list.
+​
+
+SELF-CHECK BEFORE OUTPUT
+Before you answer, mentally check:
+
+Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
+
+Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
+
+Are all 16 words unique?
+
+​
 
 OUTPUT FORMAT
-Return the result ONLY as strict JSON with this exact structure:
+Return ONLY strict JSON:
 {
   "categories": [
     {
@@ -167,10 +171,9 @@ Return the result ONLY as strict JSON with this exact structure:
       "words": ["word1", "word2", "word3", "word4"]
     }
   ],
-  "design_notes": "Very short explanation (2-3 sentences max) of the puzzle's twists: which words are decoys, what overlap or ambiguity you used between categories, and any notable misdirections.
-  The puzzle must not contain any repeated words; if you used an idea that would require reusing a word, adjust the categories or word choices so all 16 words are unique.
-"
+  "design_notes": "Very short explanation (2-3 sentences) of the main decoys, how categories overlap, and why the puzzle is fair."
 }
+
 No extra text, no explanations, just JSON.
 """
 

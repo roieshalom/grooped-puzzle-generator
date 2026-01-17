@@ -55,6 +55,7 @@ input[type="text"]:focus {
   margin-left: 15px;
 }
 .category {
+  position: relative; /* for category overlay */
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -207,16 +208,16 @@ input[type="text"]:focus {
 
 .regenerate-btn,
 .ban-btn {
-  background-color: #74bdee;  /* or whatever your top buttons use */
+  background-color: #74bdee;
   color: #ffffff;
   border: none;
-  border-radius: 6px;        /* match top buttons */
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;  /* Smooth hover */
+  transition: all 0.2s ease;
 }
 
 .regenerate-btn {
-  width: 32px;               /* keep your existing size */
+  width: 32px;
   height: 32px;
   display: inline-flex;
   align-items: center;
@@ -225,13 +226,13 @@ input[type="text"]:focus {
 
 .regenerate-btn:hover,
 .ban-btn:hover {
-  background: #4782a9;  /* Slightly darker like other buttons */
+  background: #4782a9;
   border-color: #999;
 }
 
 .ban-btn {
-  height: 32px;              /* same height as regenerate */
-  width: 32px;              /* auto width to fit text */
+  height: 32px;
+  width: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -245,7 +246,7 @@ input[type="text"]:focus {
 }
 
 #generateBtn:hover {
-  background: #7c3aed !important;  /* Darker purple */
+  background: #7c3aed !important;
   border-color: #6d28d9 !important;
 }
 
@@ -339,7 +340,7 @@ input[type="text"]:focus {
   font-size: 13px;
   line-height: 1;
   color: #1f2933;
-  background-color: #e0f2fe; /* default blue-ish */
+  background-color: #e0f2fe;
   border: 1px solid #7fb1e8;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
   max-width: 100%;
@@ -366,7 +367,6 @@ input[type="text"]:focus {
   border-color: #7fb1e8;
   color: #1d4ed8;
 }
-
 
 .status {
   position: fixed;
@@ -415,6 +415,62 @@ input[type="text"]:focus {
   .puzzle-content { margin-top: 20px; }
 }
 
+/* wrapper for full‑puzzle overlay */
+.puzzle-container {
+  position: relative;
+}
+
+/* full‑puzzle overlay */
+.puzzle-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.puzzle-overlay.show {
+  display: flex;
+}
+.puzzle-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* per‑category overlay */
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+}
+.category-overlay.show {
+  display: flex;
+}
+.category-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #374151;
+}
+
+.overlay-label {
+  margin-top: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .action-btn.export {
   background: #27ae60;
   color: white;
@@ -451,19 +507,8 @@ input[type="text"]:focus {
 
 .action-btn.success {
   position: relative;
-  color: transparent;              /* hide label */
-  background: #27ae60 !important;  /* strong green */
-}
-
-.action-btn.success::after {
-  content: '✓';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+  color: transparent;
+  background: #27ae60 !important;
 }
 
 .action-btn.success::after {

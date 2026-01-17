@@ -1,48 +1,48 @@
 {
   "categories": [
     {
-      "name": "Common Kitchen Herbs",
+      "name": "Timepieces",
       "words": [
-        "BASIL",
-        "OREGANO",
-        "THYME",
-        "PARSLEY"
+        "CLOCK",
+        "SUNDIAL",
+        "HOURGLASS",
+        "WATCH"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Colors associated with emotions or moods",
+      "name": "Types of Light",
       "words": [
-        "BLUE",
-        "GREEN",
-        "GRAY",
-        "BLACK"
+        "NEON",
+        "LANTERN",
+        "LASER",
+        "TORCH"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Words related to courtroom/legal actions",
+      "name": "Musical Roles",
       "words": [
-        "APPEAL",
-        "CHARGE",
-        "TRIAL",
-        "SENTENCE"
+        "DRUMMER",
+        "LEAD",
+        "BASS",
+        "VOCALIST"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Compound words formed by adding a type of tree",
+      "name": "Means of Transport",
       "words": [
-        "PINEAPPLE",
-        "MAPLE",
-        "BIRCH",
-        "CEDAR"
+        "CRUISER",
+        "TORPEDO",
+        "SKIFF",
+        "JEEP"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "Words like 'Sharp' and 'Bass' tempt solvers between musical meanings and colors or animals but belong only in music. 'Blue' and 'Green' can be colors or moods, overlapping with emotion associations. 'Charge' and 'Sentence' might be confused with general words or other categories but fit the legal set. The hard category uses tree names that form compounds or stand alone, creating ambiguity with colors and music.",
+  "design_notes": "Decoys include TORCH (could be a light or a signal used in transport), LEAD (a musical role or a type of transport lead vehicle), and CRUISER (a transport vehicle or a musical style reference). The categories Timepieces and Types of Light are concrete and familiar; Musical Roles and Means of Transport are related by performance and movement concepts, creating natural overlaps. The puzzle challenges adults with common words having multiple plausible groupings, making it fair but non-trivial.",
   "id": null,
   "language": "en",
   "_validation": {
