@@ -541,13 +541,17 @@ def generate_puzzle():
         categories = unique_categories
 
         puzzle = {
-            "id": None,
-            "date": None,
-            "language": "en",
-            "categories": categories,
-            # pass through short explanation from the model (may be missing)
-            "design_notes": raw.get("design_notes", ""),
-        }
+        "id": None,
+        "date": None,
+        "language": "en",
+        "categories": categories,
+        # structured explanation from the model
+        "decoys": raw.get("decoys", []),
+        "other_trick": raw.get("other_trick", ""),
+        # optional: keep old field as fallback
+        "design_notes": raw.get("design_notes", ""),
+    }
+
 
         # Save generated puzzle as the current draft
         try:

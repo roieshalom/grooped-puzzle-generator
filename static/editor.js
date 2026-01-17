@@ -5,10 +5,10 @@ let hasUnsavedChanges = false;
 
 const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
 const colorToDifficulty = {
-  'purple': 'yellow',
-  'green': 'green',
-  'blue': 'blue',
-  'orange': 'purple'
+  purple: 'yellow',
+  green: 'green',
+  blue: 'blue',
+  orange: 'purple',
 };
 
 // Inline status / message helper
@@ -31,20 +31,28 @@ function setStatus(text, type = 'info', duration = 3000) {
 }
 
 // Full‑puzzle overlay helper
-function setPuzzleLoading(loading) {
+function setPuzzleLoading(loading, labelText = null) {
   const overlay = document.getElementById('puzzleOverlay');
   if (!overlay) return;
+  const label = overlay.querySelector('.overlay-label');
+  if (label && labelText) {
+    label.textContent = labelText;
+  }
   overlay.classList.toggle('show', loading);
 }
 
 // Per‑category overlay helper
-function setCategoryLoading(categoryIdx, loading) {
+function setCategoryLoading(categoryIdx, loading, labelText = null) {
   const categoryEl = document.querySelector(
     `.category[data-category-index="${categoryIdx}"]`
   );
   if (!categoryEl) return;
   const overlay = categoryEl.querySelector('.category-overlay');
   if (!overlay) return;
+  const label = overlay.querySelector('.overlay-label');
+  if (label && labelText) {
+    label.textContent = labelText;
+  }
   overlay.classList.toggle('show', loading);
 }
 
@@ -110,7 +118,7 @@ function updateUI() {
     return;
   }
 
-  const puzzle = puzzles[0];  // Always use first puzzle
+  const puzzle = puzzles[0]; // Always use first puzzle
   if (!puzzle) return;
 
   const categories = puzzle.categories || [];
@@ -120,9 +128,10 @@ function updateUI() {
     const diff = cat.difficulty || 'yellow';
     const defaultColor = difficultyToColor[idx] || 'purple';
     // Find which color this difficulty maps to
-    const color = Object.keys(colorToDifficulty).find(
-      c => colorToDifficulty[c] === diff
-    ) || defaultColor;
+    const color =
+      Object.keys(colorToDifficulty).find(
+        (c) => colorToDifficulty[c] === diff
+      ) || defaultColor;
 
     const categoryEl = document.querySelector(
       `.category[data-category-index="${idx}"]`
@@ -157,7 +166,7 @@ function updateUI() {
     if (categoryEl) {
       categoryEl.querySelector('.category-name-input').value = '';
       categoryEl.querySelectorAll('.word-input').forEach(
-        inp => inp.value = ''
+        (inp) => (inp.value = '')
       );
     }
   }
@@ -169,12 +178,33 @@ function updateUI() {
   // Show brief design notes under the categories
   const notesEl = document.getElementById('designNotes');
   if (notesEl) {
-    if (puzzle.design_notes) {
-      notesEl.textContent = puzzle.design_notes;
-      notesEl.style.display = 'block';
-    } else {
+    const decoys = puzzle.decoys || [];
+    const otherTrick = puzzle.other_trick || puzzle.design_notes || '';
+
+    if (decoys.length === 0 && !otherTrick) {
       notesEl.textContent = '';
       notesEl.style.display = 'none';
+    } else {
+      const lines = [];
+
+      if (decoys.length > 0) {
+        lines.push('Decoys:');
+        decoys.forEach((d) => {
+          if (!d || !d.word) return;
+          const a = d.category_a || '?';
+          const b = d.category_b || '?';
+          lines.push(`${d.word}: ${a} / ${b}`);
+        });
+      }
+
+      if (otherTrick) {
+        if (lines.length > 0) lines.push('');
+        lines.push(`Other trick: ${otherTrick}`);
+      }
+
+      notesEl.textContent = lines.join('\n');
+      notesEl.style.whiteSpace = 'pre-line';
+      notesEl.style.display = 'block';
     }
   }
 
@@ -193,7 +223,7 @@ function showValidationErrors(puzzle) {
     errorsDiv.className = 'validation-errors has-errors';
     errorsDiv.innerHTML =
       '<strong>⚠️ Validation Errors:</strong><ul>' +
-      validation.errors.map(e => `<li>${e}</li>`).join('') +
+      validation.errors.map((e) => `<li>${e}</li>`).join('') +
       '</ul>';
   } else {
     errorsDiv.style.display = 'none';
@@ -203,16 +233,16 @@ function showValidationErrors(puzzle) {
 function highlightDuplicateWords(puzzle) {
   const validation = puzzle._validation || { duplicate_words: [] };
   const duplicateWords = new Set(
-    (validation.duplicate_words || []).map(w => w.toUpperCase())
+    (validation.duplicate_words || []).map((w) => w.toUpperCase())
   );
 
   // Clear all duplicate highlighting first
-  document.querySelectorAll('.word-input').forEach(inp => {
+  document.querySelectorAll('.word-input').forEach((inp) => {
     inp.classList.remove('duplicate');
   });
 
   // Highlight duplicate words
-  document.querySelectorAll('.word-input').forEach(inp => {
+  document.querySelectorAll('.word-input').forEach((inp) => {
     const word = inp.value.toUpperCase().trim();
     if (word && duplicateWords.has(word)) {
       inp.classList.add('duplicate');
@@ -224,9 +254,9 @@ function collectData() {
   // Start with existing puzzle data to preserve all fields
   const existingPuzzle = puzzles.length > 0 && puzzles[0] ? puzzles[0] : {};
   const puzzle = {
-    ...existingPuzzle,  // Preserve existing fields
+    ...existingPuzzle, // Preserve existing fields
     language: existingPuzzle.language || 'en',
-    categories: []  // Will rebuild from form
+    categories: [], // Will rebuild from form
   };
 
   // Ensure ID and date are preserved
@@ -250,8 +280,8 @@ function collectData() {
       const wordInputs = categoryEl.querySelectorAll('.word-input');
       const name = nameInput.value.trim();
       const words = Array.from(wordInputs)
-        .map(inp => inp.value.trim().toUpperCase())
-        .filter(w => w);
+        .map((inp) => inp.value.trim().toUpperCase())
+        .filter((w) => w);
       const currentColor =
         categoryEl.dataset.color || difficultyToColor[i] || 'purple';
 
@@ -263,7 +293,7 @@ function collectData() {
             words.length === 4
               ? words
               : words.concat(Array(4 - words.length).fill('')),
-          difficulty: colorToDifficulty[currentColor] || 'yellow'
+          difficulty: colorToDifficulty[currentColor] || 'yellow',
         });
       }
     }
@@ -275,8 +305,8 @@ function collectData() {
 function hasWithinPuzzleDuplicates(puzzle) {
   const seen = new Set();
   const dups = new Set();
-  (puzzle.categories || []).forEach(cat => {
-    (cat.words || []).forEach(w => {
+  (puzzle.categories || []).forEach((cat) => {
+    (cat.words || []).forEach((w) => {
       const word = (w || '').toUpperCase().trim();
       if (!word) return;
       if (seen.has(word)) dups.add(word);
@@ -325,7 +355,7 @@ async function save() {
     const r = await fetch('/api/puzzle', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(puzzle)
+      body: JSON.stringify(puzzle),
     });
     const res = await r.json();
     if (!r.ok) throw new Error(res.error || JSON.stringify(res));
@@ -385,7 +415,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     const r = await fetch('/api/export', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(puzzle)
+      body: JSON.stringify(puzzle),
     });
     const res = await r.json();
     if (!r.ok) throw new Error(res.error || JSON.stringify(res));
@@ -403,14 +433,13 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 
 document.getElementById('generateBtn').addEventListener('click', async () => {
   console.log('GENERATE CLICKED');
-  setStatus('Generating new puzzle...');
   setButtonLoading('generateBtn', true);
-  setPuzzleLoading(true);   // show full‑puzzle overlay
+  setPuzzleLoading(true, 'Generating puzzle…'); // show full‑puzzle overlay
   try {
     const r = await fetch('/api/generate-puzzle', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
+      body: JSON.stringify({}),
     });
     const res = await r.json();
     if (!r.ok) {
@@ -429,7 +458,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 
     // Remove duplicate category names
     const seenNames = new Set();
-    res.categories = res.categories.filter(cat => {
+    res.categories = res.categories.filter((cat) => {
       const name = cat.name || '';
       if (seenNames.has(name)) return false;
       seenNames.add(name);
@@ -454,29 +483,31 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
     alert('Failed to generate puzzle: ' + e);
   } finally {
     setButtonLoading('generateBtn', false);
-    setPuzzleLoading(false);  // hide full‑puzzle overlay
+    setPuzzleLoading(false); // hide full‑puzzle overlay
   }
 });
 
 // Track input changes for unsaved changes detection
-document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
-  inp.addEventListener('input', (e) => {
-    if (inp.classList.contains('word-input')) {
-      e.target.value = e.target.value.toUpperCase();
-      if (puzzles.length > 0 && puzzles[0]) {
-        highlightDuplicateWords(puzzles[0]);
+document
+  .querySelectorAll('.word-input, .category-name-input')
+  .forEach((inp) => {
+    inp.addEventListener('input', (e) => {
+      if (inp.classList.contains('word-input')) {
+        e.target.value = e.target.value.toUpperCase();
+        if (puzzles.length > 0 && puzzles[0]) {
+          highlightDuplicateWords(puzzles[0]);
+        }
       }
-    }
-    checkUnsavedChanges();
+      checkUnsavedChanges();
+    });
   });
-});
 
 // Color square and arrow click handlers
-document.querySelectorAll('.color-square-wrapper').forEach(wrapper => {
+document.querySelectorAll('.color-square-wrapper').forEach((wrapper) => {
   wrapper.addEventListener('click', (e) => {
     e.stopPropagation();
     const dropdown = wrapper.querySelector('.color-dropdown');
-    document.querySelectorAll('.color-dropdown').forEach(d => {
+    document.querySelectorAll('.color-dropdown').forEach((d) => {
       if (d !== dropdown) d.classList.remove('show');
     });
     dropdown.classList.toggle('show');
@@ -484,7 +515,7 @@ document.querySelectorAll('.color-square-wrapper').forEach(wrapper => {
 });
 
 // Color option selection handlers
-document.querySelectorAll('.color-option').forEach(option => {
+document.querySelectorAll('.color-option').forEach((option) => {
   option.addEventListener('click', (e) => {
     e.stopPropagation();
     const newColor = option.dataset.color;
@@ -508,8 +539,8 @@ document.querySelectorAll('.color-option').forEach(option => {
       square.dataset.currentColor = newColor;
     }
 
-    document.querySelectorAll('.color-dropdown').forEach(
-      d => d.classList.remove('show')
+    document.querySelectorAll('.color-dropdown').forEach((d) =>
+      d.classList.remove('show')
     );
     checkUnsavedChanges();
   });
@@ -517,13 +548,13 @@ document.querySelectorAll('.color-option').forEach(option => {
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', () => {
-  document.querySelectorAll('.color-dropdown').forEach(
-    d => d.classList.remove('show')
-  );
+  document
+    .querySelectorAll('.color-dropdown')
+    .forEach((d) => d.classList.remove('show'));
 });
 
 // Regenerate category buttons
-document.querySelectorAll('.regenerate-btn').forEach(btn => {
+document.querySelectorAll('.regenerate-btn').forEach((btn) => {
   btn.addEventListener('click', async (e) => {
     e.stopPropagation();
     const categoryIdx = parseInt(btn.dataset.category);
@@ -532,7 +563,7 @@ document.querySelectorAll('.regenerate-btn').forEach(btn => {
 });
 
 // Skip & ban buttons
-document.querySelectorAll('.ban-btn').forEach(btn => {
+document.querySelectorAll('.ban-btn').forEach((btn) => {
   btn.addEventListener('click', async (e) => {
     e.stopPropagation();
     const categoryIdx = parseInt(btn.dataset.category);
@@ -549,10 +580,10 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
 
   const currentColor = categoryEl.dataset.color;
   const difficultyMap = {
-    'purple': 'easy',
-    'green': 'medium',
-    'blue': 'medium',
-    'orange': 'hard'
+    purple: 'easy',
+    green: 'medium',
+    blue: 'medium',
+    orange: 'hard',
   };
   const difficulty = difficultyMap[currentColor] || 'medium';
 
@@ -560,7 +591,7 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   const wordInputs = categoryEl.querySelectorAll('.word-input');
 
   const allWordsEmpty = Array.from(wordInputs).every(
-    inp => !inp.value.trim()
+    (inp) => !inp.value.trim()
   );
   const categoryName = nameInput.value.trim();
 
@@ -574,12 +605,13 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
     regenBtn.disabled = true;
     regenBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
   }
-  setCategoryLoading(categoryIdx, true);
-  setStatus(
+
+  // Overlay label + show overlay (no in‑progress banner)
+  const labelText =
     allWordsEmpty && categoryName && usePromptIfEmpty
-      ? 'Generating words for category...'
-      : 'Regenerating category...'
-  );
+      ? 'Generating words…'
+      : 'Regenerating…';
+  setCategoryLoading(categoryIdx, true, labelText);
 
   try {
     const r = await fetch(apiUrl, { method: 'GET' });
@@ -596,14 +628,17 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
         }
       });
 
-      setStatus('Category regenerated', 'info', 3000);
-      wordInputs.forEach(inp => {
+      // fire input events so validation / dirty state updates
+      wordInputs.forEach((inp) => {
         inp.dispatchEvent(new Event('input'));
       });
       nameInput.dispatchEvent(new Event('input'));
     } else {
       const error = await r.json();
-      alert('Failed to regenerate category: ' + (error.error || 'Unknown error'));
+      alert(
+        'Failed to regenerate category: ' +
+          (error.error || 'Unknown error')
+      );
       setStatus('Category regeneration failed', 'error', 4000);
     }
   } catch (e) {
@@ -632,27 +667,27 @@ async function banAndReplaceCategory(categoryIdx) {
     return;
   }
 
-  setCategoryLoading(categoryIdx, true);
-  setStatus(`Banning category "${categoryName}"...`, 'info', 3000);
+  // Show overlay with banning text
+  setCategoryLoading(categoryIdx, true, 'Banning & regenerating…');
 
   try {
     const r = await fetch('/api/banned-categories', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ category: categoryName })
+      body: JSON.stringify({ category: categoryName }),
     });
     const res = await r.json();
     if (!r.ok || !res.ok) {
       throw new Error(res.error || 'Failed to ban category');
     }
-    setStatus(`Category banned: "${categoryName}"`, 'info', 3000);
+    // No noisy info status here; overlay communicates progress
     await regenerateCategoryForIndex(categoryIdx, { usePromptIfEmpty: false });
   } catch (e) {
     alert('Failed to ban category: ' + e);
     setStatus('Failed to ban category', 'error', 4000);
   } finally {
-    // regenerateCategoryForIndex will hide the overlay in its finally,
-    // but make sure we do not leave it stuck if regenerate fails early
+    // regenerateCategoryForIndex hides overlay in its finally,
+    // but ensure it is not stuck if regenerate fails early
     setCategoryLoading(categoryIdx, false);
   }
 }

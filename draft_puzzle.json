@@ -1,50 +1,68 @@
 {
   "categories": [
     {
-      "name": "Timepieces",
+      "name": "Common Card Games",
       "words": [
-        "CLOCK",
-        "SUNDIAL",
-        "HOURGLASS",
-        "WATCH"
+        "UNO",
+        "POKER",
+        "RUMMY",
+        "HEARTS"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Types of Light",
+      "name": "Types of Dance",
       "words": [
-        "NEON",
-        "LANTERN",
-        "LASER",
-        "TORCH"
+        "SALSA",
+        "TANGO",
+        "TAP",
+        "FOXTROT"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Musical Roles",
+      "name": "Austrian Actors",
       "words": [
-        "DRUMMER",
-        "LEAD",
-        "BASS",
-        "VOCALIST"
+        "SCHWARZENEGGER",
+        "WALTZ",
+        "SCHNEIDER",
+        "LAMARR"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Means of Transport",
+      "name": "Song Parts",
       "words": [
-        "CRUISER",
-        "TORPEDO",
-        "SKIFF",
-        "JEEP"
+        "CHORUS",
+        "BRIDGE",
+        "VERSE",
+        "HOOK"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "Decoys include TORCH (could be a light or a signal used in transport), LEAD (a musical role or a type of transport lead vehicle), and CRUISER (a transport vehicle or a musical style reference). The categories Timepieces and Types of Light are concrete and familiar; Musical Roles and Means of Transport are related by performance and movement concepts, creating natural overlaps. The puzzle challenges adults with common words having multiple plausible groupings, making it fair but non-trivial.",
+  "decoys": [
+    {
+      "category_a": "Types of Dance",
+      "category_b": "Common Card Games",
+      "word": "Waltz"
+    },
+    {
+      "category_a": "Common Card Games",
+      "category_b": "Elements of a Story",
+      "word": "Hearts"
+    },
+    {
+      "category_a": "Elements of a Story",
+      "category_b": "Classical Composers",
+      "word": "Theme"
+    }
+  ],
+  "design_notes": "",
   "id": null,
   "language": "en",
+  "other_trick": "Waltz and Hearts serve as natural decoys linking dance and card games or story elements, while Theme is a story element and also a musical concept familiar from classical compositions.",
   "_validation": {
     "valid": true,
     "errors": [],

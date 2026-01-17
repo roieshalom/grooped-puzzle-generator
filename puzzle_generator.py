@@ -3,15 +3,34 @@ import json
 from datetime import datetime, timedelta
 from openai import OpenAI
 from dotenv import load_dotenv
+from banned_categories import load_banned_categories, normalize_category
 
 load_dotenv()  # This loads the .env file
-
 
 # API key comes from environment (set OPENAI_API_KEY in GitHub secrets / local env)
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 
 def generate_connections_puzzle():
+    # Load banned categories and normalize them once
+    banned = load_banned_categories()
+    banned_norm = sorted({normalize_category(name) for name in banned})
+    banned_text = ", ".join(banned_norm) if banned_norm else "none"
+
+    # This small block needs string interpolation
+    banned_block = f"""
+BANNED CATEGORY IDEAS (DO NOT USE)
+
+The following category ideas are already used and must be avoided, even with different capitalization or slightly different wording.
+Treat them as normalized, lowercase labels that represent whole ideas you must not reuse:
+
+{banned_text}
+
+You must not create categories that are essentially the same idea as any of these banned ones, even if you rephrase or shorten the title.
+"""
+
+    # Main prompt is a plain triple-quoted string (NOT an f-string),
+    # so the JSON braces remain literal
     prompt = """
 You create Connections-style 4x4 word puzzles for adults.
 
@@ -24,7 +43,6 @@ Create 1 puzzle with 4 categories:
 Each category has exactly 4 words (16 total), all words unique (no repeats).
 
 The puzzle should feel fair but non-trivial: familiar words, but not childish textbook lists.
-​
 
 BOARD-LEVEL DESIGN
 
@@ -35,6 +53,18 @@ Between all 16 words, there should be:
 At least 3 and at most 5 genuine decoy words.
 
 A decoy is a word that a reasonable adult solver could seriously place in two different categories that actually exist on THIS board before seeing the solution.
+
+STRICT RULES FOR DECOYS (VERY IMPORTANT):
+
+- A decoy must clearly and concretely fit BOTH of its categories using common, well-known meanings.
+- If you are NOT clearly sure that a word obviously belongs in both categories, DO NOT list it as a decoy.
+- Prefer fewer, absolutely clear decoys over more, unclear ones.
+- Do NOT stretch meanings, invent metaphors, or rely on niche references to make a decoy work.
+- Examples of INVALID decoys (do NOT do this):
+  - Treating a mythological god as a "tool of persuasion".
+  - Treating a planet as a "type of cloud".
+  - Treating a cloud type as a "musical term".
+- Decoys must be defendable with a short, simple explanation that most adults would agree with.
 
 Decoys must be natural:
 
@@ -49,7 +79,6 @@ Connections that need a long or far-fetched explanation.
 Vague thematic links like “this feels literary/jazzy/morning-ish” without a concrete shared role.
 
 Design at least one pair of categories that are close in concept (e.g., professions vs tools, genres vs moods, roles vs relationships), so ambiguity arises from related categories, not four unrelated lists.
-​
 
 The “wink” is allowed: small patterns or references that solvers might notice (like BLOOD / SWEAT / TEARS, or BUS / SUB / D-SUB / USB in another puzzle), as long as the final solution is still clear and fair.
 
@@ -68,7 +97,6 @@ Everyday domains (people, culture, body, objects, events) are fine.
 Give them a clear, grounded twist or scenario instead of flat taxonomy.
 
 At least some categories should cross contexts or meanings, not just list items in the same domain.
-​
 
 GOOD PUZZLE EXAMPLE (IMITATE THIS LEVEL)
 This puzzle is a good style example:
@@ -98,7 +126,6 @@ BLOOD: links BROTHERS (blood brothers) and FLUIDS.
 BLOOD / SWEAT / TEARS: appear together as a phrase / band name, tempting a solver to group them.
 
 The whole board interacts: the fun comes from placing ambiguous words between real categories on this board, not from obscure tricks.
-​
 
 BAD PUZZLE EXAMPLE (AVOID THIS STYLE)
 This puzzle is NOT suitable for adults:
@@ -118,7 +145,6 @@ Categories are flat taxonomies (“common herbs”, “colors”, “legal terms
 There are essentially NO decoys: each category is extremely distinct and solved immediately.
 
 This feels like a vocabulary exercise for kids, not an adult puzzle.
-​
 
 DIFFICULTY MIX
 
@@ -141,25 +167,21 @@ Can be more abstract or wordplay-based.
 At least 2 of its words should look like they belong in other categories at first glance.
 
 The underlying idea must be clear and explainable once revealed.
-​
 
 UNIQUENESS & VARIETY
 
 No word may appear more than once in the 16-word grid (case-insensitive).
 
 Avoid repeating the same category idea across puzzles unless the angle is clearly different and more interesting than a simple list.
-​
-
+""" + banned_block + """
 SELF-CHECK BEFORE OUTPUT
 Before you answer, mentally check:
 
-Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
-
-Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
-
-Are all 16 words unique?
-
-​
+- Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
+- Are ALL decoys clearly correct, using ordinary meanings that most adults would recognize and agree with?
+- Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
+- Does any category idea match or closely resemble any of the banned ideas listed above? If yes, redesign it.
+- Are all 16 words unique?
 
 OUTPUT FORMAT
 Return ONLY strict JSON:
@@ -171,13 +193,20 @@ Return ONLY strict JSON:
       "words": ["word1", "word2", "word3", "word4"]
     }
   ],
-  "design_notes": "Very short explanation (2-3 sentences) of the main decoys, how categories overlap, and why the puzzle is fair."
+  "decoys": [
+    {
+      "word": "WORD",
+      "category_a": "First category name",
+      "category_b": "Second category name"
+    }
+  ],
+  "other_trick": "Very short description (one sentence) of any other decoy pattern or overlap."
 }
 
 No extra text, no explanations, just JSON.
 """
 
-# NEW: loop until we get 16 unique words
+    # Loop until we get 16 unique words AND no banned categories
     while True:
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
@@ -185,7 +214,7 @@ No extra text, no explanations, just JSON.
                 {"role": "system", "content": "You are an expert Grooped puzzle generator."},
                 {"role": "user", "content": prompt},
             ],
-            temperature=0.8,
+            temperature=0.5,
             response_format={"type": "json_object"},
         )
         puzzle_json = response.choices[0].message.content
@@ -197,9 +226,24 @@ No extra text, no explanations, just JSON.
             for w in cat["words"]:
                 words.append(w.upper().strip())
 
-        if len(words) == 16 and len(set(words)) == 16:
-            return data
-        # otherwise loop again and regenerate
+        if len(words) != 16 or len(set(words)) != 16:
+            continue
+
+        # Check categories against banned list using normalization
+        banned_set = set(banned_norm)
+        has_banned = False
+        for cat in data["categories"]:
+            name = cat.get("name", "")
+            if normalize_category(name) in banned_set:
+                has_banned = True
+                break
+
+        if has_banned:
+            # regenerate
+            continue
+
+        return data
+
 
 def build_week_of_puzzles(start_id=1, start_date_str="11.12.2025", language="en"):
     day = datetime.strptime(start_date_str, "%d.%m.%Y")
