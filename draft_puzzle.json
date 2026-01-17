@@ -1,48 +1,48 @@
 {
   "categories": [
     {
-      "name": "names and types of Red",
+      "name": "Common Kitchen Herbs",
       "words": [
-        "COQUELICOT",
-        "CINNABAR",
-        "VERMILION",
-        "SINOPER"
+        "BASIL",
+        "OREGANO",
+        "THYME",
+        "PARSLEY"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "names and types of blue",
+      "name": "Colors associated with emotions or moods",
       "words": [
-        "CERULEAN",
-        "SMALT",
-        "AZURITE",
-        "COBALT"
+        "BLUE",
+        "GREEN",
+        "GRAY",
+        "BLACK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "names and types of green",
+      "name": "Words related to courtroom/legal actions",
       "words": [
-        "OLIVE",
-        "EMERALD",
-        "SAGE",
-        "MALACHITE"
+        "APPEAL",
+        "CHARGE",
+        "TRIAL",
+        "SENTENCE"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "names and types of yellow",
+      "name": "Compound words formed by adding a type of tree",
       "words": [
-        "SAFFRON",
-        "OCHRE",
-        "DAFFODIL",
-        "CITRINE"
+        "PINEAPPLE",
+        "MAPLE",
+        "BIRCH",
+        "CEDAR"
       ],
       "difficulty": "purple"
     }
   ],
   "date": null,
-  "design_notes": "SILVER and IRON tempt as metals or colors but belong to 'Sharp/Metallic'; ROSE and GREEN could fit colors or literary names but are in feelings/colors; IVORY and RUSTY sound like colors or materials but are literary character names here; BASS might seem a fish or instrument but is a musician role. The puzzle plays on color-word ambiguity overlapping with feelings and character names.",
+  "design_notes": "Words like 'Sharp' and 'Bass' tempt solvers between musical meanings and colors or animals but belong only in music. 'Blue' and 'Green' can be colors or moods, overlapping with emotion associations. 'Charge' and 'Sentence' might be confused with general words or other categories but fit the legal set. The hard category uses tree names that form compounds or stand alone, creating ambiguity with colors and music.",
   "id": null,
   "language": "en",
   "_validation": {
