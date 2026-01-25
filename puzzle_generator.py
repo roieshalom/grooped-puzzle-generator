@@ -207,7 +207,11 @@ No extra text, no explanations, just JSON.
 """
 
     # Loop until we get 16 unique words AND no banned categories
+    attempt = 0
     while True:
+        attempt += 1
+        print(f"Puzzle generation attempt {attempt}")
+
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
             messages=[
@@ -227,6 +231,7 @@ No extra text, no explanations, just JSON.
                 words.append(w.upper().strip())
 
         if len(words) != 16 or len(set(words)) != 16:
+            print("Rejected puzzle (duplicate or missing words)")
             continue
 
         # Check categories against banned list using normalization
@@ -236,14 +241,14 @@ No extra text, no explanations, just JSON.
             name = cat.get("name", "")
             if normalize_category(name) in banned_set:
                 has_banned = True
+                print(f"Rejected puzzle (banned category): {name}")
                 break
 
         if has_banned:
-            # regenerate
             continue
 
+        print(f"Puzzle accepted after {attempt} attempts")
         return data
-
 
 def build_week_of_puzzles(start_id=1, start_date_str="11.12.2025", language="en"):
     day = datetime.strptime(start_date_str, "%d.%m.%Y")

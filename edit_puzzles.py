@@ -509,9 +509,14 @@ def save_puzzle():
 def generate_puzzle():
     """Generate a full new puzzle (4 categories) using puzzle_generator and store as draft."""
     try:
+        import time
         from puzzle_generator import generate_connections_puzzle
 
+        t0 = time.time()
         raw = generate_connections_puzzle()
+        elapsed = time.time() - t0
+        print(f"generate_connections_puzzle took {elapsed:.2f} seconds")
+
         difficulty_map = {
             "easy": "yellow",
             "medium": "green",
@@ -541,17 +546,16 @@ def generate_puzzle():
         categories = unique_categories
 
         puzzle = {
-        "id": None,
-        "date": None,
-        "language": "en",
-        "categories": categories,
-        # structured explanation from the model
-        "decoys": raw.get("decoys", []),
-        "other_trick": raw.get("other_trick", ""),
-        # optional: keep old field as fallback
-        "design_notes": raw.get("design_notes", ""),
-    }
-
+            "id": None,
+            "date": None,
+            "language": "en",
+            "categories": categories,
+            # structured explanation from the model
+            "decoys": raw.get("decoys", []),
+            "other_trick": raw.get("other_trick", ""),
+            # optional: keep old field as fallback
+            "design_notes": raw.get("design_notes", ""),
+        }
 
         # Save generated puzzle as the current draft
         try:

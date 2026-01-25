@@ -1,71 +1,66 @@
 {
+  "id": null,
+  "date": null,
+  "language": "en",
   "categories": [
     {
-      "name": "Common Card Games",
+      "name": "Classic Cocktails",
       "words": [
-        "UNO",
-        "POKER",
-        "RUMMY",
-        "HEARTS"
+        "MOJITO",
+        "MARTINI",
+        "NEGRONI",
+        "DAIQUIRI"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Types of Dance",
+      "name": "Jazz Instruments",
       "words": [
-        "SALSA",
-        "TANGO",
-        "TAP",
-        "FOXTROT"
+        "SAXOPHONE",
+        "TRUMPET",
+        "PIANO",
+        "DOUBLE BASS"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Austrian Actors",
+      "name": "Types of Bridges",
       "words": [
-        "SCHWARZENEGGER",
-        "WALTZ",
-        "SCHNEIDER",
-        "LAMARR"
+        "SUSPENSION",
+        "ARCH",
+        "CANTILEVER",
+        "BEAM"
+      ],
+      "difficulty": "green"
+    },
+    {
+      "name": "Literary Archetypes",
+      "words": [
+        "MENTOR",
+        "TRICKSTER",
+        "HERO",
+        "OUTLAW"
       ],
       "difficulty": "blue"
-    },
-    {
-      "name": "Song Parts",
-      "words": [
-        "CHORUS",
-        "BRIDGE",
-        "VERSE",
-        "HOOK"
-      ],
-      "difficulty": "purple"
     }
   ],
-  "date": null,
   "decoys": [
     {
-      "category_a": "Types of Dance",
-      "category_b": "Common Card Games",
-      "word": "Waltz"
+      "word": "Trumpet",
+      "category_a": "Jazz Instruments",
+      "category_b": "Classic Cocktails"
     },
     {
-      "category_a": "Common Card Games",
-      "category_b": "Elements of a Story",
-      "word": "Hearts"
+      "word": "Beam",
+      "category_a": "Types of Bridges",
+      "category_b": "Classic Cocktails"
     },
     {
-      "category_a": "Elements of a Story",
-      "category_b": "Classical Composers",
-      "word": "Theme"
+      "word": "Hero",
+      "category_a": "Literary Archetypes",
+      "category_b": "Classic Cocktails"
     }
   ],
-  "design_notes": "",
-  "id": null,
-  "language": "en",
-  "other_trick": "Waltz and Hearts serve as natural decoys linking dance and card games or story elements, while Theme is a story element and also a musical concept familiar from classical compositions.",
-  "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
-  }
+  "other_trick": "Some cocktail names (Martini, Daiquiri) can be confused with instruments or bridge types by sound or cultural association.",
+  "design_notes": ""
 }
