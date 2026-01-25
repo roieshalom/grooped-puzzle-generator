@@ -1,66 +1,76 @@
 {
-  "id": null,
-  "date": null,
-  "language": "en",
   "categories": [
     {
-      "name": "Classic Cocktails",
+      "name": "Household Items That Can Be Opened",
       "words": [
-        "MOJITO",
-        "MARTINI",
-        "NEGRONI",
-        "DAIQUIRI"
+        "WINDOW",
+        "DOOR",
+        "BOOK",
+        "BOTTLE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Jazz Instruments",
+      "name": "Words That Can Mean Both a Person and a Profession",
       "words": [
-        "SAXOPHONE",
-        "TRUMPET",
-        "PIANO",
-        "DOUBLE BASS"
+        "JUDGE",
+        "DRIVER",
+        "PILOT",
+        "COACH"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Types of Bridges",
+      "name": "Types of Broadcast Media",
       "words": [
-        "SUSPENSION",
-        "ARCH",
-        "CANTILEVER",
-        "BEAM"
-      ],
-      "difficulty": "green"
-    },
-    {
-      "name": "Literary Archetypes",
-      "words": [
-        "MENTOR",
-        "TRICKSTER",
-        "HERO",
-        "OUTLAW"
+        "RADIO",
+        "PODCAST",
+        "TELEVISION",
+        "STREAM"
       ],
       "difficulty": "blue"
+    },
+    {
+      "name": "Words That Also Mean to Move Quickly or Forcefully",
+      "words": [
+        "DASH",
+        "CHARGE",
+        "RACE",
+        "BOLT"
+      ],
+      "difficulty": "purple"
     }
   ],
+  "date": null,
   "decoys": [
     {
-      "word": "Trumpet",
-      "category_a": "Jazz Instruments",
-      "category_b": "Classic Cocktails"
+      "category_a": "Words That Also Mean to Move Quickly or Forcefully",
+      "category_b": "Words That Can Mean Both a Person and a Profession",
+      "word": "Charge"
     },
     {
-      "word": "Beam",
-      "category_a": "Types of Bridges",
-      "category_b": "Classic Cocktails"
+      "category_a": "Words That Can Mean Both a Person and a Profession",
+      "category_b": "Types of Broadcast Media",
+      "word": "Coach"
     },
     {
-      "word": "Hero",
-      "category_a": "Literary Archetypes",
-      "category_b": "Classic Cocktails"
+      "category_a": "Household Items That Can Be Opened",
+      "category_b": "Types of Broadcast Media",
+      "word": "Book"
+    },
+    {
+      "category_a": "Words That Can Mean Both a Person and a Profession",
+      "category_b": "Types of Broadcast Media",
+      "word": "Pilot"
     }
   ],
-  "other_trick": "Some cocktail names (Martini, Daiquiri) can be confused with instruments or bridge types by sound or cultural association.",
-  "design_notes": ""
+  "design_notes": "",
+  "id": null,
+  "language": "en",
+  "other_trick": "Several words appear in multiple categories because they can mean both a person/profession and relate to media or action.",
+  "_validation": {
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
+  }
 }
