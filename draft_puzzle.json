@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Household Items That Can Be Opened",
+      "name": "Tools of Persuasion",
       "words": [
-        "WINDOW",
-        "DOOR",
-        "BOOK",
-        "BOTTLE"
+        "LOGIC",
+        "EMOTION",
+        "REASON",
+        "RHETORIC"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Words That Can Mean Both a Person and a Profession",
+      "name": "Professional Presentations",
       "words": [
-        "JUDGE",
-        "DRIVER",
-        "PILOT",
-        "COACH"
+        "DEMO",
+        "PITCH",
+        "LECTURE",
+        "WEBINAR"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Types of Broadcast Media",
+      "name": "Writing Genres",
       "words": [
-        "RADIO",
-        "PODCAST",
-        "TELEVISION",
-        "STREAM"
+        "FANTASY",
+        "MYSTERY",
+        "THRILLER",
+        "DRAMA"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Words That Also Mean to Move Quickly or Forcefully",
+      "name": "Concepts in Philosophy",
       "words": [
-        "DASH",
-        "CHARGE",
-        "RACE",
-        "BOLT"
+        "TRUTH",
+        "EXISTENCE",
+        "KNOWLEDGE",
+        "MEANING"
       ],
       "difficulty": "purple"
     }
@@ -44,30 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Words That Also Mean to Move Quickly or Forcefully",
-      "category_b": "Words That Can Mean Both a Person and a Profession",
-      "word": "Charge"
+      "category_a": "Common Tools of Persuasion",
+      "category_b": "Types of Professional Presentations",
+      "word": "RHETORIC"
     },
     {
-      "category_a": "Words That Can Mean Both a Person and a Profession",
-      "category_b": "Types of Broadcast Media",
-      "word": "Coach"
+      "category_a": "Types of Professional Presentations",
+      "category_b": "Common Tools of Persuasion",
+      "word": "PITCH"
     },
     {
-      "category_a": "Household Items That Can Be Opened",
-      "category_b": "Types of Broadcast Media",
-      "word": "Book"
-    },
-    {
-      "category_a": "Words That Can Mean Both a Person and a Profession",
-      "category_b": "Types of Broadcast Media",
-      "word": "Pilot"
+      "category_a": "Creative Writing Genres",
+      "category_b": "Concepts Often Explored in Philosophy",
+      "word": "DRAMA"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Several words appear in multiple categories because they can mean both a person/profession and relate to media or action.",
+  "other_trick": "Words like LOGIC and REASON could feel like philosophy concepts but belong only to persuasion tools here.",
   "_validation": {
     "valid": true,
     "errors": [],
