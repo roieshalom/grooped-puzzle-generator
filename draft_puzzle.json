@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Tools of Persuasion",
+      "name": "In a Cozy Cabin",
       "words": [
-        "LOGIC",
-        "EMOTION",
-        "REASON",
-        "RHETORIC"
+        "FIREPLACE",
+        "RUG",
+        "LANTERN",
+        "WOOD"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Professional Presentations",
+      "name": "Voice Types",
       "words": [
-        "DEMO",
-        "PITCH",
-        "LECTURE",
-        "WEBINAR"
+        "ALTO",
+        "TENOR",
+        "BASS",
+        "SOPRANO"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Writing Genres",
+      "name": "Travel",
       "words": [
-        "FANTASY",
-        "MYSTERY",
-        "THRILLER",
-        "DRAMA"
+        "ITINERARY",
+        "VISA",
+        "TRANSIT",
+        "HOSTEL"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Concepts in Philosophy",
+      "name": "Types of fish",
       "words": [
-        "TRUTH",
-        "EXISTENCE",
-        "KNOWLEDGE",
-        "MEANING"
+        "PIKE",
+        "BARRACUDA",
+        "FLOUNDER",
+        "SARDINE"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,30 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Common Tools of Persuasion",
-      "category_b": "Types of Professional Presentations",
-      "word": "RHETORIC"
+      "category_a": "Things You Might Find in a Cozy Cabin",
+      "category_b": "Words That Can Mean Both a Job and a Tool",
+      "word": "DRILL"
     },
     {
-      "category_a": "Types of Professional Presentations",
-      "category_b": "Common Tools of Persuasion",
-      "word": "PITCH"
+      "category_a": "Things You Might Find in a Cozy Cabin",
+      "category_b": "Words That Can Mean Both a Job and a Tool",
+      "word": "SAW"
     },
     {
-      "category_a": "Creative Writing Genres",
-      "category_b": "Concepts Often Explored in Philosophy",
-      "word": "DRAMA"
+      "category_a": "Expressions Involving Time",
+      "category_b": "Words That Can Mean Both a Job and a Tool",
+      "word": "SECOND"
+    },
+    {
+      "category_a": "Things You Might Find in a Cozy Cabin",
+      "category_b": "Expressions Involving Time",
+      "word": "FIREPLACE"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Words like LOGIC and REASON could feel like philosophy concepts but belong only to persuasion tools here.",
+  "other_trick": "Some words like 'DRILL' and 'SAW' blur lines between cabin items and job/tool words, while 'SECOND' and 'FIREPLACE' can be linked to time expressions and cabin objects.",
   "_validation": {
     "valid": true,
     "errors": [],
