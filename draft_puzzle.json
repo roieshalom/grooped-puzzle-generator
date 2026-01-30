@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "In a Cozy Cabin",
+      "name": "Garden Tools",
       "words": [
-        "FIREPLACE",
-        "RUG",
-        "LANTERN",
-        "WOOD"
+        "SHOVEL",
+        "RAKE",
+        "HOE",
+        "SPADE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Voice Types",
+      "name": "Disagreement",
       "words": [
-        "ALTO",
-        "TENOR",
-        "BASS",
-        "SOPRANO"
+        "PROTEST",
+        "REFUSE",
+        "ARGUE",
+        "REJECT"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Travel",
+      "name": "Female animals",
       "words": [
-        "ITINERARY",
-        "VISA",
-        "TRANSIT",
-        "HOSTEL"
+        "PEN",
+        "DOE",
+        "QUEEN",
+        "BITCH"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Types of fish",
+      "name": "Found in a pencil case",
       "words": [
-        "PIKE",
-        "BARRACUDA",
-        "FLOUNDER",
-        "SARDINE"
+        "ERASER",
+        "RULER",
+        "PROTRACTOR",
+        "PENCIL"
       ],
       "difficulty": "purple"
     }
@@ -44,30 +44,30 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Things You Might Find in a Cozy Cabin",
-      "category_b": "Words That Can Mean Both a Job and a Tool",
-      "word": "DRILL"
+      "category_a": "Things you might find in a toolbox",
+      "category_b": "Words that can mean both physical and abstract barriers",
+      "word": "Block"
     },
     {
-      "category_a": "Things You Might Find in a Cozy Cabin",
-      "category_b": "Words That Can Mean Both a Job and a Tool",
-      "word": "SAW"
+      "category_a": "Things you might find in a toolbox",
+      "category_b": "Words that can mean both physical and abstract barriers",
+      "word": "Fence"
     },
     {
-      "category_a": "Expressions Involving Time",
-      "category_b": "Words That Can Mean Both a Job and a Tool",
-      "word": "SECOND"
+      "category_a": "Ways people express disagreement",
+      "category_b": "Types of social gatherings",
+      "word": "Rally"
     },
     {
-      "category_a": "Things You Might Find in a Cozy Cabin",
-      "category_b": "Expressions Involving Time",
-      "word": "FIREPLACE"
+      "category_a": "Ways people express disagreement",
+      "category_b": "Words that can mean both physical and abstract barriers",
+      "word": "Reject"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Some words like 'DRILL' and 'SAW' blur lines between cabin items and job/tool words, while 'SECOND' and 'FIREPLACE' can be linked to time expressions and cabin objects.",
+  "other_trick": "Several words overlap as both physical objects and social or abstract concepts, creating natural ambiguity.",
   "_validation": {
     "valid": true,
     "errors": [],
