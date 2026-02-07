@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Garden Tools",
+      "name": "Signals at Intersections",
       "words": [
-        "SHOVEL",
-        "RAKE",
-        "HOE",
-        "SPADE"
+        "STOP",
+        "YIELD",
+        "CROSSWALK",
+        "GREEN"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Disagreement",
+      "name": "Inexperienced",
       "words": [
-        "PROTEST",
-        "REFUSE",
-        "ARGUE",
-        "REJECT"
+        "NOOB",
+        "PROBATIONER",
+        "STARTER",
+        "APPRENTICE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Female animals",
+      "name": "Spice Girls Songs",
       "words": [
-        "PEN",
-        "DOE",
-        "QUEEN",
-        "BITCH"
+        "WANNABE",
+        "MAMA",
+        "GOODBYE",
+        "HOLLER"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Found in a pencil case",
+      "name": "Investment/Return",
       "words": [
-        "ERASER",
-        "RULER",
-        "PROTRACTOR",
-        "PENCIL"
+        "DIVIDEND",
+        "APPRECIATION",
+        "COUPON",
+        "CAPITAL"
       ],
       "difficulty": "purple"
     }
@@ -44,30 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Things you might find in a toolbox",
-      "category_b": "Words that can mean both physical and abstract barriers",
-      "word": "Block"
+      "category_a": "Types of Written Complaints",
+      "category_b": "Words That Can Mean Both an Action and a Tool",
+      "word": "Appeal"
     },
     {
-      "category_a": "Things you might find in a toolbox",
-      "category_b": "Words that can mean both physical and abstract barriers",
-      "word": "Fence"
+      "category_a": "Words That Can Mean Both an Action and a Tool",
+      "category_b": "Roles in a Theatrical Play",
+      "word": "Charge"
     },
     {
-      "category_a": "Ways people express disagreement",
-      "category_b": "Types of social gatherings",
-      "word": "Rally"
-    },
-    {
-      "category_a": "Ways people express disagreement",
-      "category_b": "Words that can mean both physical and abstract barriers",
-      "word": "Reject"
+      "category_a": "Words That Can Mean Both an Action and a Tool",
+      "category_b": "Roles in a Theatrical Play",
+      "word": "Strike"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Several words overlap as both physical objects and social or abstract concepts, creating natural ambiguity.",
+  "other_trick": "The words 'Charge' and 'Strike' could be confused between theatrical roles (e.g., 'strike' crew, 'charge' as responsibility) and action/tool meanings.",
   "_validation": {
     "valid": true,
     "errors": [],
