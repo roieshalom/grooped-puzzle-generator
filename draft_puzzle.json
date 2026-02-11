@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Signals at Intersections",
+      "name": "Things You Can Hear",
       "words": [
-        "STOP",
-        "YIELD",
-        "CROSSWALK",
-        "GREEN"
+        "ECHO",
+        "WHISTLE",
+        "THUNDER",
+        "ALARM"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Inexperienced",
+      "name": "Words That Can Mean Both a Person and a Thing",
       "words": [
-        "NOOB",
-        "PROBATIONER",
-        "STARTER",
-        "APPRENTICE"
+        "DRIVER",
+        "ANCHOR",
+        "PILOT",
+        "AGENT"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Spice Girls Songs",
+      "name": "Actions You Can Do With Your Hands",
       "words": [
-        "WANNABE",
-        "MAMA",
-        "GOODBYE",
-        "HOLLER"
+        "CLAP",
+        "SCRATCH",
+        "POINT",
+        "SNAP"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Investment/Return",
+      "name": "Concepts Related to Control and Influence",
       "words": [
-        "DIVIDEND",
-        "APPRECIATION",
-        "COUPON",
-        "CAPITAL"
+        "POWER",
+        "LEVERAGE",
+        "AUTHORITY",
+        "COMMAND"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Types of Written Complaints",
-      "category_b": "Words That Can Mean Both an Action and a Tool",
-      "word": "Appeal"
+      "category_a": "Words That Can Mean Both a Person and a Thing",
+      "category_b": "Concepts Related to Control and Influence",
+      "word": "Anchor"
     },
     {
-      "category_a": "Words That Can Mean Both an Action and a Tool",
-      "category_b": "Roles in a Theatrical Play",
-      "word": "Charge"
+      "category_a": "Words That Can Mean Both a Person and a Thing",
+      "category_b": "Concepts Related to Control and Influence",
+      "word": "Pilot"
     },
     {
-      "category_a": "Words That Can Mean Both an Action and a Tool",
-      "category_b": "Roles in a Theatrical Play",
-      "word": "Strike"
+      "category_a": "Words That Can Mean Both a Person and a Thing",
+      "category_b": "Concepts Related to Control and Influence",
+      "word": "Driver"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "The words 'Charge' and 'Strike' could be confused between theatrical roles (e.g., 'strike' crew, 'charge' as responsibility) and action/tool meanings.",
+  "other_trick": "‘Alarm’ and ‘Whistle’ can be both sounds (Things You Can Hear) and signals of control or warnings (Concepts Related to Control and Influence).",
   "_validation": {
     "valid": true,
     "errors": [],
