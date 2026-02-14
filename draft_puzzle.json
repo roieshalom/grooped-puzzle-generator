@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Things You Can Hear",
+      "name": "First Names of Fashion Designers",
       "words": [
-        "ECHO",
-        "WHISTLE",
-        "THUNDER",
-        "ALARM"
+        "RALPH",
+        "CALVIN",
+        "MIUCCIA",
+        "GIANNI"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Words That Can Mean Both a Person and a Thing",
+      "name": "Looney Tunes",
       "words": [
-        "DRIVER",
-        "ANCHOR",
-        "PILOT",
-        "AGENT"
+        "TOM",
+        "BUGS",
+        "DAFFY",
+        "ELMER"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Actions You Can Do With Your Hands",
+      "name": "Pests",
       "words": [
-        "CLAP",
-        "SCRATCH",
-        "POINT",
-        "SNAP"
+        "RATS",
+        "WEEDS",
+        "MOLD",
+        "GERMS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Concepts Related to Control and Influence",
+      "name": "famous mice",
       "words": [
-        "POWER",
-        "LEVERAGE",
-        "AUTHORITY",
-        "COMMAND"
+        "MICKY",
+        "STUART",
+        "JERRY",
+        "SPEEDY GONZALES"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Words That Can Mean Both a Person and a Thing",
-      "category_b": "Concepts Related to Control and Influence",
-      "word": "Anchor"
+      "category_a": "Types of Meetings",
+      "category_b": "Strategies in Games",
+      "word": "Retreat"
     },
     {
-      "category_a": "Words That Can Mean Both a Person and a Thing",
-      "category_b": "Concepts Related to Control and Influence",
-      "word": "Pilot"
+      "category_a": "Types of Meetings",
+      "category_b": "Household Chores",
+      "word": "Workshop"
     },
     {
-      "category_a": "Words That Can Mean Both a Person and a Thing",
-      "category_b": "Concepts Related to Control and Influence",
-      "word": "Driver"
+      "category_a": "Strategies in Games",
+      "category_b": "Writing Styles",
+      "word": "Sacrifice"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "‘Alarm’ and ‘Whistle’ can be both sounds (Things You Can Hear) and signals of control or warnings (Concepts Related to Control and Influence).",
+  "other_trick": "Words like 'Retreat' and 'Workshop' can be both meetings and actions or places related to chores or games, creating natural ambiguity.",
   "_validation": {
     "valid": true,
     "errors": [],
