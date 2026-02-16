@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "First Names of Fashion Designers",
+      "name": "Bird Actions",
       "words": [
-        "RALPH",
-        "CALVIN",
-        "MIUCCIA",
-        "GIANNI"
+        "FLY",
+        "CHIRP",
+        "NEST",
+        "PERCH"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Looney Tunes",
+      "name": "Types of Fasteners",
       "words": [
-        "TOM",
-        "BUGS",
-        "DAFFY",
-        "ELMER"
+        "CLIP",
+        "NAIL",
+        "SCREW",
+        "ZIP"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Pests",
+      "name": "To Swindle",
       "words": [
-        "RATS",
-        "WEEDS",
-        "MOLD",
-        "GERMS"
+        "CON",
+        "FLEECE",
+        "TRICK",
+        "SWING"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "famous mice",
+      "name": "Have a Shell",
       "words": [
-        "MICKY",
-        "STUART",
-        "JERRY",
-        "SPEEDY GONZALES"
+        "EGG",
+        "NUT",
+        "CLAM",
+        "TURTLE"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Types of Meetings",
-      "category_b": "Strategies in Games",
-      "word": "Retreat"
+      "category_a": "Common Tools for Writing or Drawing",
+      "category_b": "Words That Can Mean Both a Position and a Physical Object",
+      "word": "Pen"
     },
     {
-      "category_a": "Types of Meetings",
-      "category_b": "Household Chores",
-      "word": "Workshop"
+      "category_a": "Words That Can Mean Both a Position and a Physical Object",
+      "category_b": "Types of Meetings or Gatherings",
+      "word": "Panel"
     },
     {
-      "category_a": "Strategies in Games",
-      "category_b": "Writing Styles",
-      "word": "Sacrifice"
+      "category_a": "Words That Can Mean Both a Position and a Physical Object",
+      "category_b": "Roles in Storytelling or Drama",
+      "word": "Stage"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Words like 'Retreat' and 'Workshop' can be both meetings and actions or places related to chores or games, creating natural ambiguity.",
+  "other_trick": "The word 'Pitch' can mean a physical field or a persuasive presentation, linking it to both 'Words That Can Mean Both a Position and a Physical Object' and indirectly to 'Types of Meetings or Gatherings'.",
   "_validation": {
     "valid": true,
     "errors": [],
