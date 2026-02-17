@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Bird Actions",
+      "name": "Have Teeth",
       "words": [
-        "FLY",
-        "CHIRP",
-        "NEST",
-        "PERCH"
+        "COMB",
+        "GEAR",
+        "ZIPPER",
+        "SAW"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Types of Fasteners",
+      "name": "Levels of a Building",
       "words": [
-        "CLIP",
-        "NAIL",
-        "SCREW",
-        "ZIP"
+        "STORY",
+        "FLOOR",
+        "TIER",
+        "DECK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "To Swindle",
+      "name": "Hand Tools",
       "words": [
-        "CON",
-        "FLEECE",
-        "TRICK",
-        "SWING"
+        "HAMMER",
+        "PLANE",
+        "DRILL",
+        "LANDING"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Have a Shell",
+      "name": "_____ Air",
       "words": [
-        "EGG",
-        "NUT",
-        "CLAM",
-        "TURTLE"
+        "ON",
+        "HOT",
+        "THIN",
+        "THICK"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Common Tools for Writing or Drawing",
-      "category_b": "Words That Can Mean Both a Position and a Physical Object",
-      "word": "Pen"
+      "category_a": "Words That Can Mean Both a Tool and a Role",
+      "category_b": "Types of Meetings You Might Attend",
+      "word": "Pilot"
     },
     {
-      "category_a": "Words That Can Mean Both a Position and a Physical Object",
-      "category_b": "Types of Meetings or Gatherings",
-      "word": "Panel"
+      "category_a": "Words That Can Mean Both a Tool and a Role",
+      "category_b": "Words for Both a Person and a Place",
+      "word": "Anchor"
     },
     {
-      "category_a": "Words That Can Mean Both a Position and a Physical Object",
-      "category_b": "Roles in Storytelling or Drama",
-      "word": "Stage"
+      "category_a": "Types of Meetings You Might Attend",
+      "category_b": "Phrases Commonly Used to Stall or Delay",
+      "word": "Kickoff"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "The word 'Pitch' can mean a physical field or a persuasive presentation, linking it to both 'Words That Can Mean Both a Position and a Physical Object' and indirectly to 'Types of Meetings or Gatherings'.",
+  "other_trick": "Several words can be both a person’s name and a place name, creating natural confusion.",
   "_validation": {
     "valid": true,
     "errors": [],
