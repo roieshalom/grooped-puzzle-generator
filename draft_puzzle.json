@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Have Teeth",
+      "name": "Classic Toys",
       "words": [
-        "COMB",
-        "GEAR",
-        "ZIPPER",
-        "SAW"
+        "JACKS",
+        "SLINKY",
+        "MARBLES",
+        "TOPS"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Levels of a Building",
+      "name": "Queen's albums",
       "words": [
-        "STORY",
-        "FLOOR",
-        "TIER",
-        "DECK"
+        "QUEEN",
+        "THE WORKS",
+        "JAZZ",
+        "HOT SPACE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Hand Tools",
+      "name": "private names of british royalty",
       "words": [
-        "HAMMER",
-        "PLANE",
-        "DRILL",
-        "LANDING"
+        "CHARLES",
+        "HARRY",
+        "WILLIAM",
+        "GOERGE"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "_____ Air",
+      "name": "Famous Monkeys",
       "words": [
-        "ON",
-        "HOT",
-        "THIN",
-        "THICK"
+        "ALBERT II",
+        "MARCEL",
+        "RAFIKI",
+        "ABU"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Words That Can Mean Both a Tool and a Role",
-      "category_b": "Types of Meetings You Might Attend",
-      "word": "Pilot"
+      "category_a": "Things That Can Be Both Literal and Metaphorical Walls",
+      "category_b": "Words Commonly Used to Describe Both Weather and Emotions",
+      "word": "Glass"
     },
     {
-      "category_a": "Words That Can Mean Both a Tool and a Role",
-      "category_b": "Words for Both a Person and a Place",
-      "word": "Anchor"
+      "category_a": "Words Commonly Used to Describe Both Weather and Emotions",
+      "category_b": "Expressions That Can Mean Both Time Periods and Social Phenomena",
+      "word": "Stormy"
     },
     {
-      "category_a": "Types of Meetings You Might Attend",
-      "category_b": "Phrases Commonly Used to Stall or Delay",
-      "word": "Kickoff"
+      "category_a": "Expressions That Can Mean Both Time Periods and Social Phenomena",
+      "category_b": "Roles People Take in Meetings",
+      "word": "Wave"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "Several words can be both a person’s name and a place name, creating natural confusion.",
+  "other_trick": "The word 'Wave' can be confused as a meeting role (e.g., a greeting) or a social phenomenon/time period expression.",
   "_validation": {
     "valid": true,
     "errors": [],
