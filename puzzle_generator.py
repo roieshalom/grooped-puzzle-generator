@@ -3,7 +3,12 @@ import json
 from datetime import datetime, timedelta
 from openai import OpenAI
 from dotenv import load_dotenv
-from banned_categories import load_banned_categories, normalize_category
+from banned_categories import (
+    load_banned_categories,
+    load_banned_embeddings,
+    find_semantically_banned,
+    normalize_category,
+)
 
 load_dotenv()  # This loads the .env file
 
@@ -16,6 +21,9 @@ def generate_connections_puzzle():
     banned = load_banned_categories()
     banned_norm = sorted({normalize_category(name) for name in banned})
     banned_text = ", ".join(banned_norm) if banned_norm else "none"
+
+    # Load (or recompute) embedding vectors for semantic similarity checks
+    banned_embeddings = load_banned_embeddings(client)
 
     # This small block needs string interpolation
     banned_block = f"""
@@ -195,7 +203,23 @@ No extra text, no explanations, just JSON.
             # Never accept puzzles with banned categories
             continue
 
-        # At this point, NO banned categories
+        # Semantic similarity check — catch paraphrases of banned ideas
+        has_semantic_banned = False
+        for cat in data["categories"]:
+            name = cat.get("name", "")
+            matched, sim = find_semantically_banned(name, banned_embeddings, client)
+            if matched is not None:
+                has_semantic_banned = True
+                print(
+                    f"Rejected puzzle (semantically banned): '{name}' "
+                    f"≈ '{matched}' (similarity {sim:.3f})"
+                )
+                break
+
+        if has_semantic_banned:
+            continue
+
+        # At this point, NO banned categories (exact or semantic)
         # Check uniqueness of words (soft constraint)
         words = []
         for cat in data["categories"]:
