@@ -16,6 +16,90 @@ load_dotenv()  # This loads the .env file
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 
+def _verify_decoys_semantically(decoys, categories, client):
+    """
+    Ask a second LLM call to fact-check each decoy's claimed connections.
+    Returns only the decoys that pass the check.
+    """
+    if not decoys:
+        return decoys
+
+    # Build a compact description of the puzzle categories for context
+    cat_lines = []
+    for cat in categories:
+        words_str = ", ".join(cat.get("words", []))
+        cat_lines.append(f'- "{cat["name"]}": {words_str}')
+    cats_block = "\n".join(cat_lines)
+
+    # Build the list of decoys to check
+    decoy_lines = []
+    for i, d in enumerate(decoys, 1):
+        reason_a = d.get("reason_a", "")
+        reason_b = d.get("reason_b", "")
+        decoy_lines.append(
+            f'{i}. Word: {d["word"]}\n'
+            f'   Claimed fit A — "{d["category_a"]}": {reason_a}\n'
+            f'   Claimed fit B — "{d["category_b"]}": {reason_b}'
+        )
+    decoys_block = "\n".join(decoy_lines)
+
+    verify_prompt = f"""You are a strict fact-checker for a Connections-style word puzzle.
+
+PUZZLE CATEGORIES:
+{cats_block}
+
+DECOYS TO VERIFY:
+{decoys_block}
+
+For each numbered decoy, decide: does the word GENUINELY and OBVIOUSLY fit BOTH claimed categories using common everyday meanings — not metaphors, not stretches, not niche references?
+
+Rules:
+- "Fits" means: most adults would immediately agree the word belongs in that category.
+- If the fit requires a long explanation, a metaphor, a cultural stretch, or domain knowledge — it does NOT fit.
+- Be strict. It is better to drop a decoy than to keep a false one.
+
+Return ONLY a JSON object with this structure:
+{{
+  "verdicts": [
+    {{"index": 1, "keep": true, "reason": "one line explaining why both fits are genuine"}},
+    {{"index": 2, "keep": false, "reason": "one line explaining which fit is false and why"}}
+  ]
+}}"""
+
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {"role": "system", "content": "You are a strict fact-checker. Return only valid JSON."},
+                {"role": "user", "content": verify_prompt},
+            ],
+            temperature=0.0,
+            response_format={"type": "json_object"},
+        )
+        result = json.loads(resp.choices[0].message.content)
+        verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
+
+        verified = []
+        for i, decoy in enumerate(decoys, 1):
+            keep = verdicts.get(i, True)  # default keep if verdict missing
+            if keep:
+                verified.append(decoy)
+            else:
+                reason = next(
+                    (v.get("reason", "") for v in result.get("verdicts", []) if v["index"] == i),
+                    ""
+                )
+                print(f"Dropped decoy '{decoy['word']}' (semantic check failed): {reason}")
+
+        print(f"Semantic decoy check: {len(verified)}/{len(decoys)} passed")
+        return verified
+
+    except Exception as e:
+        # If verification fails for any reason, return originals rather than losing all decoys
+        print(f"Decoy semantic check failed ({e}), keeping all structurally valid decoys")
+        return decoys
+
+
 def generate_connections_puzzle():
     # Load banned categories and normalize them once
     banned = load_banned_categories()
@@ -239,12 +323,12 @@ No extra text, no explanations, just JSON.
         print(f"Puzzle generation attempt {attempt}")
 
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model="gpt-4.1",
             messages=[
                 {"role": "system", "content": "You are an expert Grooped puzzle generator."},
                 {"role": "user", "content": prompt},
             ],
-            temperature=0.5,
+            temperature=0.9,
             response_format={"type": "json_object"},
         )
         puzzle_json = response.choices[0].message.content
@@ -313,7 +397,14 @@ No extra text, no explanations, just JSON.
             clean_decoys.append(decoy)
         dropped = len(data.get("decoys", [])) - len(clean_decoys)
         if dropped:
-            print(f"Stripped {dropped} invalid decoy(s); {len(clean_decoys)} remain")
+            print(f"Stripped {dropped} structurally invalid decoy(s); {len(clean_decoys)} remain")
+
+        # Semantic verification pass — ask a second LLM call to fact-check each decoy.
+        # This catches hallucinated connections that pass structural checks
+        # (e.g. "PUN fits Things you do to food" — structurally valid, semantically false).
+        if clean_decoys:
+            clean_decoys = _verify_decoys_semantically(clean_decoys, data["categories"], client)
+
         data["decoys"] = clean_decoys
 
         if len(words) == 16 and len(set(words)) == 16:
