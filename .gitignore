@@ -5,3 +5,4 @@ __pycache__/
 *.bak.*
 server.log
 .DS_Store
+.claude/

@@ -1,42 +1,42 @@
 {
   "categories": [
     {
-      "name": "Classic Toys",
+      "name": "Classic board game pieces",
       "words": [
-        "JACKS",
-        "SLINKY",
-        "MARBLES",
-        "TOPS"
+        "PAWN",
+        "ROOK",
+        "BISHOP",
+        "KNIGHT"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Queen's albums",
+      "name": "Types of clouds",
       "words": [
-        "QUEEN",
-        "THE WORKS",
-        "JAZZ",
-        "HOT SPACE"
+        "CIRRUS",
+        "STRATUS",
+        "CUMULUS",
+        "NIMBUS"
       ],
       "difficulty": "green"
     },
     {
-      "name": "private names of british royalty",
+      "name": "Jazz music styles",
       "words": [
-        "CHARLES",
-        "HARRY",
-        "WILLIAM",
-        "GOERGE"
+        "SWING",
+        "BEBOP",
+        "COOL",
+        "FUSION"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Famous Monkeys",
+      "name": "Philosophical schools",
       "words": [
-        "ALBERT II",
-        "MARCEL",
-        "RAFIKI",
-        "ABU"
+        "STOICISM",
+        "EXISTENTIALISM",
+        "NOMINALISM",
+        "RATIONALISM"
       ],
       "difficulty": "purple"
     }
@@ -44,25 +44,25 @@
   "date": null,
   "decoys": [
     {
-      "category_a": "Things That Can Be Both Literal and Metaphorical Walls",
-      "category_b": "Words Commonly Used to Describe Both Weather and Emotions",
-      "word": "Glass"
+      "category_a": "Jazz music styles",
+      "category_b": "Classic board game pieces",
+      "word": "SWING"
     },
     {
-      "category_a": "Words Commonly Used to Describe Both Weather and Emotions",
-      "category_b": "Expressions That Can Mean Both Time Periods and Social Phenomena",
-      "word": "Stormy"
+      "category_a": "Types of clouds",
+      "category_b": "Classic board game pieces",
+      "word": "NIMBUS"
     },
     {
-      "category_a": "Expressions That Can Mean Both Time Periods and Social Phenomena",
-      "category_b": "Roles People Take in Meetings",
-      "word": "Wave"
+      "category_a": "Classic board game pieces",
+      "category_b": "Philosophical schools",
+      "word": "KNIGHT"
     }
   ],
   "design_notes": "",
   "id": null,
   "language": "en",
-  "other_trick": "The word 'Wave' can be confused as a meeting role (e.g., a greeting) or a social phenomenon/time period expression.",
+  "other_trick": "SWING is both a jazz style and a chess move pattern term; NIMBUS is a cloud type and a chess piece nickname; KNIGHT is a chess piece and a metaphorical term in philosophy.",
   "_validation": {
     "valid": true,
     "errors": [],
