@@ -96,17 +96,69 @@ No extra text, no explanations, just JSON.
     
     try:
         client = get_client()
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert Grooped puzzle category generator. Always return valid JSON only."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.8,
-            response_format={"type": "json_object"},
+
+        # Prepare banned-check helpers (graceful if banned_categories module missing)
+        try:
+            from banned_categories import (
+                load_banned_categories,
+                load_banned_embeddings,
+                find_semantically_banned,
+                normalize_category,
+            )
+            banned_set = {normalize_category(n) for n in load_banned_categories()}
+            try:
+                banned_embeddings = load_banned_embeddings(client)
+            except Exception:
+                banned_embeddings = None
+        except Exception:
+            banned_set = set()
+            banned_embeddings = None
+            normalize_category = lambda s: (s or "").strip().lower()  # noqa: E731
+            find_semantically_banned = None
+
+        max_attempts = 8
+        last_candidate = None
+        for attempt in range(1, max_attempts + 1):
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "You are an expert Grooped puzzle category generator. Always return valid JSON only."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.8,
+                response_format={"type": "json_object"},
+            )
+            puzzle_json = response.choices[0].message.content
+            data = json.loads(puzzle_json)
+            last_candidate = data
+
+            name = (data.get("name") or "").strip()
+            norm = normalize_category(name)
+
+            # Hard reject: exact (normalized) banned match
+            if norm and norm in banned_set:
+                print(f"[regenerate_single_category] Rejected (banned exact): {name}")
+                continue
+
+            # Hard reject: semantic match against banned embeddings
+            if banned_embeddings is not None and find_semantically_banned is not None and name:
+                matched, sim = find_semantically_banned(name, banned_embeddings, client)
+                if matched is not None:
+                    print(
+                        f"[regenerate_single_category] Rejected (semantically banned): "
+                        f"'{name}' ~ '{matched}' (sim {sim:.3f})"
+                    )
+                    continue
+
+            print(f"[regenerate_single_category] Accepted on attempt {attempt}: {name}")
+            return data
+
+        # Fallback: return last candidate (extremely rare — model kept producing banned names)
+        print(
+            f"[regenerate_single_category] Exhausted {max_attempts} attempts; "
+            f"returning last candidate (may still be banned)."
         )
-        puzzle_json = response.choices[0].message.content
-        return json.loads(puzzle_json)
+        return last_candidate
     except Exception as e:
         raise Exception(f"Failed to generate category: {str(e)}")
 
