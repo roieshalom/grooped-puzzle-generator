@@ -27,19 +27,28 @@ def generate_connections_puzzle():
 
     # This small block needs string interpolation
     banned_block = f"""
-BANNED CATEGORY IDEAS (DO NOT USE)
+BANNED CATEGORY IDEAS (READ THIS FIRST, BEFORE YOU THINK OF ANY CATEGORY)
 
-The following category ideas are already used and must be avoided, even with different capitalization or slightly different wording.
-Treat them as normalized, lowercase labels that represent whole ideas you must not reuse:
+The following category ideas have already been used and MUST NOT be reused — not as-is, not rephrased, not shortened, not translated, not with a different angle on the same underlying idea.
+
+Treat them as normalized, lowercase labels representing whole ideas that are off-limits:
 
 {banned_text}
 
-You must not create categories that are essentially the same idea as any of these banned ones, even if you rephrase or shorten the title.
+MANDATORY PROCESS (do this in your head before writing any JSON):
+1. Brainstorm at least 8–10 candidate category ideas for this puzzle.
+2. For EACH candidate, compare it against every item in the banned list above.
+   - If the candidate is the same idea, a synonym, a narrower/broader version, a translation, or a "different-angle version" of any banned idea, DISCARD it.
+   - Example: if "types of bread" is banned, then "baked goods", "things in a bakery", "sandwich foundations", or "bread varieties" are ALL discarded too.
+3. Only after this filter, pick your 4 final categories from the survivors.
+4. Before emitting the JSON, re-check each of the 4 chosen category names one more time against the banned list.
+
+If you cannot find 4 survivors, brainstorm more candidates. Do NOT ever output a banned idea.
 """
 
     # Main prompt is a plain triple-quoted string (NOT an f-string),
     # so the JSON braces remain literal
-    prompt = """
+    prompt = banned_block + """
 You create Connections-style 4x4 word puzzles for adults.
 
 GOAL
@@ -79,6 +88,16 @@ CATEGORY STYLE
 Avoid school-worksheet and trivia-list categories:
 - No simple “types of X / kinds of X / common X / famous X / X terms / X concepts”.
 - Especially avoid everyday taxonomy sets like “types of knots”, “types of clouds”, “types of metal”, “types of dance”, “types of hats”, “board game pieces”, “common beverages”, “everyday vehicles”. These are overused and should NOT appear.
+
+FORBIDDEN CATEGORY PATTERN — "dual-meaning" categories:
+- DO NOT create any category whose definition is "words that can mean both X and Y", "words that are both X and Y", "words with two meanings: X and Y", "words that work as both X and Y", or any paraphrase of this idea.
+- Examples of FORBIDDEN category names (do not use or rephrase):
+  - "Words that are both colors and emotions"
+  - "Words that can mean both animals and verbs"
+  - "Terms that are both sports and cooking actions"
+  - "Words that work as both body parts and geography"
+- This pattern is overused in our puzzles. The dual-meaning effect should instead come from DECOYS (one word plausibly fitting two real, separate categories on the board), NOT from a category whose entire concept is "words that do double duty".
+- If your instinct is to write a "both X and Y" category, redesign it: make X and Y into two separate categories on the board and let one ambiguous word serve as the decoy between them.
 Instead, design categories that feel like mini ideas or scenarios, not flat lists:
 - Use roles, situations, or specific angles people would talk about (e.g., “Ways people stall for time in meetings”, “Things that come in pairs”, “Phrases you might see on a warning sign”, “Things that can be both literal and metaphorical”).
 - Everyday domains (people, culture, body, objects, events) are fine, but give them a clear, grounded twist or scenario instead of pure taxonomy.
@@ -131,14 +150,15 @@ UNIQUENESS & VARIETY
 No word may appear more than once in the 16-word grid (case-insensitive).
 Avoid repeating the same category idea across puzzles unless the angle is clearly different and more interesting than a simple list.
 
-""" + banned_block + """
+
 SELF-CHECK BEFORE OUTPUT
 Before you answer, mentally check:
 
+- FIRST: Re-read the BANNED CATEGORY IDEAS list at the top. For each of your 4 chosen category names, confirm it is not the same idea, a paraphrase, a translation, a narrower version, or a "different-angle version" of any banned entry. If any match, replace that category.
+- Is any category a "words that are both X and Y" / "words that can mean both X and Y" / "dual-meaning" style category? If yes, redesign it — split into two real categories with a decoy, or replace it entirely.
 - Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
 - Are ALL decoys clearly correct, using ordinary meanings that most adults would recognize and agree with?
 - Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
-- Does any category idea match or closely resemble any of the banned ideas listed above? If yes, redesign it.
 - Are all 16 words unique?
 - Are any of the categories just “types of X / common X / famous X / X terms / X concepts”, or obviously about knots, clouds, metals, dances, hats, beverages, vehicles, or game pieces? If yes, redesign them into more interesting, twisted ideas.
 

@@ -43,27 +43,45 @@ def generate_single_category(difficulty="medium", existing_categories=None):
     existing_categories: list of existing category names to avoid duplicates
     """
     existing_names = [cat.get('name', '').lower() for cat in (existing_categories or [])]
-    
+
+    # Load the full banned categories list so regeneration respects it too
+    try:
+        from banned_categories import load_banned_categories, normalize_category
+        banned = sorted({normalize_category(n) for n in load_banned_categories()})
+        banned_text = ", ".join(banned) if banned else "none"
+    except Exception:
+        banned_text = "none"
+
     prompt = f"""
 You create a completely NEW category for a "Connections"-style word puzzle.
 
+BANNED CATEGORY IDEAS (READ FIRST — DO NOT REUSE ANY OF THESE, even rephrased):
+{banned_text}
+
+For each category idea you brainstorm, cross-check it against the banned list above. If it matches, is a paraphrase, a translation, a narrower/broader version, or a "different angle" on any banned entry, DISCARD it and try a different idea.
+
 CRITICAL REQUIREMENTS:
 - Create a COMPLETELY NEW category - NOT a variation, NOT a slight rename, NOT similar words
-- The category must be UNIQUE and DISTINCT from existing categories
+- The category must be UNIQUE and DISTINCT from existing categories AND from the banned list above
 - Category must have difficulty: {difficulty}
 - The category must have exactly 4 words
 - Category name should be short and human-friendly
 - Words should be in UPPERCASE
 
+FORBIDDEN CATEGORY PATTERN — "dual-meaning" categories:
+- DO NOT create categories of the form "words that can mean both X and Y" / "words that are both X and Y" / "words with two meanings: X and Y" / "terms that work as both X and Y", or any paraphrase of this shape.
+- Examples of FORBIDDEN names: "Words that are both colors and emotions", "Terms that are both animals and verbs", "Words that work as both body parts and geography".
+- This pattern is overused. If you're tempted to write one, pick a different angle entirely.
+
 DIFFICULTY LEVELS:
-- "easy": Concrete and recognizable (e.g., "Common beverages", "Types of trees")
-- "medium": Requires light general knowledge or mild wordplay (e.g., "Words that can follow 'light'", "Types of fabric")
-- "hard": Abstract or wordplay-based (e.g., "Words that are both colors and emotions", "Idioms with 'break'")
+- "easy": Concrete and recognizable, but NOT generic "types of X" lists (avoid "Common beverages", "Types of trees", etc.). Think specific, grounded ideas with a small twist.
+- "medium": Requires light general knowledge or mild wordplay (e.g., "Words that can follow 'light'", "Things in a detective's office").
+- "hard": Wordplay-based or structural — e.g., "Idioms with 'break'", "Words hidden inside country names", "Second halves of compound nouns", "Homophones of tree names". NOT "words that are both X and Y".
 
 EXISTING CATEGORIES TO AVOID (create something completely different):
 {', '.join(existing_names) if existing_names else 'none'}
 
-IMPORTANT: Do NOT create a category similar to any of the above. Create something completely new and different in both name and concept.
+IMPORTANT: Do NOT create a category similar to any of the above or to anything on the banned list. Create something completely new and different in both name and concept.
 
 OUTPUT FORMAT:
 Return ONLY valid JSON with this exact structure:
