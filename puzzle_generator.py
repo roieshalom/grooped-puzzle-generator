@@ -103,227 +103,147 @@ Return ONLY a JSON object with this structure:
 
 
 def generate_connections_puzzle():
+    import random
+
     # Load banned categories and normalize them once
     banned = load_banned_categories()
     banned_norm = sorted({normalize_category(name) for name in banned})
-    banned_text = ", ".join(banned_norm) if banned_norm else "none"
 
     # Load (or recompute) embedding vectors for semantic similarity checks
     banned_embeddings = load_banned_embeddings(client)
 
-    # This small block needs string interpolation
+    # Build a SAMPLED banned list for the prompt. The full list (1000+) is too
+    # large to include in every prompt and the model can't meaningfully scan
+    # it all anyway — the semantic embedding check on the Python side is what
+    # actually enforces the ban. Include the 60 most recently added (to catch
+    # near-duplicates of recent puzzles) plus 40 random samples (to show the
+    # ban breadth to the model).
+    recent = banned_norm[-60:] if len(banned_norm) > 60 else banned_norm
+    remaining = [c for c in banned_norm if c not in set(recent)]
+    sample_size = min(40, len(remaining))
+    sampled = random.sample(remaining, sample_size) if remaining else []
+    banned_preview = sorted(set(recent) | set(sampled))
+    banned_preview_text = ", ".join(banned_preview) if banned_preview else "none"
+
     banned_block = f"""
-BANNED CATEGORY IDEAS (READ THIS FIRST, BEFORE YOU THINK OF ANY CATEGORY)
+ALREADY-USED CATEGORIES — AVOID THESE AND ANYTHING SIMILAR
 
-The following category ideas have already been used and MUST NOT be reused — not as-is, not rephrased, not shortened, not translated, not with a different angle on the same underlying idea.
+We have a database of ~{len(banned_norm)} categories that have been used in past puzzles. Below is a representative sample. Do not reuse any of these ideas, even rephrased, narrower, broader, or from a different angle.
 
-Treat them as normalized, lowercase labels representing whole ideas that are off-limits:
+{banned_preview_text}
 
-{banned_text}
-
-MANDATORY PROCESS (do this in your head before writing any JSON):
-1. Brainstorm at least 8–10 candidate category ideas for this puzzle.
-2. For EACH candidate, compare it against every item in the banned list above.
-   - If the candidate is the same idea, a synonym, a narrower/broader version, a translation, or a "different-angle version" of any banned idea, DISCARD it.
-   - Example: if "types of bread" is banned, then "baked goods", "things in a bakery", "sandwich foundations", or "bread varieties" are ALL discarded too.
-3. Only after this filter, pick your 4 final categories from the survivors.
-4. Before emitting the JSON, re-check each of the 4 chosen category names one more time against the banned list.
-
-If you cannot find 4 survivors, brainstorm more candidates. Do NOT ever output a banned idea.
+A system check will also catch paraphrases using semantic similarity — so aim for genuinely fresh ideas, not clever reskins.
 """
 
     # PORTFOLIO_START — do not remove: used by roiesh.com/grooped.html to display this prompt live
     # Main prompt is a plain triple-quoted string (NOT an f-string),
     # so the JSON braces remain literal
     prompt = banned_block + """
-You create Connections-style 4x4 word puzzles for adults.
+You design a casual 4x4 Connections-style word puzzle. Think sitcom, not syllabus — a 12-year-old and their grandparent should both be able to play.
 
-GOAL
+THE PUZZLE SHAPE
+- 4 categories, 4 words each, 16 unique words total (case-insensitive — no word appears twice on the board).
+- Difficulty mix: 1 easy, 2 medium, 1 hard. Difficulty should come from CATEGORY TRICKINESS, not obscure vocabulary.
 
-Create 1 puzzle with 4 categories:
-1 easy, 2 medium, 1 hard.
-Each category has exactly 4 words (16 total), all words unique (no repeats).
-The puzzle should feel fair but non-trivial: familiar words, but not childish textbook lists.
+THE CORE PRINCIPLE — DESIGN AROUND POLYSEMOUS WORDS
 
-BOARD-LEVEL DESIGN — START WITH THE DECOY WORDS, THEN BUILD CATEGORIES AROUND THEM
+The fun of Connections is misdirection: a word that looks like it fits one category actually belongs in another. This only works when your words have multiple common meanings.
 
-Most bad puzzles fail because the designer builds 4 categories first, then tries to find decoys as an afterthought. When categories are designed independently, there's no natural overlap and decoys become fabricated.
+DO IT IN THIS ORDER:
+1. Before picking categories, pick 2–3 "anchor" words — short, everyday words that have two or more different common meanings.
+   Good anchors: BARK (dog sound / tree), COLD (illness / temperature), BASS (fish / music), PITCHER (baseball / jug), SPRING (season / coil / to jump), DIAMOND (gem / baseball field), CRANE (bird / machine), BOLT (lightning / lock / run), MARS (planet / candy bar), MERCURY (planet / car), JIMMY (name / pry open).
+2. Build 2 categories that each anchor can plausibly belong to. If your anchor is BARK, you might build one dog category and one tree/nature category.
+3. Fill remaining slots with SHORT COMMON words (1–2 syllables, everyday use). A good Connections word has multiple meanings. A bad one (SNICKERDOODLE, TIPTOE) can only ever mean one thing and flattens the puzzle.
+4. Never include a word that appears inside its own category name (POP in "Things That Pop" is circular and embarrassing).
 
-Do it in reverse:
+WHAT MAKES A CATEGORY GOOD
 
-STEP 1 — Pick 2–3 “anchor” words that have two completely different common meanings.
-Good anchor words are short, everyday, and genuinely polysemous:
-- BARK (dog sound / tree layer)
-- COLD (illness / temperature)
-- BASS (fish / music)
-- CORK (wine stopper / Irish city)
-- JIMMY (to pry open / a first name)
-- PITCHER (baseball / a jug)
-- SPRING (season / coil / to jump)
-- DIAMOND (gem / baseball field)
-- CRANE (bird / construction machine / to stretch your neck)
-- BOLT (lightning / door lock / to run fast / a screw)
-Proper nouns with double lives also work: MARS (planet + candy bar), MERCURY (planet + car brand), OREO (cookie + slang).
+GOOD category types:
+- "Members of a set" when the words are polysemous. NYT does this all the time: "Parts of a piano" (HAMMER, KEY, PEDAL, STRING) works because every word also means something else.
+- Fill-in-the-blank: "BREAK ___" (DANCE, UP, FAST, EVEN) or "___ HOUSE" (DOG, TREE, LIGHT, FIRE).
+- Named characters sharing a first name: "Characters named Mike" (WAZOWSKI, TYSON, MYERS, PENCE).
+- Common phrases/idioms as a group: "Ways to say yes" (SURE, DEAL, BET, GRANTED).
+- Things in a specific everyday scene: "Things in a fridge", "Things in a beach bag".
 
-STEP 2 — Design your 4 categories so that each anchor word genuinely fits in TWO of them.
-Example: if your anchor is BARK, design one category about dogs and one about trees — then BARK is a natural decoy between them.
+AVOID:
+- Academic or specialist jargon — no "Philosophical schools", "Classical tempo markings", "Literary devices", "Logical fallacies", "Fabric weaves", "Architectural orders".
+- Categories whose 4 words all share a surface signal (all end in -ism, all Italian, all Greek, all obviously from one jargon). That's a giveaway — the solver spots the pattern before reading the words.
+- "Words that are both X and Y" / "Words that can mean both X and Y" — this is overused and just packages the decoy trick as a category. If you want that effect, split into two separate categories and let a decoy connect them.
+- Long distinctive words that only mean one thing (SNICKERDOODLE, TIPTOE, SHORTBREAD, CUMULONIMBUS).
+- Circular categories where the answer is in the category name.
 
-STEP 3 — Fill in the remaining 3 words per category using common, SHORT words (ideally 1–2 syllables). Avoid words so long or distinctive that they can only ever mean one thing (SNICKERDOODLE, TIPTOE, SHORTBREAD — no second life, zero decoy potential).
+WHAT MAKES A DECOY REAL
 
-STEP 4 — Do NOT include any word in a category if that word appears inside the category's own name. (“POP” in “Things That Pop” — circular and too obvious.)
+Aim for 2–3 decoys per puzzle. A decoy is a word on the board that genuinely fits TWO of your 4 categories using common everyday meanings.
 
-DECOY RULES:
-- Aim for 2–3 decoys. Zero decoys = boring puzzle where every word is obvious.
-- Only list a decoy if the word GENUINELY fits both categories using common primary meanings. The test: could a random adult complete both sentences in one plain line?
-  “WORD fits [category_a] because ___”
-  “WORD fits [category_b] because ___”
-  If either is a stretch, a metaphor, or sounds made up — drop the decoy.
-- INVALID: “SLIDE fits Household Chores because you slide a mop” — nobody calls that sliding.
-- INVALID: “LOOP fits Household Chores because cleaning cycles loop” — not a chore.
-- VALID: BARK — “Bark is the sound a dog makes” ✓ + “Bark is the outer layer of a tree” ✓
-- VALID: COLD — “A cold is an illness” ✓ + “Cold means low temperature” ✓
-- VALID: MARS — “Mars is a planet” ✓ + “Mars is a chocolate bar” ✓
+The mandatory test before listing any decoy:
+  Write: "WORD fits [category_a] because ___" (one plain line, common meaning, no stretching)
+  Write: "WORD fits [category_b] because ___" (one plain line, different common meaning)
+If either sentence is false, metaphorical, or needs more than 12 words to justify — DROP the decoy. A fake decoy is worse than no decoy.
 
-CATEGORY STYLE
-Avoid school-worksheet and trivia-list categories:
-- No simple “types of X / kinds of X / common X / famous X / X terms / X concepts”.
-- Especially avoid everyday taxonomy sets like “types of knots”, “types of clouds”, “types of metal”, “types of dance”, “types of hats”, “board game pieces”, “common beverages”, “everyday vehicles”. These are overused and should NOT appear.
+VALID decoy examples:
+- BARK — "Bark is the sound a dog makes" ✓ + "Bark is the outer layer of a tree" ✓
+- MARS — "Mars is a planet" ✓ + "Mars is a chocolate bar" ✓
+- BLUES — "Blues is a music genre" ✓ + "Having the blues means sadness" ✓
+- COLD — "A cold is an illness" ✓ + "Cold means low temperature" ✓
 
-FORBIDDEN CATEGORY PATTERN — "dual-meaning" categories:
-- DO NOT create any category whose definition is "words that can mean both X and Y", "words that are both X and Y", "words with two meanings: X and Y", "words that work as both X and Y", or any paraphrase of this idea.
-- Examples of FORBIDDEN category names (do not use or rephrase):
-  - "Words that are both colors and emotions"
-  - "Words that can mean both animals and verbs"
-  - "Terms that are both sports and cooking actions"
-  - "Words that work as both body parts and geography"
-- This pattern is overused in our puzzles. The dual-meaning effect should instead come from DECOYS (one word plausibly fitting two real, separate categories on the board), NOT from a category whose entire concept is "words that do double duty".
-- If your instinct is to write a "both X and Y" category, redesign it: make X and Y into two separate categories on the board and let one ambiguous word serve as the decoy between them.
+INVALID decoy examples (do NOT do this):
+- "SLIDE fits Household Chores because you slide a mop" — nobody calls that sliding.
+- "PUN fits Things you do to food" — a pun is not something you do to food.
+- "NEVER fits Types of Jokes" — no completion works.
+- "CARWASH fits Ways to Say No" — carwash has nothing to do with refusal.
 
-REGISTER — KEEP IT CASUAL AND POP-CULTURAL (VERY IMPORTANT):
-This is a casual word game, not a trivia quiz or a vocabulary test. Aim for the register of sitcoms, everyday chat, pop culture, and household life — NOT academia, museum placards, or specialist textbooks.
+GOOD PUZZLE EXAMPLE (this is the target register and decoy density)
 
-- PREFER: pop culture (movies, TV, music, sports, celebrities, internet, brands), everyday objects and actions (kitchen, bathroom, commute, weekend errands), common verbs and nouns anyone uses daily, idioms and sayings, things kids know, things parents say, shared cultural references.
-- AVOID: academic jargon, specialist vocabulary, domain-of-expertise word sets. Specifically avoid categories whose words all share a telltale surface feature (a shared suffix, a shared language of origin, all-Italian musical terms, all-Greek/Latin roots, all technical terminology). These are giveaways — the solver spots the pattern immediately and the category becomes trivial.
-- FORBIDDEN CATEGORY TYPES (do NOT use or rephrase these):
-  - "Philosophical schools of thought" (all end in "-ism" — instant giveaway)
-  - "Classical music tempo markings" (all Italian — instant giveaway, also niche)
-  - "Types of fabric weaves" / "Textile weaving terms" (niche jargon)
-  - "Literary devices" / "Rhetorical figures" (academic)
-  - "Architectural orders" / "Musical forms" / "Dance notations"
-  - "Logical fallacies", "Cognitive biases", "Grammatical cases"
-  - Anything that reads like a college syllabus, a Wikipedia category page, or a museum wall label.
-- WHY: Common, familiar words are HARDER, not easier, for a puzzle like this — because a common word can live in multiple contexts and make a great decoy. "MARS" (planet / candy bar / god / verb) is a better puzzle word than "ALLEGRO" (only one thing, and obviously Italian). Prefer words your grandmother AND your teenager would both recognize.
-- If a category would require the solver to know a specific discipline, replace it.
-
-Instead, design categories that feel like mini ideas or scenarios, not flat lists:
-- Use roles, situations, or specific angles people would talk about (e.g., “Ways people stall for time in meetings”, “Things that come in pairs”, “Phrases you might see on a warning sign”, “Things that can be both literal and metaphorical”).
-- Everyday domains (people, culture, body, objects, events) are fine, but give them a clear, grounded twist or scenario instead of pure taxonomy.
-At least some categories should cross contexts or meanings, not just list items in the same domain.
-
-GOOD PUZZLE EXAMPLE (IMITATE THIS LEVEL)
-This puzzle is a good style example:
-BROTHERS — WRIGHT, BLOOD, MARX, WARNER
-MUSIC GENRES — BLUES, FOLK, HOUSE, SWING
-PHILOSOPHERS — KANT, NIETZSCHE, PLATO, SARTRE
-FLUIDS IN OUR BODY — LYMPH, TEARS, SWEAT, SALIVA
-
-Why it works:
-The topics are diverse (pop culture, biology, philosophy, music) and require light general knowledge, but nothing too niche.
-Words are familiar but not childish (no “dog / cat / red / blue” style lists).
-Clear, natural decoys based on overlaps on this board:
-BLUES: music genre and part of the expression “having the blues”.
-MARX: philosopher and one of the Marx Brothers.
-BLOOD: links BROTHERS (blood brothers) and FLUIDS.
-BLOOD / SWEAT / TEARS: appear together as a phrase / band name, tempting a solver to group them.
-The whole board interacts: the fun comes from placing ambiguous words between real categories on this board, not from obscure tricks.
-
-ANOTHER GOOD PUZZLE EXAMPLE (casual / pop-culture register)
 CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE
 THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE
 WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED
 BREAK ___ — DANCE, UP, FAST, EVEN
 
-Why it works:
-Every word is something a casual player uses or hears weekly. No jargon. No specialist knowledge.
-Decoys: TYSON (Mike Tyson / chicken brand in the fridge?), ICE (fridge / "ice him" as a yes-like agreement in slang / break the ice), BET (slang yes / break a bet), GRANTED (yes / "take for granted" / break granted?). Common words are doing real puzzle work.
-Register is sitcom-casual, not academic. A 12-year-old and a 70-year-old can both play.
+Decoys:
+- ICE: fits "Things in a fridge" ✓ + fits "BREAK ___" (break the ice) ✓
+- BET: fits "Ways to Say Yes" ✓ + fits "BREAK ___" (break a bet? weaker — would be dropped)
 
-BAD PUZZLE EXAMPLE (AVOID THIS STYLE)
-This puzzle is NOT suitable for adults:
+BAD PUZZLE EXAMPLE (avoid this)
+
 COMMON KITCHEN HERBS — BASIL, OREGANO, THYME, PARSLEY
-COLORS ASSOCIATED WITH EMOTIONS OR MOODS — BLUE, GREEN, GRAY, BLACK
-WORDS RELATED TO COURTROOM/LEGAL ACTIONS — APPEAL, CHARGE, TRIAL, SENTENCE
-COMPOUND WORDS FORMED BY ADDING A TYPE OF TREE — PINEAPPLE, MAPLE, BIRCH, CEDAR
+PHILOSOPHICAL SCHOOLS — STOICISM, NIHILISM, IDEALISM, REALISM
+CLASSICAL TEMPO MARKINGS — ALLEGRO, ANDANTE, PRESTO, LARGO
+WORDS THAT ARE BOTH COLORS AND EMOTIONS — BLUE, GREEN, GRAY, BLACK
 
-Why it fails:
-Categories are flat taxonomies (“common herbs”, “colors”, “legal terms”, “tree compounds”) with no real twist.
-There are essentially NO decoys: each category is extremely distinct and solved immediately.
-This feels like a vocabulary exercise for kids, not an adult puzzle.
-DIFFICULTY MIX
-
-EASY category:
-Concrete and recognizable, but not “Common kitchen herbs”, “Colors”, “Common animals”, etc.
-May include 1 decoy word that could plausibly fit a harder category.
-
-MEDIUM categories:
-Still concrete, may require light general knowledge or mild wordplay.
-Should be confusable with at least one other category on this board.
-
-HARD category:
-Can be more abstract or wordplay-based.
-At least 2 of its words should look like they belong in other categories at first glance.
-The underlying idea must be clear and explainable once revealed.
-
-UNIQUENESS & VARIETY
-No word may appear more than once in the 16-word grid (case-insensitive).
-Avoid repeating the same category idea across puzzles unless the angle is clearly different and more interesting than a simple list.
-
-
-SELF-CHECK BEFORE OUTPUT
-Before you answer, mentally check:
-
-- FIRST: Re-read the BANNED CATEGORY IDEAS list at the top. For each of your 4 chosen category names, confirm it is not the same idea, a paraphrase, a translation, a narrower version, or a "different-angle version" of any banned entry. If any match, replace that category.
-- Is any category a "words that are both X and Y" / "words that can mean both X and Y" / "dual-meaning" style category? If yes, redesign it — split into two real categories with a decoy, or replace it entirely.
-- REGISTER CHECK: Does any category read like a college-syllabus topic, a museum label, or a Wikipedia subcategory (e.g., "philosophical schools of thought", "classical music tempo markings", "fabric weave types", "literary devices", "architectural orders", "logical fallacies")? If yes, replace it with a pop-culture, everyday-object, or common-action category. Prefer words familiar to both a teenager and a grandparent.
-- GIVEAWAY CHECK: Do all 4 words in any category share a surface signal (same suffix like "-ism" / "-ology" / "-ness", all Italian, all Greek, all ending in the same letters, all clearly from one jargon field)? If yes, the category is a giveaway — replace or rework it.
-- DECOY CHECK: For each decoy, can you complete BOTH sentences in one plain line? "This word fits [category_a] because ___" AND "This word fits [category_b] because ___". If either sentence is false, strained, or takes more than 15 words — remove that decoy entirely. It is better to have 1 real decoy than 4 fabricated ones.
-- Are ALL decoys words that are actually on the board? Are both claimed categories real category names in this puzzle? If not, remove the decoy.
-- Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
-- Are all 16 words unique?
-- Are any of the categories just “types of X / common X / famous X / X terms / X concepts”, or obviously about knots, clouds, metals, dances, hats, beverages, vehicles, or game pieces? If yes, redesign them into more interesting, twisted ideas.
-
+Why it fails: flat taxonomy, academic jargon, obvious -ism pattern, forbidden "both X and Y" category. No polysemous words = no real decoys possible.
 
 OUTPUT FORMAT
-Return ONLY strict JSON:
+Return ONLY strict JSON, no prose:
 {
   "categories": [
     {
-      "name": "Category name (short, human-friendly, does NOT give away the answer immediately)",
+      "name": "Short, human-friendly category name that doesn't give away the answer",
       "difficulty": "easy | medium | hard",
-      "words": ["word1", "word2", "word3", "word4"]
+      "words": ["WORD1", "WORD2", "WORD3", "WORD4"]
     }
   ],
   "decoys": [
     {
       "word": "WORD",
-      "category_a": "First category name",
+      "category_a": "Exact name of first matching category",
       "reason_a": "One plain sentence: why this word fits category_a",
-      "category_b": "Second category name",
+      "category_b": "Exact name of second matching category",
       "reason_b": "One plain sentence: why this word fits category_b"
     }
   ],
-  "other_trick": "Very short description (one sentence) of any other decoy pattern or overlap."
+  "other_trick": "One sentence describing any other overlap or wink on the board (optional)."
 }
-
-No extra text, no explanations, just JSON.
 """
     # PORTFOLIO_END — do not remove: used by roiesh.com/grooped.html to display this prompt live
 
     # Loop until we get a puzzle with NO banned categories.
     # Prefer 16 unique words, but stop after max_attempts and
     # allow some duplicates rather than looping forever.
+    # Each attempt costs ~8-15 seconds; max_attempts=5 caps total time around
+    # 60-80 seconds even in the worst case.
     attempt = 0
-    max_attempts = 12
+    max_attempts = 5
     last_no_banned = None  # puzzle with no banned categories, may have duplicates
 
     while attempt < max_attempts:
