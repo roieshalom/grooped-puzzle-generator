@@ -60,29 +60,36 @@ The puzzle should feel fair but non-trivial: familiar words, but not childish te
 
 BOARD-LEVEL DESIGN
 Think in terms of the whole 16-word board, not separate lists.
-Between all 16 words, there should be:
-At least 3 and at most 5 genuine decoy words.
-A decoy is a word that a reasonable adult solver could seriously place in two different categories that actually exist on THIS board before seeing the solution.
 
-STRICT RULES FOR DECOYS (VERY IMPORTANT):
-- A decoy must clearly and concretely fit BOTH of its categories using common, well-known meanings.
-- If you are NOT clearly sure that a word obviously belongs in both categories, DO NOT list it as a decoy.
-- Prefer fewer, absolutely clear decoys over more, unclear ones.
-- Do NOT stretch meanings, invent metaphors, or rely on niche references to make a decoy work.
-- Examples of INVALID decoys (do NOT do this):
-  - Treating a mythological god as a "tool of persuasion".
-  - Treating a planet as a "type of cloud".
-  - Treating a cloud type as a "musical term".
-- Decoys must be defendable with a short, simple explanation that most adults would agree with.
+DECOYS — HOW TO BUILD THEM CORRECTLY:
+A decoy is a word on the board that a reasonable adult solver would seriously consider placing in a different category before seeing the solution.
 
-Decoys must be natural:
-Use common meanings or well-known references, not obscure or niche interpretations.
-A valid explanation should be short and direct (“X is both a ___ and a ___”), not a long story.
-Do not count as decoys:
-Connections that need a long or far-fetched explanation.
-Vague thematic links like “this feels literary/jazzy/morning-ish” without a concrete shared role.
-Design at least one pair of categories that are close in concept (e.g., professions vs tools, genres vs moods, roles vs relationships), so ambiguity arises from related categories, not four unrelated lists.
-The “wink” is allowed: small patterns or references that solvers might notice (like BLOOD / SWEAT / TEARS, or BUS / SUB / D-SUB / USB in another puzzle), as long as the final solution is still clear and fair.
+MANDATORY TEST before listing any decoy:
+For each word you want to call a decoy, complete BOTH sentences in your head:
+  “This word fits [category_a] because: ___” (one plain sentence, no stretching)
+  “This word fits [category_b] because: ___” (one plain sentence, no stretching)
+If EITHER sentence is hard to write, false, or needs more than 15 words to justify — DO NOT list it as a decoy.
+
+STRICT RULES:
+- Only list a decoy if the word genuinely and obviously belongs in both named categories using common everyday meanings.
+- Do NOT invent connections. Do NOT use metaphor, wordplay, or niche references to force a word into a second category.
+- There is NO minimum number of decoys. 1 or 2 strong, real decoys is far better than 4 padded, fake ones.
+- Maximum 4 decoys total.
+
+EXAMPLES OF INVALID DECOYS (do NOT repeat these mistakes):
+- “BARNEY fits Weekend Errands” — it does not. Barney is a name, not an errand.
+- “NEVER fits Types of Jokes” — it does not. Never is not a joke type.
+- “CARWASH fits Ways to Say No” — it does not. A carwash has nothing to do with refusal.
+- Treating a mythological god as a “tool of persuasion”.
+- Treating a planet as a “type of cloud”.
+If you can't say it in one short, plain sentence that most adults would nod at — it's not a decoy.
+
+EXAMPLES OF VALID DECOYS:
+- MARS: fits “Planets” (Mars is a planet) AND fits “Candy Bars” (Mars is a chocolate bar). One sentence each. ✓
+- BLUES: fits “Music Genres” (blues is a genre) AND fits “Moods / Feelings” (having the blues = sadness). ✓
+- COLD: fits “Illnesses” (I have a cold) AND fits “Temperature words” (cold weather). ✓
+
+Design at least one pair of categories that are close in concept (e.g., professions vs. tools, genres vs. moods) so that ambiguity arises from related categories, not from fabricated connections.
 
 CATEGORY STYLE
 Avoid school-worksheet and trivia-list categories:
@@ -186,8 +193,8 @@ Before you answer, mentally check:
 - Is any category a "words that are both X and Y" / "words that can mean both X and Y" / "dual-meaning" style category? If yes, redesign it — split into two real categories with a decoy, or replace it entirely.
 - REGISTER CHECK: Does any category read like a college-syllabus topic, a museum label, or a Wikipedia subcategory (e.g., "philosophical schools of thought", "classical music tempo markings", "fabric weave types", "literary devices", "architectural orders", "logical fallacies")? If yes, replace it with a pop-culture, everyday-object, or common-action category. Prefer words familiar to both a teenager and a grandparent.
 - GIVEAWAY CHECK: Do all 4 words in any category share a surface signal (same suffix like "-ism" / "-ology" / "-ness", all Italian, all Greek, all ending in the same letters, all clearly from one jargon field)? If yes, the category is a giveaway — replace or rework it.
-- Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
-- Are ALL decoys clearly correct, using ordinary meanings that most adults would recognize and agree with?
+- DECOY CHECK: For each decoy, can you complete BOTH sentences in one plain line? "This word fits [category_a] because ___" AND "This word fits [category_b] because ___". If either sentence is false, strained, or takes more than 15 words — remove that decoy entirely. It is better to have 1 real decoy than 4 fabricated ones.
+- Are ALL decoys words that are actually on the board? Are both claimed categories real category names in this puzzle? If not, remove the decoy.
 - Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.
 - Are all 16 words unique?
 - Are any of the categories just “types of X / common X / famous X / X terms / X concepts”, or obviously about knots, clouds, metals, dances, hats, beverages, vehicles, or game pieces? If yes, redesign them into more interesting, twisted ideas.
@@ -207,7 +214,9 @@ Return ONLY strict JSON:
     {
       "word": "WORD",
       "category_a": "First category name",
-      "category_b": "Second category name"
+      "reason_a": "One plain sentence: why this word fits category_a",
+      "category_b": "Second category name",
+      "reason_b": "One plain sentence: why this word fits category_b"
     }
   ],
   "other_trick": "Very short description (one sentence) of any other decoy pattern or overlap."
@@ -275,6 +284,35 @@ No extra text, no explanations, just JSON.
         for cat in data["categories"]:
             for w in cat["words"]:
                 words.append(w.upper().strip())
+
+        # Validate and strip bogus decoys before returning.
+        # A decoy is only kept if:
+        #   1. Its word appears in the 16-board words (case-insensitive)
+        #   2. Both category_a and category_b are real category names in this puzzle
+        board_words_upper = {w.upper() for w in words}
+        category_names = {cat.get("name", "").strip() for cat in data["categories"]}
+        clean_decoys = []
+        for decoy in data.get("decoys", []):
+            dword = (decoy.get("word") or "").upper().strip()
+            cat_a = (decoy.get("category_a") or "").strip()
+            cat_b = (decoy.get("category_b") or "").strip()
+            if dword not in board_words_upper:
+                print(f"Dropped decoy '{dword}': word not on the board")
+                continue
+            if cat_a not in category_names:
+                print(f"Dropped decoy '{dword}': category_a '{cat_a}' not a real category")
+                continue
+            if cat_b not in category_names:
+                print(f"Dropped decoy '{dword}': category_b '{cat_b}' not a real category")
+                continue
+            if cat_a == cat_b:
+                print(f"Dropped decoy '{dword}': category_a and category_b are the same")
+                continue
+            clean_decoys.append(decoy)
+        dropped = len(data.get("decoys", [])) - len(clean_decoys)
+        if dropped:
+            print(f"Stripped {dropped} invalid decoy(s); {len(clean_decoys)} remain")
+        data["decoys"] = clean_decoys
 
         if len(words) == 16 and len(set(words)) == 16:
             print(f"Puzzle accepted after {attempt} attempts (no banned categories, all words unique)")
