@@ -145,44 +145,44 @@ Create 1 puzzle with 4 categories:
 Each category has exactly 4 words (16 total), all words unique (no repeats).
 The puzzle should feel fair but non-trivial: familiar words, but not childish textbook lists.
 
-BOARD-LEVEL DESIGN
-Think in terms of the whole 16-word board, not separate lists.
+BOARD-LEVEL DESIGN — START WITH THE DECOY WORDS, THEN BUILD CATEGORIES AROUND THEM
 
-DECOYS — HOW TO BUILD THEM CORRECTLY:
-A decoy is a word on the board that a reasonable adult solver would seriously consider placing in a different category before seeing the solution.
+Most bad puzzles fail because the designer builds 4 categories first, then tries to find decoys as an afterthought. When categories are designed independently, there's no natural overlap and decoys become fabricated.
 
-TARGET: aim for 2–3 decoys. A puzzle with 0 decoys is boring — every word obviously belongs in one bucket and there's no fun. But a fabricated decoy is worse than none, so only list ones that are genuinely real.
+Do it in reverse:
 
-HOW REAL DECOYS WORK — THE TWO TYPES:
-Type 1 — Polysemous everyday words: the word has two completely different common meanings, one landing in each category.
-  - COLD: means “a common illness” AND “low temperature”. Both meanings are immediate, no explanation needed.
-  - BASS: means “a low musical note/voice” AND “a type of fish”. Both meanings are common.
-  - BARK: means “a dog's sound” AND “the outer layer of a tree”. Both meanings are standard.
+STEP 1 — Pick 2–3 “anchor” words that have two completely different common meanings.
+Good anchor words are short, everyday, and genuinely polysemous:
+- BARK (dog sound / tree layer)
+- COLD (illness / temperature)
+- BASS (fish / music)
+- CORK (wine stopper / Irish city)
+- JIMMY (to pry open / a first name)
+- PITCHER (baseball / a jug)
+- SPRING (season / coil / to jump)
+- DIAMOND (gem / baseball field)
+- CRANE (bird / construction machine / to stretch your neck)
+- BOLT (lightning / door lock / to run fast / a screw)
+Proper nouns with double lives also work: MARS (planet + candy bar), MERCURY (planet + car brand), OREO (cookie + slang).
 
-Type 2 — Proper nouns with double lives: the name is famous in two completely different contexts.
-  - MARS: a planet AND a chocolate bar — everyone knows both.
-  - MERCURY: a planet AND a car brand — both common.
-  - SNOOPY: a cartoon dog AND from the Peanuts comic (so fits a “Peanuts characters” or “Peanut-adjacent” category).
-  - JIMMY: a late-night host name AND a verb meaning to pry open.
+STEP 2 — Design your 4 categories so that each anchor word genuinely fits in TWO of them.
+Example: if your anchor is BARK, design one category about dogs and one about trees — then BARK is a natural decoy between them.
 
-MANDATORY TEST — for each word you want to call a decoy, write both of these:
-  “WORD fits [category_a] because: ___” (one plain sentence, using a common meaning)
-  “WORD fits [category_b] because: ___” (one plain sentence, using a different common meaning)
-If EITHER sentence requires stretching, metaphor, domain knowledge, or more than 12 words — DROP IT.
+STEP 3 — Fill in the remaining 3 words per category using common, SHORT words (ideally 1–2 syllables). Avoid words so long or distinctive that they can only ever mean one thing (SNICKERDOODLE, TIPTOE, SHORTBREAD — no second life, zero decoy potential).
 
-THE SLIDE TEST (what NOT to do):
-- “SLIDE fits Household Chores because you might slide a mop” — INVALID. Sliding a mop is not a household chore, and nobody calls it “sliding”.
-- “LOOP fits Household Chores because you can run a cleaning loop” — INVALID. Loop is not a chore.
-- “NEVER fits Types of Jokes because...” — there is no completion. NEVER is not a joke type.
-The test: would a random adult, hearing “WORD is a [category]”, immediately nod? If they'd pause or frown — it's not a decoy.
+STEP 4 — Do NOT include any word in a category if that word appears inside the category's own name. (“POP” in “Things That Pop” — circular and too obvious.)
 
-VALID DECOYS (imitate these):
-- MARS: “Mars is a planet” ✓ AND “Mars is a chocolate bar” ✓ → keep
-- BLUES: “Blues is a music genre” ✓ AND “Having the blues means sadness” ✓ → keep
-- COLD: “A cold is an illness” ✓ AND “Cold means low temperature” ✓ → keep
-- BARK: “Bark is the sound a dog makes” ✓ AND “Bark is the outer layer of a tree” ✓ → keep
-
-Design at least one pair of categories that are close in concept (e.g., professions vs. tools, genres vs. moods, movie characters vs. real people) so that genuine overlap can exist between them.
+DECOY RULES:
+- Aim for 2–3 decoys. Zero decoys = boring puzzle where every word is obvious.
+- Only list a decoy if the word GENUINELY fits both categories using common primary meanings. The test: could a random adult complete both sentences in one plain line?
+  “WORD fits [category_a] because ___”
+  “WORD fits [category_b] because ___”
+  If either is a stretch, a metaphor, or sounds made up — drop the decoy.
+- INVALID: “SLIDE fits Household Chores because you slide a mop” — nobody calls that sliding.
+- INVALID: “LOOP fits Household Chores because cleaning cycles loop” — not a chore.
+- VALID: BARK — “Bark is the sound a dog makes” ✓ + “Bark is the outer layer of a tree” ✓
+- VALID: COLD — “A cold is an illness” ✓ + “Cold means low temperature” ✓
+- VALID: MARS — “Mars is a planet” ✓ + “Mars is a chocolate bar” ✓
 
 CATEGORY STYLE
 Avoid school-worksheet and trivia-list categories:
@@ -378,6 +378,20 @@ No extra text, no explanations, just JSON.
         for cat in data["categories"]:
             for w in cat["words"]:
                 words.append(w.upper().strip())
+
+        # Reject puzzles where any word appears in its own category name (circular / too obvious)
+        has_circular = False
+        for cat in data["categories"]:
+            cat_name_upper = cat.get("name", "").upper()
+            for w in cat.get("words", []):
+                if w.upper().strip() in cat_name_upper.split():
+                    print(f"Rejected puzzle: '{w}' appears in its own category name '{cat['name']}'")
+                    has_circular = True
+                    break
+            if has_circular:
+                break
+        if has_circular:
+            continue
 
         # Validate and strip bogus decoys before returning.
         # A decoy is only kept if:
