@@ -51,12 +51,14 @@ PUZZLE CATEGORIES:
 DECOYS TO VERIFY:
 {decoys_block}
 
-For each numbered decoy, decide: does the word GENUINELY and OBVIOUSLY fit BOTH claimed categories using common everyday meanings — not metaphors, not stretches, not niche references?
+For each numbered decoy, decide: does the word GENUINELY and OBVIOUSLY fit BOTH claimed categories using common, primary everyday meanings — not metaphors, not stretches, not niche references, not contrived action-verb uses?
 
 Rules:
-- "Fits" means: most adults would immediately agree the word belongs in that category.
-- If the fit requires a long explanation, a metaphor, a cultural stretch, or domain knowledge — it does NOT fit.
-- Be strict. It is better to drop a decoy than to keep a false one.
+- "Fits" means: a random adult hearing "WORD is a [category item]" would immediately nod without needing an explanation.
+- The word must have a STANDARD, WELL-KNOWN meaning that places it in that category — not a creative reinterpretation.
+- Be especially strict about action verbs used as category items: "SLIDE fits Household Chores because you slide a mop" is INVALID — sliding is not a chore. "LOOP fits Household Chores because cleaning cycles loop" is INVALID — loop is not a chore.
+- If the connection requires the solver to think creatively, it is NOT a decoy — it is a fabrication. Drop it.
+- It is better to have 0 decoys than 1 false one.
 
 Return ONLY a JSON object with this structure:
 {{
@@ -149,32 +151,38 @@ Think in terms of the whole 16-word board, not separate lists.
 DECOYS — HOW TO BUILD THEM CORRECTLY:
 A decoy is a word on the board that a reasonable adult solver would seriously consider placing in a different category before seeing the solution.
 
-MANDATORY TEST before listing any decoy:
-For each word you want to call a decoy, complete BOTH sentences in your head:
-  “This word fits [category_a] because: ___” (one plain sentence, no stretching)
-  “This word fits [category_b] because: ___” (one plain sentence, no stretching)
-If EITHER sentence is hard to write, false, or needs more than 15 words to justify — DO NOT list it as a decoy.
+TARGET: aim for 2–3 decoys. A puzzle with 0 decoys is boring — every word obviously belongs in one bucket and there's no fun. But a fabricated decoy is worse than none, so only list ones that are genuinely real.
 
-STRICT RULES:
-- Only list a decoy if the word genuinely and obviously belongs in both named categories using common everyday meanings.
-- Do NOT invent connections. Do NOT use metaphor, wordplay, or niche references to force a word into a second category.
-- There is NO minimum number of decoys. 1 or 2 strong, real decoys is far better than 4 padded, fake ones.
-- Maximum 4 decoys total.
+HOW REAL DECOYS WORK — THE TWO TYPES:
+Type 1 — Polysemous everyday words: the word has two completely different common meanings, one landing in each category.
+  - COLD: means “a common illness” AND “low temperature”. Both meanings are immediate, no explanation needed.
+  - BASS: means “a low musical note/voice” AND “a type of fish”. Both meanings are common.
+  - BARK: means “a dog's sound” AND “the outer layer of a tree”. Both meanings are standard.
 
-EXAMPLES OF INVALID DECOYS (do NOT repeat these mistakes):
-- “BARNEY fits Weekend Errands” — it does not. Barney is a name, not an errand.
-- “NEVER fits Types of Jokes” — it does not. Never is not a joke type.
-- “CARWASH fits Ways to Say No” — it does not. A carwash has nothing to do with refusal.
-- Treating a mythological god as a “tool of persuasion”.
-- Treating a planet as a “type of cloud”.
-If you can't say it in one short, plain sentence that most adults would nod at — it's not a decoy.
+Type 2 — Proper nouns with double lives: the name is famous in two completely different contexts.
+  - MARS: a planet AND a chocolate bar — everyone knows both.
+  - MERCURY: a planet AND a car brand — both common.
+  - SNOOPY: a cartoon dog AND from the Peanuts comic (so fits a “Peanuts characters” or “Peanut-adjacent” category).
+  - JIMMY: a late-night host name AND a verb meaning to pry open.
 
-EXAMPLES OF VALID DECOYS:
-- MARS: fits “Planets” (Mars is a planet) AND fits “Candy Bars” (Mars is a chocolate bar). One sentence each. ✓
-- BLUES: fits “Music Genres” (blues is a genre) AND fits “Moods / Feelings” (having the blues = sadness). ✓
-- COLD: fits “Illnesses” (I have a cold) AND fits “Temperature words” (cold weather). ✓
+MANDATORY TEST — for each word you want to call a decoy, write both of these:
+  “WORD fits [category_a] because: ___” (one plain sentence, using a common meaning)
+  “WORD fits [category_b] because: ___” (one plain sentence, using a different common meaning)
+If EITHER sentence requires stretching, metaphor, domain knowledge, or more than 12 words — DROP IT.
 
-Design at least one pair of categories that are close in concept (e.g., professions vs. tools, genres vs. moods) so that ambiguity arises from related categories, not from fabricated connections.
+THE SLIDE TEST (what NOT to do):
+- “SLIDE fits Household Chores because you might slide a mop” — INVALID. Sliding a mop is not a household chore, and nobody calls it “sliding”.
+- “LOOP fits Household Chores because you can run a cleaning loop” — INVALID. Loop is not a chore.
+- “NEVER fits Types of Jokes because...” — there is no completion. NEVER is not a joke type.
+The test: would a random adult, hearing “WORD is a [category]”, immediately nod? If they'd pause or frown — it's not a decoy.
+
+VALID DECOYS (imitate these):
+- MARS: “Mars is a planet” ✓ AND “Mars is a chocolate bar” ✓ → keep
+- BLUES: “Blues is a music genre” ✓ AND “Having the blues means sadness” ✓ → keep
+- COLD: “A cold is an illness” ✓ AND “Cold means low temperature” ✓ → keep
+- BARK: “Bark is the sound a dog makes” ✓ AND “Bark is the outer layer of a tree” ✓ → keep
+
+Design at least one pair of categories that are close in concept (e.g., professions vs. tools, genres vs. moods, movie characters vs. real people) so that genuine overlap can exist between them.
 
 CATEGORY STYLE
 Avoid school-worksheet and trivia-list categories:
