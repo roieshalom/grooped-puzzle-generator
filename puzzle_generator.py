@@ -98,6 +98,23 @@ FORBIDDEN CATEGORY PATTERN — "dual-meaning" categories:
   - "Words that work as both body parts and geography"
 - This pattern is overused in our puzzles. The dual-meaning effect should instead come from DECOYS (one word plausibly fitting two real, separate categories on the board), NOT from a category whose entire concept is "words that do double duty".
 - If your instinct is to write a "both X and Y" category, redesign it: make X and Y into two separate categories on the board and let one ambiguous word serve as the decoy between them.
+
+REGISTER — KEEP IT CASUAL AND POP-CULTURAL (VERY IMPORTANT):
+This is a casual word game, not a trivia quiz or a vocabulary test. Aim for the register of sitcoms, everyday chat, pop culture, and household life — NOT academia, museum placards, or specialist textbooks.
+
+- PREFER: pop culture (movies, TV, music, sports, celebrities, internet, brands), everyday objects and actions (kitchen, bathroom, commute, weekend errands), common verbs and nouns anyone uses daily, idioms and sayings, things kids know, things parents say, shared cultural references.
+- AVOID: academic jargon, specialist vocabulary, domain-of-expertise word sets. Specifically avoid categories whose words all share a telltale surface feature (a shared suffix, a shared language of origin, all-Italian musical terms, all-Greek/Latin roots, all technical terminology). These are giveaways — the solver spots the pattern immediately and the category becomes trivial.
+- FORBIDDEN CATEGORY TYPES (do NOT use or rephrase these):
+  - "Philosophical schools of thought" (all end in "-ism" — instant giveaway)
+  - "Classical music tempo markings" (all Italian — instant giveaway, also niche)
+  - "Types of fabric weaves" / "Textile weaving terms" (niche jargon)
+  - "Literary devices" / "Rhetorical figures" (academic)
+  - "Architectural orders" / "Musical forms" / "Dance notations"
+  - "Logical fallacies", "Cognitive biases", "Grammatical cases"
+  - Anything that reads like a college syllabus, a Wikipedia category page, or a museum wall label.
+- WHY: Common, familiar words are HARDER, not easier, for a puzzle like this — because a common word can live in multiple contexts and make a great decoy. "MARS" (planet / candy bar / god / verb) is a better puzzle word than "ALLEGRO" (only one thing, and obviously Italian). Prefer words your grandmother AND your teenager would both recognize.
+- If a category would require the solver to know a specific discipline, replace it.
+
 Instead, design categories that feel like mini ideas or scenarios, not flat lists:
 - Use roles, situations, or specific angles people would talk about (e.g., “Ways people stall for time in meetings”, “Things that come in pairs”, “Phrases you might see on a warning sign”, “Things that can be both literal and metaphorical”).
 - Everyday domains (people, culture, body, objects, events) are fine, but give them a clear, grounded twist or scenario instead of pure taxonomy.
@@ -119,6 +136,17 @@ MARX: philosopher and one of the Marx Brothers.
 BLOOD: links BROTHERS (blood brothers) and FLUIDS.
 BLOOD / SWEAT / TEARS: appear together as a phrase / band name, tempting a solver to group them.
 The whole board interacts: the fun comes from placing ambiguous words between real categories on this board, not from obscure tricks.
+
+ANOTHER GOOD PUZZLE EXAMPLE (casual / pop-culture register)
+CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE
+THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE
+WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED
+BREAK ___ — DANCE, UP, FAST, EVEN
+
+Why it works:
+Every word is something a casual player uses or hears weekly. No jargon. No specialist knowledge.
+Decoys: TYSON (Mike Tyson / chicken brand in the fridge?), ICE (fridge / "ice him" as a yes-like agreement in slang / break the ice), BET (slang yes / break a bet), GRANTED (yes / "take for granted" / break granted?). Common words are doing real puzzle work.
+Register is sitcom-casual, not academic. A 12-year-old and a 70-year-old can both play.
 
 BAD PUZZLE EXAMPLE (AVOID THIS STYLE)
 This puzzle is NOT suitable for adults:
@@ -156,6 +184,8 @@ Before you answer, mentally check:
 
 - FIRST: Re-read the BANNED CATEGORY IDEAS list at the top. For each of your 4 chosen category names, confirm it is not the same idea, a paraphrase, a translation, a narrower version, or a "different-angle version" of any banned entry. If any match, replace that category.
 - Is any category a "words that are both X and Y" / "words that can mean both X and Y" / "dual-meaning" style category? If yes, redesign it — split into two real categories with a decoy, or replace it entirely.
+- REGISTER CHECK: Does any category read like a college-syllabus topic, a museum label, or a Wikipedia subcategory (e.g., "philosophical schools of thought", "classical music tempo markings", "fabric weave types", "literary devices", "architectural orders", "logical fallacies")? If yes, replace it with a pop-culture, everyday-object, or common-action category. Prefer words familiar to both a teenager and a grandparent.
+- GIVEAWAY CHECK: Do all 4 words in any category share a surface signal (same suffix like "-ism" / "-ology" / "-ness", all Italian, all Greek, all ending in the same letters, all clearly from one jargon field)? If yes, the category is a giveaway — replace or rework it.
 - Are there 3–5 natural decoys that could belong to two real categories on this board, with short, obvious explanations?
 - Are ALL decoys clearly correct, using ordinary meanings that most adults would recognize and agree with?
 - Is any category essentially “types of X / common X / famous X / X terms / X concepts” with no twist (like the BAD puzzle above)? If yes, redesign it.

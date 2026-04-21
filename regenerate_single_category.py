@@ -73,10 +73,18 @@ FORBIDDEN CATEGORY PATTERN — "dual-meaning" categories:
 - Examples of FORBIDDEN names: "Words that are both colors and emotions", "Terms that are both animals and verbs", "Words that work as both body parts and geography".
 - This pattern is overused. If you're tempted to write one, pick a different angle entirely.
 
-DIFFICULTY LEVELS:
-- "easy": Concrete and recognizable, but NOT generic "types of X" lists (avoid "Common beverages", "Types of trees", etc.). Think specific, grounded ideas with a small twist.
-- "medium": Requires light general knowledge or mild wordplay (e.g., "Words that can follow 'light'", "Things in a detective's office").
-- "hard": Wordplay-based or structural — e.g., "Idioms with 'break'", "Words hidden inside country names", "Second halves of compound nouns", "Homophones of tree names". NOT "words that are both X and Y".
+REGISTER — KEEP IT CASUAL AND POP-CULTURAL:
+This is a casual word game, not a trivia quiz.
+- PREFER: pop culture (movies, TV, music, sports, celebrities, brands), everyday objects and actions (kitchen, bathroom, commute, weekend), common verbs and nouns, idioms, things anyone says daily.
+- AVOID: academic jargon, specialist vocabulary, categories whose words all share a telltale surface feature (same suffix, all Italian musical terms, all Greek/Latin, all technical jargon). Those are giveaways — the solver spots the pattern instantly.
+- FORBIDDEN CATEGORY TYPES (do NOT use or rephrase): "Philosophical schools of thought", "Classical music tempo markings", "Types of fabric weaves", "Literary devices", "Architectural orders", "Logical fallacies", "Cognitive biases", or anything that reads like a college syllabus, Wikipedia category, or museum label.
+- Common familiar words are HARDER and BETTER for puzzles than obscure specialist ones — they can carry multiple meanings and make real decoys. Aim for words both a teenager and a grandparent would recognize.
+- GIVEAWAY CHECK: if all 4 words share a surface signal (same suffix, same language, obviously one jargon field), the category is a giveaway — rework it.
+
+DIFFICULTY LEVELS (all casual register — no academic jargon at any level):
+- "easy": Concrete, familiar, pop-culture or everyday (e.g., "Things in a fridge", "Ways to say yes", "Characters named Mike"). NOT generic "types of X" and NOT specialist vocabulary.
+- "medium": Common words with mild wordplay or a light cultural reference (e.g., "Words that follow 'light'", "Things you bring to the beach", "Sitcom dads").
+- "hard": Wordplay-based with common words (e.g., "Idioms with 'break'", "Words hidden inside country names", "Second halves of compound nouns", "___ + UP"). NOT academic topics like "Literary devices" or "Philosophical schools".
 
 EXISTING CATEGORIES TO AVOID (create something completely different):
 {', '.join(existing_names) if existing_names else 'none'}
