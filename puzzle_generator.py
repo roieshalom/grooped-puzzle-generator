@@ -46,6 +46,7 @@ MANDATORY PROCESS (do this in your head before writing any JSON):
 If you cannot find 4 survivors, brainstorm more candidates. Do NOT ever output a banned idea.
 """
 
+    # PORTFOLIO_START — do not remove: used by roiesh.com/grooped.html to display this prompt live
     # Main prompt is a plain triple-quoted string (NOT an f-string),
     # so the JSON braces remain literal
     prompt = banned_block + """
@@ -224,6 +225,7 @@ Return ONLY strict JSON:
 
 No extra text, no explanations, just JSON.
 """
+    # PORTFOLIO_END — do not remove: used by roiesh.com/grooped.html to display this prompt live
 
     # Loop until we get a puzzle with NO banned categories.
     # Prefer 16 unique words, but stop after max_attempts and
