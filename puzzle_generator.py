@@ -43,7 +43,7 @@ def _verify_decoys_semantically(decoys, categories, client):
         )
     decoys_block = "\n".join(decoy_lines)
 
-    verify_prompt = f"""You are a strict fact-checker for a Connections-style word puzzle.
+    verify_prompt = f"""You are a fact-checker for a Connections-style word puzzle.
 
 PUZZLE CATEGORIES:
 {cats_block}
@@ -51,14 +51,15 @@ PUZZLE CATEGORIES:
 DECOYS TO VERIFY:
 {decoys_block}
 
-For each numbered decoy, decide: does the word GENUINELY and OBVIOUSLY fit BOTH claimed categories using common, primary everyday meanings — not metaphors, not stretches, not niche references, not contrived action-verb uses?
+For each numbered decoy, decide: does the word GENUINELY fit BOTH claimed categories using well-known everyday meanings?
 
 Rules:
-- "Fits" means: a random adult hearing "WORD is a [category item]" would immediately nod without needing an explanation.
-- The word must have a STANDARD, WELL-KNOWN meaning that places it in that category — not a creative reinterpretation.
-- Be especially strict about action verbs used as category items: "SLIDE fits Household Chores because you slide a mop" is INVALID — sliding is not a chore. "LOOP fits Household Chores because cleaning cycles loop" is INVALID — loop is not a chore.
-- If the connection requires the solver to think creatively, it is NOT a decoy — it is a fabrication. Drop it.
-- It is better to have 0 decoys than 1 false one.
+- "Fits" means a regular adult would immediately recognize the connection — no obscure trivia, no creative stretching.
+- A word CAN fit a category even if it's not the most typical member, as long as the connection is universally understood (e.g. ICE fits "Things in a fridge" even though it's in the freezer compartment — everyone gets it).
+- INVALID: "SLIDE fits Household Chores because you slide a mop" — sliding is not a chore.
+- INVALID: "PUN fits Things you do to food" — a pun is not something you do to food.
+- VALID: "BARK fits Sounds animals make" + "BARK fits Parts of a tree" — both meanings are universally known.
+- When in doubt, lean toward keeping the decoy. A decoy that is slightly generous is better than an empty decoy list.
 
 Return ONLY a JSON object with this structure:
 {{
@@ -75,7 +76,7 @@ Return ONLY a JSON object with this structure:
                 {"role": "system", "content": "You are a strict fact-checker. Return only valid JSON."},
                 {"role": "user", "content": verify_prompt},
             ],
-            temperature=0.0,
+            temperature=0.1,
             response_format={"type": "json_object"},
         )
         result = json.loads(resp.choices[0].message.content)
@@ -139,108 +140,105 @@ A system check will also catch paraphrases using semantic similarity — so aim 
     # Main prompt is a plain triple-quoted string (NOT an f-string),
     # so the JSON braces remain literal
     prompt = banned_block + """
-You design a casual 4x4 Connections-style word puzzle. Think sitcom, not syllabus — a 12-year-old and their grandparent should both be able to play.
+Design a casual 4x4 Connections-style word puzzle. Register: sitcom, not syllabus. A teenager and their grandparent should both get it.
 
-THE PUZZLE SHAPE — HARD RULES (breaking any of these = the puzzle is broken)
-- 4 categories × 4 words = 16 words on the board.
-- Every one of those 16 words is UNIQUE. No word appears in more than one category. Case-insensitive: "BELL" and "bell" count as the same word.
-- Each word has exactly ONE home category. If BELL could plausibly be an "instrument" and a "thing that rings", you still put BELL in exactly one of those categories and fill the other category with a different word.
-- Difficulty mix: 1 easy, 2 medium, 1 hard. Difficulty should come from CATEGORY TRICKINESS, not obscure vocabulary.
+============================
+FOLLOW THIS DESIGN PROCESS
+============================
 
-THE CORE PRINCIPLE — DESIGN AROUND POLYSEMOUS WORDS (without duplicating them!)
+STEP 1 — PICK 2-3 ANCHOR WORDS FIRST (before touching categories)
+An anchor is a short, everyday word with two genuinely different common meanings.
+Pick ones where both meanings are so obvious that a stranger wouldn't need an explanation.
 
-The fun of Connections is misdirection: a word that looks like it fits one category actually belongs in another. This only works when your words have multiple common meanings — BUT the word still has ONE true home on the board.
+Strong anchors: BARK (dog sound / tree skin), SPRING (season / coil / to jump), COLD (illness / temperature), BASS (fish / music), TRUNK (elephant / tree / car / swimwear), CRANE (bird / machine), BOLT (lightning / door lock / sprint), DIAMOND (gem / baseball field), PITCHER (jug / baseball), CHIP (snack / microchip / casino token), LIGHT (lamp / not heavy / pale), CLUB (nightclub / golf / suit / weapon), DRAFT (beer / wind / military / writing).
 
-CRITICAL — DO NOT CONFUSE DECOYS WITH DUPLICATES:
-- A decoy is a word that a solver might be TEMPTED to put in category B, but whose true home is category A. The word appears ONCE, in category A.
-- WRONG: board has BELL in "Instruments" and BELL in "Things that ring" — that's a duplicate, not a decoy. The puzzle is unsolvable.
-- RIGHT: BELL sits in "Instruments you play with your hands" (one slot, once). "Things that ring" contains ALARM, PHONE, EARS, CHURCH — completely different words. The decoy note says: "BELL could tempt a solver toward 'Things that ring', but its home is Instruments."
+STEP 2 — ASSIGN EACH ANCHOR A SINGLE HOME CATEGORY
+Each anchor goes in exactly ONE category. Its other meaning creates decoy tension — solvers will be tempted to file it in the wrong category. That temptation IS the decoy. You do NOT put the anchor in two categories.
 
-DO IT IN THIS ORDER:
-1. Before picking categories, pick 2–3 "anchor" words — short, everyday words that have two or more different common meanings.
-   Good anchors: BARK (dog sound / tree), COLD (illness / temperature), BASS (fish / music), PITCHER (baseball / jug), SPRING (season / coil / to jump), DIAMOND (gem / baseball field), CRANE (bird / machine), BOLT (lightning / lock / run), MARS (planet / candy bar), MERCURY (planet / car), JIMMY (name / pry open).
-2. For EACH anchor, decide which ONE category is its home. It only goes there once. The other category it "could have fit" is where the decoy tension lives — but that other category is filled with DIFFERENT words.
-3. Fill remaining slots with SHORT COMMON words (1–2 syllables, everyday use). A good Connections word has multiple meanings. A bad one (SNICKERDOODLE, TIPTOE) can only ever mean one thing and flattens the puzzle.
-4. Before finalizing: list your 16 words on one line. If any word appears twice, the puzzle is invalid — fix it.
-5. Never include a word that appears inside its own category name (POP in "Things That Pop" is circular and embarrassing).
+Example: BARK goes home to "Sounds animals make". There is also a "Parts of a tree" category, but BARK is not in it — ROOT, SAP, BRANCH, RING are. The decoy: solvers see BARK and want to put it in the tree category. One word, one home, one beautiful trap.
 
-WHAT MAKES A CATEGORY GOOD
-
-GOOD category types:
-- "Members of a set" when the words are polysemous. NYT does this all the time: "Parts of a piano" (HAMMER, KEY, PEDAL, STRING) works because every word also means something else.
-- Fill-in-the-blank: "BREAK ___" (DANCE, UP, FAST, EVEN) or "___ HOUSE" (DOG, TREE, LIGHT, FIRE).
-- Named characters sharing a first name: "Characters named Mike" (WAZOWSKI, TYSON, MYERS, PENCE).
-- Common phrases/idioms as a group: "Ways to say yes" (SURE, DEAL, BET, GRANTED).
-- Things in a specific everyday scene: "Things in a fridge", "Things in a beach bag".
+STEP 3 — BUILD 4 CATEGORIES AROUND YOUR ANCHORS
+Mix category types. Best types:
+- Things in a specific scene: "Things in a junk drawer", "What's on a hotdog"
+- Fill-in-the-blank: "BREAK ___" (DANCE, UP, FAST, EVEN), "___ STONE" (CORN, LIME, SAND, SUN)
+- Pop-culture set: "Sitcom Dads", "Characters named Jake", "Saturday Night Live cast members"
+- Wordplay: "Homophones of numbers", "___ + HOUSE", "Words that sound like letters"
+- Everyday phrases: "Ways to say no", "Things you do at a red light"
 
 AVOID:
-- Academic or specialist jargon — no "Philosophical schools", "Classical tempo markings", "Literary devices", "Logical fallacies", "Fabric weaves", "Architectural orders".
-- Categories whose 4 words all share a surface signal (all end in -ism, all Italian, all Greek, all obviously from one jargon). That's a giveaway — the solver spots the pattern before reading the words.
-- "Words that are both X and Y" / "Words that can mean both X and Y" — this is overused and just packages the decoy trick as a category. If you want that effect, split into two separate categories and let a decoy connect them.
-- Long distinctive words that only mean one thing (SNICKERDOODLE, TIPTOE, SHORTBREAD, CUMULONIMBUS).
-- Circular categories where the answer is in the category name.
+- Academic or jargon categories (no "Philosophical schools", "Tempo markings", "Literary devices", "Logical fallacies", "Fabric weaves")
+- Any category where all 4 words share a telltale surface feature (all end in -ism, all Italian musical terms, all scientific Latin). Those are giveaways.
+- "Words that are both X and Y" — forbidden. Split into two real categories instead.
+- Long words that can only mean one thing (SNICKERDOODLE, TIPTOE, CUMULONIMBUS). Prefer 1-2 syllable everyday words.
+- A word that appears inside its own category name (POP in "Things that Pop").
 
-WHAT MAKES A DECOY REAL
+STEP 4 — FILL REMAINING SLOTS
+Prefer short common words. Favor polysemous words even in non-anchor slots — they create ambient misdirection.
 
-Aim for 2–3 decoys per puzzle. A decoy is a word on the board that genuinely fits TWO of your 4 categories using common everyday meanings.
+STEP 5 — UNIQUENESS CHECK
+Every one of the 16 board words must be unique (case-insensitive). List all 16 in your thinking field. If any word appears twice, fix it before outputting categories.
 
-The mandatory test before listing any decoy:
-  Write: "WORD fits [category_a] because ___" (one plain line, common meaning, no stretching)
-  Write: "WORD fits [category_b] because ___" (one plain line, different common meaning)
-If either sentence is false, metaphorical, or needs more than 12 words to justify — DROP the decoy. A fake decoy is worse than no decoy.
+============================
+TARGET QUALITY: THIS IS GOOD
+============================
 
-VALID decoy examples:
-- BARK — "Bark is the sound a dog makes" ✓ + "Bark is the outer layer of a tree" ✓
-- MARS — "Mars is a planet" ✓ + "Mars is a chocolate bar" ✓
-- BLUES — "Blues is a music genre" ✓ + "Having the blues means sadness" ✓
-- COLD — "A cold is an illness" ✓ + "Cold means low temperature" ✓
+thinking.anchors: [{word:"ICE", home:"Things in a fridge", meaning_a:"frozen water stored in a fridge", tempts_toward:"BREAK ___", meaning_b:"break the ice"}, {word:"DEAL", home:"Ways to say yes", meaning_a:"deal = yes, I agree", tempts_toward:"BREAK ___", meaning_b:"break a deal"}]
+thinking.all_16_words: WAZOWSKI TYSON MYERS PENCE MILK EGGS LEFTOVERS ICE SURE DEAL BET GRANTED DANCE UP FAST EVEN
 
-INVALID decoy examples (do NOT do this):
-- "SLIDE fits Household Chores because you slide a mop" — nobody calls that sliding.
-- "PUN fits Things you do to food" — a pun is not something you do to food.
-- "NEVER fits Types of Jokes" — no completion works.
-- "CARWASH fits Ways to Say No" — carwash has nothing to do with refusal.
+CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE  (medium)
+THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE  (easy)
+WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED  (medium)
+BREAK ___ — DANCE, UP, FAST, EVEN  (hard)
 
-GOOD PUZZLE EXAMPLE (this is the target register and decoy density)
+Decoys: ICE (fridge / break the ice), DEAL (yes / break a deal), BET (yes / break a bet)
+Why it works: four categories that seem independent but share anchor words with dual meanings. No word appears twice. 3 real decoys.
 
-CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE
-THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE
-WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED
-BREAK ___ — DANCE, UP, FAST, EVEN
+============================
+THIS IS BAD — DO NOT DO THIS
+============================
 
-Decoys:
-- ICE: fits "Things in a fridge" ✓ + fits "BREAK ___" (break the ice) ✓
-- BET: fits "Ways to Say Yes" ✓ + fits "BREAK ___" (break a bet? weaker — would be dropped)
-
-BAD PUZZLE EXAMPLE (avoid this)
-
-COMMON KITCHEN HERBS — BASIL, OREGANO, THYME, PARSLEY
+KITCHEN HERBS — BASIL, OREGANO, THYME, PARSLEY
 PHILOSOPHICAL SCHOOLS — STOICISM, NIHILISM, IDEALISM, REALISM
-CLASSICAL TEMPO MARKINGS — ALLEGRO, ANDANTE, PRESTO, LARGO
+TEMPO MARKINGS — ALLEGRO, ANDANTE, PRESTO, LARGO
 WORDS THAT ARE BOTH COLORS AND EMOTIONS — BLUE, GREEN, GRAY, BLACK
 
-Why it fails: flat taxonomy, academic jargon, obvious -ism pattern, forbidden "both X and Y" category. No polysemous words = no real decoys possible.
+Why it fails: flat taxonomy, academic jargon, surface giveaways (-ism), forbidden "both X and Y" pattern. No anchor words, no real decoys possible.
 
+============================
 OUTPUT FORMAT
-Return ONLY strict JSON, no prose:
+============================
+Return ONLY valid JSON with this exact structure. Fill in "thinking" first — it is your scratchpad and must come before "categories":
+
 {
+  "thinking": {
+    "anchors": [
+      {
+        "word": "ANCHOR_WORD",
+        "meaning_a": "what it means in its home category",
+        "home_category": "name of the category it actually lives in",
+        "meaning_b": "the other common meaning that creates decoy tension",
+        "tempts_toward": "name of the category solvers will wrongly try"
+      }
+    ],
+    "all_16_words": "LIST ALL 16 BOARD WORDS HERE space-separated — check for duplicates before proceeding"
+  },
   "categories": [
     {
-      "name": "Short, human-friendly category name that doesn't give away the answer",
+      "name": "Short human-friendly name",
       "difficulty": "easy | medium | hard",
       "words": ["WORD1", "WORD2", "WORD3", "WORD4"]
     }
   ],
   "decoys": [
     {
-      "word": "WORD",
-      "category_a": "Exact name of first matching category",
-      "reason_a": "One plain sentence: why this word fits category_a",
-      "category_b": "Exact name of second matching category",
-      "reason_b": "One plain sentence: why this word fits category_b"
+      "word": "ANCHOR_WORD",
+      "category_a": "Exact name of its true home category",
+      "reason_a": "One plain sentence: why this word belongs here",
+      "category_b": "Exact name of the category it tempts toward",
+      "reason_b": "One plain sentence: why solvers will be tempted by this"
     }
   ],
-  "other_trick": "One sentence describing any other overlap or wink on the board (optional)."
+  "other_trick": "Optional: one sentence on any other overlap or misdirection on the board."
 }
 """
     # PORTFOLIO_END — do not remove: used by roiesh.com/grooped.html to display this prompt live
