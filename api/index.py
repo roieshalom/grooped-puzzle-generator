@@ -150,14 +150,19 @@ def add_banned():
     return jsonify({"ok": True})
 
 # ─── Draft puzzle ─────────────────────────────────────────────────────────────
-# The Vercel version stores drafts in the browser's localStorage (handled by
-# editor.js). The server only validates — it does not read or write a draft
-# file. This avoids stale GitHub content appearing on Revert.
 
 @app.route("/api/puzzle", methods=["GET"])
 @require_auth
 def get_puzzle():
-    # Always return empty — the frontend restores the draft from localStorage
+    try:
+        draft, _ = gh_read(GENERATOR_REPO, DRAFT_PATH)
+        # Only return drafts explicitly saved through this editor
+        # (identified by the _vercel_draft marker we add on save)
+        if draft and draft.get("_vercel_draft"):
+            draft.pop("_vercel_draft", None)
+            return jsonify([draft])
+    except Exception:
+        pass
     return jsonify([])
 
 @app.route("/api/puzzle", methods=["POST"])
@@ -189,7 +194,14 @@ def save_puzzle():
         "duplicate_words": dups,
     }
 
-    # No GitHub write for drafts — localStorage handles persistence
+    # Write draft to GitHub, tagged so we know it came from this editor
+    try:
+        to_save = {**puzzle, "_vercel_draft": True}
+        _, sha = gh_read(GENERATOR_REPO, DRAFT_PATH)
+        gh_write(GENERATOR_REPO, DRAFT_PATH, to_save, sha, "Update draft puzzle")
+    except Exception as e:
+        print(f"Draft save to GitHub failed (non-fatal): {e}")
+
     return jsonify({"ok": True, "puzzle": puzzle})
 
 # ─── Export ───────────────────────────────────────────────────────────────────
