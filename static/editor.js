@@ -3,6 +3,73 @@ let currentIndex = 0;
 let lastSavedState = null; // Store the last saved puzzle state
 let hasUnsavedChanges = false;
 
+// ── Auth helpers ────────────────────────────────────────────────────────────
+// Token is stored in localStorage and sent as X-Editor-Token on every request.
+// If the server needs no password (local dev), tokens are never checked and
+// the login overlay never appears.
+
+function getAuthToken()      { return localStorage.getItem('editor-token') || ''; }
+function setAuthToken(token) { localStorage.setItem('editor-token', token); }
+function clearAuthToken()    { localStorage.removeItem('editor-token'); }
+
+function showLoginOverlay() {
+  const overlay = document.getElementById('loginOverlay');
+  if (overlay) overlay.classList.add('show');
+}
+function hideLoginOverlay() {
+  const overlay = document.getElementById('loginOverlay');
+  if (overlay) overlay.classList.remove('show');
+}
+
+// Drop-in replacement for fetch() that:
+//   1. Adds the auth token header
+//   2. Shows the login overlay on 401 instead of letting the UI break
+async function apiFetch(url, options = {}) {
+  const token = getAuthToken();
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  if (token) headers['X-Editor-Token'] = token;
+
+  const response = await fetch(url, { ...options, headers });
+
+  if (response.status === 401) {
+    clearAuthToken();
+    showLoginOverlay();
+    throw new Error('Not authenticated — please log in');
+  }
+  return response;
+}
+
+// ── Login logic ─────────────────────────────────────────────────────────────
+
+async function attemptLogin(password) {
+  const errEl = document.getElementById('loginError');
+  const btn   = document.getElementById('loginBtn');
+  if (errEl) errEl.textContent = '';
+  if (btn)   btn.disabled = true;
+
+  try {
+    const r = await fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    const res = await r.json();
+    if (res.ok) {
+      setAuthToken(res.token);
+      hideLoginOverlay();
+      await load();          // load puzzle now that we're authenticated
+    } else {
+      if (errEl) errEl.textContent = 'Wrong password';
+    }
+  } catch (e) {
+    if (errEl) errEl.textContent = 'Login failed — check your connection';
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+// Wire up login form after DOM is ready (done at bottom of file)
+
 const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
 const colorToDifficulty = {
   purple: 'yellow',
@@ -319,7 +386,7 @@ function hasWithinPuzzleDuplicates(puzzle) {
 async function load() {
   setStatus('Loading...');
   try {
-    const r = await fetch('/api/puzzle');
+    const r = await apiFetch('/api/puzzle');
     if (!r.ok) throw new Error('Failed to load');
     const res = await r.json();
 
@@ -352,9 +419,8 @@ async function save() {
     const puzzle = collectData();
     puzzles[0] = puzzle;
 
-    const r = await fetch('/api/puzzle', {
+    const r = await apiFetch('/api/puzzle', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(puzzle),
     });
     const res = await r.json();
@@ -412,9 +478,8 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   try {
     const puzzle = collectData();
 
-    const r = await fetch('/api/export', {
+    const r = await apiFetch('/api/export', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(puzzle),
     });
     const res = await r.json();
@@ -436,9 +501,8 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
   setButtonLoading('generateBtn', true);
   setPuzzleLoading(true, 'Generating puzzle…'); // show full‑puzzle overlay
   try {
-    const r = await fetch('/api/generate-puzzle', {
+    const r = await apiFetch('/api/generate-puzzle', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
     });
     const res = await r.json();
@@ -614,7 +678,7 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   setCategoryLoading(categoryIdx, true, labelText);
 
   try {
-    const r = await fetch(apiUrl, { method: 'GET' });
+    const r = await apiFetch(apiUrl, { method: 'GET' });
     if (r.ok) {
       const category = await r.json();
 
@@ -671,9 +735,8 @@ async function banAndReplaceCategory(categoryIdx) {
   setCategoryLoading(categoryIdx, true, 'Banning & regenerating…');
 
   try {
-    const r = await fetch('/api/banned-categories', {
+    const r = await apiFetch('/api/banned-categories', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ category: categoryName }),
     });
     const res = await r.json();
@@ -699,6 +762,20 @@ document.getElementById('saveBtn').addEventListener('click', () => {
 // Initialize export button state
 updateExportButtonState();
 
-// Load on page load
+// ── Login form wiring ───────────────────────────────────────────────────────
+const loginBtn   = document.getElementById('loginBtn');
+const pwdInput   = document.getElementById('passwordInput');
+
+if (loginBtn && pwdInput) {
+  loginBtn.addEventListener('click', () => attemptLogin(pwdInput.value));
+  pwdInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') attemptLogin(pwdInput.value);
+  });
+}
+
+// ── Startup ─────────────────────────────────────────────────────────────────
+// Try to load immediately. If the server returns 401, apiFetch() will
+// automatically show the login overlay. If no password is required (local dev),
+// the load succeeds transparently.
 setStatus('Ready', 'info', 2000);
 load();
