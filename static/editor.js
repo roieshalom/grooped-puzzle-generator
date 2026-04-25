@@ -869,7 +869,7 @@ async function refreshNextDate() {
 async function startup() {
   setStatus('Ready', 'info', 2000);
   setReadOnly(!getAuthToken());
-  await load();
-  await refreshNextDate();
+  // Run in parallel — date label and puzzle content load concurrently
+  await Promise.all([load(), refreshNextDate()]);
 }
 startup();
