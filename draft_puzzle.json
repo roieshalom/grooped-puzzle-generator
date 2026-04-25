@@ -1,71 +1,94 @@
 {
   "categories": [
     {
-      "name": "Classic board game pieces",
+      "name": "___ CAKE",
       "words": [
-        "PAWN",
-        "ROOK",
-        "BISHOP",
-        "KNIGHT"
+        "POUND",
+        "ANGEL",
+        "COFFEE",
+        "CHEESE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Types of clouds",
+      "name": "Ways to say 'succeed'",
       "words": [
-        "CIRRUS",
-        "STRATUS",
-        "CUMULUS",
-        "NIMBUS"
+        "NAIL",
+        "ACE",
+        "CRUSH",
+        "SLAY"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Jazz music styles",
+      "name": "___ SHARK",
       "words": [
-        "SWING",
-        "BEBOP",
-        "COOL",
-        "FUSION"
+        "HAMMERHEAD",
+        "TIGER",
+        "BULL",
+        "NURSE"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Philosophical schools",
+      "name": "Things on a baseball field",
       "words": [
-        "STOICISM",
-        "EXISTENTIALISM",
-        "NOMINALISM",
-        "RATIONALISM"
+        "BATTER",
+        "HAMMER",
+        "DRILL",
+        "TACKLE"
       ],
       "difficulty": "purple"
     }
   ],
-  "date": null,
   "decoys": [
     {
-      "category_a": "Jazz music styles",
-      "category_b": "Classic board game pieces",
-      "word": "SWING"
+      "category_a": "___ CAKE",
+      "category_b": "Things on a baseball field",
+      "reason_a": "Pound cake is a classic dessert made with a pound each of butter, sugar, eggs, and flour.",
+      "reason_b": "Solvers might think of pounding the ball or pounding bases, fitting the baseball theme.",
+      "word": "POUND"
     },
     {
-      "category_a": "Types of clouds",
-      "category_b": "Classic board game pieces",
-      "word": "NIMBUS"
-    },
-    {
-      "category_a": "Classic board game pieces",
-      "category_b": "Philosophical schools",
-      "word": "KNIGHT"
+      "category_a": "Things on a baseball field",
+      "category_b": "___ SHARK",
+      "reason_a": "A hammer is slang for a strong-throwing pitcher or a powerful hitter.",
+      "reason_b": "Hammerhead shark is a well-known species, creating strong pull toward the shark category.",
+      "word": "HAMMER"
     }
   ],
-  "design_notes": "",
-  "id": null,
+  "other_trick": "DRILL and TACKLE seem like tools or football terms but are baseball practice activities; CRUSH fits both succeed and shark (as in crushing performance or potential shark name).",
+  "thinking": {
+    "all_16_words": "POUND ANGEL COFFEE CHEESE NAIL ACE CRUSH SLAY HAMMERHEAD TIGER BULL NURSE BATTER HAMMER DRILL TACKLE",
+    "anchors": [
+      {
+        "home_category": "___ CAKE",
+        "meaning_a": "unit of weight",
+        "meaning_b": "hit repeatedly",
+        "tempts_toward": "Things you can do with a hammer",
+        "word": "POUND"
+      },
+      {
+        "home_category": "___ CAKE",
+        "meaning_a": "angel cake",
+        "meaning_b": "heavenly being",
+        "tempts_toward": "Things with halos",
+        "word": "ANGEL"
+      },
+      {
+        "home_category": "Ways to say 'succeed'",
+        "meaning_a": "hit perfectly",
+        "meaning_b": "metal fastener",
+        "tempts_toward": "Things you can do with a hammer",
+        "word": "NAIL"
+      }
+    ]
+  },
   "language": "en",
-  "other_trick": "SWING is both a jazz style and a chess move pattern term; NIMBUS is a cloud type and a chess piece nickname; KNIGHT is a chess piece and a metaphorical term in philosophy.",
   "_validation": {
     "valid": true,
     "errors": [],
     "duplicate_words": []
-  }
+  },
+  "_vercel_draft": true
 }
