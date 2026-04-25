@@ -250,6 +250,20 @@ input[type="text"]:focus {
   border-color: #6d28d9 !important;
 }
 
+/* Title block (title + date subtitle) */
+.title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.puzzle-date-label {
+  font-family: monospace;
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 0.02em;
+}
+
 .top-bar {
   display: flex;
   align-items: center;
@@ -267,12 +281,10 @@ input[type="text"]:focus {
   }
   .title-block {
     width: 100%;
-    text-align: center;
-    align-items: center;
+    align-items: center;   /* overrides flex-start above */
   }
   .puzzle-date-label {
     text-align: center;
-    display: block;
   }
   .title { width: 100%; text-align: center; }
   .actions { width: 100%; justify-content: center; }
@@ -341,6 +353,7 @@ input[type="text"]:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .message-box {

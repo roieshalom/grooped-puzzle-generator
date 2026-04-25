@@ -156,10 +156,8 @@ def add_banned():
 def get_puzzle():
     try:
         draft, _ = gh_read(GENERATOR_REPO, DRAFT_PATH)
-        # Only return drafts explicitly saved through this editor
-        # (identified by the _vercel_draft marker we add on save)
-        if draft and draft.get("_vercel_draft"):
-            draft.pop("_vercel_draft", None)
+        if draft and draft.get("categories"):
+            draft.pop("_vercel_draft", None)  # strip internal marker if present
             return jsonify([draft])
     except Exception:
         pass
@@ -194,11 +192,10 @@ def save_puzzle():
         "duplicate_words": dups,
     }
 
-    # Write draft to GitHub, tagged so we know it came from this editor
+    # Write draft to GitHub
     try:
-        to_save = {**puzzle, "_vercel_draft": True}
         _, sha = gh_read(GENERATOR_REPO, DRAFT_PATH)
-        gh_write(GENERATOR_REPO, DRAFT_PATH, to_save, sha, "Update draft puzzle")
+        gh_write(GENERATOR_REPO, DRAFT_PATH, puzzle, sha, "Update draft puzzle")
     except Exception as e:
         print(f"Draft save to GitHub failed (non-fatal): {e}")
 
