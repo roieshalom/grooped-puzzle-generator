@@ -256,6 +256,8 @@ input[type="text"]:focus {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
+  flex: 1;        /* fill remaining space so .actions never wraps */
+  min-width: 0;   /* allow flex item to shrink below content size */
 }
 .puzzle-date-label {
   font-family: monospace;
