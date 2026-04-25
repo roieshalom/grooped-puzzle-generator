@@ -846,22 +846,30 @@ document.getElementById('inlinePasswordInput').addEventListener('keydown', (e) =
 
 // ── Next puzzle date ─────────────────────────────────────────────────────────
 async function refreshNextDate() {
-  try {
-    // GET /api/next-date is public — no auth token needed
-    const r = await fetch('/api/next-date');
-    if (!r.ok) return;
-    const { date } = await r.json();
-    const el = document.getElementById('puzzleDateLabel');
-    if (el && date) el.textContent = `Puzzle for ${date}`;
-  } catch (e) {
-    // Non-fatal — label just stays empty
+  // Retry once after a short delay in case of a cold-start timeout
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 2000));
+      // GET /api/next-date is public — no auth token needed
+      const r = await fetch('/api/next-date');
+      if (!r.ok) continue;
+      const { date } = await r.json();
+      const el = document.getElementById('puzzleDateLabel');
+      if (el && date) { el.textContent = `Puzzle for ${date}`; return; }
+    } catch (e) {
+      // try again on next iteration
+    }
   }
 }
 
 // ── Startup ─────────────────────────────────────────────────────────────────
 // The page is publicly viewable — load the puzzle without auth.
 // If a token is already stored, start in edit mode; otherwise read-only.
-setStatus('Ready', 'info', 2000);
-setReadOnly(!getAuthToken());
-load();
-refreshNextDate();
+// Run sequentially so load() warms the Vercel function before the date fetch.
+async function startup() {
+  setStatus('Ready', 'info', 2000);
+  setReadOnly(!getAuthToken());
+  await load();
+  await refreshNextDate();
+}
+startup();
