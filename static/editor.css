@@ -273,46 +273,41 @@ input[type="text"]:focus {
   margin-bottom: 8px;
   padding-bottom: 20px;
   border-bottom: 1px solid #e0e0e0;
-  flex-wrap: wrap;
   gap: 15px;
-}
-@media (max-width: 600px) {
-  .top-bar {
-    flex-direction: column;
-    align-items: center;
-  }
-  .title-block {
-    width: 100%;
-    align-items: center;   /* overrides flex-start above */
-  }
-  .puzzle-date-label {
-    text-align: center;
-  }
-  .title { width: 100%; text-align: center; }
-  .actions { width: 100%; justify-content: center; }
-  .action-btn { flex: 1; }
 }
 
 .title {
   font-family: 'Press Start 2P', cursive;
-  font-size: 24px;
+  font-size: 20px;        /* slightly smaller so it fits beside buttons */
   font-weight: normal;
   color: #2c3e50;
   line-height: 1.6;
   margin: 0;
-  flex-shrink: 0;
+  white-space: nowrap;    /* never break the title */
 }
+
+/* Tablet and below: title row on top, buttons row below */
 @media (max-width: 768px) {
-  .title {
-    font-size: 160%;
-    text-align: center;
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
+  .title-block {
+    flex: none;
+    width: 100%;
+    align-items: center;
+  }
+  .puzzle-date-label { text-align: center; }
+  .title { text-align: center; }
+  .actions { width: 100%; justify-content: center; }
+  .action-btn { flex: 1; }
 }
+
+/* Small phones */
 @media (max-width: 480px) {
-  .title { font-size: 100%; }
-}
-@media (max-width: 400px) {
-  .title { font-size: 100%; }
+  .title { font-size: 14px; }
+  .action-btn { padding: 10px 16px; font-size: 13px; }
 }
 
 .actions {
