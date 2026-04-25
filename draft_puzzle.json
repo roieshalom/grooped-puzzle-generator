@@ -1,94 +1,63 @@
 {
   "categories": [
     {
-      "name": "___ CAKE",
+      "name": "In a sewing kit",
       "words": [
-        "POUND",
-        "ANGEL",
-        "COFFEE",
-        "CHEESE"
+        "SPOOL",
+        "NEEDLE",
+        "BUTTON",
+        "PIN"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Ways to say 'succeed'",
+      "name": "things a barber does",
       "words": [
-        "NAIL",
-        "ACE",
-        "CRUSH",
-        "SLAY"
+        "FAN",
+        "TRIM",
+        "SHAVE",
+        "STYLE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "___ SHARK",
+      "name": "Park types",
       "words": [
-        "HAMMERHEAD",
-        "TIGER",
-        "BULL",
-        "NURSE"
+        "AMUSEMENT",
+        "NATIONAL",
+        "CITY",
+        "BUSINESS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Things on a baseball field",
+      "name": "Movies",
       "words": [
-        "BATTER",
-        "HAMMER",
-        "DRILL",
-        "TACKLE"
+        "ACTOR",
+        "SCREEN",
+        "CUT",
+        "TRAILER"
       ],
       "difficulty": "purple"
     }
   ],
+  "date": null,
   "decoys": [
     {
-      "category_a": "___ CAKE",
-      "category_b": "Things on a baseball field",
-      "reason_a": "Pound cake is a classic dessert made with a pound each of butter, sugar, eggs, and flour.",
-      "reason_b": "Solvers might think of pounding the ball or pounding bases, fitting the baseball theme.",
-      "word": "POUND"
-    },
-    {
-      "category_a": "Things on a baseball field",
-      "category_b": "___ SHARK",
-      "reason_a": "A hammer is slang for a strong-throwing pitcher or a powerful hitter.",
-      "reason_b": "Hammerhead shark is a well-known species, creating strong pull toward the shark category.",
-      "word": "HAMMER"
+      "category_a": "Things you find in a sewing kit",
+      "category_b": "Words related to movies",
+      "reason_a": "A spool holds thread and is a standard item in a sewing kit.",
+      "reason_b": "To 'spool' refers to advancing or rewinding film or tape, making it sound movie-related.",
+      "word": "SPOOL"
     }
   ],
+  "design_notes": "",
+  "id": null,
   "language": "en",
-  "other_trick": "DRILL and TACKLE seem like tools or football terms but are baseball practice activities; CRUSH fits both succeed and shark (as in crushing performance or potential shark name).",
-  "thinking": {
-    "all_16_words": "POUND ANGEL COFFEE CHEESE NAIL ACE CRUSH SLAY HAMMERHEAD TIGER BULL NURSE BATTER HAMMER DRILL TACKLE",
-    "anchors": [
-      {
-        "home_category": "___ CAKE",
-        "meaning_a": "unit of weight",
-        "meaning_b": "hit repeatedly",
-        "tempts_toward": "Things you can do with a hammer",
-        "word": "POUND"
-      },
-      {
-        "home_category": "___ CAKE",
-        "meaning_a": "angel cake",
-        "meaning_b": "heavenly being",
-        "tempts_toward": "Things with halos",
-        "word": "ANGEL"
-      },
-      {
-        "home_category": "Ways to say 'succeed'",
-        "meaning_a": "hit perfectly",
-        "meaning_b": "metal fastener",
-        "tempts_toward": "Things you can do with a hammer",
-        "word": "NAIL"
-      }
-    ]
-  },
+  "other_trick": "CUT could tempt both movies (as an editing term) and sewing (as an action with scissors), while BUTTON might seem at home online or in sewing.",
   "_validation": {
     "valid": true,
     "errors": [],
     "duplicate_words": []
-  },
-  "_vercel_draft": true
+  }
 }

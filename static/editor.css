@@ -263,10 +263,19 @@ input[type="text"]:focus {
 @media (max-width: 600px) {
   .top-bar {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
-  .title { width: 100%; }
-  .actions { width: 100%; }
+  .title-block {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .puzzle-date-label {
+    text-align: center;
+    display: block;
+  }
+  .title { width: 100%; text-align: center; }
+  .actions { width: 100%; justify-content: center; }
   .action-btn { flex: 1; }
 }
 
@@ -335,7 +344,7 @@ input[type="text"]:focus {
 }
 
 .message-box {
-  padding: 8px 200px;
+  padding: 8px 40px;
   border-radius: 6px;
   font-size: 13px;
   line-height: 1;
@@ -344,6 +353,9 @@ input[type="text"]:focus {
   border: 1px solid #7fb1e8;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
