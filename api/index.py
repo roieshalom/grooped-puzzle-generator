@@ -590,6 +590,31 @@ Return ONLY valid JSON:
 
 # ─── Health check ─────────────────────────────────────────────────────────────
 
+@app.route("/api/next-date", methods=["GET"])
+@require_auth
+def next_date():
+    """Return the date the next exported puzzle will receive."""
+    try:
+        existing, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
+        puzzles_list = (
+            existing.get("puzzles", []) if isinstance(existing, dict)
+            else (existing or [])
+        )
+        dates = []
+        for p in puzzles_list:
+            ds = p.get("date", "")
+            if ds:
+                try:
+                    dates.append(datetime.strptime(ds, "%d.%m.%Y"))
+                except ValueError:
+                    pass
+        next_d = (max(dates) + timedelta(days=1)) if dates else datetime.now()
+        # No leading zeros: 3.5.2026 not 03.05.2026
+        return jsonify({"date": f"{next_d.day}.{next_d.month}.{next_d.year}"})
+    except Exception as e:
+        return jsonify({"date": None, "error": str(e)}), 500
+
+
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"ok": True, "env": {

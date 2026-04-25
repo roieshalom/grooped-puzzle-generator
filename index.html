@@ -13,6 +13,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="/static/editor.css">
   <style>
+    /* ── Title block ───────────────────────────────────────────────── */
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .puzzle-date-label {
+      font-family: monospace;
+      font-size: 12px;
+      color: #aaa;
+      letter-spacing: 0.02em;
+    }
+
     /* ── Login overlay ─────────────────────────────────────────────── */
     #loginOverlay {
       display: none;
@@ -94,7 +107,10 @@
 
   <div class="container">
     <div class="top-bar">
-      <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
+      <div class="title-block">
+        <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
+        <span id="puzzleDateLabel" class="puzzle-date-label"></span>
+      </div>
       <div class="actions">
         <button class="action-btn save" id="saveBtn">Save</button>
         <button class="action-btn reload" id="reloadBtn">Revert</button>

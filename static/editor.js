@@ -508,6 +508,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     setStatus('Puzzle exported', 'success', 4000);
 
     await load();
+    refreshNextDate();
   } catch (e) {
     setStatus('Export failed', 'error', 4000);
     setButtonLoading('exportBtn', false);
@@ -792,9 +793,23 @@ if (loginBtn && pwdInput) {
   });
 }
 
+// ── Next puzzle date ─────────────────────────────────────────────────────────
+async function refreshNextDate() {
+  try {
+    const r = await apiFetch('/api/next-date');
+    if (!r.ok) return;
+    const { date } = await r.json();
+    const el = document.getElementById('puzzleDateLabel');
+    if (el && date) el.textContent = `Puzzle for ${date}`;
+  } catch (e) {
+    // Non-fatal — label just stays empty
+  }
+}
+
 // ── Startup ─────────────────────────────────────────────────────────────────
 // Try to load immediately. If the server returns 401, apiFetch() will
 // automatically show the login overlay. If no password is required (local dev),
 // the load succeeds transparently.
 setStatus('Ready', 'info', 2000);
 load();
+refreshNextDate();
