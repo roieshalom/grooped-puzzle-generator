@@ -12,6 +12,18 @@ function getAuthToken()      { return localStorage.getItem('editor-token') || ''
 function setAuthToken(token) { localStorage.setItem('editor-token', token); }
 function clearAuthToken()    { localStorage.removeItem('editor-token'); }
 
+// Draft persistence in localStorage (cross-session, same device)
+const DRAFT_KEY = 'grooped-draft-puzzle';
+function saveDraftLocally(puzzle) {
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(puzzle)); } catch(e) {}
+}
+function loadDraftLocally() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
 function showLoginOverlay() {
   const overlay = document.getElementById('loginOverlay');
   if (overlay) overlay.classList.add('show');
@@ -386,19 +398,21 @@ function hasWithinPuzzleDuplicates(puzzle) {
 async function load() {
   setStatus('Loading...');
   try {
+    // Try server first (local Flask returns a real draft; Vercel returns [])
     const r = await apiFetch('/api/puzzle');
     if (!r.ok) throw new Error('Failed to load');
     const res = await r.json();
 
-    // Normalize: backend returns [puzzle]
     if (Array.isArray(res) && res.length > 0 && res[0]) {
       puzzles = [res[0]];
     } else {
-      puzzles = [];
+      // Server has no draft — fall back to localStorage
+      const local = loadDraftLocally();
+      puzzles = local ? [local] : [];
     }
 
     if (puzzles.length === 0) {
-      setStatus('No puzzles found', 'info', 2000);
+      setStatus('No puzzle yet — hit Generate', 'info', 3000);
       updateExportButtonState();
       return;
     }
@@ -407,8 +421,10 @@ async function load() {
     updateUI();
     setStatus('Puzzle loaded', 'info', 2000);
   } catch (e) {
-    setStatus('Load failed', 'error', 4000);
-    alert('Load failed: ' + e);
+    // If auth error, apiFetch already showed the login overlay
+    if (e.message !== 'Not authenticated — please log in') {
+      setStatus('Load failed', 'error', 4000);
+    }
   }
 }
 
@@ -433,6 +449,9 @@ async function save() {
 
     showValidationErrors(puzzles[0]);
     highlightDuplicateWords(puzzles[0]);
+
+    // Persist locally so Revert can restore this exact state
+    saveDraftLocally(puzzles[0]);
 
     lastSavedState = getCurrentStateString();
     hasUnsavedChanges = false;
