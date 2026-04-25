@@ -4,9 +4,8 @@ let lastSavedState = null; // Store the last saved puzzle state
 let hasUnsavedChanges = false;
 
 // ── Auth helpers ────────────────────────────────────────────────────────────
-// Token is stored in localStorage and sent as X-Editor-Token on every request.
-// If the server needs no password (local dev), tokens are never checked and
-// the login overlay never appears.
+// Token is stored in localStorage and sent as X-Editor-Token on every mutation.
+// The page is publicly readable without any token.
 
 function getAuthToken()      { return localStorage.getItem('editor-token') || ''; }
 function setAuthToken(token) { localStorage.setItem('editor-token', token); }
@@ -24,18 +23,51 @@ function loadDraftLocally() {
   } catch(e) { return null; }
 }
 
-function showLoginOverlay() {
-  const overlay = document.getElementById('loginOverlay');
-  if (overlay) overlay.classList.add('show');
-}
-function hideLoginOverlay() {
-  const overlay = document.getElementById('loginOverlay');
-  if (overlay) overlay.classList.remove('show');
+// ── Read-only mode ──────────────────────────────────────────────────────────
+
+let _readOnly = true; // default until we confirm we have a valid token
+
+function setReadOnly(readOnly) {
+  _readOnly = readOnly;
+
+  // Toggle all editable inputs
+  document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
+    inp.disabled = readOnly;
+  });
+
+  // Toggle edit-only action buttons
+  ['saveBtn', 'generateBtn'].forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.disabled = readOnly;
+  });
+
+  // Toggle per-category buttons
+  document.querySelectorAll('.regenerate-btn, .ban-btn').forEach(btn => {
+    btn.disabled = readOnly;
+  });
+
+  // Update lock button appearance
+  const lockBtn = document.getElementById('lockBtn');
+  if (lockBtn) {
+    lockBtn.textContent = readOnly ? '🔒' : '🔓';
+    lockBtn.title = readOnly ? 'Unlock editor' : 'Lock editor';
+    lockBtn.classList.toggle('unlocked', !readOnly);
+  }
+
+  // Hide auth panel when unlocking
+  if (!readOnly) {
+    const panel = document.getElementById('authPanel');
+    if (panel) panel.classList.remove('show');
+    const inp = document.getElementById('inlinePasswordInput');
+    if (inp) inp.value = '';
+  }
+
+  updateExportButtonState();
 }
 
 // Drop-in replacement for fetch() that:
-//   1. Adds the auth token header
-//   2. Shows the login overlay on 401 instead of letting the UI break
+//   1. Adds the auth token header on mutating requests
+//   2. On 401: clears token, switches to read-only, shows a message
 async function apiFetch(url, options = {}) {
   const token = getAuthToken();
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
@@ -45,19 +77,19 @@ async function apiFetch(url, options = {}) {
 
   if (response.status === 401) {
     clearAuthToken();
-    showLoginOverlay();
-    throw new Error('Not authenticated — please log in');
+    setReadOnly(true);
+    setStatus('Session expired — unlock to edit', 'error', 5000);
+    throw new Error('Not authenticated');
   }
   return response;
 }
 
-// ── Login logic ─────────────────────────────────────────────────────────────
+// ── Inline unlock logic ──────────────────────────────────────────────────────
 
-async function attemptLogin(password) {
-  const errEl = document.getElementById('loginError');
-  const btn   = document.getElementById('loginBtn');
-  if (errEl) errEl.textContent = '';
-  if (btn)   btn.disabled = true;
+async function attemptUnlock(password) {
+  if (!password) return;
+  const btn = document.getElementById('inlineUnlockBtn');
+  if (btn) btn.disabled = true;
 
   try {
     const r = await fetch('/api/auth', {
@@ -68,19 +100,19 @@ async function attemptLogin(password) {
     const res = await r.json();
     if (res.ok) {
       setAuthToken(res.token);
-      hideLoginOverlay();
-      await load();          // load puzzle now that we're authenticated
+      setReadOnly(false);
+      setStatus('Editor unlocked ✓', 'success', 3000);
     } else {
-      if (errEl) errEl.textContent = 'Wrong password';
+      setStatus('Wrong password', 'error', 3000);
+      const inp = document.getElementById('inlinePasswordInput');
+      if (inp) { inp.value = ''; inp.focus(); }
     }
   } catch (e) {
-    if (errEl) errEl.textContent = 'Login failed — check your connection';
+    setStatus('Login failed — check your connection', 'error', 3000);
   } finally {
     if (btn) btn.disabled = false;
   }
 }
-
-// Wire up login form after DOM is ready (done at bottom of file)
 
 const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
 const colorToDifficulty = {
@@ -159,7 +191,7 @@ function checkUnsavedChanges() {
 // Update export button enabled/disabled state
 function updateExportButtonState() {
   const exportBtn = document.getElementById('exportBtn');
-  exportBtn.disabled = hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
+  exportBtn.disabled = _readOnly || hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
 }
 
 function setButtonLoading(buttonId, loading) {
@@ -421,10 +453,7 @@ async function load() {
     updateUI();
     setStatus('Puzzle loaded', 'info', 2000);
   } catch (e) {
-    // If auth error, apiFetch already showed the login overlay
-    if (e.message !== 'Not authenticated — please log in') {
-      setStatus('Load failed', 'error', 4000);
-    }
+    setStatus('Load failed', 'error', 4000);
   }
 }
 
@@ -782,16 +811,38 @@ document.getElementById('saveBtn').addEventListener('click', () => {
 // Initialize export button state
 updateExportButtonState();
 
-// ── Login form wiring ───────────────────────────────────────────────────────
-const loginBtn   = document.getElementById('loginBtn');
-const pwdInput   = document.getElementById('passwordInput');
+// ── Lock button wiring ──────────────────────────────────────────────────────
 
-if (loginBtn && pwdInput) {
-  loginBtn.addEventListener('click', () => attemptLogin(pwdInput.value));
-  pwdInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') attemptLogin(pwdInput.value);
-  });
-}
+document.getElementById('lockBtn').addEventListener('click', () => {
+  if (!_readOnly) {
+    // Currently unlocked → lock
+    clearAuthToken();
+    setReadOnly(true);
+    setStatus('Editor locked', 'info', 2000);
+  } else {
+    // Currently locked → toggle password panel
+    const panel = document.getElementById('authPanel');
+    const isOpen = panel.classList.contains('show');
+    panel.classList.toggle('show', !isOpen);
+    if (!isOpen) {
+      const inp = document.getElementById('inlinePasswordInput');
+      if (inp) setTimeout(() => inp.focus(), 50);
+    }
+  }
+});
+
+document.getElementById('inlineUnlockBtn').addEventListener('click', () => {
+  const inp = document.getElementById('inlinePasswordInput');
+  if (inp) attemptUnlock(inp.value);
+});
+
+document.getElementById('inlinePasswordInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    attemptUnlock(e.target.value);
+  } else if (e.key === 'Escape') {
+    document.getElementById('authPanel').classList.remove('show');
+  }
+});
 
 // ── Next puzzle date ─────────────────────────────────────────────────────────
 async function refreshNextDate() {
@@ -807,9 +858,9 @@ async function refreshNextDate() {
 }
 
 // ── Startup ─────────────────────────────────────────────────────────────────
-// Try to load immediately. If the server returns 401, apiFetch() will
-// automatically show the login overlay. If no password is required (local dev),
-// the load succeeds transparently.
+// The page is publicly viewable — load the puzzle without auth.
+// If a token is already stored, start in edit mode; otherwise read-only.
 setStatus('Ready', 'info', 2000);
+setReadOnly(!getAuthToken());
 load();
 refreshNextDate();
