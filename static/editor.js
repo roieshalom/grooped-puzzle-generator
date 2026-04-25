@@ -430,8 +430,8 @@ function hasWithinPuzzleDuplicates(puzzle) {
 async function load() {
   setStatus('Loading...');
   try {
-    // Try server first (local Flask returns a real draft; Vercel returns [])
-    const r = await apiFetch('/api/puzzle');
+    // GET /api/puzzle is public — no auth token needed
+    const r = await fetch('/api/puzzle');
     if (!r.ok) throw new Error('Failed to load');
     const res = await r.json();
 
@@ -847,7 +847,8 @@ document.getElementById('inlinePasswordInput').addEventListener('keydown', (e) =
 // ── Next puzzle date ─────────────────────────────────────────────────────────
 async function refreshNextDate() {
   try {
-    const r = await apiFetch('/api/next-date');
+    // GET /api/next-date is public — no auth token needed
+    const r = await fetch('/api/next-date');
     if (!r.ok) return;
     const { date } = await r.json();
     const el = document.getElementById('puzzleDateLabel');
