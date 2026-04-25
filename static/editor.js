@@ -35,8 +35,8 @@ function setReadOnly(readOnly) {
     inp.disabled = readOnly;
   });
 
-  // Toggle edit-only action buttons
-  ['saveBtn', 'generateBtn'].forEach(id => {
+  // Toggle all action buttons
+  ['saveBtn', 'reloadBtn', 'generateBtn', 'exportBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.disabled = readOnly;
   });
