@@ -152,8 +152,7 @@ def add_banned():
 # ─── Draft puzzle ─────────────────────────────────────────────────────────────
 
 @app.route("/api/puzzle", methods=["GET"])
-@require_auth
-def get_puzzle():
+def get_puzzle():  # public — read-only viewers can see the current draft
     try:
         draft, _ = gh_read(GENERATOR_REPO, DRAFT_PATH)
         if draft and draft.get("categories"):
@@ -588,8 +587,7 @@ Return ONLY valid JSON:
 # ─── Health check ─────────────────────────────────────────────────────────────
 
 @app.route("/api/next-date", methods=["GET"])
-@require_auth
-def next_date():
+def next_date():  # public
     """Return the date the next exported puzzle will receive."""
     try:
         existing, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
