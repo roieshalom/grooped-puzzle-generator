@@ -96,7 +96,7 @@ function setStatus(text, type = 'info', duration = 3000) {
   if (!box) return;
 
   box.textContent = text;
-  box.style.display = 'inline-flex';
+  box.style.display = 'flex';
 
   box.classList.remove('success', 'error', 'info');
   if (type) box.classList.add(type);

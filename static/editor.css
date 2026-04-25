@@ -365,10 +365,10 @@ input[type="text"]:focus {
   background-color: #e0f2fe;
   border: 1px solid #7fb1e8;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
-  max-width: 100%;
   width: 100%;
   box-sizing: border-box;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
