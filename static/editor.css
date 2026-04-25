@@ -399,6 +399,13 @@ input[type="text"]:focus {
   color: #1d4ed8;
 }
 
+.design-notes {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
 .status {
   position: fixed;
   bottom: 20px;
