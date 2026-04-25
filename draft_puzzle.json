@@ -57,6 +57,7 @@
       "word": "HAMMER"
     }
   ],
+  "language": "en",
   "other_trick": "DRILL and TACKLE seem like tools or football terms but are baseball practice activities; CRUSH fits both succeed and shark (as in crushing performance or potential shark name).",
   "thinking": {
     "all_16_words": "POUND ANGEL COFFEE CHEESE NAIL ACE CRUSH SLAY HAMMERHEAD TIGER BULL NURSE BATTER HAMMER DRILL TACKLE",
@@ -84,7 +85,6 @@
       }
     ]
   },
-  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
