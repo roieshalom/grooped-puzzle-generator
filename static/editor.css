@@ -348,6 +348,12 @@ input[type="text"]:focus {
 }
 .action-btn.reload:hover { background: #c0392b; }
 
+/* Disabled state for all action buttons */
+.action-btn:disabled:not(.loading):not(.success) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .message-area {
   min-height: 40px;
   display: flex;
