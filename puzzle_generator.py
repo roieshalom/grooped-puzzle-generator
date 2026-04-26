@@ -140,106 +140,263 @@ A system check will also catch paraphrases using semantic similarity — so aim 
     # Main prompt is a plain triple-quoted string (NOT an f-string),
     # so the JSON braces remain literal
     prompt = banned_block + """
-Design a casual 4x4 Connections-style word puzzle. Register: sitcom, not syllabus. A teenager and their grandparent should both get it.
+GROOPED PUZZLE GENERATION PROMPT (v5)
+=====================================
 
-============================
-FOLLOW THIS DESIGN PROCESS
-============================
+You are designing a single 4x4 NYT Connections-style puzzle for Grooped. 16 unique words, four groups of four, each tagged with a difficulty color: yellow (easiest), green, blue, purple (hardest). Output schema must match puzzles.json.
 
-STEP 1 — PICK 2-3 ANCHOR WORDS FIRST (before touching categories)
-An anchor is a short, everyday word with two genuinely different common meanings.
-Pick ones where both meanings are so obvious that a stranger wouldn't need an explanation.
+NORTH STAR
+==========
 
-Strong anchors: BARK (dog sound / tree skin), SPRING (season / coil / to jump), COLD (illness / temperature), BASS (fish / music), TRUNK (elephant / tree / car / swimwear), CRANE (bird / machine), BOLT (lightning / door lock / sprint), DIAMOND (gem / baseball field), PITCHER (jug / baseball), CHIP (snack / microchip / casino token), LIGHT (lamp / not heavy / pale), CLUB (nightclub / golf / suit / weapon), DRAFT (beer / wind / military / writing).
+A great Grooped puzzle is not four neat lists. It is four groups that bleed into each other on the board, so a solver feels multiple words could plausibly live in multiple homes. A STRONG BOARD BEATS EVERY RULE BELOW. That cross-pull tension is the puzzle. Without it, you made a quiz.
 
-STEP 2 — ASSIGN EACH ANCHOR A SINGLE HOME CATEGORY
-Each anchor goes in exactly ONE category. Its other meaning creates decoy tension — solvers will be tempted to file it in the wrong category. That temptation IS the decoy. You do NOT put the anchor in two categories.
-
-Example: BARK goes home to "Sounds animals make". There is also a "Parts of a tree" category, but BARK is not in it — ROOT, SAP, BRANCH, RING are. The decoy: solvers see BARK and want to put it in the tree category. One word, one home, one beautiful trap.
-
-STEP 3 — BUILD 4 CATEGORIES AROUND YOUR ANCHORS
-Mix category types. Best types:
-- Things in a specific scene: "Things in a junk drawer", "What's on a hotdog"
-- Fill-in-the-blank: "BREAK ___" (DANCE, UP, FAST, EVEN), "___ STONE" (CORN, LIME, SAND, SUN)
-- Pop-culture set: "Sitcom Dads", "Characters named Jake", "Saturday Night Live cast members"
-- Wordplay: "Homophones of numbers", "___ + HOUSE", "Words that sound like letters"
-- Everyday phrases: "Ways to say no", "Things you do at a red light"
-
-AVOID:
-- Academic or jargon categories (no "Philosophical schools", "Tempo markings", "Literary devices", "Logical fallacies", "Fabric weaves")
-- Any category where all 4 words share a telltale surface feature (all end in -ism, all Italian musical terms, all scientific Latin). Those are giveaways.
-- "Words that are both X and Y" — forbidden. Split into two real categories instead.
-- Long words that can only mean one thing (SNICKERDOODLE, TIPTOE, CUMULONIMBUS). Prefer 1-2 syllable everyday words.
-- A word that appears inside its own category name (POP in "Things that Pop").
-
-STEP 4 — FILL REMAINING SLOTS
-Prefer short common words. Favor polysemous words even in non-anchor slots — they create ambient misdirection.
-
-STEP 5 — UNIQUENESS CHECK
-Every one of the 16 board words must be unique (case-insensitive). List all 16 in your thinking field. If any word appears twice, fix it before outputting categories.
-
-============================
-TARGET QUALITY: THIS IS GOOD
+STEP 0: FETCH THE LIVE CORPUS
 ============================
 
-thinking.anchors: [{word:"ICE", home:"Things in a fridge", meaning_a:"frozen water stored in a fridge", tempts_toward:"BREAK ___", meaning_b:"break the ice"}, {word:"DEAL", home:"Ways to say yes", meaning_a:"deal = yes, I agree", tempts_toward:"BREAK ___", meaning_b:"break a deal"}]
-thinking.all_16_words: WAZOWSKI TYSON MYERS PENCE MILK EGGS LEFTOVERS ICE SURE DEAL BET GRANTED DANCE UP FAST EVEN
+Before drafting, fetch https://raw.githubusercontent.com/roieshalom/grooped/refs/heads/main/puzzles.json. You will use it for four things:
 
-CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE  (medium)
-THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE  (easy)
-WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED  (medium)
-BREAK ___ — DANCE, UP, FAST, EVEN  (hard)
+1. REPEAT CHECK: no category theme or individual word may repeat from the last 60 days.
+2. STYLE CALIBRATION: absorb the corpus voice.
+3. MECHANIC BALANCING: read the 'mechanic' field on each category and the 'attempt_log' field on each puzzle. See "MECHANIC FREQUENCY SYSTEM" below.
+4. WARMUP AWARENESS: puzzles before #137 do not have 'mechanic' fields. They are untagged history. Your cooldown calculations only run on tagged puzzles.
 
-Decoys: ICE (fridge / break the ice), DEAL (yes / break a deal), BET (yes / break a bet)
-Why it works: four categories that seem independent but share anchor words with dual meanings. No word appears twice. 3 real decoys.
+If you cannot fetch it, say so and stop.
 
+MECHANIC FREQUENCY SYSTEM
+=========================
+
+Mechanics live in four tiers by how often they should appear. The tiers exist because some mechanics (simple "___ X" fill-in-blank) feel fresh weekly, while others (first-letter acrostics) feel forced if used often.
+
+HOW TO USE THE TIERS
+====================
+
+When picking the four mechanics for a new puzzle:
+
+1. SCAN the last 21 tagged puzzles in puzzles.json. Note which mechanics appeared in their 'mechanic' fields AND in their 'attempt_log' (abandoned attempts count toward cooldown too).
+2. APPLY COOLDOWNS: a mechanic that appeared inside its cooldown window is off-limits for this puzzle.
+3. PREFER UNDERUSED MECHANICS: if a Tier 2 or Tier 3 mechanic has not appeared in the last 21 puzzles, it is a strong candidate.
+4. DON'T FORCE RARE MECHANICS: Tier 4 should appear when a great idea naturally lands, not because the cooldown expired.
+
+A typical strong puzzle uses 1-2 mechanics from Tier 1, 1-2 from Tier 2, optionally 1 from Tier 3, and rarely one from Tier 4.
+
+WARMUP PERIOD (until 21 tagged puzzles exist)
+==============================================
+
+The corpus before puzzle #137 is heavily skewed toward Tier 1 (taxonomy and reference). Until there are 21 tagged puzzles to read from:
+
+- LEAN TOWARD TIER 2 AND TIER 3 MECHANICS, since the untagged history already provides plenty of Tier 1 baseline.
+- DON'T DOUBLE UP ON TIER 1 MECHANICS in the same puzzle during warmup unless the cross-pulls are exceptional.
+- Once 21 tagged puzzles exist, switch to standard cooldown logic.
+
+TIER 1: WORKHORSES — cooldown 4 puzzles, ~40% of categories long-term
+====================================================================
+
+The reliable backbones. Repeating these every few days is fine because the content is fresh even when the mechanic is familiar.
+
+- TAXONOMY: flat list of a category type (cheeses, currencies, dog breeds). Allowed only when at least 2 of its 4 words pull toward another group on the board. Otherwise it is filler.
+- FOUND_IN_SCENE: things in a place. "At the dentist" -> BRACE, CAVITY, CROWN, BRIDGE.
+- PREFIX_BLANK: "___ X". "___ STONE" -> CORNER, KEY, SAND, LIME.
+- SUFFIX_BLANK: "X ___". "DEAD ___" -> PAN, BEAT, POOL, RINGER.
+- SYNONYMS: literal synonyms for one word. "Walk" -> STROLL, TREAD, WANDER, MARCH.
+
+TIER 2: REGULARS — cooldown 7 puzzles, ~35% of categories long-term
+====================================================================
+
+Slightly more lateral. These should appear every 1 to 2 weeks.
+
+- THINGS_THAT_VERB: nouns that all do an action. "Things that RUN" -> NOSE, FAUCET, CANDLE, NYLON.
+- CAN_BE_VERBED: things that can all receive an action. "Can be scrambled" -> EGG, TELEGRAM, CODE, LETTERS.
+- SHARED_HIDDEN_PROPERTY: surprise trait. "Have teeth" -> COMB, GEAR, ZIPPER, SAW.
+- METAPHOR_SUBSTITUTES: figurative terms for one concept. "In trouble" -> BIND, JAM, PICKLE, HOT WATER. UNDERUSED IN THE CORPUS. PREFER THIS.
+- WAYS_TO_VERB: phrasal styles of an action. "Ways to say yes" -> SURE, BET, DEAL, GRANTED.
+- IDIOM_COMPLETION: words that finish a specific idiom. "Bite the ___" -> BULLET, DUST, HAND, APPLE.
+- ORDERED_SET_MEMBER: planets, Greek letters, NATO alphabet, ranks, days, months.
+- WORKS_BY_ONE_MAKER: songs by an artist, films by a director.
+- CHARACTERS_IN_ONE_WORK: cast of one show or book.
+
+TIER 3: SPECIALS — cooldown 21 puzzles, ~20% of categories long-term
+====================================================================
+
+Wordplay-flavored mechanics that lose punch with overuse. Roughly once every 3 weeks each.
+
+- HIDDEN_WORD_INSIDE: each word secretly contains an item from a hidden category, anywhere. Hidden numbers -> STONE (one), OFTEN (ten), CANINE (nine), FREIGHT (eight).
+- HIDDEN_WORD_AT_START: each word starts with a hidden item. Soda brands -> CRUSHWORTHY, FANTAGRAPHICS, FRESCADE, PEPSINOGEN.
+- HIDDEN_WORD_AT_END: same idea, at the end.
+- HOMOPHONE_OF_LETTER: sound like single letters. SEA (C), ARE (R), WHY (Y), JAY (J).
+- HOMOPHONE_OF_NUMBER: sound like numbers. ATE (8), FOR (4), WON (1), TOO (2).
+- HOMOPHONE_PAIRS: each has a homophone fitting a category. BARE/BEAR, FLOWER/FLOUR.
+- COMPOUND_BOTH_WAYS: words that work as both prefix and suffix to one hub.
+- ADD_LETTER: become other real words when you add the same letter (CARE -> SCARE).
+- DROP_LETTER: same in reverse.
+- EPONYMS: things named after people. SANDWICH, BOYCOTT, GUILLOTINE, CARDIGAN.
+- CROSS_LANGUAGE: same concept across languages. "Cheers" -> SLAINTE, KAMPAI, PROST, CIN-CIN.
+- ABBREVIATION_EXPANSION: common acronyms read as letters (NASA, FBI, SCUBA, RADAR).
+
+TIER 4: TREATS — cooldown 45 puzzles, ~5% of categories long-term
+==================================================================
+
+Showpiece mechanics. Heavy when they land, exhausting if they repeat. Roughly once every 6 weeks each.
+
+- ANAGRAM_OF_ONE_SOURCE: four anagrams of one word. From LISTEN: SILENT, TINSEL, INLETS, ENLIST.
+- ACROSTIC_FIRST_LETTERS: first letters of the four words spell a hidden fifth word.
+- CHAIN_THROUGH_HUB: the hub of a "___ X" group is itself a word in another group on the same board. The most elegant trick when it works.
+- PORTMANTEAU: blended words. BRUNCH, SMOG, MOTEL, SPORK.
+- ONOMATOPOEIA: sound-effect words. POW, BAM, ZAP, BOOM.
+
+FALLBACK WITH LOGGING
+====================
+
+If you commit to a Tier 3 or Tier 4 mechanic and after a real attempt cannot find four words that work cleanly, you may fall back to a Tier 1 or Tier 2 mechanic. YOU MUST LOG THE ABANDONED ATTEMPT in the 'attempt_log' field of the puzzle. The cooldown system reads this log, so an abandoned attempt counts toward the cooldown the same as a shipped one. This prevents the model from retrying the same broken idea day after day.
+
+Reasons to abandon:
+- Cannot find four genuine examples without forcing obscure words
+- The mechanic produces words that have no decoy potential against the rest of the board
+- The mechanic technically works but feels academic rather than playful
+
+Do not abandon for trivial reasons. The point is to attempt hard mechanics, not to default away from them.
+
+DECOY ENGINE
+============
+
+For each puzzle, identify 2 to 3 decoy words.
+
+A DECOY is a word in category A that solvers will be tempted to drop into category B, where category B is ALSO A REAL GROUP ON THIS EXACT BOARD. A decoy that points at a phantom category is just a hard word, not a decoy.
+
+A FALSE DECOY is the next move: a word that looks like it should belong elsewhere but actually lives in its obvious home. The suspicion is the trap. Example: THIMBLE on a board with both Monopoly Pieces and Sewing Equipment, where THIMBLE actually goes to Monopoly.
+
+If you cannot identify at least 2 real decoys, your puzzle has no cross-board tension. Rebuild it.
+
+CATEGORY FRAMING
+================
+
+How you name the category changes how it reads. "Words for trouble" is dull. "Metaphors for being in trouble" implies the category is figurative and that's the trick. "Look at with awe" reads like a riddle. "Ways to gesture goodbye" beats "Goodbye gestures." Frame as a verb phrase or riddle whenever you can.
+
+DIFFICULTY AS A SOFT PATTERN
 ============================
-THIS IS BAD — DO NOT DO THIS
-============================
 
-KITCHEN HERBS — BASIL, OREGANO, THYME, PARSLEY
-PHILOSOPHICAL SCHOOLS — STOICISM, NIHILISM, IDEALISM, REALISM
-TEMPO MARKINGS — ALLEGRO, ANDANTE, PRESTO, LARGO
-WORDS THAT ARE BOTH COLORS AND EMOTIONS — BLUE, GREEN, GRAY, BLACK
+Soft guideline, not a rule. Deviate freely if the board demands it.
 
-Why it fails: flat taxonomy, academic jargon, surface giveaways (-ism), forbidden "both X and Y" pattern. No anchor words, no real decoys possible.
+- YELLOW: clearest entry. Often a clean scene, taxonomy, or synonym set, with one mild decoy temptation.
+- GREEN: recognizable connection that needs a small lateral step.
+- BLUE: misdirection-heavy or domain-specific.
+- PURPLE: usually wordplay or the trickiest semantic leap. Tier 3/4 mechanics most often live here.
 
-============================
+HARD RULES
+=========
+
+- 16 unique words on the board (case-insensitive).
+- No word repeats from any puzzle in the last 60 days.
+- No category theme repeats from the last 60 days. Older repeats fine if spread out.
+- No category where all four words share a surface tell (all -ISM, all start with LIM-, all Italian musical terms). Surface tells defeat the puzzle.
+- NO "FAMOUS BOBS / CHARLIES / AMYS / STEVES / MIKES" or any "FAMOUS [COMMON FIRST NAME]" pattern. Permanently retired.
+- No US Presidents as a category.
+- No "Words that are both X and Y" as a category name.
+- No standalone color list (RED, BLUE, GREEN, YELLOW). Hues-of-X is also tired.
+- No back-to-back puzzles with the same cultural theme.
+- No words a 12-year-old wouldn't know unless the category demands it (avoid CINNABAR, COQUELICOT, ESCUTCHEON, SINOPER).
+- No word appears twice in the same puzzle.
+- Decoy words must point at a category that exists on this exact board.
+- Respect mechanic cooldowns from the tier system.
+- Every category must have a 'mechanic' and 'tier' field. Every puzzle must have an 'attempt_log' field (can be a single entry if no fallback happened).
+
+WORKFLOW
+========
+
+1. FETCH puzzles.json.
+2. RUN THE MECHANIC BALANCER: scan the last 21 tagged puzzles. For each tier, list which mechanics appeared (in 'mechanic' fields or 'attempt_log' entries). Identify Tier 2 and Tier 3 mechanics that haven't appeared. Note any Tier 4 mechanics that haven't appeared in the last 45.
+3. PICK THE SPINE MECHANIC (often purple). Prefer underused candidates. If a Tier 4 idea is calling to you and the cooldown allows, go for it.
+4. PLANT A DECOY SEED: a word that plausibly lives in two of your groups.
+5. BUILD THE OTHER THREE GROUPS so the decoy seed pulls between them. Pick mechanics that haven't appeared recently when you have a choice.
+6. ADD A SECOND DECOY.
+7. LIST ALL 16 WORDS. Confirm zero duplicates.
+8. STRESS-TEST: can a solver group all four words of any group by surface pattern alone? If yes, weaken the surface signal.
+9. IF YOUR SPINE MECHANIC ISN'T WORKING, abandon it, log the attempt, and pick a different mechanic. Do not silently switch.
+10. SELF-CRITIQUE: tricked but fair, or tricked and annoyed?
+
 OUTPUT FORMAT
-============================
-Return ONLY valid JSON with this exact structure. Fill in "thinking" first — it is your scratchpad and must come before "categories":
+=============
+
+Match the production schema. The 'thinking' block is your scratchpad and must come first. Note the new 'mechanic' and 'tier' fields per category, and the 'attempt_log' field on the puzzle.
+
+EXAMPLE JSON OUTPUT (PUZZLE #137)
+================================
 
 {
+  "id": "137",
+  "date": "27.04.2026",
+  "language": "en",
   "thinking": {
-    "anchors": [
-      {
-        "word": "ANCHOR_WORD",
-        "meaning_a": "what it means in its home category",
-        "home_category": "name of the category it actually lives in",
-        "meaning_b": "the other common meaning that creates decoy tension",
-        "tempts_toward": "name of the category solvers will wrongly try"
-      }
-    ],
-    "all_16_words": "LIST ALL 16 BOARD WORDS HERE space-separated — check for duplicates before proceeding"
+    "mechanic_balance": {
+      "tagged_puzzles_available": 12,
+      "warmup_active": true,
+      "tier_1_recently_used": ["PREFIX_BLANK", "FOUND_IN_SCENE"],
+      "tier_2_recently_used": ["SHARED_HIDDEN_PROPERTY"],
+      "tier_3_recently_used": [],
+      "tier_4_recently_used": [],
+      "underused_candidates": ["METAPHOR_SUBSTITUTES", "HIDDEN_WORD_AT_START", "EPONYMS"],
+      "chosen_for_this_puzzle": ["FOUND_IN_SCENE", "METAPHOR_SUBSTITUTES", "WAYS_TO_VERB", "SUFFIX_BLANK"],
+      "cooldown_check": "PASS"
+    },
+    "all_16_words": "KEYS CHANGE LINT RECEIPTS BIND JAM PICKLE HOT_WATER SURE BET DEAL GRANTED PAN BEAT POOL RINGER",
+    "duplicate_check": "PASS"
   },
   "categories": [
     {
-      "name": "Short human-friendly name",
-      "difficulty": "easy | medium | hard",
-      "words": ["WORD1", "WORD2", "WORD3", "WORD4"]
+      "name": "Things that jingle in your pocket",
+      "difficulty": "yellow",
+      "mechanic": "FOUND_IN_SCENE",
+      "tier": 1,
+      "words": ["KEYS", "CHANGE", "LINT", "RECEIPTS"]
+    },
+    {
+      "name": "Metaphors for being in trouble",
+      "difficulty": "green",
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 2,
+      "words": ["BIND", "JAM", "PICKLE", "HOT WATER"]
+    },
+    {
+      "name": "Ways to say yes",
+      "difficulty": "blue",
+      "mechanic": "WAYS_TO_VERB",
+      "tier": 2,
+      "words": ["SURE", "BET", "DEAL", "GRANTED"]
+    },
+    {
+      "name": "DEAD ___",
+      "difficulty": "purple",
+      "mechanic": "SUFFIX_BLANK",
+      "tier": 1,
+      "words": ["PAN", "BEAT", "POOL", "RINGER"]
     }
   ],
   "decoys": [
     {
-      "word": "ANCHOR_WORD",
-      "category_a": "Exact name of its true home category",
-      "reason_a": "One plain sentence: why this word belongs here",
-      "category_b": "Exact name of the category it tempts toward",
-      "reason_b": "One plain sentence: why solvers will be tempted by this"
+      "word": "JAM",
+      "home": "Metaphors for being in trouble",
+      "tempts_toward": "Things that jingle in your pocket",
+      "why": "Solvers might think of jam jars or food in their pocket before reading JAM as 'in a jam'."
+    },
+    {
+      "word": "BET",
+      "home": "Ways to say yes",
+      "tempts_toward": "DEAD ___",
+      "why": "DEAD BET isn't a phrase, but the word feels gambly enough that solvers may try it there."
     }
   ],
-  "other_trick": "Optional: one sentence on any other overlap or misdirection on the board."
+  "false_decoy": null,
+  "attempt_log": [
+    { "mechanic": "ACROSTIC_FIRST_LETTERS", "tier": 4, "result": "abandoned", "reason": "couldn't land four natural words spelling a fifth without forcing obscure terms" },
+    { "mechanic": "SUFFIX_BLANK", "tier": 1, "result": "shipped" }
+  ]
 }
+
+If no fallback happened, attempt_log contains a single entry with result: "shipped".
+
+REFERENCE: TARGET QUALITY PUZZLE
+===============================
+
+The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, one wordplay in Tier 1 purple, real cross-pulls between groups (CHANGE could be pocket or could be improvement, JAM could be food or trouble, BEAT could be drum or DEAD BEAT). Strong board, varied mechanics, no Tier 4 forced. This is what good looks like.
 """
     # PORTFOLIO_END — do not remove: used by roiesh.com/grooped.html to display this prompt live
 
