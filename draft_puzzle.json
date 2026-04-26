@@ -1,79 +1,71 @@
 {
   "categories": [
     {
-      "name": "Things that jingle in your pocket",
+      "name": "Things that simmer on the stove",
       "words": [
-        "KEYS",
-        "CHANGE",
-        "LINT",
-        "RECEIPTS"
+        "STOCK",
+        "STEW",
+        "CHILI",
+        "SAUCE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Characters from 'Buffy the Vampire Slayer'",
+      "name": "007 movies",
       "words": [
-        "BUFFY",
-        "SPIKE",
-        "WILLOW",
-        "ANGEL"
+        "BOND",
+        "SPECTRE",
+        "SKYFALL",
+        "CASINO"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Things you do to improve",
+      "name": "Poker terms",
       "words": [
-        "GROW",
-        "STRETCH",
-        "ADAPT",
-        "EVOLVE"
+        "ANTE",
+        "STAKE",
+        "BLUFF",
+        "CHIPS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Drum sounds",
+      "name": "Film crew equipment",
       "words": [
-        "POUND",
-        "ROLL",
-        "BEAT",
-        "TAP"
+        "GRIP",
+        "BOOM",
+        "MIC",
+        "STAND"
       ],
       "difficulty": "purple"
     }
   ],
-  "decoys": [
-    {
-      "category_a": "Things that jingle in your pocket",
-      "category_b": "Things you do to improve",
-      "reason_a": "Loose change is coins you carry that make jingling sounds.",
-      "reason_b": "To change yourself is a common way to improve or grow.",
-      "word": "CHANGE"
-    }
-  ],
-  "other_trick": "BEAT and TAP can also suggest actions you do to improve (beat your record, tap into potential), and SPIKE could tempt toward volleyball or punk hairstyles.",
+  "decoys": [],
+  "other_trick": "CASINO works as a Bond film but also fits with poker terms; CHIPS could be poker chips or microchips or movie clips; GRIP looks like a poker grip but is film crew; MIC and STAND feel like music equipment but live in film.",
   "thinking": {
-    "all_16_words": "POUND ROLL BEAT TAP KEYS CHANGE LINT RECEIPTS BUFFY SPIKE WILLOW ANGEL GROW STRETCH ADAPT EVOLVE",
+    "all_16_words": "STOCK STEW CHILI SAUCE BOND SPECTRE SKYFALL CASINO ANTE STAKE BLUFF CHIPS GRIP BOOM MIC STAND",
     "anchors": [
       {
-        "home_category": "Drum sounds",
-        "meaning_a": "a repeated hitting sound or action",
-        "meaning_b": "unit of currency or weight",
-        "tempts_toward": "Units of measurement",
-        "word": "POUND"
+        "home_category": "Things that simmer on the stove",
+        "meaning_a": "broth or soup base",
+        "meaning_b": "inventory or shares",
+        "tempts_toward": "Wall Street jargon",
+        "word": "STOCK"
       },
       {
-        "home_category": "Things that jingle in your pocket",
-        "meaning_a": "coins or small bills",
-        "meaning_b": "to alter or transform",
-        "tempts_toward": "Things you do to improve",
-        "word": "CHANGE"
+        "home_category": "007 movies",
+        "meaning_a": "James Bond film",
+        "meaning_b": "financial security or connection",
+        "tempts_toward": "Wall Street jargon",
+        "word": "BOND"
       },
       {
-        "home_category": "Drum sounds",
-        "meaning_a": "a drum technique",
-        "meaning_b": "a bread item or to tumble",
-        "tempts_toward": "Things at a dinner table",
-        "word": "ROLL"
+        "home_category": "Poker terms",
+        "meaning_a": "gambling term",
+        "meaning_b": "ownership share or wooden post",
+        "tempts_toward": "Wall Street jargon",
+        "word": "STAKE"
       }
     ]
   },
