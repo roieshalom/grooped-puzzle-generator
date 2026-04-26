@@ -293,6 +293,24 @@ input[type="text"]:focus {
   color: #a07030;
 }
 
+/* Button to jump back to the next available future date */
+.jump-to-next-btn {
+  background: transparent;
+  border: 1px solid #d4a04a;
+  border-radius: 3px;
+  color: #a07030;
+  font-size: 11px;
+  padding: 2px 6px;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.jump-to-next-btn:hover {
+  background: #fdf6e8;
+  border-color: #a07030;
+}
+
 .date-mask {
   font-size: 10px;
   color: #ccc;

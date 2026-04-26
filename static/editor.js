@@ -99,6 +99,7 @@ function setViewingPast(viewing) {
   const picker  = document.getElementById('publishDatePicker');
   const disabled = viewing; // when exiting, setReadOnly will re-apply correct state
 
+  const jumpBtn = document.getElementById('jumpToNextBtn');
   if (viewing) {
     document.querySelectorAll('.word-input, .category-name-input').forEach(inp => { inp.disabled = true; });
     document.querySelectorAll('.regenerate-btn, .ban-btn').forEach(btn => { btn.disabled = true; });
@@ -107,10 +108,12 @@ function setViewingPast(viewing) {
       if (btn) btn.disabled = true;
     });
     if (picker) picker.classList.add('past-mode');
+    if (jumpBtn) jumpBtn.style.display = '';
   } else {
     // Restore whatever the current lock state demands
     setReadOnly(_readOnly);
     if (picker) picker.classList.remove('past-mode');
+    if (jumpBtn) jumpBtn.style.display = 'none';
   }
   updateExportButtonState();
 }
@@ -989,6 +992,22 @@ document.getElementById('publishDatePicker').addEventListener('change', async (e
       setStatus('Ready', 'info', 2000);
     }
   }
+});
+
+// ── Jump-to-next-date button ─────────────────────────────────────────────────
+document.getElementById('jumpToNextBtn').addEventListener('click', async () => {
+  if (!_viewingPast) return;
+  if (_savedDraft) {
+    puzzles    = [_savedDraft];
+    _savedDraft = null;
+    currentIndex = 0;
+    updateUI();
+  } else {
+    await load();
+  }
+  setViewingPast(false);
+  await refreshNextDate();
+  setStatus('Ready', 'info', 2000);
 });
 
 // ── Startup ─────────────────────────────────────────────────────────────────
