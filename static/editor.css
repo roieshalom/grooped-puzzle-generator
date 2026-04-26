@@ -85,10 +85,10 @@ input[type="text"]:focus {
   border-color: #333;
   transform: scale(1.1);
 }
-.color-square.purple { background: #9b59b6; }
-.color-square.green { background: #27ae60; }
-.color-square.blue { background: #3498db; }
-.color-square.orange { background: #e67e22; }
+.color-square.yellow { background: #FFE384; }
+.color-square.coral  { background: #FF927C; }
+.color-square.mint   { background: #9EDEBE; }
+.color-square.sky    { background: #71C2FA; }
 
 .color-arrow {
   font-size: 10px;

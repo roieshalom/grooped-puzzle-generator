@@ -167,12 +167,12 @@ async function attemptUnlock(password) {
   }
 }
 
-const difficultyToColor = ['purple', 'green', 'blue', 'orange'];
+const difficultyToColor = ['yellow', 'coral', 'mint', 'sky'];
 const colorToDifficulty = {
-  purple: 'yellow',
-  green: 'green',
-  blue: 'blue',
-  orange: 'purple',
+  yellow: 'yellow',
+  coral:  'green',
+  mint:   'blue',
+  sky:    'purple',
 };
 
 // Inline status / message helper
@@ -619,8 +619,8 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
       throw new Error('Invalid puzzle from generator');
     }
 
-    // Assign 4 unique colors: yellow, green, blue, purple
-    const uniqueColors = ['yellow', 'green', 'blue', 'purple'];
+    // Assign 4 unique colors in order
+    const uniqueColors = ['yellow', 'coral', 'mint', 'sky'];
     res.categories.forEach((cat, index) => {
       cat.difficulty = uniqueColors[index % uniqueColors.length];
     });
@@ -749,10 +749,10 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
 
   const currentColor = categoryEl.dataset.color;
   const difficultyMap = {
-    purple: 'easy',
-    green: 'medium',
-    blue: 'medium',
-    orange: 'hard',
+    yellow: 'easy',
+    coral:  'medium',
+    mint:   'medium',
+    sky:    'hard',
   };
   const difficulty = difficultyMap[currentColor] || 'medium';
 
