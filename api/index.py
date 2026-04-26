@@ -473,9 +473,9 @@ GOOD EXAMPLE:
 thinking.anchors: [{{word:"ICE", home:"Things in a fridge", meaning_a:"frozen water", tempts_toward:"BREAK ___", meaning_b:"break the ice"}}, {{word:"DEAL", home:"Ways to say yes", meaning_a:"deal = I agree", tempts_toward:"BREAK ___", meaning_b:"break a deal"}}]
 thinking.all_16_words: WAZOWSKI TYSON MYERS PENCE MILK EGGS LEFTOVERS ICE SURE DEAL BET GRANTED DANCE UP FAST EVEN
 
-CHARACTERS NAMED "MIKE" — WAZOWSKI, TYSON, MYERS, PENCE (medium)
-THINGS IN A FRIDGE — MILK, EGGS, LEFTOVERS, ICE (easy)
-WAYS TO SAY "YES" — SURE, DEAL, BET, GRANTED (medium)
+Characters named "Mike" — WAZOWSKI, TYSON, MYERS, PENCE (medium)
+Things in a fridge — MILK, EGGS, LEFTOVERS, ICE (easy)
+Ways to say "yes" — SURE, DEAL, BET, GRANTED (medium)
 BREAK ___ — DANCE, UP, FAST, EVEN (hard)
 Decoys: ICE (fridge / break the ice), DEAL (yes / break a deal)
 
@@ -498,7 +498,7 @@ OUTPUT FORMAT — Return ONLY valid JSON:
   }},
   "categories": [
     {{
-      "name": "Short human-friendly name",
+      "name": "Short human-friendly name (sentence case, not all caps)",
       "difficulty": "easy | medium | hard",
       "words": ["WORD1", "WORD2", "WORD3", "WORD4"]
     }}
