@@ -435,6 +435,10 @@ input[type="text"]:focus {
   width: 100%;
   box-sizing: border-box;
 }
+.design-notes.locked {
+  background: #f9f9f9;
+  opacity: 0.65;
+}
 
 .status {
   position: fixed;

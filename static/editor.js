@@ -54,6 +54,10 @@ function setReadOnly(readOnly) {
     lockBtn.classList.toggle('unlocked', !readOnly);
   }
 
+  // Design notes box matches locked/unlocked word-input appearance
+  const designNotes = document.getElementById('designNotes');
+  if (designNotes) designNotes.classList.toggle('locked', readOnly);
+
   // Date row: always visible; swap picker ↔ mask based on lock state
   const dateRow = document.getElementById('dateRow');
   if (dateRow) dateRow.style.display = 'flex';
