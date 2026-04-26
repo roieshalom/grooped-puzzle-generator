@@ -709,16 +709,18 @@ input[type="text"]:focus {
 /* ── View-mode banner (shown when editor is locked) ───────────────── */
 .view-mode-banner {
   width: 100%;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  padding: 9px 20px;
+  background: #1e293b;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.35);
+  border-bottom: 1px solid #334155;
+  margin-bottom: 8px;
 }
 .view-mode-banner strong {
-  font-weight: 800;
+  color: #f1f5f9;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
