@@ -1,79 +1,86 @@
 {
   "categories": [
     {
-      "name": "British money slang",
+      "name": "THINGS YOU DO TO SAY GOODBYE",
       "words": [
-        "QUID",
-        "POUND",
-        "TENNER",
-        "BOB"
+        "HUG",
+        "WAVE",
+        "NOD",
+        "KISS"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Simple card games",
+      "name": "THINGS AT THE BEACH",
       "words": [
-        "SNAP",
-        "GO FISH",
-        "WAR",
-        "DECK"
+        "UMBRELLA",
+        "TOWEL",
+        "SAND",
+        "COOLER"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Things at a poker table",
+      "name": "WOODWORKING TOOLS",
       "words": [
-        "CHIP",
-        "FELT",
-        "DEALER",
-        "CARDS"
+        "PLANE",
+        "SAW",
+        "CHISEL",
+        "HAMMER"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Verbs meaning 'hit hard'",
+      "name": "ACTORS NAMED GEORGE/TOM",
       "words": [
-        "WHACK",
-        "BASH",
-        "SOCK",
-        "WALLOP"
+        "CLOONEY",
+        "HANKS",
+        "CRUISE",
+        "PITT"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "British money slang",
-      "category_b": "Verbs meaning 'hit hard'",
-      "reason_a": "British currency unit, synonym with quid",
-      "reason_b": "To pound means to strike heavily or repeatedly",
-      "word": "POUND"
+      "category_a": "THINGS YOU DO TO SAY GOODBYE",
+      "category_b": "THINGS AT THE BEACH",
+      "reason_a": "Waving is a common farewell gesture.",
+      "reason_b": "Ocean waves are quintessential beach elements that will pull solvers toward grouping it with SAND, TOWEL, and UMBRELLA.",
+      "word": "WAVE"
+    },
+    {
+      "category_a": "THINGS AT THE BEACH",
+      "category_b": "WOODWORKING TOOLS",
+      "reason_a": "Sand is the defining feature of beaches.",
+      "reason_b": "To sand is a woodworking action, tempting solvers to group it with SAW, PLANE, CHISEL, and HAMMER.",
+      "word": "SAND"
     }
   ],
-  "other_trick": "DECK and DEALER appear in the card games category but could tempt toward poker; GO FISH is a two-word entry that adds visual variety and might slow pattern recognition.",
+  "other_trick": "PLANE tempts toward aviation/travel grouping with CRUISE, and PITT could tempt toward armpit wordplay or Brad Pitt solo rather than the shared first-name pattern with George Clooney, Tom Hanks, and Tom Cruise.",
   "thinking": {
-    "all_16_words": "QUID POUND TENNER BOB SNAP GO FISH WAR DECK CHIP FELT DEALER CARDS WHACK BASH SOCK WALLOP",
+    "all_16_words": "HUG WAVE NOD KISS UMBRELLA TOWEL SAND COOLER PLANE SAW CHISEL HAMMER CLOONEY HANKS CRUISE PITT",
     "anchors": [
       {
-        "home_category": "British money slang",
-        "meaning_a": "unit of currency (British pound)",
-        "meaning_b": "strike heavily / weight unit",
-        "tempts_toward": "Verbs meaning 'hit hard'",
-        "word": "POUND"
+        "home_category": "THINGS YOU DO TO SAY GOODBYE",
+        "meaning_a": "greeting gesture",
+        "meaning_b": "ocean wave",
+        "tempts_toward": "THINGS AT THE BEACH",
+        "word": "WAVE"
       },
       {
-        "home_category": "Simple card games",
-        "meaning_a": "card game",
-        "meaning_b": "break suddenly / finger sound",
-        "tempts_toward": "Verbs meaning 'break'",
-        "word": "SNAP"
+        "home_category": "THINGS AT THE BEACH",
+        "meaning_a": "granular beach material",
+        "meaning_b": "to sand wood",
+        "tempts_toward": "WOODWORKING ACTIONS",
+        "word": "SAND"
       },
       {
-        "home_category": "Things at a poker table",
-        "meaning_a": "poker token",
-        "meaning_b": "snack / computer component",
-        "tempts_toward": "Simple card games or snack foods",
-        "word": "CHIP"
+        "home_category": "WOODWORKING TOOLS",
+        "meaning_a": "woodworking tool",
+        "meaning_b": "past tense of see",
+        "tempts_toward": "PAST TENSE VERBS",
+        "word": "SAW"
       }
     ]
   },
