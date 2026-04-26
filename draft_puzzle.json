@@ -1,86 +1,86 @@
 {
   "categories": [
     {
-      "name": "THROW ___",
+      "name": "Types of sports competitions",
       "words": [
-        "CHUCK",
-        "PILLOW",
-        "TANTRUM",
-        "SHADE"
+        "MATCH",
+        "BOUT",
+        "MEET",
+        "RALLY"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Cuts of beef",
+      "name": "Things you keep a record in",
       "words": [
-        "RIB",
-        "BRISKET",
-        "FLANK",
-        "PARTY"
+        "DIARY",
+        "JOURNAL",
+        "LOG",
+        "LEDGER"
       ],
       "difficulty": "green"
     },
     {
-      "name": "First episode of a TV series",
+      "name": "Ways to start a fire",
       "words": [
-        "FRIENDS",
-        "SEINFELD",
-        "CHEERS",
-        "PILOT"
+        "KINDLE",
+        "SPARK",
+        "IGNITE",
+        "TORCH"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Spices",
+      "name": "Classic 90s sitcoms",
       "words": [
-        "ROCK",
-        "SALT",
-        "PEPPER",
-        "CUMIN"
+        "FRIENDS",
+        "SEINFELD",
+        "CHEERS",
+        "FRASIER"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "THROW ___",
-      "category_b": "Cuts of beef",
-      "reason_a": "Chuck means to throw something casually or carelessly",
-      "reason_b": "Chuck is a common cut of beef used for ground meat and roasts",
-      "word": "CHUCK"
+      "category_a": "Types of sports competitions",
+      "category_b": "Ways to start a fire",
+      "reason_a": "A tennis match or boxing match is a type of sporting event",
+      "reason_b": "A match is a common tool used to light fires",
+      "word": "MATCH"
     },
     {
-      "category_a": "Spices",
-      "category_b": "THROW ___",
-      "reason_a": "Rock salt is a type of coarse salt used in cooking",
-      "reason_b": "Throw a rock is a common phrase for hurling a stone",
-      "word": "ROCK"
+      "category_a": "Things you keep a record in",
+      "category_b": "Ways to start a fire",
+      "reason_a": "A log is a written record of events like a ship's log",
+      "reason_b": "A log is a piece of wood you burn in a fireplace",
+      "word": "LOG"
     }
   ],
-  "other_trick": "PARTY works as a cut of beef (tri-tip party roast) but also tempts toward celebration or social gathering contexts.",
+  "other_trick": "RALLY tempts toward other meanings like a political rally or to rally support, TORCH can mean the verb to set fire to something, and SPARK can mean to trigger an idea or romance.",
   "thinking": {
-    "all_16_words": "CHUCK RIB BRISKET FLANK PILLOW TANTRUM SHADE PARTY FRIENDS SEINFELD CHEERS PILOT ROCK SALT PEPPER CUMIN",
+    "all_16_words": "MATCH BOUT MEET RALLY DIARY JOURNAL LOG LEDGER KINDLE SPARK IGNITE TORCH FRIENDS SEINFELD CHEERS FRASIER",
     "anchors": [
       {
-        "home_category": "THROW ___",
-        "meaning_a": "throw",
-        "meaning_b": "ground beef",
-        "tempts_toward": "Cuts of beef",
-        "word": "CHUCK"
+        "home_category": "Types of sports competitions",
+        "meaning_a": "tennis match, boxing match, wrestling match",
+        "meaning_b": "fire-starting stick",
+        "tempts_toward": "Things that create fire",
+        "word": "MATCH"
       },
       {
-        "home_category": "Cuts of beef",
-        "meaning_a": "bone",
-        "meaning_b": "tease someone",
-        "tempts_toward": "THROW ___",
-        "word": "RIB"
+        "home_category": "Types of sports competitions",
+        "meaning_a": "hockey stick, lacrosse stick, walking stick",
+        "meaning_b": "wooden branch",
+        "tempts_toward": "Things that create fire",
+        "word": "STICK"
       },
       {
-        "home_category": "First episode of a TV series",
-        "meaning_a": "first TV episode",
-        "meaning_b": "airplane operator",
-        "tempts_toward": "Jobs in aviation",
-        "word": "PILOT"
+        "home_category": "Things you keep a record in",
+        "meaning_a": "ship's log, captain's log",
+        "meaning_b": "piece of wood for burning",
+        "tempts_toward": "Things that create fire",
+        "word": "LOG"
       }
     ]
   },
