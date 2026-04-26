@@ -1,90 +1,83 @@
 {
   "categories": [
     {
-      "name": "Transportation",
+      "name": "British money slang",
       "words": [
-        "TRAIN",
-        "SHIP",
-        "PLANE",
-        "BUS"
+        "QUID",
+        "POUND",
+        "TENNER",
+        "BOB"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Hung on a wall",
+      "name": "Simple card games",
       "words": [
-        "MIRROR",
-        "SCONCE",
-        "WREATH",
-        "PORTRAIT"
+        "SNAP",
+        "GO FISH",
+        "WAR",
+        "DECK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Come in",
+      "name": "Things at a poker table",
       "words": [
-        "ENTER",
-        "ACCESS",
-        "ARRIVE",
-        "BREACH"
+        "CHIP",
+        "FELT",
+        "DEALER",
+        "CARDS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Send",
+      "name": "Verbs meaning 'hit hard'",
       "words": [
-        "DISPATCH",
-        "TRANSMIT",
-        "CONSIGN",
-        "REMIT"
+        "WHACK",
+        "BASH",
+        "SOCK",
+        "WALLOP"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "Types of transportation",
-      "category_b": "___ WRECK",
-      "reason_a": "A train is a locomotive that runs on tracks and carries passengers or cargo.",
-      "reason_b": "Solvers will think of the phrase 'train wreck' meaning a disaster or chaotic situation.",
-      "word": "TRAIN"
-    },
-    {
-      "category_a": "Types of transportation",
-      "category_b": "___ WRECK",
-      "reason_a": "A ship is a large watercraft that travels on oceans and seas.",
-      "reason_b": "Solvers will think of the phrase 'shipwreck' referring to a destroyed vessel at sea.",
-      "word": "SHIP"
+      "category_a": "British money slang",
+      "category_b": "Verbs meaning 'hit hard'",
+      "reason_a": "British currency unit, synonym with quid",
+      "reason_b": "To pound means to strike heavily or repeatedly",
+      "word": "POUND"
     }
   ],
-  "language": "en",
-  "other_trick": "CAR can feel like it belongs with transportation but actually completes 'car wreck', while WRECK itself bridges two categories creating double misdirection.",
+  "other_trick": "DECK and DEALER appear in the card games category but could tempt toward poker; GO FISH is a two-word entry that adds visual variety and might slow pattern recognition.",
   "thinking": {
-    "all_16_words": "TRAIN SHIP PLANE BUS TOTAL NERVOUS HOME CAR WRECK TANGLE MESS DISASTER PENNY NICKEL DIME QUARTER",
+    "all_16_words": "QUID POUND TENNER BOB SNAP GO FISH WAR DECK CHIP FELT DEALER CARDS WHACK BASH SOCK WALLOP",
     "anchors": [
       {
-        "home_category": "Types of transportation",
-        "meaning_a": "locomotive on tracks",
-        "meaning_b": "to practice or teach",
-        "tempts_toward": "___ WRECK",
-        "word": "TRAIN"
+        "home_category": "British money slang",
+        "meaning_a": "unit of currency (British pound)",
+        "meaning_b": "strike heavily / weight unit",
+        "tempts_toward": "Verbs meaning 'hit hard'",
+        "word": "POUND"
       },
       {
-        "home_category": "Types of transportation",
-        "meaning_a": "ocean vessel",
-        "meaning_b": "to send a package",
-        "tempts_toward": "___ WRECK",
-        "word": "SHIP"
+        "home_category": "Simple card games",
+        "meaning_a": "card game",
+        "meaning_b": "break suddenly / finger sound",
+        "tempts_toward": "Verbs meaning 'break'",
+        "word": "SNAP"
       },
       {
-        "home_category": "___ WRECK",
-        "meaning_a": "a crashed vehicle or disaster",
-        "meaning_b": "to destroy or ruin",
-        "tempts_toward": "Types of transportation",
-        "word": "WRECK"
+        "home_category": "Things at a poker table",
+        "meaning_a": "poker token",
+        "meaning_b": "snack / computer component",
+        "tempts_toward": "Simple card games or snack foods",
+        "word": "CHIP"
       }
     ]
   },
+  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
