@@ -1,86 +1,86 @@
 {
   "categories": [
     {
-      "name": "THINGS YOU DO TO SAY GOODBYE",
+      "name": "THROW ___",
       "words": [
-        "HUG",
-        "WAVE",
-        "NOD",
-        "KISS"
+        "CHUCK",
+        "PILLOW",
+        "TANTRUM",
+        "SHADE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "THINGS AT THE BEACH",
+      "name": "Cuts of beef",
       "words": [
-        "UMBRELLA",
-        "TOWEL",
-        "SAND",
-        "COOLER"
+        "RIB",
+        "BRISKET",
+        "FLANK",
+        "PARTY"
       ],
       "difficulty": "green"
     },
     {
-      "name": "WOODWORKING TOOLS",
+      "name": "First episode of a TV series",
       "words": [
-        "PLANE",
-        "SAW",
-        "CHISEL",
-        "HAMMER"
+        "FRIENDS",
+        "SEINFELD",
+        "CHEERS",
+        "PILOT"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "ACTORS NAMED GEORGE/TOM",
+      "name": "Spices",
       "words": [
-        "CLOONEY",
-        "HANKS",
-        "CRUISE",
-        "PITT"
+        "ROCK",
+        "SALT",
+        "PEPPER",
+        "CUMIN"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "THINGS YOU DO TO SAY GOODBYE",
-      "category_b": "THINGS AT THE BEACH",
-      "reason_a": "Waving is a common farewell gesture.",
-      "reason_b": "Ocean waves are quintessential beach elements that will pull solvers toward grouping it with SAND, TOWEL, and UMBRELLA.",
-      "word": "WAVE"
+      "category_a": "THROW ___",
+      "category_b": "Cuts of beef",
+      "reason_a": "Chuck means to throw something casually or carelessly",
+      "reason_b": "Chuck is a common cut of beef used for ground meat and roasts",
+      "word": "CHUCK"
     },
     {
-      "category_a": "THINGS AT THE BEACH",
-      "category_b": "WOODWORKING TOOLS",
-      "reason_a": "Sand is the defining feature of beaches.",
-      "reason_b": "To sand is a woodworking action, tempting solvers to group it with SAW, PLANE, CHISEL, and HAMMER.",
-      "word": "SAND"
+      "category_a": "Spices",
+      "category_b": "THROW ___",
+      "reason_a": "Rock salt is a type of coarse salt used in cooking",
+      "reason_b": "Throw a rock is a common phrase for hurling a stone",
+      "word": "ROCK"
     }
   ],
-  "other_trick": "PLANE tempts toward aviation/travel grouping with CRUISE, and PITT could tempt toward armpit wordplay or Brad Pitt solo rather than the shared first-name pattern with George Clooney, Tom Hanks, and Tom Cruise.",
+  "other_trick": "PARTY works as a cut of beef (tri-tip party roast) but also tempts toward celebration or social gathering contexts.",
   "thinking": {
-    "all_16_words": "HUG WAVE NOD KISS UMBRELLA TOWEL SAND COOLER PLANE SAW CHISEL HAMMER CLOONEY HANKS CRUISE PITT",
+    "all_16_words": "CHUCK RIB BRISKET FLANK PILLOW TANTRUM SHADE PARTY FRIENDS SEINFELD CHEERS PILOT ROCK SALT PEPPER CUMIN",
     "anchors": [
       {
-        "home_category": "THINGS YOU DO TO SAY GOODBYE",
-        "meaning_a": "greeting gesture",
-        "meaning_b": "ocean wave",
-        "tempts_toward": "THINGS AT THE BEACH",
-        "word": "WAVE"
+        "home_category": "THROW ___",
+        "meaning_a": "throw",
+        "meaning_b": "ground beef",
+        "tempts_toward": "Cuts of beef",
+        "word": "CHUCK"
       },
       {
-        "home_category": "THINGS AT THE BEACH",
-        "meaning_a": "granular beach material",
-        "meaning_b": "to sand wood",
-        "tempts_toward": "WOODWORKING ACTIONS",
-        "word": "SAND"
+        "home_category": "Cuts of beef",
+        "meaning_a": "bone",
+        "meaning_b": "tease someone",
+        "tempts_toward": "THROW ___",
+        "word": "RIB"
       },
       {
-        "home_category": "WOODWORKING TOOLS",
-        "meaning_a": "woodworking tool",
-        "meaning_b": "past tense of see",
-        "tempts_toward": "PAST TENSE VERBS",
-        "word": "SAW"
+        "home_category": "First episode of a TV series",
+        "meaning_a": "first TV episode",
+        "meaning_b": "airplane operator",
+        "tempts_toward": "Jobs in aviation",
+        "word": "PILOT"
       }
     ]
   },
