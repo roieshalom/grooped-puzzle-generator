@@ -60,7 +60,10 @@ function setReadOnly(readOnly) {
   const picker = document.getElementById('publishDatePicker');
   if (picker) picker.style.display = readOnly ? 'none' : '';
   const dateMask = document.getElementById('dateMask');
-  if (dateMask) dateMask.style.display = readOnly ? '' : 'none';
+  if (dateMask) {
+    dateMask.textContent = buildDateMask();
+    dateMask.style.display = readOnly ? '' : 'none';
+  }
 
   // Hide auth panel when unlocking
   if (!readOnly) {
@@ -862,6 +865,13 @@ function puzzleDateToIso(d) {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
+// Build the masked date string shown when locked: ●●/●●/YYYY
+function buildDateMask() {
+  const picker = document.getElementById('publishDatePicker');
+  const year = picker?.value ? picker.value.split('-')[0] : '●●●●';
+  return `●●/●●/${year}`;
+}
+
 // ── Next puzzle date ─────────────────────────────────────────────────────────
 async function refreshNextDate() {
   // Retry once after a short delay in case of a cold-start timeout
@@ -880,6 +890,9 @@ async function refreshNextDate() {
         // Only set default if nothing selected yet or current value is in the past
         if (!picker.value || picker.value < iso) picker.value = iso;
       }
+      // Refresh mask text now that we have the year
+      const dateMask = document.getElementById('dateMask');
+      if (dateMask) dateMask.textContent = buildDateMask();
       return;
     } catch (e) {
       // try again on next iteration
