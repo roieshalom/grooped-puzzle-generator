@@ -1,86 +1,79 @@
 {
   "categories": [
     {
-      "name": "Types of sports competitions",
+      "name": "Things that jingle in your pocket",
       "words": [
-        "MATCH",
-        "BOUT",
-        "MEET",
-        "RALLY"
+        "KEYS",
+        "CHANGE",
+        "LINT",
+        "RECEIPTS"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Things you keep a record in",
+      "name": "Characters from 'Buffy the Vampire Slayer'",
       "words": [
-        "DIARY",
-        "JOURNAL",
-        "LOG",
-        "LEDGER"
+        "BUFFY",
+        "SPIKE",
+        "WILLOW",
+        "ANGEL"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Ways to start a fire",
+      "name": "Things you do to improve",
       "words": [
-        "KINDLE",
-        "SPARK",
-        "IGNITE",
-        "TORCH"
+        "GROW",
+        "STRETCH",
+        "ADAPT",
+        "EVOLVE"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Classic 90s sitcoms",
+      "name": "Drum sounds",
       "words": [
-        "FRIENDS",
-        "SEINFELD",
-        "CHEERS",
-        "FRASIER"
+        "POUND",
+        "ROLL",
+        "BEAT",
+        "TAP"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "Types of sports competitions",
-      "category_b": "Ways to start a fire",
-      "reason_a": "A tennis match or boxing match is a type of sporting event",
-      "reason_b": "A match is a common tool used to light fires",
-      "word": "MATCH"
-    },
-    {
-      "category_a": "Things you keep a record in",
-      "category_b": "Ways to start a fire",
-      "reason_a": "A log is a written record of events like a ship's log",
-      "reason_b": "A log is a piece of wood you burn in a fireplace",
-      "word": "LOG"
+      "category_a": "Things that jingle in your pocket",
+      "category_b": "Things you do to improve",
+      "reason_a": "Loose change is coins you carry that make jingling sounds.",
+      "reason_b": "To change yourself is a common way to improve or grow.",
+      "word": "CHANGE"
     }
   ],
-  "other_trick": "RALLY tempts toward other meanings like a political rally or to rally support, TORCH can mean the verb to set fire to something, and SPARK can mean to trigger an idea or romance.",
+  "other_trick": "BEAT and TAP can also suggest actions you do to improve (beat your record, tap into potential), and SPIKE could tempt toward volleyball or punk hairstyles.",
   "thinking": {
-    "all_16_words": "MATCH BOUT MEET RALLY DIARY JOURNAL LOG LEDGER KINDLE SPARK IGNITE TORCH FRIENDS SEINFELD CHEERS FRASIER",
+    "all_16_words": "POUND ROLL BEAT TAP KEYS CHANGE LINT RECEIPTS BUFFY SPIKE WILLOW ANGEL GROW STRETCH ADAPT EVOLVE",
     "anchors": [
       {
-        "home_category": "Types of sports competitions",
-        "meaning_a": "tennis match, boxing match, wrestling match",
-        "meaning_b": "fire-starting stick",
-        "tempts_toward": "Things that create fire",
-        "word": "MATCH"
+        "home_category": "Drum sounds",
+        "meaning_a": "a repeated hitting sound or action",
+        "meaning_b": "unit of currency or weight",
+        "tempts_toward": "Units of measurement",
+        "word": "POUND"
       },
       {
-        "home_category": "Types of sports competitions",
-        "meaning_a": "hockey stick, lacrosse stick, walking stick",
-        "meaning_b": "wooden branch",
-        "tempts_toward": "Things that create fire",
-        "word": "STICK"
+        "home_category": "Things that jingle in your pocket",
+        "meaning_a": "coins or small bills",
+        "meaning_b": "to alter or transform",
+        "tempts_toward": "Things you do to improve",
+        "word": "CHANGE"
       },
       {
-        "home_category": "Things you keep a record in",
-        "meaning_a": "ship's log, captain's log",
-        "meaning_b": "piece of wood for burning",
-        "tempts_toward": "Things that create fire",
-        "word": "LOG"
+        "home_category": "Drum sounds",
+        "meaning_a": "a drum technique",
+        "meaning_b": "a bread item or to tumble",
+        "tempts_toward": "Things at a dinner table",
+        "word": "ROLL"
       }
     ]
   },
