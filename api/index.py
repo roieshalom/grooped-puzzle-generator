@@ -149,6 +149,33 @@ def add_banned():
 
     return jsonify({"ok": True})
 
+# ─── Published puzzle by date ─────────────────────────────────────────────────
+
+@app.route("/api/puzzle-by-date", methods=["GET"])
+@require_auth
+def get_puzzle_by_date():
+    date_str = request.args.get("date", "")
+    if not date_str:
+        return jsonify({"error": "date param required"}), 400
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+        target = f"{dt.day}.{dt.month}.{dt.year}"   # e.g. "26.4.2026"
+    except ValueError:
+        return jsonify({"error": "use YYYY-MM-DD"}), 400
+    try:
+        existing, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    if not existing:
+        return jsonify({"error": "no puzzles found"}), 404
+    puzzles_list = (
+        existing.get("puzzles", []) if isinstance(existing, dict) else (existing or [])
+    )
+    for p in puzzles_list:
+        if p.get("date") == target:
+            return jsonify(p)
+    return jsonify({"error": f"no puzzle on {target}"}), 404
+
 # ─── Draft puzzle ─────────────────────────────────────────────────────────────
 
 @app.route("/api/puzzle", methods=["GET"])

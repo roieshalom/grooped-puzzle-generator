@@ -286,6 +286,13 @@ input[type="text"]:focus {
 .publish-date-picker:hover,
 .publish-date-picker:focus { border-color: #999; }
 
+/* Past-snapshot mode: amber tint to distinguish from future-date selection */
+.publish-date-picker.past-mode {
+  border-color: #d4a04a;
+  background: #fdf6e8;
+  color: #a07030;
+}
+
 .date-mask {
   font-size: 10px;
   color: #ccc;

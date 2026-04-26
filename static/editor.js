@@ -1,7 +1,9 @@
 let puzzles = [];
 let currentIndex = 0;
-let lastSavedState = null; // Store the last saved puzzle state
+let lastSavedState = null;
 let hasUnsavedChanges = false;
+let _viewingPast = false;   // true while a past puzzle is displayed
+let _savedDraft  = null;    // draft stashed before entering past-view
 
 // ── Auth helpers ────────────────────────────────────────────────────────────
 // Token is stored in localStorage and sent as X-Editor-Token on every mutation.
@@ -30,20 +32,31 @@ let _readOnly = true; // default until we confirm we have a valid token
 function setReadOnly(readOnly) {
   _readOnly = readOnly;
 
+  // When locking, exit past-view mode cleanly
+  if (readOnly && _viewingPast) {
+    _viewingPast = false;
+    if (_savedDraft) { puzzles = [_savedDraft]; _savedDraft = null; }
+    const picker = document.getElementById('publishDatePicker');
+    if (picker) picker.classList.remove('past-mode');
+  }
+
+  // disabled = locked OR currently viewing a past snapshot
+  const disabled = readOnly || _viewingPast;
+
   // Toggle all editable inputs
   document.querySelectorAll('.word-input, .category-name-input').forEach(inp => {
-    inp.disabled = readOnly;
+    inp.disabled = disabled;
   });
 
   // Toggle all action buttons
   ['saveBtn', 'reloadBtn', 'generateBtn', 'exportBtn'].forEach(id => {
     const btn = document.getElementById(id);
-    if (btn) btn.disabled = readOnly;
+    if (btn) btn.disabled = disabled;
   });
 
   // Toggle per-category buttons
   document.querySelectorAll('.regenerate-btn, .ban-btn').forEach(btn => {
-    btn.disabled = readOnly;
+    btn.disabled = disabled;
   });
 
   // Update lock button appearance
@@ -77,6 +90,28 @@ function setReadOnly(readOnly) {
     if (inp) inp.value = '';
   }
 
+  updateExportButtonState();
+}
+
+// Enter/exit past-puzzle snapshot mode
+function setViewingPast(viewing) {
+  _viewingPast = viewing;
+  const picker  = document.getElementById('publishDatePicker');
+  const disabled = viewing; // when exiting, setReadOnly will re-apply correct state
+
+  if (viewing) {
+    document.querySelectorAll('.word-input, .category-name-input').forEach(inp => { inp.disabled = true; });
+    document.querySelectorAll('.regenerate-btn, .ban-btn').forEach(btn => { btn.disabled = true; });
+    ['saveBtn', 'reloadBtn', 'generateBtn', 'exportBtn'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) btn.disabled = true;
+    });
+    if (picker) picker.classList.add('past-mode');
+  } else {
+    // Restore whatever the current lock state demands
+    setReadOnly(_readOnly);
+    if (picker) picker.classList.remove('past-mode');
+  }
   updateExportButtonState();
 }
 
@@ -206,7 +241,7 @@ function checkUnsavedChanges() {
 // Update export button enabled/disabled state
 function updateExportButtonState() {
   const exportBtn = document.getElementById('exportBtn');
-  exportBtn.disabled = _readOnly || hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
+  exportBtn.disabled = _readOnly || _viewingPast || hasUnsavedChanges || puzzles.length === 0 || !puzzles[0];
 }
 
 function setButtonLoading(buttonId, loading) {
@@ -890,9 +925,10 @@ async function refreshNextDate() {
       const iso = puzzleDateToIso(date);
       const picker = document.getElementById('publishDatePicker');
       if (picker) {
-        picker.min = iso;
-        // Only set default if nothing selected yet or current value is in the past
-        if (!picker.value || picker.value < iso) picker.value = iso;
+        // Allow viewing back to Jan 1 of the current year
+        picker.min = `${new Date().getFullYear()}-01-01`;
+        // Default value = next export date, but don't override if viewing a past puzzle
+        if (!_viewingPast && (!picker.value || picker.value < iso)) picker.value = iso;
       }
       // Refresh mask text now that we have the year
       const dateMask = document.getElementById('dateMask');
@@ -903,6 +939,57 @@ async function refreshNextDate() {
     }
   }
 }
+
+// ── Date picker: past snapshot navigation ───────────────────────────────────
+document.getElementById('publishDatePicker').addEventListener('change', async (e) => {
+  if (_readOnly) return; // only available when unlocked
+
+  const selected = e.target.value; // YYYY-MM-DD
+  const today    = new Date().toISOString().split('T')[0];
+
+  if (selected < today) {
+    // ── Past date: load that puzzle snapshot ──────────────────────────────
+    if (!_viewingPast) {
+      _savedDraft = puzzles.length > 0 && puzzles[0] ? { ...puzzles[0] } : null;
+    }
+    setStatus('Loading past puzzle…', 'info', 0);
+    try {
+      const r = await apiFetch(`/api/puzzle-by-date?date=${selected}`);
+      if (r.ok) {
+        const pastPuzzle = await r.json();
+        puzzles = [pastPuzzle];
+        currentIndex = 0;
+        updateUI();
+        setViewingPast(true);
+        const [y, m, d] = selected.split('-');
+        setStatus(`Viewing snapshot: ${parseInt(d)}.${parseInt(m)}.${y}`, 'info', 0);
+      } else {
+        setStatus('No puzzle published on that date', 'error', 3000);
+        if (!_viewingPast) _savedDraft = null;
+        else setViewingPast(false); // stay on last past view
+        await refreshNextDate();    // reset picker to next date
+      }
+    } catch (err) {
+      setStatus('Failed to load past puzzle', 'error', 3000);
+    }
+
+  } else {
+    // ── Future date: restore draft ────────────────────────────────────────
+    if (_viewingPast) {
+      if (_savedDraft) {
+        puzzles = [_savedDraft];
+        _savedDraft = null;
+        currentIndex = 0;
+        updateUI();
+      } else {
+        puzzles = [];
+        updateUI();
+      }
+      setViewingPast(false);
+      setStatus('Ready', 'info', 2000);
+    }
+  }
+});
 
 // ── Startup ─────────────────────────────────────────────────────────────────
 // The page is publicly viewable — load the puzzle without auth.
