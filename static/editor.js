@@ -54,6 +54,10 @@ function setReadOnly(readOnly) {
     lockBtn.classList.toggle('unlocked', !readOnly);
   }
 
+  // Show date label only when unlocked
+  const dateLabel = document.getElementById('puzzleDateLabel');
+  if (dateLabel) dateLabel.style.display = readOnly ? 'none' : '';
+
   // Hide auth panel when unlocking
   if (!readOnly) {
     const panel = document.getElementById('authPanel');
