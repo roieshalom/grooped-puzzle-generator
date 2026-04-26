@@ -151,6 +151,26 @@ def add_banned():
 
 # ─── Published puzzle by date ─────────────────────────────────────────────────
 
+_DATE_FORMATS = ["%d.%m.%Y", "%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y"]
+
+def _parse_any_date(ds: str):
+    """Try several date formats and return a date object, or None."""
+    if not ds:
+        return None
+    # Handle non-zero-padded D.M.YYYY by splitting on '.' manually
+    parts = ds.split(".")
+    if len(parts) == 3:
+        try:
+            return datetime(int(parts[2]), int(parts[1]), int(parts[0])).date()
+        except (ValueError, IndexError):
+            pass
+    for fmt in _DATE_FORMATS:
+        try:
+            return datetime.strptime(ds, fmt).date()
+        except ValueError:
+            continue
+    return None
+
 @app.route("/api/puzzle-by-date", methods=["GET"])
 @require_auth
 def get_puzzle_by_date():
@@ -158,8 +178,7 @@ def get_puzzle_by_date():
     if not date_str:
         return jsonify({"error": "date param required"}), 400
     try:
-        dt = datetime.strptime(date_str, "%Y-%m-%d")
-        target = f"{dt.day}.{dt.month}.{dt.year}"   # e.g. "26.4.2026"
+        target_dt = datetime.strptime(date_str, "%Y-%m-%d").date()
     except ValueError:
         return jsonify({"error": "use YYYY-MM-DD"}), 400
     try:
@@ -172,9 +191,15 @@ def get_puzzle_by_date():
         existing.get("puzzles", []) if isinstance(existing, dict) else (existing or [])
     )
     for p in puzzles_list:
-        if p.get("date") == target:
+        p_dt = _parse_any_date(p.get("date", ""))
+        if p_dt and p_dt == target_dt:
             return jsonify(p)
-    return jsonify({"error": f"no puzzle on {target}"}), 404
+    # Return available dates to help debug
+    available = sorted(
+        {str(d) for d in (_parse_any_date(p.get("date", "")) for p in puzzles_list) if d},
+        reverse=True,
+    )
+    return jsonify({"error": f"no puzzle on {target_dt}", "available_dates": available[:10]}), 404
 
 # ─── Draft puzzle ─────────────────────────────────────────────────────────────
 
