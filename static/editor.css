@@ -279,7 +279,9 @@ input[type="text"]:focus {
   color: #555;
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 10px 12px;
+  padding: 0 12px;
+  height: 40px;
+  box-sizing: border-box;
   background: #f5f5f5;
   cursor: pointer;
   outline: none;
@@ -297,7 +299,9 @@ input[type="text"]:focus {
 
 /* Button to jump back to the next available future date */
 .jump-to-next-btn {
-  padding: 10px 14px;
+  padding: 0 14px;
+  height: 40px;
+  box-sizing: border-box;
   border: none;
   border-radius: 4px;
   font-size: 14px;
@@ -313,8 +317,8 @@ input[type="text"]:focus {
 .jump-to-next-btn:hover { background: #d35400; }
 
 @media (max-width: 480px) {
-  .publish-date-picker { padding: 10px; font-size: 13px; }
-  .jump-to-next-btn    { padding: 10px; font-size: 13px; }
+  .publish-date-picker { height: 36px; font-size: 13px; }
+  .jump-to-next-btn    { height: 36px; font-size: 13px; }
 }
 
 .date-mask {
