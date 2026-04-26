@@ -710,17 +710,17 @@ input[type="text"]:focus {
 .view-mode-banner {
   width: 100%;
   padding: 9px 20px;
-  background: #1e293b;
-  color: #cbd5e1;
+  background: #475569;
+  color: #e2e8f0;
   font-size: 0.88rem;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-align: center;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #64748b;
   margin-bottom: 8px;
 }
 .view-mode-banner strong {
-  color: #f1f5f9;
+  color: #fff;
   font-weight: 700;
   letter-spacing: 0.04em;
 }

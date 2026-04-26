@@ -71,6 +71,13 @@ function setReadOnly(readOnly) {
   const viewModeBanner = document.getElementById('viewModeBanner');
   if (viewModeBanner) viewModeBanner.style.display = readOnly ? '' : 'none';
 
+  // Color selectors: disable interaction when locked
+  document.querySelectorAll('.color-square-wrapper').forEach(w => {
+    w.style.pointerEvents = readOnly ? 'none' : '';
+    w.style.opacity = readOnly ? '0.6' : '';
+    w.style.cursor = readOnly ? 'default' : '';
+  });
+
   // Design notes box matches locked/unlocked word-input appearance
   const designNotes = document.getElementById('designNotes');
   if (designNotes) designNotes.classList.toggle('locked', readOnly);
@@ -678,6 +685,7 @@ document
 // Color square and arrow click handlers
 document.querySelectorAll('.color-square-wrapper').forEach((wrapper) => {
   wrapper.addEventListener('click', (e) => {
+    if (_readOnly) return;
     e.stopPropagation();
     const dropdown = wrapper.querySelector('.color-dropdown');
     document.querySelectorAll('.color-dropdown').forEach((d) => {
@@ -690,6 +698,7 @@ document.querySelectorAll('.color-square-wrapper').forEach((wrapper) => {
 // Color option selection handlers
 document.querySelectorAll('.color-option').forEach((option) => {
   option.addEventListener('click', (e) => {
+    if (_readOnly) return;
     e.stopPropagation();
     const newColor = option.dataset.color;
     const categoryEl = option.closest('.category');
