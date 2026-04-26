@@ -234,19 +234,29 @@ def export_puzzle():
             pass
     puzzle["id"] = str(max(ids) + 1) if ids else "1"
 
-    # Assign next date (day after last puzzle)
-    dates = []
-    for p in puzzles_list:
-        ds = p.get("date", "")
-        if ds:
-            try:
-                dates.append(datetime.strptime(ds, "%d.%m.%Y"))
-            except ValueError:
-                pass
-    if dates:
-        puzzle["date"] = (max(dates) + timedelta(days=1)).strftime("%d.%m.%Y")
+    # Assign publish date — use user-chosen date or auto next-day
+    publish_date_str = puzzle.pop("publish_date", None)
+    if publish_date_str:
+        try:
+            dt = datetime.strptime(publish_date_str, "%Y-%m-%d")
+            puzzle["date"] = f"{dt.day}.{dt.month}.{dt.year}"
+        except ValueError:
+            puzzle["date"] = publish_date_str  # fall back to raw string
     else:
-        puzzle["date"] = datetime.now().strftime("%d.%m.%Y")
+        dates = []
+        for p in puzzles_list:
+            ds = p.get("date", "")
+            if ds:
+                try:
+                    dates.append(datetime.strptime(ds, "%d.%m.%Y"))
+                except ValueError:
+                    pass
+        if dates:
+            next_d = max(dates) + timedelta(days=1)
+            puzzle["date"] = f"{next_d.day}.{next_d.month}.{next_d.year}"
+        else:
+            now = datetime.now()
+            puzzle["date"] = f"{now.day}.{now.month}.{now.year}"
 
     puzzle["status"] = "published"
     puzzles_list.append(puzzle)

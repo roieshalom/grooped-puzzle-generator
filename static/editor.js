@@ -54,9 +54,9 @@ function setReadOnly(readOnly) {
     lockBtn.classList.toggle('unlocked', !readOnly);
   }
 
-  // Show date label only when unlocked
-  const dateLabel = document.getElementById('puzzleDateLabel');
-  if (dateLabel) dateLabel.style.display = readOnly ? 'none' : '';
+  // Show publish date picker only when unlocked
+  const dateRow = document.getElementById('dateRow');
+  if (dateRow) dateRow.style.display = readOnly ? 'none' : 'flex';
 
   // Hide auth panel when unlocking
   if (!readOnly) {
@@ -530,6 +530,9 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   try {
     const puzzle = collectData();
 
+    const picker = document.getElementById('publishDatePicker');
+    if (picker && picker.value) puzzle.publish_date = picker.value; // YYYY-MM-DD
+
     const r = await apiFetch('/api/export', {
       method: 'POST',
       body: JSON.stringify(puzzle),
@@ -848,6 +851,13 @@ document.getElementById('inlinePasswordInput').addEventListener('keydown', (e) =
   }
 });
 
+// ── Publish date helpers ──────────────────────────────────────────────────────
+// Convert "26.4.2026" (server format) → "2026-04-26" (date input value)
+function puzzleDateToIso(d) {
+  const [day, month, year] = d.split('.');
+  return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
 // ── Next puzzle date ─────────────────────────────────────────────────────────
 async function refreshNextDate() {
   // Retry once after a short delay in case of a cold-start timeout
@@ -858,8 +868,15 @@ async function refreshNextDate() {
       const r = await fetch('/api/next-date');
       if (!r.ok) continue;
       const { date } = await r.json();
-      const el = document.getElementById('puzzleDateLabel');
-      if (el && date) { el.textContent = `Puzzle for ${date}`; return; }
+      if (!date) continue;
+      const iso = puzzleDateToIso(date);
+      const picker = document.getElementById('publishDatePicker');
+      if (picker) {
+        picker.min = iso;
+        // Only set default if nothing selected yet or current value is in the past
+        if (!picker.value || picker.value < iso) picker.value = iso;
+      }
+      return;
     } catch (e) {
       // try again on next iteration
     }

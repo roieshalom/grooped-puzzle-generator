@@ -19,7 +19,10 @@
     <div class="top-bar">
       <div class="title-block">
         <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
-        <span id="puzzleDateLabel" class="puzzle-date-label"></span>
+        <div id="dateRow" class="date-row" style="display:none;">
+          <span class="date-label-text">Publish:</span>
+          <input type="date" id="publishDatePicker" class="publish-date-picker" />
+        </div>
       </div>
       <div class="actions">
         <button class="action-btn save" id="saveBtn">Save</button>
