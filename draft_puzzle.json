@@ -11,12 +11,12 @@
       "difficulty": "yellow"
     },
     {
-      "name": "Genres of music",
+      "name": "A woman",
       "words": [
-        "BLUES",
-        "JAZZ",
-        "COUNTRY",
-        "FOLK"
+        "MADAM",
+        "LADY",
+        "GIRL",
+        "DAME"
       ],
       "difficulty": "green"
     },
@@ -31,7 +31,7 @@
       "difficulty": "blue"
     },
     {
-      "name": "things you can do with a rope",
+      "name": "With a rope",
       "words": [
         "KNOT",
         "SPLICE",
