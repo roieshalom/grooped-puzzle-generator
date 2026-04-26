@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "name": "Types of transportation",
+      "name": "Transportation",
       "words": [
         "TRAIN",
         "SHIP",
@@ -11,7 +11,7 @@
       "difficulty": "yellow"
     },
     {
-      "name": "Things you can hang on a wall",
+      "name": "Hung on a wall",
       "words": [
         "MIRROR",
         "SCONCE",
@@ -21,7 +21,7 @@
       "difficulty": "green"
     },
     {
-      "name": "means \"come in\"",
+      "name": "Come in",
       "words": [
         "ENTER",
         "ACCESS",
