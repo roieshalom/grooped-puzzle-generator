@@ -1,83 +1,83 @@
 {
   "categories": [
     {
-      "name": "Famous Teds",
+      "name": "Clothing items",
       "words": [
-        "MOSBY",
-        "KENNEDY",
-        "BUNDY",
-        "DANSON"
+        "JUMPER",
+        "BLAZER",
+        "PARKA",
+        "VEST"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "A woman",
+      "name": "Actors named Tom",
       "words": [
-        "MADAM",
-        "LADY",
-        "GIRL",
-        "DAME"
+        "COOPER",
+        "HANKS",
+        "HOLLAND",
+        "CRUISE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Decline or avoid",
+      "name": "Things you do at a red light",
       "words": [
-        "SKIP",
-        "PASS",
-        "PUNT",
-        "MISS"
+        "STOP",
+        "PAUSE",
+        "WAIT",
+        "HOLD"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "With a rope",
+      "name": "___ SHOT",
       "words": [
-        "KNOT",
-        "SPLICE",
-        "TUG OF WAR",
-        "LASSO"
+        "MUG",
+        "HOOK",
+        "SCREEN",
+        "SNAP"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "Things you skip on water",
-      "category_b": "Genres of music",
-      "reason_a": "Rock is a common flat object people throw to skip across water surfaces.",
-      "reason_b": "Rock is a major music genre alongside blues, jazz, country, and folk.",
-      "word": "ROCK"
+      "category_a": "Clothing items",
+      "category_b": "___ SHOT",
+      "reason_a": "A jumper is a sweater or pullover garment.",
+      "reason_b": "Solvers might think of jump shot, a common basketball term.",
+      "word": "JUMPER"
     }
   ],
-  "language": "en",
-  "other_trick": "FOLK appears in the music category but could tempt solvers toward thinking about ordinary people or traditions, while PASS and SKIP both work as ways to decline and create surface overlap with skipping stones.",
+  "other_trick": "MUG and SNAP can both relate to photography (mug shot, snapshot), creating additional misdirection away from the ___ SHOT basketball pattern.",
   "thinking": {
-    "all_16_words": "ROCK COIN STONE SHELL BLUES JAZZ COUNTRY FOLK SKIP PASS PUNT MISS SEINFELD FRIENDS SCRUBS CHEERS",
+    "all_16_words": "JUMPER BLAZER PARKA VEST MUG HOOK SCREEN SNAP COOPER HANKS HANKS CRUISE STOP PAUSE WAIT HOLD",
     "anchors": [
       {
-        "home_category": "Things you skip on water",
-        "meaning_a": "stone or geological material",
-        "meaning_b": "music genre",
-        "tempts_toward": "Genres of music",
-        "word": "ROCK"
+        "home_category": "Clothing items",
+        "meaning_a": "a sweater or pullover",
+        "meaning_b": "one who jumps",
+        "tempts_toward": "___ SHOT (basketball terms)",
+        "word": "JUMPER"
       },
       {
-        "home_category": "Genres of music",
-        "meaning_a": "music genre",
-        "meaning_b": "feeling sad or melancholy",
-        "tempts_toward": "Things you skip on water",
-        "word": "BLUES"
+        "home_category": "___ SHOT",
+        "meaning_a": "hook shot in basketball",
+        "meaning_b": "fishing equipment or curved fastener",
+        "tempts_toward": "Things you hang on the wall",
+        "word": "HOOK"
       },
       {
-        "home_category": "Genres of music",
-        "meaning_a": "music genre",
-        "meaning_b": "nation or rural area",
-        "tempts_toward": "Types of geography",
-        "word": "COUNTRY"
+        "home_category": "___ SHOT",
+        "meaning_a": "screen shot in basketball",
+        "meaning_b": "display monitor or window covering",
+        "tempts_toward": "Tech devices",
+        "word": "SCREEN"
       }
     ]
   },
+  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
