@@ -1,71 +1,79 @@
 {
   "categories": [
     {
-      "name": "Things that simmer on the stove",
+      "name": "Things you skip on water",
       "words": [
-        "STOCK",
-        "STEW",
-        "CHILI",
-        "SAUCE"
+        "ROCK",
+        "COIN",
+        "STONE",
+        "SHELL"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "007 movies",
+      "name": "Genres of music",
       "words": [
-        "BOND",
-        "SPECTRE",
-        "SKYFALL",
-        "CASINO"
+        "BLUES",
+        "JAZZ",
+        "COUNTRY",
+        "FOLK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Poker terms",
+      "name": "Ways to decline or avoid",
       "words": [
-        "ANTE",
-        "STAKE",
-        "BLUFF",
-        "CHIPS"
+        "SKIP",
+        "PASS",
+        "PUNT",
+        "MISS"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Film crew equipment",
+      "name": "One-word sitcoms",
       "words": [
-        "GRIP",
-        "BOOM",
-        "MIC",
-        "STAND"
+        "SEINFELD",
+        "FRIENDS",
+        "SCRUBS",
+        "CHEERS"
       ],
       "difficulty": "purple"
     }
   ],
-  "decoys": [],
-  "other_trick": "CASINO works as a Bond film but also fits with poker terms; CHIPS could be poker chips or microchips or movie clips; GRIP looks like a poker grip but is film crew; MIC and STAND feel like music equipment but live in film.",
+  "decoys": [
+    {
+      "category_a": "Things you skip on water",
+      "category_b": "Genres of music",
+      "reason_a": "Rock is a common flat object people throw to skip across water surfaces.",
+      "reason_b": "Rock is a major music genre alongside blues, jazz, country, and folk.",
+      "word": "ROCK"
+    }
+  ],
+  "other_trick": "FOLK appears in the music category but could tempt solvers toward thinking about ordinary people or traditions, while PASS and SKIP both work as ways to decline and create surface overlap with skipping stones.",
   "thinking": {
-    "all_16_words": "STOCK STEW CHILI SAUCE BOND SPECTRE SKYFALL CASINO ANTE STAKE BLUFF CHIPS GRIP BOOM MIC STAND",
+    "all_16_words": "ROCK COIN STONE SHELL BLUES JAZZ COUNTRY FOLK SKIP PASS PUNT MISS SEINFELD FRIENDS SCRUBS CHEERS",
     "anchors": [
       {
-        "home_category": "Things that simmer on the stove",
-        "meaning_a": "broth or soup base",
-        "meaning_b": "inventory or shares",
-        "tempts_toward": "Wall Street jargon",
-        "word": "STOCK"
+        "home_category": "Things you skip on water",
+        "meaning_a": "stone or geological material",
+        "meaning_b": "music genre",
+        "tempts_toward": "Genres of music",
+        "word": "ROCK"
       },
       {
-        "home_category": "007 movies",
-        "meaning_a": "James Bond film",
-        "meaning_b": "financial security or connection",
-        "tempts_toward": "Wall Street jargon",
-        "word": "BOND"
+        "home_category": "Genres of music",
+        "meaning_a": "music genre",
+        "meaning_b": "feeling sad or melancholy",
+        "tempts_toward": "Things you skip on water",
+        "word": "BLUES"
       },
       {
-        "home_category": "Poker terms",
-        "meaning_a": "gambling term",
-        "meaning_b": "ownership share or wooden post",
-        "tempts_toward": "Wall Street jargon",
-        "word": "STAKE"
+        "home_category": "Genres of music",
+        "meaning_a": "music genre",
+        "meaning_b": "nation or rural area",
+        "tempts_toward": "Types of geography",
+        "word": "COUNTRY"
       }
     ]
   },
