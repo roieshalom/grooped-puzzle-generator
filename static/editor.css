@@ -286,6 +286,12 @@ input[type="text"]:focus {
 .publish-date-picker:hover,
 .publish-date-picker:focus { border-color: #999; }
 
+.date-mask {
+  font-size: 10px;
+  color: #ccc;
+  letter-spacing: 3px;
+}
+
 .top-bar {
   display: flex;
   align-items: center;

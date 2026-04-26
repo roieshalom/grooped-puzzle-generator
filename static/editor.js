@@ -54,9 +54,13 @@ function setReadOnly(readOnly) {
     lockBtn.classList.toggle('unlocked', !readOnly);
   }
 
-  // Show publish date picker only when unlocked
+  // Date row: always visible; swap picker ↔ mask based on lock state
   const dateRow = document.getElementById('dateRow');
-  if (dateRow) dateRow.style.display = readOnly ? 'none' : 'flex';
+  if (dateRow) dateRow.style.display = 'flex';
+  const picker = document.getElementById('publishDatePicker');
+  if (picker) picker.style.display = readOnly ? 'none' : '';
+  const dateMask = document.getElementById('dateMask');
+  if (dateMask) dateMask.style.display = readOnly ? '' : 'none';
 
   // Hide auth panel when unlocking
   if (!readOnly) {
