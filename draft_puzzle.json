@@ -1,71 +1,86 @@
 {
   "categories": [
     {
-      "name": "SHOOT ___",
+      "name": "Types of transportation",
       "words": [
-        "SLUG",
-        "POOL",
-        "HOOPS",
-        "BREEZE"
+        "TRAIN",
+        "SHIP",
+        "PLANE",
+        "BUS"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "FRIENDS CHARACTERS",
+      "name": "___ WRECK",
       "words": [
-        "CHANDLER",
-        "RACHEL",
-        "MONICA",
-        "PHOEBE"
+        "TOTAL",
+        "NERVOUS",
+        "HOME",
+        "CAR"
       ],
       "difficulty": "green"
     },
     {
-      "name": "HOTEL AMENITIES",
+      "name": "Words meaning chaos",
       "words": [
-        "SPA",
-        "GYM",
-        "SAUNA",
-        "LOBBY"
+        "WRECK",
+        "TANGLE",
+        "MESS",
+        "DISASTER"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "FAST FOOD SIDES",
+      "name": "U.S. coins",
       "words": [
-        "FRIES",
-        "RINGS",
-        "SLAW",
-        "SHAKE"
+        "PENNY",
+        "NICKEL",
+        "DIME",
+        "QUARTER"
       ],
       "difficulty": "purple"
     }
   ],
-  "decoys": [],
-  "other_trick": "RINGS also creates tension with HOOPS as both can be jewelry, while SHAKE could mislead toward dance moves or earthquakes.",
+  "decoys": [
+    {
+      "category_a": "Types of transportation",
+      "category_b": "___ WRECK",
+      "reason_a": "A train is a locomotive that runs on tracks and carries passengers or cargo.",
+      "reason_b": "Solvers will think of the phrase 'train wreck' meaning a disaster or chaotic situation.",
+      "word": "TRAIN"
+    },
+    {
+      "category_a": "Types of transportation",
+      "category_b": "___ WRECK",
+      "reason_a": "A ship is a large watercraft that travels on oceans and seas.",
+      "reason_b": "Solvers will think of the phrase 'shipwreck' referring to a destroyed vessel at sea.",
+      "word": "SHIP"
+    }
+  ],
+  "other_trick": "CAR can feel like it belongs with transportation but actually completes 'car wreck', while WRECK itself bridges two categories creating double misdirection.",
   "thinking": {
-    "all_16_words": "SLUG POOL HOOPS BREEZE CHANDLER RACHEL MONICA PHOEBE SPA GYM SAUNA LOBBY FRIES RINGS SLAW SHAKE",
+    "all_16_words": "TRAIN SHIP PLANE BUS TOTAL NERVOUS HOME CAR WRECK TANGLE MESS DISASTER PENNY NICKEL DIME QUARTER",
     "anchors": [
       {
-        "home_category": "SHOOT ___",
-        "meaning_a": "a bullet or ammunition round",
-        "meaning_b": "a slow-moving garden mollusk",
-        "tempts_toward": "Garden pests",
-        "word": "SLUG"
+        "home_category": "Types of transportation",
+        "meaning_a": "locomotive on tracks",
+        "meaning_b": "to practice or teach",
+        "tempts_toward": "___ WRECK",
+        "word": "TRAIN"
       },
       {
-        "home_category": "SHOOT ___",
-        "meaning_a": "car pool, pool resources together",
-        "meaning_b": "swimming pool",
-        "tempts_toward": "Things at a resort",
-        "word": "POOL"
+        "home_category": "Types of transportation",
+        "meaning_a": "ocean vessel",
+        "meaning_b": "to send a package",
+        "tempts_toward": "___ WRECK",
+        "word": "SHIP"
       },
       {
-        "home_category": "SHOOT ___",
-        "meaning_a": "basketball (slang for the sport)",
-        "meaning_b": "circular rings, earrings",
-        "tempts_toward": "Types of jewelry",
-        "word": "HOOPS"
+        "home_category": "___ WRECK",
+        "meaning_a": "a crashed vehicle or disaster",
+        "meaning_b": "to destroy or ruin",
+        "tempts_toward": "Types of transportation",
+        "word": "WRECK"
       }
     ]
   },
