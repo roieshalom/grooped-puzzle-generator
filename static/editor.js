@@ -67,6 +67,10 @@ function setReadOnly(readOnly) {
     lockBtn.classList.toggle('unlocked', !readOnly);
   }
 
+  // View-mode banner: visible only when locked
+  const viewModeBanner = document.getElementById('viewModeBanner');
+  if (viewModeBanner) viewModeBanner.style.display = readOnly ? '' : 'none';
+
   // Design notes box matches locked/unlocked word-input appearance
   const designNotes = document.getElementById('designNotes');
   if (designNotes) designNotes.classList.toggle('locked', readOnly);
