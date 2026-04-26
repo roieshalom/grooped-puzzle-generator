@@ -11,7 +11,7 @@
       "difficulty": "yellow"
     },
     {
-      "name": "___ WRECK",
+      "name": "_____ WRECK",
       "words": [
         "TOTAL",
         "NERVOUS",
@@ -31,12 +31,12 @@
       "difficulty": "blue"
     },
     {
-      "name": "U.S. coins",
+      "name": "synonym to the word \"send\"",
       "words": [
-        "PENNY",
-        "NICKEL",
-        "DIME",
-        "QUARTER"
+        "DISPATCH",
+        "TRANSMIT",
+        "CONSIGN",
+        "REMIT"
       ],
       "difficulty": "purple"
     }
@@ -57,6 +57,7 @@
       "word": "SHIP"
     }
   ],
+  "language": "en",
   "other_trick": "CAR can feel like it belongs with transportation but actually completes 'car wreck', while WRECK itself bridges two categories creating double misdirection.",
   "thinking": {
     "all_16_words": "TRAIN SHIP PLANE BUS TOTAL NERVOUS HOME CAR WRECK TANGLE MESS DISASTER PENNY NICKEL DIME QUARTER",
@@ -84,7 +85,6 @@
       }
     ]
   },
-  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
