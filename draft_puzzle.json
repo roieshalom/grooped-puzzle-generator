@@ -31,12 +31,12 @@
       "difficulty": "blue"
     },
     {
-      "name": "One-word sitcoms",
+      "name": "things you can do with a rope",
       "words": [
-        "SEINFELD",
-        "FRIENDS",
-        "SCRUBS",
-        "CHEERS"
+        "KNOT",
+        "SPLICE",
+        "TUG OF WAR",
+        "LASSO"
       ],
       "difficulty": "purple"
     }
@@ -50,6 +50,7 @@
       "word": "ROCK"
     }
   ],
+  "language": "en",
   "other_trick": "FOLK appears in the music category but could tempt solvers toward thinking about ordinary people or traditions, while PASS and SKIP both work as ways to decline and create surface overlap with skipping stones.",
   "thinking": {
     "all_16_words": "ROCK COIN STONE SHELL BLUES JAZZ COUNTRY FOLK SKIP PASS PUNT MISS SEINFELD FRIENDS SCRUBS CHEERS",
@@ -77,7 +78,6 @@
       }
     ]
   },
-  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
