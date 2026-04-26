@@ -1,79 +1,86 @@
 {
   "categories": [
     {
-      "name": "Clothing items",
+      "name": "Places to deposit things",
       "words": [
-        "JUMPER",
-        "BLAZER",
-        "PARKA",
-        "VEST"
+        "BANK",
+        "VAULT",
+        "PIGGY",
+        "SAFE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Actors named Tom",
+      "name": "Parts of a river system",
       "words": [
-        "COOPER",
-        "HANKS",
-        "HOLLAND",
-        "CRUISE"
+        "CURRENT",
+        "DELTA",
+        "MOUTH",
+        "FORK"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Things you do at a red light",
+      "name": "Things you flip through on TV",
       "words": [
-        "STOP",
-        "PAUSE",
-        "WAIT",
-        "HOLD"
+        "CHANNEL",
+        "GUIDE",
+        "LISTING",
+        "PROGRAM"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "___ SHOT",
+      "name": "Sounds you make with your body",
       "words": [
-        "MUG",
-        "HOOK",
-        "SCREEN",
-        "SNAP"
+        "SNAP",
+        "CLAP",
+        "STOMP",
+        "WHISTLE"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "Clothing items",
-      "category_b": "___ SHOT",
-      "reason_a": "A jumper is a sweater or pullover garment.",
-      "reason_b": "Solvers might think of jump shot, a common basketball term.",
-      "word": "JUMPER"
+      "category_a": "Places to deposit things",
+      "category_b": "Parts of a river system",
+      "reason_a": "A bank is where you store money and valuables.",
+      "reason_b": "A river bank is the land alongside the water's edge.",
+      "word": "BANK"
+    },
+    {
+      "category_a": "Things you flip through on TV",
+      "category_b": "Parts of a river system",
+      "reason_a": "A channel is a TV station or broadcast frequency.",
+      "reason_b": "A channel is a narrow waterway connecting larger bodies of water.",
+      "word": "CHANNEL"
     }
   ],
-  "other_trick": "MUG and SNAP can both relate to photography (mug shot, snapshot), creating additional misdirection away from the ___ SHOT basketball pattern.",
+  "other_trick": "SAFE, VAULT, and PROGRAM all have multiple meanings that might create confusion across the money storage and TV categories.",
   "thinking": {
-    "all_16_words": "JUMPER BLAZER PARKA VEST MUG HOOK SCREEN SNAP COOPER HANKS HANKS CRUISE STOP PAUSE WAIT HOLD",
+    "all_16_words": "BANK VAULT PIGGY SAFE CHANNEL GUIDE LISTING PROGRAM CURRENT DELTA MOUTH FORK SNAP CLAP STOMP WHISTLE",
     "anchors": [
       {
-        "home_category": "Clothing items",
-        "meaning_a": "a sweater or pullover",
-        "meaning_b": "one who jumps",
-        "tempts_toward": "___ SHOT (basketball terms)",
-        "word": "JUMPER"
+        "home_category": "Places to deposit things",
+        "meaning_a": "financial institution",
+        "meaning_b": "side of a river",
+        "tempts_toward": "Parts of a river system",
+        "word": "BANK"
       },
       {
-        "home_category": "___ SHOT",
-        "meaning_a": "hook shot in basketball",
-        "meaning_b": "fishing equipment or curved fastener",
-        "tempts_toward": "Things you hang on the wall",
-        "word": "HOOK"
+        "home_category": "Things you flip through on TV",
+        "meaning_a": "TV station",
+        "meaning_b": "body of water connecting two larger bodies",
+        "tempts_toward": "Parts of a river system",
+        "word": "CHANNEL"
       },
       {
-        "home_category": "___ SHOT",
-        "meaning_a": "screen shot in basketball",
-        "meaning_b": "display monitor or window covering",
-        "tempts_toward": "Tech devices",
-        "word": "SCREEN"
+        "home_category": "Parts of a river system",
+        "meaning_a": "flow of water",
+        "meaning_b": "present time / up to date",
+        "tempts_toward": "Things you flip through on TV",
+        "word": "CURRENT"
       }
     ]
   },
