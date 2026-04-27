@@ -44,12 +44,12 @@
       "tier": 3,
       "mechanic": "EPONYMS",
       "difficulty": "green",
-      "name": "Things named after people",
+      "name": "things named after their creator",
       "words": [
         "SANDWICH",
-        "DIESEL",
-        "LEOTARD",
-        "MARATHON"
+        "FERRIS WHEEL",
+        "SILHOUETTE",
+        "LEOTARD"
       ]
     },
     {
@@ -89,12 +89,8 @@
   ],
   "id": "138",
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'MARATHON' within this puzzle"
-    ],
-    "duplicate_words": [
-      "MARATHON"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
