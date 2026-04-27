@@ -261,20 +261,6 @@ input[type="text"]:focus {
   flex: 1;
   min-width: 0;
 }
-.title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: 10px;
-}
-.title-row-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative; /* anchor for auth-panel overlay */
-  flex-shrink: 0;
-}
 .date-row {
   display: flex;
   align-items: center;
@@ -369,16 +355,24 @@ input[type="text"]:focus {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
+    position: relative; /* anchor for absolutely-positioned lock btn */
   }
   .title-block {
     flex: none;
     width: 100%;
     align-items: flex-start;
+    padding-right: 52px; /* keep title text clear of the lock button */
   }
   .title { text-align: left; }
   .date-row { justify-content: flex-start; }
   .actions { width: 100%; justify-content: center; }
   .action-btn { flex: 1; }
+  /* Float lock button to top-right of the top-bar */
+  .lock-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
 /* Small phones */
@@ -393,7 +387,7 @@ input[type="text"]:focus {
   align-items: center;
   flex-wrap: wrap;
   flex-shrink: 0;
-  position: relative; /* anchor for auth-panel overlay */
+  position: relative; /* anchor for auth-panel overlay on desktop */
 }
 .action-btn {
   padding: 10px 24px;
@@ -656,15 +650,22 @@ input[type="text"]:focus {
   transition: all 0.2s;
   line-height: 1;
   flex-shrink: 0;
+  position: relative;   /* sit above the auth-panel overlay */
+  z-index: 6;
 }
 .lock-btn:hover { background: #f0f0f0; border-color: #bbb; }
 .lock-btn.unlocked { border-color: #27ae60; background: #f0fdf4; }
 
-/* ── Inline auth panel — appears inline beside the lock button ───── */
+/* ── Inline auth panel — overlays the action buttons ─────────────── */
 .auth-panel {
   display: none;
+  position: absolute;
+  inset: 0;
+  background: white;
   align-items: center;
   gap: 8px;
+  z-index: 5;
+  padding-right: 50px; /* don't visually bleed into the lock button */
 }
 .auth-panel.show { display: flex; }
 
@@ -673,7 +674,7 @@ input[type="text"]:focus {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 13px;
-  width: 120px;
+  width: 130px;
   font-family: inherit;
   outline: none;
 }
@@ -695,8 +696,10 @@ input[type="text"]:focus {
 .unlock-btn:hover { background: #7c3aed; }
 .unlock-btn:disabled { background: #aaa; cursor: not-allowed; }
 
-@media (max-width: 480px) {
-  .auth-panel input[type="password"] { width: 90px; }
+/* On narrow screens the auth panel still overlays, input stretches */
+@media (max-width: 600px) {
+  .auth-panel { padding-right: 44px; }
+  .auth-panel input[type="password"] { flex: 1; }
 }
 
 /* Read-only dimming for inputs */

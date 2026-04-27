@@ -18,16 +18,7 @@
   <div class="container">
     <div class="top-bar">
       <div class="title-block">
-        <div class="title-row">
-          <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
-          <div class="title-row-right">
-            <div id="authPanel" class="auth-panel">
-              <input type="password" id="inlinePasswordInput" placeholder="password" autocomplete="current-password" />
-              <button id="inlineUnlockBtn" class="unlock-btn">Unlock</button>
-            </div>
-            <button class="lock-btn" id="lockBtn" title="Unlock editor">🔒</button>
-          </div>
-        </div>
+        <h1 class="title" id="titleText">Puzzle Editor 3000</h1>
         <div id="dateRow" class="date-row" style="display:none;">
           <span class="date-label-text">Publish date:</span>
           <input type="date" id="publishDatePicker" class="publish-date-picker" />
@@ -40,6 +31,11 @@
         <button class="action-btn reload" id="reloadBtn">Revert</button>
         <button class="action-btn generate" id="generateBtn">Generate</button>
         <button class="action-btn export" id="exportBtn">Export</button>
+        <div id="authPanel" class="auth-panel">
+          <input type="password" id="inlinePasswordInput" placeholder="password" autocomplete="current-password" />
+          <button id="inlineUnlockBtn" class="unlock-btn">Unlock</button>
+        </div>
+        <button class="lock-btn" id="lockBtn" title="Unlock editor">🔒</button>
       </div>
     </div>
 
