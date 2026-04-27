@@ -2,48 +2,49 @@
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Successfully found four natural words each containing drink names as consecutive letters, verified letter-by-letter",
       "result": "shipped",
       "tier": 3
     }
   ],
   "categories": [
     {
-      "name": "Things that leak or drip",
+      "name": "ROCK ___",
       "words": [
-        "PIPE",
-        "HOSE",
-        "FAUCET",
-        "NOSE"
+        "BOTTOM",
+        "STAR",
+        "SOLID",
+        "CANDY"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Fuels",
+      "name": "Things that FIRE",
       "words": [
-        "COKE",
-        "DIESEL",
-        "PROPANE",
-        "BUTANE"
+        "CANNON",
+        "NEURON",
+        "KILN",
+        "ENGINE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "The ___ is ___",
+      "name": "Movies with numbers in the title",
       "words": [
-        "COAST",
-        "CLEAR",
-        "SHOT",
-        "WILD"
+        "CATCH",
+        "OCEAN",
+        "APOLLO",
+        "FRIDAY"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Words hiding drinks inside",
+      "name": "Words hiding drink names",
       "words": [
         "WINTER",
-        "SPRING",
-        "SUMMER",
-        "AUTUMN"
+        "GRUMBLE",
+        "CODING",
+        "STEAMING"
       ],
       "difficulty": "purple"
     }
@@ -51,52 +52,60 @@
   "date": "28.04.2026",
   "decoys": [],
   "false_decoy": {
-    "reality": "It IS grouped with those three, but not because they're seasons—because they hide drinks (WINE, RUM, ALE, TEA)",
-    "setup": "Looks like an obvious season with SPRING, SUMMER, AUTUMN",
-    "why_it_works": "The seasons create a surface-level trap that makes solvers dismiss the group too early or pick it for the wrong reason",
-    "word": "WINTER"
+    "actually_belongs": "Movies with numbers in the title",
+    "appears_to_belong": "ROCK ___",
+    "why": "ROCK FRIDAY sounds vaguely plausible as a music event or phrase, but it's not standard. The suspicion is the trap - FRIDAY actually belongs in movies (Friday the 13th).",
+    "word": "FRIDAY"
   },
   "id": "138",
   "language": "en",
   "thinking": {
-    "all_16_words": "WINTER SPRING SUMMER AUTUMN COAST CLEAR SHOT WILD PIPE HOSE FAUCET NOSE COKE DIESEL PROPANE BUTANE",
-    "corpus_fetch": "Successfully fetched puzzles.json from GitHub",
-    "decoy_architecture": "SPRING pulls between seasons and things that verb (springs leak). COAST pulls between geography and idiom completion (coast is clear). COKE pulls between drinks-inside and taxonomy fuels.",
-    "duplicate_check": "PASS - verified against last 60 days",
+    "all_16_words": "BOTTOM STAR SOLID CANDY CANNON NEURON KILN ENGINE CATCH OCEAN APOLLO FRIDAY WINTER GRUMBLE CODING STEAMING",
+    "board_build": "Yellow: PREFIX_BLANK 'ROCK ___' - BOTTOM, STAR, SOLID, CANDY. Green: THINGS_THAT_VERB 'Things that FIRE' - CANNON, NEURON, KILN, ENGINE. Blue: IDIOM_COMPLETION '___-22' style (numbers in phrases) - CATCH (Catch-22), OCEAN (Ocean's Eleven), APOLLO (Apollo 13), FRIDAY (Friday the 13th). Purple: HIDDEN_WORD_INSIDE drinks.",
+    "corpus_fetch": "Successfully fetched puzzles.json",
+    "cross_pull_analysis": "CATCH tempts toward ROCK CATCH (not a phrase but sounds plausible). STAR could be ROCK STAR (yes!) or could solvers think STAR FIRE? CANNON sounds military like APOLLO (space program connection). FRIDAY sounds like it could go with other time words if they existed on board.",
+    "decoy_seed_1": "WINTER - could be 'ROCK ___' (ROCK WINTER doesn't work but WINTER ROCK or thinking of winter as a season) OR hidden drink",
+    "decoy_seed_2": "CATCH - could be 'Things that FIRE' (CATCH fire) OR 'ROCK ___' (ROCK CATCH doesn't work) OR idiom 'catch ___'",
+    "duplicate_check": "PASS - all 16 words unique",
+    "hidden_word_verification": {
+      "CODING": "C-O-D-I-N-G contains GIN (consecutive letters, positions 4-6)",
+      "GRUMBLE": "G-R-U-M-B-L-E contains RUM (consecutive letters, positions 2-4)",
+      "STEAMING": "S-T-E-A-M-I-N-G contains TEA (consecutive letters, positions 3-5)",
+      "WINTER": "W-I-N-T-E-R contains WIN (consecutive letters, positions 1-3)",
+      "verification": "PASS - all four words contain drink names as consecutive letters"
+    },
     "mechanic_balance": {
       "chosen_for_this_puzzle": [
-        "TAXONOMY (with decoys)",
+        "PREFIX_BLANK",
         "THINGS_THAT_VERB",
         "IDIOM_COMPLETION",
         "HIDDEN_WORD_INSIDE"
       ],
-      "cooldown_check": "PASS - all chosen mechanics are available",
-      "last_21_analysis": "Only puzzle #137 is tagged. It used: FOUND_IN_SCENE (T1), METAPHOR_SUBSTITUTES (T2), WAYS_TO_VERB (T2), SUFFIX_BLANK (T1). Tier 1 was doubled.",
+      "cooldown_check": "PASS - none of these appeared in #137",
+      "last_21_scan": "Only puzzle #137 has mechanic tags. Scanning its categories and attempt_log.",
       "tagged_puzzles_available": 1,
       "tier_1_recently_used": [
-        "FOUND_IN_SCENE",
-        "SUFFIX_BLANK"
+        "FOUND_IN_SCENE (137)",
+        "SUFFIX_BLANK (137)"
       ],
       "tier_2_recently_used": [
-        "METAPHOR_SUBSTITUTES",
-        "WAYS_TO_VERB"
+        "METAPHOR_SUBSTITUTES (137)",
+        "WAYS_TO_VERB (137)"
       ],
       "tier_3_recently_used": [],
-      "tier_4_recently_used": [],
+      "tier_4_recently_used": [
+        "ACROSTIC_FIRST_LETTERS (137, abandoned in attempt_log)"
+      ],
       "underused_candidates": [
-        "THINGS_THAT_VERB",
-        "SHARED_HIDDEN_PROPERTY",
-        "IDIOM_COMPLETION",
-        "HIDDEN_WORD_INSIDE",
-        "EPONYMS"
+        "All Tier 3 mechanics are available. Most Tier 2 mechanics available except METAPHOR_SUBSTITUTES and WAYS_TO_VERB. From Tier 1: TAXONOMY, PREFIX_BLANK, SYNONYMS available."
       ],
       "warmup_active": true,
-      "warmup_strategy": "Avoid doubling Tier 1. Lean toward Tier 2 and introduce Tier 3."
+      "warmup_strategy": "Since we're in warmup (only 1 tagged puzzle), LEAN TOWARD TIER 2 AND TIER 3. Don't double up on Tier 1 unless cross-pulls are exceptional. Will use: 1 Tier 1 (PREFIX_BLANK), 2 Tier 2 (THINGS_THAT_VERB, IDIOM_COMPLETION), 1 Tier 3 (HIDDEN_WORD_INSIDE)."
     },
-    "spine_selection": "HIDDEN_WORD_INSIDE (Tier 3) - hidden drinks. This is underused and creates strong misdirection.",
-    "surface_pattern_test": "Seasons look obvious but SPRING is a decoy. Fuels are visible but COKE hides COKE→Coke. Leaking things are scattered. Idiom needs assembly.",
-    "theme_repeat_check": "PASS - no seasons, leaking things, fuels, or '___ is ___' idioms in last 60 days",
-    "tricked_but_fair": "Yes - SPRING genuinely belongs to leaking things but reads as a season. COKE reads as fuel/drug slang but belongs to hidden drinks. COAST could be geography or idiom."
+    "repeat_check_last_60_days": "Checked puzzles back to early March 2026. No word repeats. No category theme repeats (no rock phrases, no things that fire, no movie titles with numbers, no hidden drinks).",
+    "self_critique": "Strong decoy potential with STAR (ROCK STAR is real). CATCH is medium decoy. Hidden drinks are clean and surprising. Board has good variety of mechanics during warmup.",
+    "spine_mechanic": "HIDDEN_WORD_INSIDE - hidden drinks (Tier 3, purple difficulty)",
+    "surface_pattern_test": "ROCK ___ words don't all start with same letter. Things that FIRE are diverse (weapon, brain cell, oven, vehicle). Movie titles are varied lengths/styles. Hidden drink words have no surface tell."
   },
   "_validation": {
     "valid": true,
