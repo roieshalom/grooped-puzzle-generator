@@ -310,7 +310,7 @@ def export_puzzle():
             now = datetime.now()
             puzzle["date"] = f"{now.day}.{now.month}.{now.year}"
 
-    puzzle["status"] = "published"
+    puzzle = _sanitize_for_export(puzzle)
     puzzles_list.append(puzzle)
 
     # Write back
@@ -341,6 +341,60 @@ def export_puzzle():
         print(f"Auto-ban failed (non-fatal): {e}")
 
     return jsonify({"ok": True, "id": puzzle["id"], "date": puzzle["date"]})
+
+# ─── Export sanitisation ─────────────────────────────────────────────────────
+
+_FIELDS_TO_STRIP = {
+    "thinking", "anchors", "language", "status",
+    "other_trick", "false_decoy", "_validation",
+}
+
+_TIER_LOOKUP = {
+    # Tier 1
+    "TAXONOMY": 1, "FOUND_IN_SCENE": 1, "PREFIX_BLANK": 1,
+    "SUFFIX_BLANK": 1, "SYNONYMS": 1,
+    # Tier 2
+    "THINGS_THAT_VERB": 2, "CAN_BE_VERBED": 2, "SHARED_HIDDEN_PROPERTY": 2,
+    "METAPHOR_SUBSTITUTES": 2, "WAYS_TO_VERB": 2, "IDIOM_COMPLETION": 2,
+    "ORDERED_SET_MEMBER": 2, "WORKS_BY_ONE_MAKER": 2, "CHARACTERS_IN_ONE_WORK": 2,
+    # Tier 3
+    "HIDDEN_WORD_INSIDE": 3, "HIDDEN_WORD_AT_START": 3, "HIDDEN_WORD_AT_END": 3,
+    "HOMOPHONE_OF_LETTER": 3, "HOMOPHONE_OF_NUMBER": 3, "HOMOPHONE_PAIRS": 3,
+    "COMPOUND_BOTH_WAYS": 3, "ADD_LETTER": 3, "DROP_LETTER": 3,
+    "EPONYMS": 3, "CROSS_LANGUAGE": 3, "ABBREVIATION_EXPANSION": 3,
+    # Tier 4
+    "ANAGRAM_OF_ONE_SOURCE": 4, "ACROSTIC_FIRST_LETTERS": 4,
+    "CHAIN_THROUGH_HUB": 4, "PORTMANTEAU": 4, "ONOMATOPOEIA": 4,
+}
+
+def _sanitize_for_export(puzzle: dict) -> dict:
+    """Strip unwanted fields and inject mechanic/tier into each category."""
+    # Pull mechanic list from thinking block before it's stripped
+    thinking = puzzle.get("thinking", {})
+    chosen = (
+        thinking.get("mechanic_balance", {}).get("chosen_for_this_puzzle", [])
+    )
+
+    # Keep only allowed top-level fields
+    allowed = {"id", "date", "categories", "decoys", "attempt_log"}
+    clean = {k: v for k, v in puzzle.items() if k in allowed}
+
+    # Sanitize categories: inject mechanic + tier, enforce field order
+    clean_cats = []
+    for i, cat in enumerate(puzzle.get("categories", [])):
+        mechanic = cat.get("mechanic") or (chosen[i] if i < len(chosen) else None)
+        tier = cat.get("tier") or (_TIER_LOOKUP.get(mechanic) if mechanic else None)
+        clean_cats.append({
+            "tier":       tier,
+            "mechanic":   mechanic,
+            "difficulty": cat.get("difficulty"),
+            "name":       cat.get("name"),
+            "words":      cat.get("words", []),
+        })
+    clean["categories"] = clean_cats
+
+    return clean
+
 
 # ─── Anthropic helpers ────────────────────────────────────────────────────────
 
