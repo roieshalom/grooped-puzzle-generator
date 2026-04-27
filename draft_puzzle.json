@@ -1,90 +1,83 @@
 {
   "categories": [
     {
-      "name": "Places to deposit",
+      "name": "Things in a camping kit",
       "words": [
-        "BANK",
-        "VAULT",
-        "PIGGY",
-        "SAFE"
+        "ROPE",
+        "COMPASS",
+        "MATCH",
+        "CANTEEN"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Parts of a river system",
+      "name": "Tennis ___",
       "words": [
-        "CURRENT",
-        "DELTA",
-        "MOUTH",
-        "FORK"
+        "COURT",
+        "SET",
+        "NET",
+        "BALL"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Things you flip through on TV",
+      "name": "___room",
       "words": [
-        "CHANNEL",
-        "GUIDE",
-        "LISTING",
-        "PROGRAM"
+        "LIVING",
+        "DINING",
+        "BATH",
+        "SHOW"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Modern",
+      "name": "Heating systems",
       "words": [
-        "VIRAL",
-        "TRENDING",
-        "BUZZING",
-        "SLAYING"
+        "STOVE",
+        "PIPE",
+        "FURNACE",
+        "BOILER"
       ],
       "difficulty": "purple"
     }
   ],
   "decoys": [
     {
-      "category_a": "Places to deposit things",
-      "category_b": "Parts of a river system",
-      "reason_a": "A bank is where you store money and valuables.",
-      "reason_b": "A river bank is the land alongside the water's edge.",
-      "word": "BANK"
-    },
-    {
-      "category_a": "Things you flip through on TV",
-      "category_b": "Parts of a river system",
-      "reason_a": "A channel is a TV station or broadcast frequency.",
-      "reason_b": "A channel is a narrow waterway connecting larger bodies of water.",
-      "word": "CHANNEL"
+      "category_a": "Things in a camping kit",
+      "category_b": "Tennis ___",
+      "reason_a": "MATCH is a fire-starting tool essential for camping.",
+      "reason_b": "Tennis MATCH is a common phrase for a tennis game or contest.",
+      "word": "MATCH"
     }
   ],
-  "language": "en",
-  "other_trick": "SAFE, VAULT, and PROGRAM all have multiple meanings that might create confusion across the money storage and TV categories.",
+  "other_trick": "BALL and NET also work in camping contexts (rope ball, mosquito net), while PIPE and STOVE could mislead toward smoking or kitchen items rather than heating systems.",
   "thinking": {
-    "all_16_words": "BANK VAULT PIGGY SAFE CHANNEL GUIDE LISTING PROGRAM CURRENT DELTA MOUTH FORK SNAP CLAP STOMP WHISTLE",
+    "all_16_words": "ROPE COMPASS MATCH CANTEEN COURT SET NET BALL LIVING DINING BATH SHOW STOVE PIPE FURNACE BOILER",
     "anchors": [
       {
-        "home_category": "Places to deposit things",
-        "meaning_a": "financial institution",
-        "meaning_b": "side of a river",
-        "tempts_toward": "Parts of a river system",
-        "word": "BANK"
+        "home_category": "Things in a camping kit",
+        "meaning_a": "fire starter",
+        "meaning_b": "tennis contest or dating pairing",
+        "tempts_toward": "Tennis ___",
+        "word": "MATCH"
       },
       {
-        "home_category": "Things you flip through on TV",
-        "meaning_a": "TV station",
-        "meaning_b": "body of water connecting two larger bodies",
-        "tempts_toward": "Parts of a river system",
-        "word": "CHANNEL"
+        "home_category": "Tennis ___",
+        "meaning_a": "tennis scoring unit",
+        "meaning_b": "collection or TV stage setup",
+        "tempts_toward": "Things in a camping kit",
+        "word": "SET"
       },
       {
-        "home_category": "Parts of a river system",
-        "meaning_a": "flow of water",
-        "meaning_b": "present time / up to date",
-        "tempts_toward": "Things you flip through on TV",
-        "word": "CURRENT"
+        "home_category": "Tennis ___",
+        "meaning_a": "tennis playing surface",
+        "meaning_b": "legal venue or to romance someone",
+        "tempts_toward": "___room",
+        "word": "COURT"
       }
     ]
   },
+  "language": "en",
   "_validation": {
     "valid": true,
     "errors": [],
