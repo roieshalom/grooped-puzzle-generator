@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "___ CROSSING",
+      "name": "____ CROSSING",
       "words": [
         "RAILROAD",
         "PEDESTRIAN",
@@ -20,10 +20,10 @@
       "difficulty": "green",
       "name": "Things that can run",
       "words": [
-        "TIGER",
-        "GIRAFFE",
-        "OTTER",
-        "SLOTH"
+        "NOSE",
+        "FAUCET",
+        "ENGINE",
+        "USAIN BOLT"
       ]
     },
     {
@@ -33,9 +33,9 @@
       "name": "Have stripes",
       "words": [
         "ZEBRA",
-        "SKUNK",
+        "REFEREE",
         "CANDY",
-        "PANDA"
+        "TOOTHPASTE"
       ]
     },
     {
