@@ -624,6 +624,10 @@ def regenerate_category():
 CATEGORY: {category_name}
 DIFFICULTY: {difficulty} (easy=common words, medium=light knowledge, hard=wordplay)
 
+Rules:
+- Words must be UPPERCASE
+- No word should appear inside the category name itself
+
 Return ONLY valid JSON:
 {{"name": "{category_name}", "difficulty": "{difficulty}", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
         else:
@@ -634,11 +638,12 @@ BANNED (do not reuse, even rephrased): {banned_text}
 Requirements:
 - Difficulty: {difficulty}
 - Exactly 4 words, UPPERCASE
+- Category name: sentence case (e.g. "Things in a junk drawer"), NOT all caps
 - Casual register — pop culture, everyday objects, common phrases
 - No academic jargon, no "words that are both X and Y"
 
 Return ONLY valid JSON:
-{{"name": "Category name", "difficulty": "{difficulty}", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
+{{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
 
         data = _call_claude(prompt, max_tokens=200, model=VERIFY_MODEL)
         return jsonify(data)
