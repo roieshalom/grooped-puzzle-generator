@@ -42,12 +42,12 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding TEA",
+      "name": "Things you can do to a conversation",
       "words": [
-        "SWEATER",
-        "INSTEAD",
-        "STEALTH",
-        "THEATER"
+        "BREAK",
+        "STEER",
+        "KILL",
+        "START"
       ]
     }
   ],
