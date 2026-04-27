@@ -744,7 +744,7 @@ input[type="text"]:focus {
   top: 50%;
   transform: translateY(-50%);
   font-family: 'Courier New', Courier, monospace;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
   color: #555;
   letter-spacing: 0.04em;
