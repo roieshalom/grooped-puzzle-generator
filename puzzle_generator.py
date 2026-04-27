@@ -322,6 +322,10 @@ moment comes from the unexpected connection, not the expected one. If
 a solver can guess all four words just by knowing the category name,
 the property is not hidden enough.
 
+TIER DISTRIBUTION RULE: No more than 2 categories from the same tier
+in a single puzzle. This prevents Tier 2-heavy boards and forces
+variety across the mechanic tiers.
+
 WORKFLOW
 ========
 
