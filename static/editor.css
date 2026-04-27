@@ -803,7 +803,7 @@ input[type="text"]:focus {
 .mb-tier-item {
   display: flex;
   align-items: center;
-  gap: 1px;
+  gap: 0;
   flex: 1;
   min-width: 120px;
 }
@@ -812,6 +812,7 @@ input[type="text"]:focus {
   font-weight: 700;
   min-width: 44px;
   letter-spacing: 0.02em;
+  padding-right: 3px;
 }
 .mb-track {
   flex: 1;
@@ -831,6 +832,7 @@ input[type="text"]:focus {
   white-space: nowrap;
   min-width: 56px;
   text-align: right;
+  padding-left: 3px;
 }
 .mb-underused {
   font-size: 11px;
