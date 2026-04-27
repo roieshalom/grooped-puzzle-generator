@@ -243,6 +243,9 @@ def save_puzzle():
         "duplicate_words": dups,
     }
 
+    # Ensure mechanic/tier are present in each category (lifted from thinking block if needed)
+    _inject_mechanic_tier(puzzle)
+
     # Write draft to GitHub
     try:
         _, sha = gh_read(GENERATOR_REPO, DRAFT_PATH)
@@ -366,6 +369,19 @@ _TIER_LOOKUP = {
     "ANAGRAM_OF_ONE_SOURCE": 4, "ACROSTIC_FIRST_LETTERS": 4,
     "CHAIN_THROUGH_HUB": 4, "PORTMANTEAU": 4, "ONOMATOPOEIA": 4,
 }
+
+def _inject_mechanic_tier(puzzle: dict) -> dict:
+    """Lift mechanic + tier into each category from thinking block (mutates in place, returns puzzle)."""
+    thinking = puzzle.get("thinking", {})
+    chosen = thinking.get("mechanic_balance", {}).get("chosen_for_this_puzzle", [])
+    for i, cat in enumerate(puzzle.get("categories", [])):
+        if not cat.get("mechanic") and i < len(chosen):
+            cat["mechanic"] = chosen[i]
+        mechanic = cat.get("mechanic")
+        if not cat.get("tier") and mechanic:
+            cat["tier"] = _TIER_LOOKUP.get(mechanic)
+    return puzzle
+
 
 def _sanitize_for_export(puzzle: dict) -> dict:
     """Strip unwanted fields and inject mechanic/tier into each category."""
@@ -891,9 +907,11 @@ def generate_puzzle():
                 continue
 
             print(f"Puzzle accepted on attempt {attempt}")
+            _inject_mechanic_tier(data)
             return jsonify(data)
 
         if last_data:
+            _inject_mechanic_tier(last_data)
             return jsonify(last_data)
 
         return jsonify({"error": "Could not generate a valid puzzle after several attempts. Please try again."}), 500
