@@ -733,10 +733,11 @@ input[type="text"]:focus {
   flex: 1;
   min-width: 0;
   display: flex;
+  flex-direction: column;
 }
 .name-input-wrapper .category-name-input {
   flex: 1;
-  padding-right: 120px; /* room for the label */
+  padding-right: 120px; /* room for the label on desktop */
 }
 .mechanic-label {
   position: absolute;
@@ -751,6 +752,21 @@ input[type="text"]:focus {
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+}
+
+/* On mobile: drop the label below the input field */
+@media (max-width: 480px) {
+  .name-input-wrapper .category-name-input {
+    padding-right: 12px; /* restore normal padding */
+    margin-bottom: 4px;
+  }
+  .mechanic-label {
+    position: static;
+    transform: none;
+    display: block;
+    padding: 0 2px 6px;
+    font-size: 11px;
+  }
 }
 
 /* ── Mechanic usage bar ─────────────────────────────────────────────────────── */
