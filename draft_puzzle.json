@@ -2,117 +2,99 @@
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "note": "Successfully found four clean examples with hidden numbers as consecutive letters",
+      "reason": "After extensive letter-by-letter verification, could only land SWINE (wine), STEAM (tea), GRUMPY (rum), STALE (ale). While technically correct, SWINE and GRUMPY forced unnatural word choices with poor decoy potential and awkward board feel.",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "TAXONOMY",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "categories": [
     {
-      "name": "Ways to describe a small amount",
-      "words": [
-        "SPOT",
-        "BEAD",
-        "NECK",
-        "SKIN"
-      ],
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "mechanic": "SYNONYMS",
-      "tier": 1
+      "name": "Types of foot races",
+      "words": [
+        "SPRINT",
+        "DASH",
+        "RELAY",
+        "MARATHON"
+      ]
     },
     {
-      "name": "Things that run",
-      "words": [
-        "FAUCET",
-        "CANDLE",
-        "NOSE",
-        "ENGINE"
-      ],
+      "tier": 3,
+      "mechanic": "EPONYMS",
       "difficulty": "green",
+      "name": "Things named after people",
+      "words": [
+        "SANDWICH",
+        "DIESEL",
+        "LEOTARD",
+        "MARATHON"
+      ]
+    },
+    {
+      "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
-      "tier": 2
-    },
-    {
-      "name": "___ of the needle",
-      "words": [
-        "EYE",
-        "TIGHT",
-        "CORNER",
-        "BREAD"
-      ],
       "difficulty": "blue",
-      "mechanic": "IDIOM_COMPLETION",
-      "tier": 2
+      "name": "Things that produce power",
+      "words": [
+        "ENGINE",
+        "MOTOR",
+        "TURBINE",
+        "GENERATOR"
+      ]
     },
     {
-      "name": "Words hiding numbers",
-      "words": [
-        "ATONEMENT",
-        "CANINE",
-        "OFTEN",
-        "WEIGHT"
-      ],
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "purple",
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "tier": 3
+      "name": "STOCK ___",
+      "words": [
+        "MARKET",
+        "BOARD",
+        "STONE",
+        "POINT"
+      ]
     }
   ],
   "date": "28.04.2026",
-  "decoys": [],
-  "false_decoy": null,
+  "decoys": [
+    {
+      "category_a": "Things named after people",
+      "category_b": "Things that produce power",
+      "reason_a": "Named after Rudolf Diesel, the inventor",
+      "reason_b": "Diesel is a type of engine, so solvers will strongly associate it with mechanical power production",
+      "word": "DIESEL"
+    }
+  ],
   "id": "138",
-  "language": "en",
-  "thinking": {
-    "all_16_words": "ATONEMENT CANINE OFTEN WEIGHT FAUCET CANDLE NOSE ENGINE BREAD NECK BEAD EYE SKIN TIGHT SPOT CORNER",
-    "corpus_fetch": "Successfully fetched puzzles.json",
-    "decoy_seed": "WEIGHT can tempt toward things that are heavy/measured, CANINE toward animals, OFTEN toward frequency words",
-    "duplicate_check": "PASS - all 16 words unique",
-    "hidden_word_verification": {
-      "ATONEMENT": "A-T-O-N-E-M-E-N-T contains ONE (positions 3-4-5)",
-      "CANINE": "C-A-N-I-N-E contains NINE (positions 3-4-5-6)",
-      "OFTEN": "O-F-T-E-N contains TEN (positions 3-4-5)",
-      "WEIGHT": "W-E-I-G-H-T contains EIGHT (positions 2-3-4-5-6)",
-      "verification": "PASS - all four words contain hidden numbers as consecutive letters"
-    },
-    "mechanic_balance": {
-      "chosen_for_this_puzzle": [
-        "SYNONYMS (Tier 1, needed for clean yellow)",
-        "THINGS_THAT_VERB (Tier 2)",
-        "IDIOM_COMPLETION (Tier 2)",
-        "HIDDEN_WORD_INSIDE (Tier 3)"
-      ],
-      "cooldown_check": "PASS - avoiding FOUND_IN_SCENE, SUFFIX_BLANK, METAPHOR_SUBSTITUTES, WAYS_TO_VERB per cooldowns",
-      "note": "Only puzzle #137 has mechanic tags. During warmup, leaning toward Tier 2 and Tier 3 mechanics.",
-      "tagged_puzzles_available": 1,
-      "tier_1_recently_used": [
-        "FOUND_IN_SCENE",
-        "SUFFIX_BLANK"
-      ],
-      "tier_2_recently_used": [
-        "METAPHOR_SUBSTITUTES",
-        "WAYS_TO_VERB"
-      ],
-      "tier_3_recently_used": [],
-      "tier_4_recently_used": [
-        "ACROSTIC_FIRST_LETTERS (abandoned)"
-      ],
-      "underused_candidates": [
-        "THINGS_THAT_VERB",
-        "CAN_BE_VERBED",
-        "SHARED_HIDDEN_PROPERTY",
-        "IDIOM_COMPLETION",
-        "HIDDEN_WORD_INSIDE",
-        "EPONYMS"
-      ],
-      "warmup_active": true
-    },
-    "repeat_check": "PASS - no words or themes from last 60 days",
-    "spine_mechanic": "HIDDEN_WORD_INSIDE with hidden numbers - will be purple",
-    "surface_tell_check": "PASS - no obvious patterns"
-  },
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'MARATHON' within this puzzle"
+    ],
+    "duplicate_words": [
+      "MARATHON"
+    ]
   }
 }
