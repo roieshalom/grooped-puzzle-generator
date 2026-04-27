@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "name": "Places to deposit things",
+      "name": "Places to deposit",
       "words": [
         "BANK",
         "VAULT",
@@ -29,6 +29,16 @@
         "PROGRAM"
       ],
       "difficulty": "blue"
+    },
+    {
+      "name": "Modern",
+      "words": [
+        "VIRAL",
+        "TRENDING",
+        "BUZZING",
+        "SLAYING"
+      ],
+      "difficulty": "purple"
     }
   ],
   "decoys": [
@@ -76,10 +86,8 @@
     ]
   },
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Need exactly 4 categories, got 3"
-    ],
+    "valid": true,
+    "errors": [],
     "duplicate_words": []
   }
 }
