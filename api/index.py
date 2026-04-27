@@ -571,6 +571,17 @@ TIER 3: SPECIALS — cooldown 21 puzzles, ~20% of categories long-term
 Wordplay-flavored mechanics that lose punch with overuse. Roughly once every 3 weeks each.
 
 - HIDDEN_WORD_INSIDE: each word secretly contains an item from a hidden category, anywhere. Hidden numbers → STONE (one), OFTEN (ten), CANINE (nine), FREIGHT (eight).
+
+HIDDEN WORD VERIFICATION (mandatory for all HIDDEN_WORD mechanics):
+Before committing to any hidden-word category, spell out each word
+letter by letter and confirm the hidden item appears as consecutive
+letters. Example: WINTER → W-I-N-T-E-R → contains WIN, not WINE.
+If you cannot find four words that each cleanly contain the hidden
+item as consecutive letters, abandon this mechanic and log the attempt.
+Do not approximate. Do not use the first few letters of a word as the
+hidden item unless they spell the complete item (SPRING does not hide
+RUM, SPRING does not hide GIN, SPRING hides nothing drinkable).
+
 - HIDDEN_WORD_AT_START: each word starts with a hidden item. Soda brands → CRUSHWORTHY, FANTAGRAPHICS, FRESCADE, PEPSINOGEN.
 - HIDDEN_WORD_AT_END: same idea, at the end.
 - HOMOPHONE_OF_LETTER: sound like single letters. SEA (C), ARE (R), WHY (Y), JAY (J).
