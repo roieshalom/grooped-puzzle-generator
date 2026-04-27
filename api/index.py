@@ -246,14 +246,17 @@ def save_puzzle():
     # Ensure mechanic/tier are present in each category (lifted from thinking block if needed)
     _inject_mechanic_tier(puzzle)
 
-    # Write draft to GitHub
+    # Write a clean draft to GitHub (no thinking/language/false_decoy/etc.)
+    draft_to_write = _sanitize_for_export(puzzle)
+    # Re-attach _validation so the editor can highlight duplicate words
+    draft_to_write["_validation"] = puzzle["_validation"]
     try:
         _, sha = gh_read(GENERATOR_REPO, DRAFT_PATH)
-        gh_write(GENERATOR_REPO, DRAFT_PATH, puzzle, sha, "Update draft puzzle")
+        gh_write(GENERATOR_REPO, DRAFT_PATH, draft_to_write, sha, "Update draft puzzle")
     except Exception as e:
         print(f"Draft save to GitHub failed (non-fatal): {e}")
 
-    return jsonify({"ok": True, "puzzle": puzzle})
+    return jsonify({"ok": True, "puzzle": draft_to_write})
 
 # ─── Export ───────────────────────────────────────────────────────────────────
 
@@ -383,17 +386,35 @@ def _inject_mechanic_tier(puzzle: dict) -> dict:
     return puzzle
 
 
+def _normalize_decoy(d: dict) -> dict:
+    """Normalise decoy schema: home/tempts_toward → category_a/category_b."""
+    if not d.get("category_a") and d.get("home"):
+        d = dict(d)
+        d["category_a"] = d.pop("home", "")
+        d["category_b"] = d.pop("tempts_toward", "")
+        if "why" in d and not d.get("reason_a"):
+            d["reason_a"] = d.pop("why", "")
+    return d
+
+
 def _sanitize_for_export(puzzle: dict) -> dict:
-    """Strip unwanted fields and inject mechanic/tier into each category."""
-    # Pull mechanic list from thinking block before it's stripped
+    """Strip unwanted fields, inject mechanic/tier, normalise decoys."""
     thinking = puzzle.get("thinking", {})
-    chosen = (
-        thinking.get("mechanic_balance", {}).get("chosen_for_this_puzzle", [])
-    )
+    chosen = thinking.get("mechanic_balance", {}).get("chosen_for_this_puzzle", [])
+
+    # Lift decoys from thinking if top-level array is empty
+    raw_decoys = puzzle.get("decoys") or []
+    if not raw_decoys:
+        thinking_decoys = thinking.get("decoys", [])
+        if thinking_decoys:
+            print(f"_sanitize: lifting {len(thinking_decoys)} decoy(s) from thinking.decoys")
+            raw_decoys = thinking_decoys
+    clean_decoys = [_normalize_decoy(d) for d in raw_decoys]
 
     # Keep only allowed top-level fields
     allowed = {"id", "date", "categories", "decoys", "attempt_log"}
     clean = {k: v for k, v in puzzle.items() if k in allowed}
+    clean["decoys"] = clean_decoys
 
     # Sanitize categories: inject mechanic + tier, enforce field order
     clean_cats = []
@@ -803,15 +824,17 @@ EXAMPLE JSON OUTPUT (PUZZLE #137)
   "decoys": [
     {
       "word": "JAM",
-      "home": "Metaphors for being in trouble",
-      "tempts_toward": "Things that jingle in your pocket",
-      "why": "Solvers might think of jam jars or food in their pocket before reading JAM as 'in a jam'."
+      "category_a": "Metaphors for being in trouble",
+      "reason_a": "in a jam means in trouble",
+      "category_b": "Things that jingle in your pocket",
+      "reason_b": "Solvers may think of jam jars before the idiom."
     },
     {
       "word": "BET",
-      "home": "Ways to say yes",
-      "tempts_toward": "DEAD ___",
-      "why": "DEAD BET isn't a phrase, but the word feels gambly enough that solvers may try it there."
+      "category_a": "Ways to say yes",
+      "reason_a": "you bet means yes",
+      "category_b": "DEAD ___",
+      "reason_b": "DEAD BET isn't a phrase but the word feels gambly enough to tempt solvers."
     }
   ],
   "false_decoy": null,
@@ -882,11 +905,26 @@ def generate_puzzle():
             if has_circular:
                 continue
 
+            # Normalise decoy schema: model sometimes uses home/tempts_toward instead of category_a/b
+            def _norm_decoy(d):
+                if not d.get("category_a") and d.get("home"):
+                    d = {**d, "category_a": d["home"], "category_b": d.get("tempts_toward", "")}
+                return d
+
+            raw_decoys = data.get("decoys") or []
+            # Fallback: lift from thinking.decoys if top-level array is empty
+            if not raw_decoys:
+                thinking_decoys = data.get("thinking", {}).get("decoys", [])
+                if thinking_decoys:
+                    print(f"Lifting {len(thinking_decoys)} decoy(s) from thinking.decoys")
+                    raw_decoys = thinking_decoys
+            raw_decoys = [_norm_decoy(d) for d in raw_decoys]
+
             # Strip structurally invalid decoys
             board_set = {w for w in all_words if w}
             cat_names = {cat.get("name", "").strip() for cat in data["categories"]}
             clean_decoys = [
-                d for d in data.get("decoys", [])
+                d for d in raw_decoys
                 if (d.get("word", "").upper().strip() in board_set
                     and d.get("category_a", "").strip() in cat_names
                     and d.get("category_b", "").strip() in cat_names
