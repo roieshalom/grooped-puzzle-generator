@@ -3,67 +3,74 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
-      "difficulty": "yellow",
-      "name": "___ STONE",
-      "words": [
-        "CORNER",
-        "GALL",
-        "LIME",
-        "KEY"
-      ]
-    },
-    {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "green",
-      "name": "Things that run",
+      "difficulty": "yellow",
+      "name": "Things that fly",
       "words": [
-        "CLOCK",
-        "NOSE",
-        "FAUCET",
-        "ENGINE"
+        "KITE",
+        "DRONE",
+        "BALLOON",
+        "FRISBEE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Ways to prepare eggs",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "green",
+      "name": "ROCK ___",
       "words": [
-        "SCRAMBLED",
-        "POACHED",
-        "FRIED",
-        "BOILED"
+        "STAR",
+        "BOTTOM",
+        "CANDY",
+        "BAND"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "SYNONYMS",
+      "difficulty": "blue",
+      "name": "Synonyms for firm or unwavering",
+      "words": [
+        "SOLID",
+        "STEADY",
+        "RESOLUTE",
+        "FIXED"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Things you can do to a conversation",
+      "name": "Contains a hidden metal",
       "words": [
-        "BREAK",
-        "STEER",
-        "KILL",
-        "START"
+        "GOLDFINCH",
+        "IRONCLAD",
+        "LEADING",
+        "TINSEL"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Words hiding TEA",
-      "category_b": "Things that run",
-      "reason_a": "Contains TEA as consecutive letters (t-h-e-a-t-e-r)",
-      "reason_b": "A theater runs shows or productions",
-      "word": "THEATER"
+      "category_a": "Contains a hidden metal",
+      "category_b": "Things that fly",
+      "reason_a": "Contains GOLD as consecutive letters",
+      "reason_b": "A goldfinch is a bird that flies, creating strong surface-level pull",
+      "word": "GOLDFINCH"
+    },
+    {
+      "category_a": "Contains a hidden metal",
+      "category_b": "Synonyms for firm or unwavering",
+      "reason_a": "Contains IRON as consecutive letters",
+      "reason_b": "Ironclad means unbreakable or firm, fits perfectly with SOLID, STEADY, RESOLUTE",
+      "word": "IRONCLAD"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "notes": "Successfully found four words containing TEA: SWEATER, INSTEAD, STEALTH, THEATER - all verified letter by letter",
+      "reason": "Successfully found four words containing metals (GOLD, IRON, LEAD, TIN) with strong decoy potential",
       "result": "shipped",
       "tier": 3
     }
