@@ -796,14 +796,14 @@ input[type="text"]:focus {
 }
 .mb-row {
   display: flex;
-  gap: 12px;
+  gap: 28px;
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
 .mb-tier-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 3px;
   flex: 1;
   min-width: 120px;
 }
