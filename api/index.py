@@ -634,6 +634,7 @@ The corpus before puzzle #137 is heavily skewed toward Tier 1 (taxonomy and refe
 
 - LEAN TOWARD TIER 2 AND TIER 3 MECHANICS, since the untagged history already provides plenty of Tier 1 baseline.
 - DON'T DOUBLE UP ON TIER 1 MECHANICS in the same puzzle during warmup unless the cross-pulls are exceptional.
+- No more than 2 categories from the same tier in a single puzzle (warmup or not).
 - Once 21 tagged puzzles exist, switch to standard cooldown logic.
 
 TIER 1: WORKHORSES — cooldown 4 puzzles, ~40% of categories long-term
@@ -766,6 +767,28 @@ HARD RULES
 - Decoy words must point at a category that exists on this exact board.
 - Respect mechanic cooldowns from the tier system.
 - Every category must have a 'mechanic' and 'tier' field. Every puzzle must have an 'attempt_log' field (can be a single entry if no fallback happened).
+
+CROSS-DOMAIN RULE: No two categories on the same board may draw
+primarily from the same real-world domain. If two groups are both
+animal-heavy, both food-heavy, or both sport-heavy, rebuild one of
+them. The board must feel like four different worlds, not two worlds
+split in half.
+
+THINGS_THAT_VERB QUALITY RULE: The four words must perform the action
+in genuinely different contexts or senses. "Things that run" must
+include words like NOSE, FAUCET, ENGINE, MASCARA — each running in a
+different domain. Four animals that all run the same way is a flat
+taxonomy pretending to be a verb category. If all four words share the
+same real-world domain, this mechanic is being misused. Pick different
+words or pick a different mechanic.
+
+SHARED_HIDDEN_PROPERTY QUALITY RULE: The shared property must be
+surprising. "Have stripes" with four striped animals is obvious and
+boring. "Have stripes" with ZEBRA, TOOTHPASTE, REFEREE, BARCODE is
+surprising because the words come from different domains. The aha
+moment comes from the unexpected connection, not the expected one. If
+a solver can guess all four words just by knowing the category name,
+the property is not hidden enough.
 
 WORKFLOW
 ========
