@@ -193,10 +193,12 @@ input[type="text"]:focus {
   margin-bottom: 10px;
   min-width: 0;
 }
-.category-header .category-name-input {
+.category-header .name-input-wrapper {
   flex: 1;
-  margin-bottom: 0;
   min-width: 0;
+}
+.category-header .category-name-input {
+  margin-bottom: 0;
 }
 @media (max-width: 480px) {
   .category-header { gap: 8px; }
@@ -725,15 +727,29 @@ input[type="text"]:focus {
   letter-spacing: 0.04em;
 }
 
-/* ── Mechanic label (per-category row) ──────────────────────────────────────── */
+/* ── Mechanic label (overlaid inside category name input) ───────────────────── */
+.name-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+.name-input-wrapper .category-name-input {
+  flex: 1;
+  padding-right: 120px; /* room for the label */
+}
 .mechanic-label {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: 'Courier New', Courier, monospace;
-  font-size: 11px;
-  color: #999;
-  opacity: 0.75;
-  margin-top: 4px;
-  margin-bottom: 2px;
-  letter-spacing: 0.03em;
+  font-size: 10px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
   user-select: none;
 }
 

@@ -404,7 +404,7 @@ function updateMechanicLabels() {
     const mechanic = cat && cat.mechanic;
     const tier = cat && (cat.tier || null);
     if (!_readOnly && mechanic) {
-      el.textContent = tier ? `${mechanic} · Tier ${tier}` : mechanic;
+      el.textContent = tier ? `${mechanic} · T${tier}` : mechanic;
       el.style.display = '';
     } else {
       el.style.display = 'none';
