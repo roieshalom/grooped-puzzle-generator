@@ -397,8 +397,24 @@ def _normalize_decoy(d: dict) -> dict:
     return d
 
 
+def _format_date(raw: str) -> str:
+    """Normalise any supported date string to zero-padded DD.MM.YYYY."""
+    if not raw:
+        return raw
+    d = _parse_any_date(raw)
+    if d:
+        return f"{d.day:02d}.{d.month:02d}.{d.year}"
+    return raw  # unrecognised format — return as-is
+
+
 def _sanitize_for_export(puzzle: dict) -> dict:
-    """Strip unwanted fields, inject mechanic/tier, normalise decoys."""
+    """Strip unwanted fields, enforce field order, normalise date and decoys.
+
+    Call order guarantee: _inject_mechanic_tier() must be called on the puzzle
+    before this function so that cat.get('mechanic') / cat.get('tier') are
+    already populated. _sanitize_for_export also re-derives them from the
+    thinking block as a fallback, so it is safe either way.
+    """
     thinking = puzzle.get("thinking", {})
     chosen = thinking.get("mechanic_balance", {}).get("chosen_for_this_puzzle", [])
 
@@ -410,11 +426,6 @@ def _sanitize_for_export(puzzle: dict) -> dict:
             print(f"_sanitize: lifting {len(thinking_decoys)} decoy(s) from thinking.decoys")
             raw_decoys = thinking_decoys
     clean_decoys = [_normalize_decoy(d) for d in raw_decoys]
-
-    # Keep only allowed top-level fields
-    allowed = {"id", "date", "categories", "decoys", "attempt_log"}
-    clean = {k: v for k, v in puzzle.items() if k in allowed}
-    clean["decoys"] = clean_decoys
 
     # Sanitize categories: inject mechanic + tier, enforce field order
     clean_cats = []
@@ -428,9 +439,15 @@ def _sanitize_for_export(puzzle: dict) -> dict:
             "name":       cat.get("name"),
             "words":      cat.get("words", []),
         })
-    clean["categories"] = clean_cats
 
-    return clean
+    # Enforce top-level field order: id, date, categories, decoys, attempt_log
+    return {
+        "id":          puzzle.get("id"),
+        "date":        _format_date(puzzle.get("date", "")),
+        "categories":  clean_cats,
+        "decoys":      clean_decoys,
+        "attempt_log": puzzle.get("attempt_log"),
+    }
 
 @app.route("/api/mechanic-stats", methods=["GET"])
 def get_mechanic_stats():
