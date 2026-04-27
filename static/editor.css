@@ -724,3 +724,96 @@ input[type="text"]:focus {
   font-weight: 700;
   letter-spacing: 0.04em;
 }
+
+/* ── Mechanic label (per-category row) ──────────────────────────────────────── */
+.mechanic-label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #999;
+  opacity: 0.75;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+/* ── Mechanic usage bar ─────────────────────────────────────────────────────── */
+.mechanic-bar {
+  background: #1a1a1a;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #ccc;
+}
+.mb-heading {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.mb-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.mb-tier-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 120px;
+}
+.mb-tier-label {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 44px;
+  letter-spacing: 0.02em;
+}
+.mb-track {
+  flex: 1;
+  height: 8px;
+  background: #2e2e2e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.mb-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.mb-pct {
+  font-size: 11px;
+  color: #888;
+  white-space: nowrap;
+  min-width: 56px;
+  text-align: right;
+}
+.mb-underused {
+  font-size: 11px;
+  color: #888;
+  margin-top: 6px;
+  line-height: 1.7;
+}
+.mb-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 10px;
+  margin: 1px 2px;
+}
+.mb-t2 { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+.mb-t3 { background: rgba(249,115,22,0.2); color: #fdba74; }
+.mb-warmup {
+  font-size: 11px;
+  color: #f59e0b;
+  margin-top: 6px;
+}
+.mb-loading {
+  font-size: 11px;
+  color: #666;
+}

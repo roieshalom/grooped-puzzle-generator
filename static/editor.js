@@ -102,6 +102,8 @@ function setReadOnly(readOnly) {
   }
 
   updateExportButtonState();
+  updateMechanicLabels();
+  renderMechanicBar();
 }
 
 // Enter/exit past-puzzle snapshot mode
@@ -387,6 +389,109 @@ function updateUI() {
   lastSavedState = getCurrentStateString();
   hasUnsavedChanges = false;
   updateExportButtonState();
+  updateMechanicLabels();
+}
+
+// ── Mechanic labels (per-category) ──────────────────────────────────────────
+
+function updateMechanicLabels() {
+  const puzzle = puzzles.length > 0 ? puzzles[0] : null;
+  const categories = puzzle ? (puzzle.categories || []) : [];
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById(`mechanic-label-${i}`);
+    if (!el) continue;
+    const cat = categories[i];
+    const mechanic = cat && cat.mechanic;
+    const tier = cat && (cat.tier || null);
+    if (!_readOnly && mechanic) {
+      el.textContent = tier ? `${mechanic} · Tier ${tier}` : mechanic;
+      el.style.display = '';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+}
+
+// ── Mechanic usage bar ───────────────────────────────────────────────────────
+
+let _mechBarContent = null; // cache rendered HTML
+
+const _TIER2_MECHANICS = [
+  'THINGS_THAT_VERB','CAN_BE_VERBED','SHARED_HIDDEN_PROPERTY','METAPHOR_SUBSTITUTES',
+  'WAYS_TO_VERB','IDIOM_COMPLETION','ORDERED_SET_MEMBER','WORKS_BY_ONE_MAKER','CHARACTERS_IN_ONE_WORK',
+];
+const _TIER3_MECHANICS = [
+  'HIDDEN_WORD_INSIDE','HIDDEN_WORD_AT_START','HIDDEN_WORD_AT_END',
+  'HOMOPHONE_OF_LETTER','HOMOPHONE_OF_NUMBER','HOMOPHONE_PAIRS',
+  'COMPOUND_BOTH_WAYS','ADD_LETTER','DROP_LETTER',
+  'EPONYMS','CROSS_LANGUAGE','ABBREVIATION_EXPANSION',
+];
+
+async function renderMechanicBar(forceRefresh = false) {
+  const bar = document.getElementById('mechanicBar');
+  if (!bar) return;
+
+  if (_readOnly) { bar.style.display = 'none'; return; }
+
+  if (!forceRefresh && _mechBarContent !== null) {
+    bar.innerHTML = _mechBarContent;
+    bar.style.display = '';
+    return;
+  }
+
+  bar.style.display = '';
+  bar.innerHTML = '<span class="mb-loading">Loading mechanic stats…</span>';
+
+  let data;
+  try {
+    const r = await fetch('/api/mechanic-stats');
+    data = await r.json();
+  } catch (e) {
+    bar.innerHTML = '<span class="mb-loading">Could not load mechanic stats.</span>';
+    return;
+  }
+
+  const { tagged_count, window_size, cat_mechanics, all_mechanics } = data;
+  const total = cat_mechanics.length;
+
+  // Count by tier
+  const tierCounts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  cat_mechanics.forEach(({ tier }) => { if (tier) tierCounts[tier] = (tierCounts[tier] || 0) + 1; });
+
+  const tierColors = { 1: '#74bdee', 2: '#8b5cf6', 3: '#f97316', 4: '#ec4899' };
+  const tierLabels = { 1: 'Tier 1', 2: 'Tier 2', 3: 'Tier 3', 4: 'Tier 4' };
+
+  let html = `<div class="mb-heading">Mechanic usage — last ${tagged_count} tagged puzzles (${total} categories)</div>`;
+  html += '<div class="mb-row">';
+  [1, 2, 3, 4].forEach(t => {
+    const count = tierCounts[t] || 0;
+    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    html += `<div class="mb-tier-item">
+      <span class="mb-tier-label" style="color:${tierColors[t]}">${tierLabels[t]}</span>
+      <div class="mb-track"><div class="mb-fill" style="width:${pct}%;background:${tierColors[t]}"></div></div>
+      <span class="mb-pct">${pct}% (${count})</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  // Underused Tier 2 & 3 mechanics (used 0 times in window)
+  const underused2 = _TIER2_MECHANICS.filter(m => !(all_mechanics[m] > 0));
+  const underused3 = _TIER3_MECHANICS.filter(m => !(all_mechanics[m] > 0));
+  if (underused2.length > 0 || underused3.length > 0) {
+    html += '<div class="mb-underused"><strong>Unused in window:</strong> ';
+    const items = [
+      ...underused2.map(m => `<span class="mb-tag mb-t2">${m}</span>`),
+      ...underused3.map(m => `<span class="mb-tag mb-t3">${m}</span>`),
+    ];
+    html += items.join(' ') + '</div>';
+  }
+
+  if (tagged_count < window_size) {
+    html += `<div class="mb-warmup">⚠ Only ${tagged_count} of ${window_size} window puzzles are tagged. Stats will improve as more puzzles are exported with mechanic data.</div>`;
+  }
+
+  _mechBarContent = html;
+  bar.innerHTML = html;
 }
 
 function showValidationErrors(puzzle) {
@@ -462,6 +567,7 @@ function collectData() {
 
       // Always add category if it has either name or words (or both)
       if (name || words.length > 0) {
+        const existingCat = (existingPuzzle.categories || [])[i] || {};
         puzzle.categories.push({
           name: name,
           words:
@@ -469,6 +575,8 @@ function collectData() {
               ? words
               : words.concat(Array(4 - words.length).fill('')),
           difficulty: colorToDifficulty[currentColor] || 'yellow',
+          ...(existingCat.mechanic ? { mechanic: existingCat.mechanic } : {}),
+          ...(existingCat.tier     ? { tier:     existingCat.tier     } : {}),
         });
       }
     }
@@ -605,6 +713,8 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
 
     await load();
     refreshNextDate();
+    _mechBarContent = null; // invalidate cache so bar refreshes
+    renderMechanicBar(true);
   } catch (e) {
     setStatus('Export failed', 'error', 4000);
     setButtonLoading('exportBtn', false);
@@ -1032,5 +1142,7 @@ async function startup() {
   setReadOnly(!getAuthToken());
   // Run in parallel — date label and puzzle content load concurrently
   await Promise.all([load(), refreshNextDate()]);
+  // Fetch mechanic stats after initial load (only shown when unlocked)
+  renderMechanicBar(true);
 }
 startup();

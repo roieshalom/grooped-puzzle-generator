@@ -51,6 +51,9 @@
       <div id="messageBox" class="message-box" style="display:none;">Ready</div>
     </div>
 
+    <!-- Mechanic usage bar (unlocked only) -->
+    <div id="mechanicBar" class="mechanic-bar" style="display:none;"></div>
+
     <!-- Puzzle wrapper so we can overlay the whole thing -->
     <div id="puzzleContainer" class="puzzle-container">
       <div class="puzzle-content">
@@ -78,6 +81,7 @@
               <button class="regenerate-btn" data-category="0" title="Regenerate this category"><i class="fas fa-sync-alt"></i></button>
               <button class="ban-btn" data-category="0" title="Skip this category and never show it again"><i class="fas fa-ban"></i></button>
             </div>
+            <div class="mechanic-label" id="mechanic-label-0" style="display:none;"></div>
             <div class="words-row">
               <input type="text" class="word-input" data-category="0" data-word="0" placeholder="word" />
               <input type="text" class="word-input" data-category="0" data-word="1" placeholder="word" />
@@ -111,6 +115,7 @@
               <button class="regenerate-btn" data-category="1" title="Regenerate this category"><i class="fas fa-sync-alt"></i></button>
               <button class="ban-btn" data-category="1" title="Skip this category and never show it again"><i class="fas fa-ban"></i></button>
             </div>
+            <div class="mechanic-label" id="mechanic-label-1" style="display:none;"></div>
             <div class="words-row">
               <input type="text" class="word-input" data-category="1" data-word="0" placeholder="word" />
               <input type="text" class="word-input" data-category="1" data-word="1" placeholder="word" />
@@ -144,6 +149,7 @@
               <button class="regenerate-btn" data-category="2" title="Regenerate this category"><i class="fas fa-sync-alt"></i></button>
               <button class="ban-btn" data-category="2" title="Skip this category and never show it again"><i class="fas fa-ban"></i></button>
             </div>
+            <div class="mechanic-label" id="mechanic-label-2" style="display:none;"></div>
             <div class="words-row">
               <input type="text" class="word-input" data-category="2" data-word="0" placeholder="word" />
               <input type="text" class="word-input" data-category="2" data-word="1" placeholder="word" />
@@ -177,6 +183,7 @@
               <button class="regenerate-btn" data-category="3" title="Regenerate this category"><i class="fas fa-sync-alt"></i></button>
               <button class="ban-btn" data-category="3" title="Skip this category and never show it again"><i class="fas fa-ban"></i></button>
             </div>
+            <div class="mechanic-label" id="mechanic-label-3" style="display:none;"></div>
             <div class="words-row">
               <input type="text" class="word-input" data-category="3" data-word="0" placeholder="word" />
               <input type="text" class="word-input" data-category="3" data-word="1" placeholder="word" />
