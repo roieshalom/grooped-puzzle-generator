@@ -709,12 +709,12 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     if (!r.ok) throw new Error(res.error || JSON.stringify(res));
 
     setButtonSuccess('exportBtn');
-    setStatus('Puzzle exported', 'success', 4000);
+    setStatus('Puzzle exported — generating next…', 'success', 4000);
 
-    await load();
     refreshNextDate();
-    _mechBarContent = null; // invalidate cache so bar refreshes
+    _mechBarContent = null;
     renderMechanicBar(true);
+    await generateAndSave();
   } catch (e) {
     setStatus('Export failed', 'error', 4000);
     setButtonLoading('exportBtn', false);
@@ -722,23 +722,17 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   }
 });
 
-document.getElementById('generateBtn').addEventListener('click', async () => {
-  console.log('GENERATE CLICKED');
+async function generateAndSave() {
   setButtonLoading('generateBtn', true);
-  setPuzzleLoading(true, 'Generating puzzle…'); // show full‑puzzle overlay
+  setPuzzleLoading(true, 'Generating puzzle…');
   try {
     const r = await apiFetch('/api/generate-puzzle', {
       method: 'POST',
       body: JSON.stringify({}),
     });
     const res = await r.json();
-    if (!r.ok) {
-      throw new Error(res.error || JSON.stringify(res));
-    }
-
-    if (!res || !res.categories) {
-      throw new Error('Invalid puzzle from generator');
-    }
+    if (!r.ok) throw new Error(res.error || JSON.stringify(res));
+    if (!res || !res.categories) throw new Error('Invalid puzzle from generator');
 
     // Assign 4 unique colors in order
     const uniqueColors = ['yellow', 'coral', 'mint', 'sky'];
@@ -760,21 +754,26 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
     currentIndex = 0;
     updateUI();
     setButtonSuccess('generateBtn');
-    setStatus('New puzzle generated', 'success', 3000);
+    setStatus('New puzzle generated — saving…', 'success', 3000);
 
-    // Trigger backend validation so duplicate words show right away
+    // Save immediately
     try {
       await save();
     } catch (e) {
-      // ignore here; errors already surfaced in save()
+      // ignore; errors already surfaced in save()
     }
   } catch (e) {
     setStatus('Generate failed', 'error', 4000);
     alert('Failed to generate puzzle: ' + e);
   } finally {
     setButtonLoading('generateBtn', false);
-    setPuzzleLoading(false); // hide full‑puzzle overlay
+    setPuzzleLoading(false);
   }
+}
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+  console.log('GENERATE CLICKED');
+  generateAndSave();
 });
 
 // Track input changes for unsaved changes detection
