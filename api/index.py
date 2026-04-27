@@ -628,6 +628,15 @@ A FALSE DECOY is the next move: a word that looks like it should belong elsewher
 
 If you cannot identify at least 2 real decoys, your puzzle has no cross-board tension. Rebuild it.
 
+DECOYS MUST APPEAR IN THE OUTPUT JSON.
+The 'decoys' array is what the editor displays to you after generation.
+If you put decoy logic only in 'thinking' or 'false_decoy', it will not
+appear anywhere useful. For every decoy you identify, write a full entry
+in the 'decoys' array with all four fields: word, category_a, reason_a,
+category_b, reason_b. A puzzle with an empty 'decoys' array will be
+treated as having no decoys, regardless of what is in 'thinking'.
+Minimum 2 entries. No exceptions.
+
 CATEGORY FRAMING
 ================
 
