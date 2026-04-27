@@ -32,7 +32,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Types of foot races",
+      "name": "Types of races",
       "words": [
         "SPRINT",
         "DASH",
@@ -56,7 +56,7 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things that produce power",
+      "name": "Produce power",
       "words": [
         "ENGINE",
         "MOTOR",
@@ -68,7 +68,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "purple",
-      "name": "STOCK ___",
+      "name": "STOCK _____",
       "words": [
         "MARKET",
         "BOARD",
