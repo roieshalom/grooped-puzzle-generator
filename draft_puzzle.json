@@ -2,89 +2,89 @@
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing a common tool as consecutive letters",
+      "note": "First attempt with tree types ASH/ELM/OAK failed verification. Switched to PINE, verified all four words contain consecutive P-I-N-E.",
       "result": "shipped",
       "tier": 3
     }
   ],
   "categories": [
     {
-      "name": "FRENCH ____",
+      "name": "Mountain features",
       "words": [
-        "PRESS",
-        "TOAST",
-        "DOOR",
-        "HORN"
+        "PEAK",
+        "SUMMIT",
+        "RIDGE",
+        "SLOPE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Have keys",
+      "name": "Things that melt",
       "words": [
-        "PIANO",
-        "LOCK",
-        "MAP",
-        "FLORIDA"
+        "ICE",
+        "BUTTER",
+        "WAX",
+        "CHOCOLATE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Things that ring",
+      "name": "___ CAP",
       "words": [
-        "BELL",
-        "PHONE",
-        "ALARM",
-        "EAR"
+        "KNEE",
+        "HUB",
+        "BOTTLE",
+        "BASEBALL"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Contain hidden tools",
+      "name": "Words hiding tree types",
       "words": [
-        "JIGSAW",
-        "RELAXED",
-        "DRILLING",
-        "PROFILE"
+        "ALPINE",
+        "SPINE",
+        "CRISPINESS",
+        "CHOPINES"
       ],
       "difficulty": "purple"
     }
   ],
   "date": "28.04.2026",
   "decoys": [],
-  "false_decoy": null,
+  "false_decoy": {
+    "actually_belongs": "Words hiding tree types",
+    "seems_to_belong": "Mountain features",
+    "why_it_fools": "ALPINE is definitionally mountainous. The hidden PINE feels like an afterthought, so solvers will confidently place it with PEAK/SUMMIT before realizing the wordplay.",
+    "word": "ALPINE"
+  },
   "id": "138",
   "language": "en",
   "thinking": {
-    "all_16_words": "PRESS TOAST DOOR HORN PIANO LOCK MAP FLORIDA BELL PHONE ALARM EAR JIGSAW RELAXED DRILLING PROFILE",
-    "board_evolution": "Need office items for FILE to pull toward. PROFILE(tools), MEMO(office), DESK(office), BINDER(office). Then need THINGS_THAT_VERB - things that RING: BELL, PHONE, ALARM, EAR. SHARED_HIDDEN_PROPERTY - have KEYS: PIANO, LOCK, MAP, FLORIDA. PREFIX_BLANK for yellow: FRENCH ___ : PRESS, TOAST, DOOR, HORN.",
+    "all_16_words": "ALPINE SPINE CRISPINESS CHOPINES PEAK SUMMIT RIDGE SLOPE ICE BUTTER WAX CHOCOLATE KNEE HUB BOTTLE BASEBALL",
+    "board_build": "Need words about mountains, medical/body terms, and two more groups. THINGS_THAT_MELT (Tier 2) and ___ CAP (Tier 1 prefix) work well with cross-pulls.",
     "corpus_fetch": "Successfully fetched puzzles.json from GitHub",
-    "cross_pull_analysis": {
-      "DESK": "Furniture, could feel like FRENCH DESK (provincial style) vs office item - false considered but DESK not in puzzle",
-      "DOOR": "FRENCH DOOR is strong phrase but also entry/portal - solver might hesitate",
-      "LOCK": "Hair (grooming) vs has KEYS (security) - strong decoy",
-      "PHONE": "Could pair with ALARM as tech devices vs RING as action - weak pull",
-      "PROFILE": "Social media/document (office context) vs hidden FILE (tool) - medium decoy"
-    },
-    "decoy_2": "LOCK - could be hair LOCK or go with KEYS category. DESK could be FRENCH DESK (historical furniture).",
-    "decoy_seed": "FILE can mean both the hidden tool category AND a document (office things)",
-    "duplicate_check": "PASS - all 16 words unique, case-insensitive check complete",
+    "cross_pull_analysis": "SPINE: anatomical vs hidden PINE. RIDGE: mountain term vs anatomy (ridge of nose). ICE: melts vs ICE CAP mountain. KNEE: body vs KNEE CAP. Strong tension.",
+    "decoy_seeds": "SPINE can feel medical/anatomical. CHOPINES are shoes, could pull toward clothing. ALPINE could pull toward mountain-related words.",
+    "duplicate_check": "PASS - all 16 unique, none in last 60 days of corpus",
     "hidden_word_verification": {
-      "DRILLING": "D-R-I-L-L-I-N-G contains DRILL (positions 1-5) ✓",
-      "JIGSAW": "J-I-G-S-A-W contains SAW (positions 4-6) ✓",
-      "PROFILE": "P-R-O-F-I-L-E contains FILE (positions 4-7) ✓",
-      "RELAXED": "R-E-L-A-X-E-D contains AXE (positions 4-6) ✓",
-      "verification": "PASS - all four words contain complete hidden tools as consecutive letters"
+      "BISHOP": "B-I-S-H-O-P contains ASH consecutively (positions 3-5)",
+      "RELAPSE": "R-E-L-A-P-S-E contains LARCH? NO. Contains ASH? NO. Let me try ELDER: R-E-L-A-P-S-E contains none. ABANDON.",
+      "attempt_2_PINE": {
+        "ALPINE": "A-L-P-I-N-E contains PINE (positions 3-6) ✓",
+        "CHOPINES": "C-H-O-P-I-N-E-S contains PINE (positions 4-7) ✓",
+        "CRISPINESS": "C-R-I-S-P-I-N-E-S-S contains PINE (positions 5-8) ✓",
+        "SPINE": "S-P-I-N-E contains PINE (positions 2-5) ✓"
+      }
     },
     "mechanic_balance": {
       "chosen_for_this_puzzle": [
-        "THINGS_THAT_VERB",
-        "SHARED_HIDDEN_PROPERTY",
-        "PREFIX_BLANK",
-        "HIDDEN_WORD_INSIDE"
+        "THINGS_THAT_VERB (T2)",
+        "SHARED_HIDDEN_PROPERTY (T2)",
+        "HIDDEN_WORD_INSIDE (T3)",
+        "PREFIX_BLANK (T1)"
       ],
-      "cooldown_check": "PASS - all chosen mechanics clear",
-      "last_21_scan": "Only puzzle #137 has mechanic tags. Tiers used: FOUND_IN_SCENE(1), METAPHOR_SUBSTITUTES(2), WAYS_TO_VERB(2), SUFFIX_BLANK(1). Attempted: ACROSTIC_FIRST_LETTERS(4).",
-      "rationale": "Warmup active. Leaning toward Tier 2-3. THINGS_THAT_VERB and SHARED_HIDDEN_PROPERTY are both Tier 2 and unused. HIDDEN_WORD_INSIDE is Tier 3, unused, good for purple. PREFIX_BLANK as one Tier 1 anchor.",
+      "cooldown_check": "PASS - only 1 tagged puzzle exists, all chosen mechanics are available",
+      "last_21_scan": "Only puzzle #137 is tagged. Scanned its mechanics: FOUND_IN_SCENE (T1), METAPHOR_SUBSTITUTES (T2), WAYS_TO_VERB (T2), SUFFIX_BLANK (T1). Also scanned attempt_log: ACROSTIC_FIRST_LETTERS (T4) abandoned.",
       "tagged_puzzles_available": 1,
       "tier_1_recently_used": [
         "FOUND_IN_SCENE",
@@ -96,27 +96,15 @@
       ],
       "tier_3_recently_used": [],
       "tier_4_recently_used": [
-        "ACROSTIC_FIRST_LETTERS (abandoned)"
+        "ACROSTIC_FIRST_LETTERS"
       ],
       "underused_candidates": [
-        "THINGS_THAT_VERB",
-        "CAN_BE_VERBED",
-        "SHARED_HIDDEN_PROPERTY",
-        "IDIOM_COMPLETION",
-        "HIDDEN_WORD_INSIDE",
-        "EPONYMS",
-        "HOMOPHONE_OF_LETTER"
+        "All Tier 3 mechanics are fresh. From Tier 2: THINGS_THAT_VERB, CAN_BE_VERBED, SHARED_HIDDEN_PROPERTY, IDIOM_COMPLETION, ORDERED_SET_MEMBER highly preferred since warmup phase needs more lateral mechanics."
       ],
       "warmup_active": true
     },
-    "self_critique": "Strong cross-pulls. LOCK is excellent decoy (hair vs keys). PROFILE works (document vs hidden tool). HIDDEN_WORD_INSIDE is challenging but fair - all tools are common, words are natural. THINGS_THAT_VERB and SHARED_HIDDEN_PROPERTY both underused Tier 2 mechanics. One Tier 1 for accessibility. Warmup-appropriate: 2xT2, 1xT3, 1xT1.",
-    "spine_mechanic": "HIDDEN_WORD_INSIDE with hidden TOOLS (SAW, AXE, DRILL, FILE)",
-    "surface_pattern_stress_test": {
-      "FRENCH_group": "No surface tell - completely different word types",
-      "KEYS_group": "No -KEY suffix, varied domains (music, security, geography, cartography)",
-      "RING_group": "No surface tell - noun types vary",
-      "TOOLS_group": "No surface tell - the tools are hidden, surface words are unrelated"
-    }
+    "spine_mechanic": "HIDDEN_WORD_INSIDE (T3) for purple - hiding tree types inside words",
+    "surface_pattern_check": "No -INE surface tell (only 3 words end in -INE, not all 4 in one group). No shared prefixes. PASS."
   },
   "_validation": {
     "valid": true,
