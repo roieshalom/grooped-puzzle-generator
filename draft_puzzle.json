@@ -1,83 +1,103 @@
 {
+  "attempt_log": [
+    {
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "result": "shipped",
+      "tier": 3
+    }
+  ],
   "categories": [
     {
-      "name": "Things in a camping kit",
+      "name": "Things that leak or drip",
       "words": [
-        "ROPE",
-        "COMPASS",
-        "MATCH",
-        "CANTEEN"
+        "PIPE",
+        "HOSE",
+        "FAUCET",
+        "NOSE"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Tennis ___",
+      "name": "Fuels",
       "words": [
-        "COURT",
-        "SET",
-        "NET",
-        "BALL"
+        "COKE",
+        "DIESEL",
+        "PROPANE",
+        "BUTANE"
       ],
       "difficulty": "green"
     },
     {
-      "name": "___room",
+      "name": "The ___ is ___",
       "words": [
-        "LIVING",
-        "DINING",
-        "BATH",
-        "SHOW"
+        "COAST",
+        "CLEAR",
+        "SHOT",
+        "WILD"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Heating systems",
+      "name": "Words hiding drinks inside",
       "words": [
-        "STOVE",
-        "PIPE",
-        "FURNACE",
-        "BOILER"
+        "WINTER",
+        "SPRING",
+        "SUMMER",
+        "AUTUMN"
       ],
       "difficulty": "purple"
     }
   ],
-  "decoys": [
-    {
-      "category_a": "Things in a camping kit",
-      "category_b": "Tennis ___",
-      "reason_a": "MATCH is a fire-starting tool essential for camping.",
-      "reason_b": "Tennis MATCH is a common phrase for a tennis game or contest.",
-      "word": "MATCH"
-    }
-  ],
-  "other_trick": "BALL and NET also work in camping contexts (rope ball, mosquito net), while PIPE and STOVE could mislead toward smoking or kitchen items rather than heating systems.",
-  "thinking": {
-    "all_16_words": "ROPE COMPASS MATCH CANTEEN COURT SET NET BALL LIVING DINING BATH SHOW STOVE PIPE FURNACE BOILER",
-    "anchors": [
-      {
-        "home_category": "Things in a camping kit",
-        "meaning_a": "fire starter",
-        "meaning_b": "tennis contest or dating pairing",
-        "tempts_toward": "Tennis ___",
-        "word": "MATCH"
-      },
-      {
-        "home_category": "Tennis ___",
-        "meaning_a": "tennis scoring unit",
-        "meaning_b": "collection or TV stage setup",
-        "tempts_toward": "Things in a camping kit",
-        "word": "SET"
-      },
-      {
-        "home_category": "Tennis ___",
-        "meaning_a": "tennis playing surface",
-        "meaning_b": "legal venue or to romance someone",
-        "tempts_toward": "___room",
-        "word": "COURT"
-      }
-    ]
+  "date": "28.04.2026",
+  "decoys": [],
+  "false_decoy": {
+    "reality": "It IS grouped with those three, but not because they're seasons—because they hide drinks (WINE, RUM, ALE, TEA)",
+    "setup": "Looks like an obvious season with SPRING, SUMMER, AUTUMN",
+    "why_it_works": "The seasons create a surface-level trap that makes solvers dismiss the group too early or pick it for the wrong reason",
+    "word": "WINTER"
   },
+  "id": "138",
   "language": "en",
+  "thinking": {
+    "all_16_words": "WINTER SPRING SUMMER AUTUMN COAST CLEAR SHOT WILD PIPE HOSE FAUCET NOSE COKE DIESEL PROPANE BUTANE",
+    "corpus_fetch": "Successfully fetched puzzles.json from GitHub",
+    "decoy_architecture": "SPRING pulls between seasons and things that verb (springs leak). COAST pulls between geography and idiom completion (coast is clear). COKE pulls between drinks-inside and taxonomy fuels.",
+    "duplicate_check": "PASS - verified against last 60 days",
+    "mechanic_balance": {
+      "chosen_for_this_puzzle": [
+        "TAXONOMY (with decoys)",
+        "THINGS_THAT_VERB",
+        "IDIOM_COMPLETION",
+        "HIDDEN_WORD_INSIDE"
+      ],
+      "cooldown_check": "PASS - all chosen mechanics are available",
+      "last_21_analysis": "Only puzzle #137 is tagged. It used: FOUND_IN_SCENE (T1), METAPHOR_SUBSTITUTES (T2), WAYS_TO_VERB (T2), SUFFIX_BLANK (T1). Tier 1 was doubled.",
+      "tagged_puzzles_available": 1,
+      "tier_1_recently_used": [
+        "FOUND_IN_SCENE",
+        "SUFFIX_BLANK"
+      ],
+      "tier_2_recently_used": [
+        "METAPHOR_SUBSTITUTES",
+        "WAYS_TO_VERB"
+      ],
+      "tier_3_recently_used": [],
+      "tier_4_recently_used": [],
+      "underused_candidates": [
+        "THINGS_THAT_VERB",
+        "SHARED_HIDDEN_PROPERTY",
+        "IDIOM_COMPLETION",
+        "HIDDEN_WORD_INSIDE",
+        "EPONYMS"
+      ],
+      "warmup_active": true,
+      "warmup_strategy": "Avoid doubling Tier 1. Lean toward Tier 2 and introduce Tier 3."
+    },
+    "spine_selection": "HIDDEN_WORD_INSIDE (Tier 3) - hidden drinks. This is underused and creates strong misdirection.",
+    "surface_pattern_test": "Seasons look obvious but SPRING is a decoy. Fuels are visible but COKE hides COKE→Coke. Leaking things are scattered. Idiom needs assembly.",
+    "theme_repeat_check": "PASS - no seasons, leaking things, fuels, or '___ is ___' idioms in last 60 days",
+    "tricked_but_fair": "Yes - SPRING genuinely belongs to leaking things but reads as a season. COKE reads as fuel/drug slang but belongs to hidden drinks. COAST could be geography or idiom."
+  },
   "_validation": {
     "valid": true,
     "errors": [],
