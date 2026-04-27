@@ -6,73 +6,66 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "____ CROSSING",
+      "name": "___ STONE",
       "words": [
-        "RAILROAD",
-        "PEDESTRIAN",
-        "SCHOOL",
-        "BORDER"
+        "CORNER",
+        "GALL",
+        "LIME",
+        "KEY"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Things that can run",
+      "name": "Things that run",
       "words": [
+        "CLOCK",
         "NOSE",
         "FAUCET",
-        "ENGINE",
-        "USAIN BOLT"
+        "ENGINE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Have stripes",
+      "name": "Ways to prepare eggs",
       "words": [
-        "ZEBRA",
-        "REFEREE",
-        "CANDY",
-        "TOOTHPASTE"
+        "SCRAMBLED",
+        "POACHED",
+        "FRIED",
+        "BOILED"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Bite the ___",
+      "name": "Words hiding TEA",
       "words": [
-        "DUST",
-        "BULLET",
-        "HAND",
-        "CURB"
+        "SWEATER",
+        "INSTEAD",
+        "STEALTH",
+        "THEATER"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Have stripes",
-      "category_b": "Things that can run",
-      "reason_a": "Zebras are famous for their black and white stripes",
-      "reason_b": "Zebras are fast-running animals, creating strong pull toward the animal group",
-      "word": "ZEBRA"
-    },
-    {
-      "category_a": "Things that can run",
-      "category_b": "Have stripes",
-      "reason_a": "Tigers are animals that run",
-      "reason_b": "Tigers have distinctive stripes, tempting solvers to group with ZEBRA and SKUNK",
-      "word": "TIGER"
+      "category_a": "Words hiding TEA",
+      "category_b": "Things that run",
+      "reason_a": "Contains TEA as consecutive letters (t-h-e-a-t-e-r)",
+      "reason_b": "A theater runs shows or productions",
+      "word": "THEATER"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "reason": "Successfully found four natural words with stripes that create strong cross-pulls with animal taxonomy",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "notes": "Successfully found four words containing TEA: SWEATER, INSTEAD, STEALTH, THEATER - all verified letter by letter",
       "result": "shipped",
-      "tier": 2
+      "tier": 3
     }
   ],
   "_validation": {
