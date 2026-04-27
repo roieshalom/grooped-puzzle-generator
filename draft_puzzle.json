@@ -29,16 +29,6 @@
         "PROGRAM"
       ],
       "difficulty": "blue"
-    },
-    {
-      "name": "Sounds you make with your body",
-      "words": [
-        "SNAP",
-        "CLAP",
-        "STOMP",
-        "WHISTLE"
-      ],
-      "difficulty": "purple"
     }
   ],
   "decoys": [
@@ -57,6 +47,7 @@
       "word": "CHANNEL"
     }
   ],
+  "language": "en",
   "other_trick": "SAFE, VAULT, and PROGRAM all have multiple meanings that might create confusion across the money storage and TV categories.",
   "thinking": {
     "all_16_words": "BANK VAULT PIGGY SAFE CHANNEL GUIDE LISTING PROGRAM CURRENT DELTA MOUTH FORK SNAP CLAP STOMP WHISTLE",
@@ -84,10 +75,11 @@
       }
     ]
   },
-  "language": "en",
   "_validation": {
-    "valid": true,
-    "errors": [],
+    "valid": false,
+    "errors": [
+      "Need exactly 4 categories, got 3"
+    ],
     "duplicate_words": []
   }
 }
