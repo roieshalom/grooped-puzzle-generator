@@ -2,110 +2,121 @@
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing drink names as consecutive letters, verified letter-by-letter",
+      "reason": "Successfully found four natural words each containing a common tool as consecutive letters",
       "result": "shipped",
       "tier": 3
     }
   ],
   "categories": [
     {
-      "name": "ROCK ____",
+      "name": "FRENCH ___",
       "words": [
-        "BOTTOM",
-        "STAR",
-        "SOLID",
-        "CANDY"
+        "PRESS",
+        "TOAST",
+        "DOOR",
+        "HORN"
       ],
       "difficulty": "yellow"
     },
     {
-      "name": "Things that FIRE",
+      "name": "Have keys",
       "words": [
-        "CANNON",
-        "NEURON",
-        "KILN",
-        "ENGINE"
+        "PIANO",
+        "LOCK",
+        "MAP",
+        "FLORIDA"
       ],
       "difficulty": "green"
     },
     {
-      "name": "Movies with numbers in the title",
+      "name": "Things that ring",
       "words": [
-        "CATCH",
-        "OCEAN",
-        "APOLLO",
-        "FRIDAY"
+        "BELL",
+        "PHONE",
+        "ALARM",
+        "EAR"
       ],
       "difficulty": "blue"
     },
     {
-      "name": "Words hiding drink names",
+      "name": "Contain hidden tools",
       "words": [
-        "WINTER",
-        "GRUMBLE",
-        "CODING",
-        "STEAMING"
+        "JIGSAW",
+        "RELAXED",
+        "DRILLING",
+        "PROFILE"
       ],
       "difficulty": "purple"
     }
   ],
   "date": "28.04.2026",
   "decoys": [],
-  "false_decoy": {
-    "actually_belongs": "Movies with numbers in the title",
-    "appears_to_belong": "ROCK ___",
-    "why": "ROCK FRIDAY sounds vaguely plausible as a music event or phrase, but it's not standard. The suspicion is the trap - FRIDAY actually belongs in movies (Friday the 13th).",
-    "word": "FRIDAY"
-  },
+  "false_decoy": null,
   "id": "138",
   "language": "en",
   "thinking": {
-    "all_16_words": "BOTTOM STAR SOLID CANDY CANNON NEURON KILN ENGINE CATCH OCEAN APOLLO FRIDAY WINTER GRUMBLE CODING STEAMING",
-    "board_build": "Yellow: PREFIX_BLANK 'ROCK ___' - BOTTOM, STAR, SOLID, CANDY. Green: THINGS_THAT_VERB 'Things that FIRE' - CANNON, NEURON, KILN, ENGINE. Blue: IDIOM_COMPLETION '___-22' style (numbers in phrases) - CATCH (Catch-22), OCEAN (Ocean's Eleven), APOLLO (Apollo 13), FRIDAY (Friday the 13th). Purple: HIDDEN_WORD_INSIDE drinks.",
-    "corpus_fetch": "Successfully fetched puzzles.json",
-    "cross_pull_analysis": "CATCH tempts toward ROCK CATCH (not a phrase but sounds plausible). STAR could be ROCK STAR (yes!) or could solvers think STAR FIRE? CANNON sounds military like APOLLO (space program connection). FRIDAY sounds like it could go with other time words if they existed on board.",
-    "decoy_seed_1": "WINTER - could be 'ROCK ___' (ROCK WINTER doesn't work but WINTER ROCK or thinking of winter as a season) OR hidden drink",
-    "decoy_seed_2": "CATCH - could be 'Things that FIRE' (CATCH fire) OR 'ROCK ___' (ROCK CATCH doesn't work) OR idiom 'catch ___'",
-    "duplicate_check": "PASS - all 16 words unique",
+    "all_16_words": "PRESS TOAST DOOR HORN PIANO LOCK MAP FLORIDA BELL PHONE ALARM EAR JIGSAW RELAXED DRILLING PROFILE",
+    "board_evolution": "Need office items for FILE to pull toward. PROFILE(tools), MEMO(office), DESK(office), BINDER(office). Then need THINGS_THAT_VERB - things that RING: BELL, PHONE, ALARM, EAR. SHARED_HIDDEN_PROPERTY - have KEYS: PIANO, LOCK, MAP, FLORIDA. PREFIX_BLANK for yellow: FRENCH ___ : PRESS, TOAST, DOOR, HORN.",
+    "corpus_fetch": "Successfully fetched puzzles.json from GitHub",
+    "cross_pull_analysis": {
+      "DESK": "Furniture, could feel like FRENCH DESK (provincial style) vs office item - false considered but DESK not in puzzle",
+      "DOOR": "FRENCH DOOR is strong phrase but also entry/portal - solver might hesitate",
+      "LOCK": "Hair (grooming) vs has KEYS (security) - strong decoy",
+      "PHONE": "Could pair with ALARM as tech devices vs RING as action - weak pull",
+      "PROFILE": "Social media/document (office context) vs hidden FILE (tool) - medium decoy"
+    },
+    "decoy_2": "LOCK - could be hair LOCK or go with KEYS category. DESK could be FRENCH DESK (historical furniture).",
+    "decoy_seed": "FILE can mean both the hidden tool category AND a document (office things)",
+    "duplicate_check": "PASS - all 16 words unique, case-insensitive check complete",
     "hidden_word_verification": {
-      "CODING": "C-O-D-I-N-G contains GIN (consecutive letters, positions 4-6)",
-      "GRUMBLE": "G-R-U-M-B-L-E contains RUM (consecutive letters, positions 2-4)",
-      "STEAMING": "S-T-E-A-M-I-N-G contains TEA (consecutive letters, positions 3-5)",
-      "WINTER": "W-I-N-T-E-R contains WIN (consecutive letters, positions 1-3)",
-      "verification": "PASS - all four words contain drink names as consecutive letters"
+      "DRILLING": "D-R-I-L-L-I-N-G contains DRILL (positions 1-5) ✓",
+      "JIGSAW": "J-I-G-S-A-W contains SAW (positions 4-6) ✓",
+      "PROFILE": "P-R-O-F-I-L-E contains FILE (positions 4-7) ✓",
+      "RELAXED": "R-E-L-A-X-E-D contains AXE (positions 4-6) ✓",
+      "verification": "PASS - all four words contain complete hidden tools as consecutive letters"
     },
     "mechanic_balance": {
       "chosen_for_this_puzzle": [
-        "PREFIX_BLANK",
         "THINGS_THAT_VERB",
-        "IDIOM_COMPLETION",
+        "SHARED_HIDDEN_PROPERTY",
+        "PREFIX_BLANK",
         "HIDDEN_WORD_INSIDE"
       ],
-      "cooldown_check": "PASS - none of these appeared in #137",
-      "last_21_scan": "Only puzzle #137 has mechanic tags. Scanning its categories and attempt_log.",
+      "cooldown_check": "PASS - all chosen mechanics clear",
+      "last_21_scan": "Only puzzle #137 has mechanic tags. Tiers used: FOUND_IN_SCENE(1), METAPHOR_SUBSTITUTES(2), WAYS_TO_VERB(2), SUFFIX_BLANK(1). Attempted: ACROSTIC_FIRST_LETTERS(4).",
+      "rationale": "Warmup active. Leaning toward Tier 2-3. THINGS_THAT_VERB and SHARED_HIDDEN_PROPERTY are both Tier 2 and unused. HIDDEN_WORD_INSIDE is Tier 3, unused, good for purple. PREFIX_BLANK as one Tier 1 anchor.",
       "tagged_puzzles_available": 1,
       "tier_1_recently_used": [
-        "FOUND_IN_SCENE (137)",
-        "SUFFIX_BLANK (137)"
+        "FOUND_IN_SCENE",
+        "SUFFIX_BLANK"
       ],
       "tier_2_recently_used": [
-        "METAPHOR_SUBSTITUTES (137)",
-        "WAYS_TO_VERB (137)"
+        "METAPHOR_SUBSTITUTES",
+        "WAYS_TO_VERB"
       ],
       "tier_3_recently_used": [],
       "tier_4_recently_used": [
-        "ACROSTIC_FIRST_LETTERS (137, abandoned in attempt_log)"
+        "ACROSTIC_FIRST_LETTERS (abandoned)"
       ],
       "underused_candidates": [
-        "All Tier 3 mechanics are available. Most Tier 2 mechanics available except METAPHOR_SUBSTITUTES and WAYS_TO_VERB. From Tier 1: TAXONOMY, PREFIX_BLANK, SYNONYMS available."
+        "THINGS_THAT_VERB",
+        "CAN_BE_VERBED",
+        "SHARED_HIDDEN_PROPERTY",
+        "IDIOM_COMPLETION",
+        "HIDDEN_WORD_INSIDE",
+        "EPONYMS",
+        "HOMOPHONE_OF_LETTER"
       ],
-      "warmup_active": true,
-      "warmup_strategy": "Since we're in warmup (only 1 tagged puzzle), LEAN TOWARD TIER 2 AND TIER 3. Don't double up on Tier 1 unless cross-pulls are exceptional. Will use: 1 Tier 1 (PREFIX_BLANK), 2 Tier 2 (THINGS_THAT_VERB, IDIOM_COMPLETION), 1 Tier 3 (HIDDEN_WORD_INSIDE)."
+      "warmup_active": true
     },
-    "repeat_check_last_60_days": "Checked puzzles back to early March 2026. No word repeats. No category theme repeats (no rock phrases, no things that fire, no movie titles with numbers, no hidden drinks).",
-    "self_critique": "Strong decoy potential with STAR (ROCK STAR is real). CATCH is medium decoy. Hidden drinks are clean and surprising. Board has good variety of mechanics during warmup.",
-    "spine_mechanic": "HIDDEN_WORD_INSIDE - hidden drinks (Tier 3, purple difficulty)",
-    "surface_pattern_test": "ROCK ___ words don't all start with same letter. Things that FIRE are diverse (weapon, brain cell, oven, vehicle). Movie titles are varied lengths/styles. Hidden drink words have no surface tell."
+    "self_critique": "Strong cross-pulls. LOCK is excellent decoy (hair vs keys). PROFILE works (document vs hidden tool). HIDDEN_WORD_INSIDE is challenging but fair - all tools are common, words are natural. THINGS_THAT_VERB and SHARED_HIDDEN_PROPERTY both underused Tier 2 mechanics. One Tier 1 for accessibility. Warmup-appropriate: 2xT2, 1xT3, 1xT1.",
+    "spine_mechanic": "HIDDEN_WORD_INSIDE with hidden TOOLS (SAW, AXE, DRILL, FILE)",
+    "surface_pattern_stress_test": {
+      "FRENCH_group": "No surface tell - completely different word types",
+      "KEYS_group": "No -KEY suffix, varied domains (music, security, geography, cartography)",
+      "RING_group": "No surface tell - noun types vary",
+      "TOOLS_group": "No surface tell - the tools are hidden, surface words are unrelated"
+    }
   },
   "_validation": {
     "valid": true,
