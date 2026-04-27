@@ -2,89 +2,87 @@
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "note": "First attempt with tree types ASH/ELM/OAK failed verification. Switched to PINE, verified all four words contain consecutive P-I-N-E.",
+      "note": "Successfully found four clean examples with hidden numbers as consecutive letters",
       "result": "shipped",
       "tier": 3
     }
   ],
   "categories": [
     {
-      "name": "Mountain features",
+      "name": "Ways to describe a small amount",
       "words": [
-        "PEAK",
-        "SUMMIT",
-        "RIDGE",
-        "SLOPE"
+        "SPOT",
+        "BEAD",
+        "NECK",
+        "SKIN"
       ],
-      "difficulty": "yellow"
+      "difficulty": "yellow",
+      "mechanic": "SYNONYMS",
+      "tier": 1
     },
     {
-      "name": "Things that melt",
+      "name": "Things that run",
       "words": [
-        "ICE",
-        "BUTTER",
-        "WAX",
-        "CHOCOLATE"
+        "FAUCET",
+        "CANDLE",
+        "NOSE",
+        "ENGINE"
       ],
-      "difficulty": "green"
+      "difficulty": "green",
+      "mechanic": "THINGS_THAT_VERB",
+      "tier": 2
     },
     {
-      "name": "___ CAP",
+      "name": "___ of the needle",
       "words": [
-        "KNEE",
-        "HUB",
-        "BOTTLE",
-        "BASEBALL"
+        "EYE",
+        "TIGHT",
+        "CORNER",
+        "BREAD"
       ],
-      "difficulty": "blue"
+      "difficulty": "blue",
+      "mechanic": "IDIOM_COMPLETION",
+      "tier": 2
     },
     {
-      "name": "Words hiding tree types",
+      "name": "Words hiding numbers",
       "words": [
-        "ALPINE",
-        "SPINE",
-        "CRISPINESS",
-        "CHOPINES"
+        "ATONEMENT",
+        "CANINE",
+        "OFTEN",
+        "WEIGHT"
       ],
-      "difficulty": "purple"
+      "difficulty": "purple",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 3
     }
   ],
   "date": "28.04.2026",
   "decoys": [],
-  "false_decoy": {
-    "actually_belongs": "Words hiding tree types",
-    "seems_to_belong": "Mountain features",
-    "why_it_fools": "ALPINE is definitionally mountainous. The hidden PINE feels like an afterthought, so solvers will confidently place it with PEAK/SUMMIT before realizing the wordplay.",
-    "word": "ALPINE"
-  },
+  "false_decoy": null,
   "id": "138",
   "language": "en",
   "thinking": {
-    "all_16_words": "ALPINE SPINE CRISPINESS CHOPINES PEAK SUMMIT RIDGE SLOPE ICE BUTTER WAX CHOCOLATE KNEE HUB BOTTLE BASEBALL",
-    "board_build": "Need words about mountains, medical/body terms, and two more groups. THINGS_THAT_MELT (Tier 2) and ___ CAP (Tier 1 prefix) work well with cross-pulls.",
-    "corpus_fetch": "Successfully fetched puzzles.json from GitHub",
-    "cross_pull_analysis": "SPINE: anatomical vs hidden PINE. RIDGE: mountain term vs anatomy (ridge of nose). ICE: melts vs ICE CAP mountain. KNEE: body vs KNEE CAP. Strong tension.",
-    "decoy_seeds": "SPINE can feel medical/anatomical. CHOPINES are shoes, could pull toward clothing. ALPINE could pull toward mountain-related words.",
-    "duplicate_check": "PASS - all 16 unique, none in last 60 days of corpus",
+    "all_16_words": "ATONEMENT CANINE OFTEN WEIGHT FAUCET CANDLE NOSE ENGINE BREAD NECK BEAD EYE SKIN TIGHT SPOT CORNER",
+    "corpus_fetch": "Successfully fetched puzzles.json",
+    "decoy_seed": "WEIGHT can tempt toward things that are heavy/measured, CANINE toward animals, OFTEN toward frequency words",
+    "duplicate_check": "PASS - all 16 words unique",
     "hidden_word_verification": {
-      "BISHOP": "B-I-S-H-O-P contains ASH consecutively (positions 3-5)",
-      "RELAPSE": "R-E-L-A-P-S-E contains LARCH? NO. Contains ASH? NO. Let me try ELDER: R-E-L-A-P-S-E contains none. ABANDON.",
-      "attempt_2_PINE": {
-        "ALPINE": "A-L-P-I-N-E contains PINE (positions 3-6) ✓",
-        "CHOPINES": "C-H-O-P-I-N-E-S contains PINE (positions 4-7) ✓",
-        "CRISPINESS": "C-R-I-S-P-I-N-E-S-S contains PINE (positions 5-8) ✓",
-        "SPINE": "S-P-I-N-E contains PINE (positions 2-5) ✓"
-      }
+      "ATONEMENT": "A-T-O-N-E-M-E-N-T contains ONE (positions 3-4-5)",
+      "CANINE": "C-A-N-I-N-E contains NINE (positions 3-4-5-6)",
+      "OFTEN": "O-F-T-E-N contains TEN (positions 3-4-5)",
+      "WEIGHT": "W-E-I-G-H-T contains EIGHT (positions 2-3-4-5-6)",
+      "verification": "PASS - all four words contain hidden numbers as consecutive letters"
     },
     "mechanic_balance": {
       "chosen_for_this_puzzle": [
-        "THINGS_THAT_VERB (T2)",
-        "SHARED_HIDDEN_PROPERTY (T2)",
-        "HIDDEN_WORD_INSIDE (T3)",
-        "PREFIX_BLANK (T1)"
+        "SYNONYMS (Tier 1, needed for clean yellow)",
+        "THINGS_THAT_VERB (Tier 2)",
+        "IDIOM_COMPLETION (Tier 2)",
+        "HIDDEN_WORD_INSIDE (Tier 3)"
       ],
-      "cooldown_check": "PASS - only 1 tagged puzzle exists, all chosen mechanics are available",
-      "last_21_scan": "Only puzzle #137 is tagged. Scanned its mechanics: FOUND_IN_SCENE (T1), METAPHOR_SUBSTITUTES (T2), WAYS_TO_VERB (T2), SUFFIX_BLANK (T1). Also scanned attempt_log: ACROSTIC_FIRST_LETTERS (T4) abandoned.",
+      "cooldown_check": "PASS - avoiding FOUND_IN_SCENE, SUFFIX_BLANK, METAPHOR_SUBSTITUTES, WAYS_TO_VERB per cooldowns",
+      "note": "Only puzzle #137 has mechanic tags. During warmup, leaning toward Tier 2 and Tier 3 mechanics.",
       "tagged_puzzles_available": 1,
       "tier_1_recently_used": [
         "FOUND_IN_SCENE",
@@ -96,15 +94,21 @@
       ],
       "tier_3_recently_used": [],
       "tier_4_recently_used": [
-        "ACROSTIC_FIRST_LETTERS"
+        "ACROSTIC_FIRST_LETTERS (abandoned)"
       ],
       "underused_candidates": [
-        "All Tier 3 mechanics are fresh. From Tier 2: THINGS_THAT_VERB, CAN_BE_VERBED, SHARED_HIDDEN_PROPERTY, IDIOM_COMPLETION, ORDERED_SET_MEMBER highly preferred since warmup phase needs more lateral mechanics."
+        "THINGS_THAT_VERB",
+        "CAN_BE_VERBED",
+        "SHARED_HIDDEN_PROPERTY",
+        "IDIOM_COMPLETION",
+        "HIDDEN_WORD_INSIDE",
+        "EPONYMS"
       ],
       "warmup_active": true
     },
-    "spine_mechanic": "HIDDEN_WORD_INSIDE (T3) for purple - hiding tree types inside words",
-    "surface_pattern_check": "No -INE surface tell (only 3 words end in -INE, not all 4 in one group). No shared prefixes. PASS."
+    "repeat_check": "PASS - no words or themes from last 60 days",
+    "spine_mechanic": "HIDDEN_WORD_INSIDE with hidden numbers - will be purple",
+    "surface_tell_check": "PASS - no obvious patterns"
   },
   "_validation": {
     "valid": true,
