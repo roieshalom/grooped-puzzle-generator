@@ -371,9 +371,9 @@ input[type="text"]:focus {
 /* Small phones */
 @media (max-width: 600px) {
   .title { font-size: 14px; }
-  .actions { gap: 5px; }
-  .action-btn { padding: 10px 0; font-size: 12px; text-align: center; overflow: hidden; }
-  .lock-btn { padding: 10px 10px; flex-shrink: 0; }
+  .actions { gap: 4px; }
+  .action-btn { padding: 10px 0; font-size: 11px; font-weight: 500; white-space: nowrap; overflow: visible; }
+  .lock-btn { padding: 10px 8px; flex-shrink: 0; font-size: 14px; }
 }
 
 .actions {
