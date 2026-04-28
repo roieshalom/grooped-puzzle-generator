@@ -36,6 +36,10 @@
         </div>
         <button class="lock-btn" id="lockBtn" title="Unlock editor">🔒</button>
       </div>
+      <!-- Notification overlay — centered on the top-bar divider line -->
+      <div id="messageArea" class="message-area">
+        <div id="messageBox" class="message-box" style="display:none;">Ready</div>
+      </div>
     </div>
 
     <!-- View-mode notice (shown only when locked) -->
@@ -45,10 +49,6 @@
 
     <!-- Validation + message -->
     <div id="validationErrors" class="validation-errors" style="display: none;"></div>
-
-    <div id="messageArea" class="message-area">
-      <div id="messageBox" class="message-box" style="display:none;">Ready</div>
-    </div>
 
     <!-- Mechanic usage bar (unlocked only) -->
     <div id="mechanicBar" class="mechanic-bar" style="display:none;"></div>
