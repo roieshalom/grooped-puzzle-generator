@@ -30,16 +30,17 @@ function loadDraftLocally() {
 let _readOnly = true; // default until we confirm we have a valid token
 
 // Replace visible input values with ● circles when locked.
-// Word 0 in each category stays visible; name + words 1-3 are masked.
+// Diagonal pattern: category N keeps word N visible, all others masked.
 function _applyMaskedValues() {
   document.querySelectorAll('.category').forEach(catEl => {
+    const catIdx = parseInt(catEl.dataset.categoryIndex, 10);
     const nameInput = catEl.querySelector('.category-name-input');
     if (nameInput) {
       nameInput.value = '●●●●●●●●●●●●●●';
       nameInput.classList.add('masked');
     }
     catEl.querySelectorAll('.word-input').forEach((inp, idx) => {
-      if (idx !== 0) {
+      if (idx !== catIdx) {
         inp.value = '●●●●●●';
         inp.classList.add('masked');
       }
