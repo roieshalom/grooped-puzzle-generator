@@ -134,7 +134,11 @@ function setReadOnly(readOnly) {
   const dateRow = document.getElementById('dateRow');
   if (dateRow) dateRow.style.display = 'flex';
   const picker = document.getElementById('publishDatePicker');
-  if (picker) picker.style.display = readOnly ? 'none' : '';
+  // Flatpickr wraps the input in a div.flatpickr-wrapper — hide that wrapper, not just the input
+  const pickerToHide = picker?.parentElement?.classList.contains('flatpickr-wrapper')
+    ? picker.parentElement : picker;
+  if (pickerToHide) pickerToHide.style.display = readOnly ? 'none' : '';
+  if (readOnly && _flatpickr) _flatpickr.close();
   const dateMask = document.getElementById('dateMask');
   if (dateMask) {
     dateMask.textContent = buildDateMask();
@@ -1159,41 +1163,57 @@ function buildDateMask() {
   return `●●/●●/${year}`;
 }
 
-// ── Next puzzle date ─────────────────────────────────────────────────────────
-async function refreshNextDate() {
-  // Retry once after a short delay in case of a cold-start timeout
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      if (attempt > 0) await new Promise(r => setTimeout(r, 2000));
-      // GET /api/next-date is public — no auth token needed
-      const r = await fetch('/api/next-date');
-      if (!r.ok) continue;
-      const { date } = await r.json();
-      if (!date) continue;
-      const iso = puzzleDateToIso(date);
-      const picker = document.getElementById('publishDatePicker');
-      if (picker) {
-        // Allow viewing back to Jan 1 of the current year
-        picker.min = `${new Date().getFullYear()}-01-01`;
-        // Default value = next export date, but don't override if viewing a past puzzle
-        if (!_viewingPast && (!picker.value || picker.value < iso)) picker.value = iso;
+// ── Flatpickr date picker ─────────────────────────────────────────────────────
+
+let _flatpickr    = null;
+let _publishedDates = new Set(); // YYYY-MM-DD strings fetched from /api/published-dates
+
+function initDatePicker() {
+  const pickerEl = document.getElementById('publishDatePicker');
+  if (!pickerEl || typeof flatpickr === 'undefined') return;
+
+  const todayIso = new Date().toISOString().split('T')[0];
+
+  _flatpickr = flatpickr(pickerEl, {
+    dateFormat:    'Y-m-d',
+    minDate:       `${new Date().getFullYear()}-01-01`,
+    disableMobile: true, // always use flatpickr UI so onDayCreate runs on mobile too
+
+    onDayCreate(dObj, dStr, fp, dayElem) {
+      const iso = dayElem.dateObj.toISOString().split('T')[0];
+      if (iso < todayIso) {
+        // Past date — light gray
+        dayElem.style.background = '#f3f4f6';
+        dayElem.style.color      = '#9ca3af';
+      } else if (_publishedDates.has(iso)) {
+        // Future/present with a puzzle saved — light green
+        dayElem.style.background = '#dcfce7';
       }
-      // Refresh mask text now that we have the year
-      const dateMask = document.getElementById('dateMask');
-      if (dateMask) dateMask.textContent = buildDateMask();
-      return;
-    } catch (e) {
-      // try again on next iteration
-    }
-  }
+      // else: white (default)
+    },
+
+    onChange(selectedDates, dateStr) {
+      if (dateStr) handleDatePickerChange(dateStr);
+    },
+  });
 }
 
-// ── Date picker: past snapshot navigation ───────────────────────────────────
-document.getElementById('publishDatePicker').addEventListener('change', async (e) => {
+// Fetch published dates in the background; re-render picker if open.
+async function loadPublishedDates() {
+  try {
+    const r = await fetch('/api/published-dates');
+    const data = await r.json();
+    _publishedDates = new Set(data.dates || []);
+    // Re-render the current month if the calendar is already open
+    if (_flatpickr && _flatpickr.isOpen) _flatpickr.changeMonth(0, false);
+  } catch (e) { /* silently ignore */ }
+}
+
+// ── Date picker change handler (shared by flatpickr onChange) ────────────────
+async function handleDatePickerChange(selected) {
   if (_readOnly) return; // only available when unlocked
 
-  const selected = e.target.value; // YYYY-MM-DD
-  const today    = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
 
   if (selected < today) {
     // ── Past date: load that puzzle snapshot ──────────────────────────────
@@ -1214,15 +1234,14 @@ document.getElementById('publishDatePicker').addEventListener('change', async (e
       } else {
         setStatus('No puzzle published on that date', 'error', 3000);
         if (!_viewingPast) _savedDraft = null;
-        else setViewingPast(false); // stay on last past view
-        await refreshNextDate();    // reset picker to next date
+        else setViewingPast(false);
+        await refreshNextDate();
       }
     } catch (err) {
       setStatus('Failed to load past puzzle', 'error', 3000);
     }
-
   } else {
-    // ── Future date: restore draft ────────────────────────────────────────
+    // ── Future/present date: restore draft ───────────────────────────────
     if (_viewingPast) {
       if (_savedDraft) {
         puzzles = [_savedDraft];
@@ -1237,7 +1256,35 @@ document.getElementById('publishDatePicker').addEventListener('change', async (e
       setStatus('Ready', 'info', 2000);
     }
   }
-});
+}
+
+// ── Next puzzle date ─────────────────────────────────────────────────────────
+async function refreshNextDate() {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      if (attempt > 0) await new Promise(r => setTimeout(r, 2000));
+      const r = await fetch('/api/next-date');
+      if (!r.ok) continue;
+      const { date } = await r.json();
+      if (!date) continue;
+      const iso     = puzzleDateToIso(date);
+      const minDate = `${new Date().getFullYear()}-01-01`;
+      const picker  = document.getElementById('publishDatePicker');
+      if (_flatpickr) {
+        _flatpickr.set('minDate', minDate);
+        if (!_viewingPast && (!picker?.value || picker.value < iso)) {
+          _flatpickr.setDate(iso, false); // false = don't trigger onChange
+        }
+      } else if (picker) {
+        picker.min = minDate;
+        if (!_viewingPast && (!picker.value || picker.value < iso)) picker.value = iso;
+      }
+      const dateMask = document.getElementById('dateMask');
+      if (dateMask) dateMask.textContent = buildDateMask();
+      return;
+    } catch (e) { /* retry */ }
+  }
+}
 
 // ── Jump-to-next-date button ─────────────────────────────────────────────────
 document.getElementById('jumpToNextBtn').addEventListener('click', async () => {
@@ -1264,6 +1311,10 @@ async function startup() {
   setReadOnly(!getAuthToken());
   // Run in parallel — date label and puzzle content load concurrently
   await Promise.all([load(), refreshNextDate()]);
+  // Initialize flatpickr now that refreshNextDate has set the initial date
+  initDatePicker();
+  // Fetch published dates in the background for calendar day coloring
+  loadPublishedDates();
   // Fetch mechanic stats after initial load (only shown when unlocked)
   renderMechanicBar(true);
 }

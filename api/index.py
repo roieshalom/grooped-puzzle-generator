@@ -1083,6 +1083,25 @@ def next_date():  # public
         return jsonify({"date": None, "error": str(e)}), 500
 
 
+@app.route("/api/published-dates", methods=["GET"])
+def published_dates():
+    """Return all published puzzle dates as YYYY-MM-DD strings. Public, no auth."""
+    try:
+        existing, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
+        puzzles_list = (
+            existing.get("puzzles", []) if isinstance(existing, dict)
+            else (existing or [])
+        )
+        dates = []
+        for p in puzzles_list:
+            d = _parse_any_date(p.get("date", ""))
+            if d:
+                dates.append(d.strftime("%Y-%m-%d"))
+        return jsonify({"dates": sorted(dates)})
+    except Exception as e:
+        return jsonify({"dates": [], "error": str(e)}), 500
+
+
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"ok": True, "env": {
