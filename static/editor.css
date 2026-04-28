@@ -337,6 +337,7 @@ input[type="text"]:focus {
   padding-bottom: 20px;
   border-bottom: 1px solid #e0e0e0;
   gap: 15px;
+  position: relative; /* anchor for #messageArea overlay */
 }
 
 .title {
@@ -411,10 +412,10 @@ input[type="text"]:focus {
   cursor: not-allowed;
 }
 
-/* Notification overlay — absolutely positioned on top-bar's bottom border */
+/* Notification overlay — centered on top-bar's border-bottom divider */
 .message-area {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;        /* -1px = outer edge of the 1px border */
   left: 0;
   right: 0;
   display: flex;
