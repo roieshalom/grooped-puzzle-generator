@@ -32,6 +32,7 @@ let _readOnly = true; // default until we confirm we have a valid token
 // Replace visible input values with ● circles when locked.
 // Diagonal pattern: category N keeps word N visible, all others masked.
 function _applyMaskedValues() {
+  // Mask category name inputs + diagonal word inputs
   document.querySelectorAll('.category').forEach(catEl => {
     const catIdx = parseInt(catEl.dataset.categoryIndex, 10);
     const nameInput = catEl.querySelector('.category-name-input');
@@ -46,6 +47,30 @@ function _applyMaskedValues() {
       }
     });
   });
+
+  // Mask design notes: keep section titles ("Decoys:", "Other trick:"),
+  // replace all values (words / category names / hint text) with circles
+  const notesEl = document.getElementById('designNotes');
+  if (notesEl && notesEl.style.display !== 'none') {
+    const puzzle = puzzles.length > 0 ? puzzles[0] : null;
+    if (puzzle) {
+      const decoys = puzzle.decoys || [];
+      const otherTrick = puzzle.other_trick || puzzle.design_notes || '';
+      const parts = [];
+      if (decoys.length > 0) {
+        parts.push('Decoys:');
+        decoys.forEach(d => {
+          if (!d || !d.word) return;
+          parts.push('<span class="masked">●●●●●●: ●●●●●●●●●● / ●●●●●●●●●●</span>');
+        });
+      }
+      if (otherTrick) {
+        if (parts.length > 0) parts.push('');
+        parts.push('Other trick: <span class="masked">●●●●●●●●●●●●●●●●●●●●</span>');
+      }
+      notesEl.innerHTML = parts.join('\n');
+    }
+  }
 }
 
 function setReadOnly(readOnly) {
