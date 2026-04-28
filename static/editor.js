@@ -101,6 +101,15 @@ function setReadOnly(readOnly) {
     if (inp) inp.value = '';
   }
 
+  // Mask category names + words 1-3; reveal word 0 only (locked view)
+  document.querySelectorAll('.category').forEach(catEl => {
+    const nameInput = catEl.querySelector('.category-name-input');
+    if (nameInput) nameInput.classList.toggle('masked', readOnly);
+    catEl.querySelectorAll('.word-input').forEach((inp, idx) => {
+      inp.classList.toggle('masked', readOnly && idx !== 0);
+    });
+  });
+
   updateExportButtonState();
   updateMechanicLabels();
   renderMechanicBar();
@@ -431,7 +440,17 @@ async function renderMechanicBar(forceRefresh = false) {
   const bar = document.getElementById('mechanicBar');
   if (!bar) return;
 
-  if (_readOnly) { bar.style.display = 'none'; return; }
+  if (_readOnly) {
+    // Show bar in locked state: collapsed + grayed
+    bar.style.display = '';
+    bar.classList.add('mb-locked');
+    if (_mechBarContent !== null) {
+      bar.innerHTML = _mechBarContent;
+      _applyMbCollapsed(bar, true, false);
+    }
+    return;
+  }
+  bar.classList.remove('mb-locked');
 
   if (!forceRefresh && _mechBarContent !== null) {
     bar.innerHTML = _mechBarContent;

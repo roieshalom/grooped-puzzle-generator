@@ -723,6 +723,21 @@ input[type="text"]:focus {
   letter-spacing: 0.04em;
 }
 
+/* ── Masked inputs (locked view) ────────────────────────────────────────────── */
+.word-input.masked,
+.category-name-input.masked {
+  color: transparent;
+  text-shadow: 0 0 8px rgba(0,0,0,0.25);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Mechanic bar locked state ───────────────────────────────────────────────── */
+.mechanic-bar.mb-locked {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
 /* ── Mechanic label (overlaid inside category name input) ───────────────────── */
 .name-input-wrapper {
   position: relative;
