@@ -361,27 +361,19 @@ input[type="text"]:focus {
     flex: none;
     width: 100%;
     align-items: flex-start;
-    padding-right: 52px; /* keep title text clear of the lock button */
   }
   .title { text-align: left; }
   .date-row { justify-content: flex-start; }
   .actions { width: 100%; justify-content: center; }
   .action-btn { flex: 1; }
-  /* Float lock button to top-right of the top-bar, out of flex flow */
-  .lock-btn {
-    position: absolute !important;
-    top: 0;
-    right: 0;
-    z-index: 7;
-  }
 }
 
 /* Small phones */
 @media (max-width: 600px) {
   .title { font-size: 14px; }
-  .action-btn { padding: 10px 6px; font-size: 13px; }
-  .lock-btn { padding: 10px 8px; }
-  .actions { gap: 6px; }
+  .actions { gap: 5px; }
+  .action-btn { padding: 10px 0; font-size: 12px; }
+  .lock-btn { padding: 10px 10px; flex-shrink: 0; }
 }
 
 .actions {
