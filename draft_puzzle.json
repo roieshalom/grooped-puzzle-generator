@@ -3,67 +3,74 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "yellow",
-      "name": "Things that wrinkle",
-      "words": [
-        "IRON",
-        "LINEN",
-        "SHIRT",
-        "PANTS"
-      ]
-    },
-    {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Medieval weapons",
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "___ STONE",
       "words": [
-        "CLUB",
-        "MACE",
-        "STAFF",
-        "ROD"
+        "CORNER",
+        "KEY",
+        "SAND",
+        "LIME"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "blue",
-      "name": "Things that get struck or stamped",
+      "difficulty": "green",
+      "name": "Things you can lift at the gym",
       "words": [
-        "FORGE",
+        "IRON",
         "PRESS",
-        "MINT",
-        "STAMP"
+        "CURL",
+        "BENCH"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "EPONYMS",
+      "difficulty": "blue",
+      "name": "Things named after people",
+      "words": [
+        "DERBY",
+        "BOYCOTT",
+        "CARDIGAN",
+        "SILHOUETTE"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding card suits",
+      "name": "Words hiding numbers inside",
       "words": [
-        "RECLUSE",
-        "SWEETHEART",
-        "SPADEWORK",
-        "DIAMONDS"
+        "STONE",
+        "OFTEN",
+        "CANINE",
+        "WEIGHT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that get struck or stamped",
-      "category_b": "Things that wrinkle",
-      "reason_a": "A printing press strikes/stamps ink onto paper",
-      "reason_b": "Clothes can be pressed to remove wrinkles, opposite of wrinkling",
-      "word": "PRESS"
+      "category_a": "Words hiding numbers inside",
+      "category_b": "___ STONE",
+      "reason_a": "Contains ONE (O-N-E) as consecutive letters",
+      "reason_b": "The word STONE itself appears in the blank pattern, making solvers think it belongs to the PREFIX group",
+      "word": "STONE"
+    },
+    {
+      "category_a": "Things you can lift at the gym",
+      "category_b": "___ STONE",
+      "reason_a": "Pumping iron is a gym phrase, iron weights are lifted",
+      "reason_b": "IRONSTONE is a real compound word, creating surface-level pull toward the blank pattern",
+      "word": "IRON"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing a card suit as consecutive letters after verification",
+      "reason": "Successfully found four natural words each containing a hidden number as consecutive letters, with strong decoy potential",
       "result": "shipped",
       "tier": 3
     }
