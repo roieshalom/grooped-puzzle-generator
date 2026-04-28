@@ -390,9 +390,9 @@ input[type="text"]:focus {
 /* Small phones — must come AFTER base .action-btn rule to win the cascade */
 @media (max-width: 600px) {
   .title { font-size: 14px; }
-  .actions { gap: 4px; }
+  .actions { gap: 4px; align-items: stretch; }
   .action-btn { padding: 10px 0; font-size: 11px; font-weight: 500; }
-  .lock-btn { padding: 10px 8px; font-size: 14px; }
+  .lock-btn { padding: 0 8px; font-size: 14px; }
 }
 .action-btn.save {
   background: #74bdee;
