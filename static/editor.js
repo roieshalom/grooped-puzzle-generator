@@ -115,6 +115,10 @@ function setReadOnly(readOnly) {
   const viewModeBanner = document.getElementById('viewModeBanner');
   if (viewModeBanner) viewModeBanner.style.display = readOnly ? '' : 'none';
 
+  // Message area: hide when locked (no notifications in read-only view)
+  const messageArea = document.getElementById('messageArea');
+  if (messageArea) messageArea.style.display = readOnly ? 'none' : '';
+
   // Color selectors: disable interaction when locked
   document.querySelectorAll('.color-square-wrapper').forEach(w => {
     w.style.pointerEvents = readOnly ? 'none' : '';
@@ -490,16 +494,20 @@ async function renderMechanicBar(forceRefresh = false) {
   if (!bar) return;
 
   if (_readOnly) {
-    // Show bar in locked state: collapsed + grayed
+    // Show bar in locked state: collapsed + grayed.
+    // If content already cached, render it; otherwise fetch stats now.
     bar.style.display = '';
     bar.classList.add('mb-locked');
     if (_mechBarContent !== null) {
       bar.innerHTML = _mechBarContent;
       _applyMbCollapsed(bar, true, false);
+    } else {
+      // Fall through to fetch — will re-apply locked state after render
     }
-    return;
   }
-  bar.classList.remove('mb-locked');
+
+  if (_readOnly && _mechBarContent !== null) return;
+  if (!_readOnly) bar.classList.remove('mb-locked');
 
   if (!forceRefresh && _mechBarContent !== null) {
     bar.innerHTML = _mechBarContent;
@@ -569,6 +577,13 @@ async function renderMechanicBar(forceRefresh = false) {
 
   _mechBarContent = html;
   bar.innerHTML = html;
+
+  if (_readOnly) {
+    // Locked view: force collapsed + grayed, no toggle interaction
+    bar.classList.add('mb-locked');
+    _applyMbCollapsed(bar, true, false);
+    return;
+  }
 
   // Apply persisted collapsed state
   const collapsed = localStorage.getItem('mb-collapsed') === '1';
