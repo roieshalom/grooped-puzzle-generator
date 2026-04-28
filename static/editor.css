@@ -350,7 +350,7 @@ input[type="text"]:focus {
 }
 
 /* Tablet and below: stack title-block on top, buttons row below */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .top-bar {
     flex-direction: column;
     align-items: stretch;
@@ -367,16 +367,17 @@ input[type="text"]:focus {
   .date-row { justify-content: flex-start; }
   .actions { width: 100%; justify-content: center; }
   .action-btn { flex: 1; }
-  /* Float lock button to top-right of the top-bar */
+  /* Float lock button to top-right of the top-bar, out of flex flow */
   .lock-btn {
-    position: absolute;
+    position: absolute !important;
     top: 0;
     right: 0;
+    z-index: 7;
   }
 }
 
 /* Small phones */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .title { font-size: 14px; }
   .action-btn { padding: 10px 16px; font-size: 13px; }
 }
