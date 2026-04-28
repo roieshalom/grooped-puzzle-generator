@@ -29,6 +29,24 @@ function loadDraftLocally() {
 
 let _readOnly = true; // default until we confirm we have a valid token
 
+// Replace visible input values with ● circles when locked.
+// Word 0 in each category stays visible; name + words 1-3 are masked.
+function _applyMaskedValues() {
+  document.querySelectorAll('.category').forEach(catEl => {
+    const nameInput = catEl.querySelector('.category-name-input');
+    if (nameInput) {
+      nameInput.value = '●●●●●●●●●●●●●●';
+      nameInput.classList.add('masked');
+    }
+    catEl.querySelectorAll('.word-input').forEach((inp, idx) => {
+      if (idx !== 0) {
+        inp.value = '●●●●●●';
+        inp.classList.add('masked');
+      }
+    });
+  });
+}
+
 function setReadOnly(readOnly) {
   _readOnly = readOnly;
 
@@ -102,13 +120,15 @@ function setReadOnly(readOnly) {
   }
 
   // Mask category names + words 1-3; reveal word 0 only (locked view)
-  document.querySelectorAll('.category').forEach(catEl => {
-    const nameInput = catEl.querySelector('.category-name-input');
-    if (nameInput) nameInput.classList.toggle('masked', readOnly);
-    catEl.querySelectorAll('.word-input').forEach((inp, idx) => {
-      inp.classList.toggle('masked', readOnly && idx !== 0);
+  if (readOnly) {
+    _applyMaskedValues();
+  } else {
+    // Remove masked class from all inputs (values restored below by updateUI)
+    document.querySelectorAll('.word-input.masked, .category-name-input.masked').forEach(inp => {
+      inp.classList.remove('masked');
     });
-  });
+    updateUI();
+  }
 
   updateExportButtonState();
   updateMechanicLabels();
@@ -399,6 +419,9 @@ function updateUI() {
   hasUnsavedChanges = false;
   updateExportButtonState();
   updateMechanicLabels();
+
+  // Re-apply masking if still in locked view (e.g. initial load while locked)
+  if (_readOnly) _applyMaskedValues();
 }
 
 // ── Mechanic labels (per-category) ──────────────────────────────────────────

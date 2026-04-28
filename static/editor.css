@@ -723,11 +723,11 @@ input[type="text"]:focus {
   letter-spacing: 0.04em;
 }
 
-/* ── Masked inputs (locked view) ────────────────────────────────────────────── */
+/* ── Masked inputs (locked view) — ● circle style matches date mask ─────────── */
 .word-input.masked,
 .category-name-input.masked {
-  color: transparent;
-  text-shadow: 0 0 8px rgba(0,0,0,0.25);
+  color: #ccc;
+  letter-spacing: 3px;
   user-select: none;
   pointer-events: none;
 }
