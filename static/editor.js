@@ -919,6 +919,21 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
         }
       });
 
+      // Update mechanic + tier on the in-memory puzzle so labels refresh
+      if (puzzles.length > 0 && puzzles[0] && puzzles[0].categories) {
+        const memCat = puzzles[0].categories[categoryIdx];
+        if (memCat) {
+          if (category.mechanic) {
+            memCat.mechanic = category.mechanic;
+            memCat.tier     = category.tier || null;
+          } else {
+            delete memCat.mechanic;
+            delete memCat.tier;
+          }
+        }
+      }
+      updateMechanicLabels();
+
       // fire input events so validation / dirty state updates
       wordInputs.forEach((inp) => {
         inp.dispatchEvent(new Event('input'));
