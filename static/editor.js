@@ -1219,35 +1219,36 @@ async function loadPublishedDates() {
 async function handleDatePickerChange(selected) {
   if (_readOnly) return; // only available when unlocked
 
-  const today = new Date().toISOString().split('T')[0];
+  const today      = new Date().toISOString().split('T')[0];
+  const hasPuzzle  = _publishedDates.has(selected);
 
-  if (selected < today) {
-    // ── Past date: load that puzzle snapshot ──────────────────────────────
+  if (selected < today || hasPuzzle) {
+    // ── Date with a puzzle (past or future scheduled) — load it ──────────
     if (!_viewingPast) {
       _savedDraft = puzzles.length > 0 && puzzles[0] ? { ...puzzles[0] } : null;
     }
-    setStatus('Loading past puzzle…', 'info', 0);
+    setStatus('Loading puzzle…', 'info', 0);
     try {
       const r = await apiFetch(`/api/puzzle-by-date?date=${selected}`);
       if (r.ok) {
-        const pastPuzzle = await r.json();
-        puzzles = [pastPuzzle];
+        const snapshot = await r.json();
+        puzzles = [snapshot];
         currentIndex = 0;
         updateUI();
         setViewingPast(true);
         const [y, m, d] = selected.split('-');
         setStatus(`Viewing snapshot: ${parseInt(d)}.${parseInt(m)}.${y}`, 'info', 3000);
       } else {
-        setStatus('No puzzle published on that date', 'error', 3000);
+        setStatus('No puzzle found for that date', 'error', 3000);
         if (!_viewingPast) _savedDraft = null;
         else setViewingPast(false);
         await refreshNextDate();
       }
     } catch (err) {
-      setStatus('Failed to load past puzzle', 'error', 3000);
+      setStatus('Failed to load puzzle', 'error', 3000);
     }
   } else {
-    // ── Future/present date: restore draft ───────────────────────────────
+    // ── Future date with no puzzle — restore draft ────────────────────────
     if (_viewingPast) {
       if (_savedDraft) {
         puzzles = [_savedDraft];
@@ -1314,11 +1315,11 @@ document.getElementById('jumpToNextBtn').addEventListener('click', async () => {
 // Run sequentially so load() warms the Vercel function before the date fetch.
 async function startup() {
   setStatus('Ready', 'info', 2000);
+  // Init flatpickr FIRST so the native browser date UI never appears
+  initDatePicker();
   setReadOnly(!getAuthToken());
   // Run in parallel — date label and puzzle content load concurrently
   await Promise.all([load(), refreshNextDate()]);
-  // Initialize flatpickr now that refreshNextDate has set the initial date
-  initDatePicker();
   // Fetch published dates in the background for calendar day coloring
   loadPublishedDates();
   // Fetch mechanic stats after initial load (only shown when unlocked)
