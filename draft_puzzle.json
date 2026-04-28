@@ -3,85 +3,73 @@
   "date": "28.04.2026",
   "categories": [
     {
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "yellow",
+      "name": "Things that weep (release liquid slowly)",
+      "words": [
+        "LEAK",
+        "DRIP",
+        "RUN",
+        "SWEAT"
+      ]
+    },
+    {
       "tier": 1,
       "mechanic": "TAXONOMY",
-      "difficulty": "yellow",
-      "name": "Types of weather",
-      "words": [
-        "WIND",
-        "RAIN",
-        "THUNDER",
-        "SNOW"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
       "difficulty": "green",
-      "name": "Synonyms for beginning",
+      "name": "Financial instruments you can trade",
       "words": [
-        "ORIGIN",
-        "SOURCE",
-        "ROOT",
-        "BIRTH"
+        "STOCK",
+        "BOND",
+        "SHARE",
+        "EQUITY"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "___ STONE",
+      "name": "Things with teeth",
       "words": [
-        "CORNER",
-        "KEY",
-        "LIME",
-        "COLD"
+        "CROWN",
+        "COMB",
+        "SAW",
+        "GEAR"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding drinks",
+      "name": "Words hiding clothing items",
       "words": [
-        "STEAM",
-        "STRUMPET",
-        "ORIGIN",
-        "GALE"
+        "VESTED",
+        "CAPRICE",
+        "MITIGATION",
+        "BOATER"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Words hiding drinks",
-      "category_b": "Synonyms for beginning",
-      "reason_a": "contains GIN as consecutive letters O-R-I-G-I-N",
-      "reason_b": "origin is a perfect synonym for beginning and will strongly pull solvers to the green category first",
-      "word": "ORIGIN"
-    },
-    {
-      "category_a": "Words hiding drinks",
-      "category_b": "Types of weather",
-      "reason_a": "contains ALE as consecutive letters G-A-L-E",
-      "reason_b": "gale is a weather term (strong wind) so solvers will be tempted to group it with WIND, RAIN, THUNDER",
-      "word": "GALE"
+      "category_a": "Words hiding clothing items",
+      "category_b": "Financial instruments you can trade",
+      "reason_a": "contains VEST as consecutive letters",
+      "reason_b": "vested interest is a finance/business term, sounds like it belongs with STOCK, BOND, EQUITY",
+      "word": "VESTED"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "successfully verified four words with consecutive hidden beverage names",
       "result": "shipped",
       "tier": 3
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'ORIGIN' within this puzzle"
-    ],
-    "duplicate_words": [
-      "ORIGIN"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
