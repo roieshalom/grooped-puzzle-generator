@@ -724,7 +724,9 @@ input[type="text"]:focus {
 }
 
 /* ── Masked content (locked view) — ● circle style matches date mask ────────── */
-.masked {
+.word-input.masked,
+.category-name-input.masked,
+.design-notes .masked {
   font-size: 10px;
   color: #ccc;
   letter-spacing: 3px;
