@@ -735,6 +735,17 @@ category_b, reason_b. A puzzle with an empty 'decoys' array will be
 treated as having no decoys, regardless of what is in 'thinking'.
 Minimum 2 entries. No exceptions.
 
+DECOY IDENTIFICATION IS MANDATORY. Before finalizing the puzzle,
+scan every word on the board and ask: could this word plausibly
+belong to a different category that exists on this board? If yes,
+it is a decoy and MUST appear in the decoys array. Do not put decoy
+reasoning only in thinking. A puzzle with fewer than 2 entries in
+the decoys array will be rejected. Check words like fill-in-blank
+completions (CLUB could be a card suit AND a medieval weapon),
+taxonomy words with double meanings (STOCK, PRESS, CROWN), and
+hidden-word containers that also fit another category. Every real
+cross-pull must be documented in the decoys array.
+
 CATEGORY FRAMING
 ================
 
