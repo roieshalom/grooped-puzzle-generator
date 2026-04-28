@@ -6,78 +6,75 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "Things that fly",
+      "name": "Things that rise",
       "words": [
-        "KITE",
-        "DRONE",
+        "STEAM",
+        "SMOKE",
         "BALLOON",
-        "FRISBEE"
+        "DOUGH"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "ROCK ___",
+      "name": "Can be pressed",
       "words": [
-        "STAR",
-        "BOTTOM",
-        "CANDY",
-        "BAND"
+        "IRON",
+        "SHIRT",
+        "PANTS",
+        "RECORD"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SYNONYMS",
       "difficulty": "blue",
-      "name": "Synonyms for firm or unwavering",
+      "name": "Can be set",
       "words": [
-        "SOLID",
-        "STEADY",
-        "RESOLUTE",
-        "FIXED"
+        "STAGE",
+        "TABLE",
+        "SCENE",
+        "SLACKS"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Contains a hidden metal",
+      "name": "Contain hidden beverages",
       "words": [
-        "GOLDFINCH",
-        "IRONCLAD",
-        "LEADING",
-        "TINSEL"
+        "STEAM",
+        "COFFEE_TABLE",
+        "JUICER",
+        "MILKSHAKE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Contains a hidden metal",
-      "category_b": "Things that fly",
-      "reason_a": "Contains GOLD as consecutive letters",
-      "reason_b": "A goldfinch is a bird that flies, creating strong surface-level pull",
-      "word": "GOLDFINCH"
-    },
-    {
-      "category_a": "Contains a hidden metal",
-      "category_b": "Synonyms for firm or unwavering",
-      "reason_a": "Contains IRON as consecutive letters",
-      "reason_b": "Ironclad means unbreakable or firm, fits perfectly with SOLID, STEADY, RESOLUTE",
-      "word": "IRONCLAD"
+      "category_a": "Things that rise",
+      "category_b": "Contain hidden beverages",
+      "reason_a": "Steam naturally rises upward",
+      "reason_b": "Contains TEA as consecutive letters",
+      "word": "STEAM"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four words containing metals (GOLD, IRON, LEAD, TIN) with strong decoy potential",
+      "note": "Successfully found four natural words each containing complete beverage names: STEAM (TEA), COFFEE_TABLE (COFFEE), JUICER (JUICE), MILKSHAKE (MILK)",
       "result": "shipped",
       "tier": 3
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'STEAM' within this puzzle"
+    ],
+    "duplicate_words": [
+      "STEAM"
+    ]
   }
 }
