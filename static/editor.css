@@ -364,8 +364,8 @@ input[type="text"]:focus {
   }
   .title { text-align: left; }
   .date-row { justify-content: flex-start; }
-  .actions { width: 100%; justify-content: center; }
-  .action-btn { flex: 1; }
+  .actions { width: 100%; justify-content: center; flex-wrap: nowrap; }
+  .action-btn { flex: 1; min-width: 0; }
 }
 
 /* Small phones */
