@@ -274,20 +274,65 @@ input[type="text"]:focus {
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-/* Flatpickr wrapper — position anchor for the ▼ arrow */
+/* Flatpickr wrapper — anchor for the ▼ arrow */
 .flatpickr-wrapper {
-  position: relative;
-  display: inline-block;
+  position: relative !important;
+  display: inline-block !important;
 }
 .flatpickr-wrapper::after {
   content: '▼';
   position: absolute;
-  right: 8px;
+  right: 9px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 9px;
   color: #777;
   pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Calendar day states ─────────────────────────────────────────────────── */
+
+/* Past date with a published puzzle — gray */
+.flatpickr-day.fp-past-published,
+.flatpickr-day.fp-past-published:hover {
+  background: #ebebeb !important;
+  color: #aaa !important;
+  border-color: transparent !important;
+}
+
+/* Future date waiting to be published — green, dark text */
+.flatpickr-day.fp-upcoming,
+.flatpickr-day.fp-upcoming:hover {
+  background: #dcfce7 !important;
+  color: #166534 !important;
+  border-color: transparent !important;
+}
+
+/* Selected date — blue ring only, no fill; text in same blue */
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+  background: transparent !important;
+  border: 2px solid #2471a3 !important;
+  color: #2471a3 !important;
+  box-shadow: none !important;
+}
+
+/* Selected + upcoming: keep green bg, add blue ring */
+.flatpickr-day.selected.fp-upcoming,
+.flatpickr-day.selected.fp-upcoming:hover {
+  background: #dcfce7 !important;
+  border: 2px solid #2471a3 !important;
+  color: #166534 !important;
+}
+
+/* Selected + past-published: keep gray bg, add blue ring */
+.flatpickr-day.selected.fp-past-published,
+.flatpickr-day.selected.fp-past-published:hover {
+  background: #ebebeb !important;
+  border: 2px solid #2471a3 !important;
+  color: #555 !important;
 }
 
 .publish-date-picker {

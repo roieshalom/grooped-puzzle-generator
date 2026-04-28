@@ -81,7 +81,7 @@ function setReadOnly(readOnly) {
     _viewingPast = false;
     if (_savedDraft) { puzzles = [_savedDraft]; _savedDraft = null; }
     const picker = document.getElementById('publishDatePicker');
-    if (picker) picker.classList.remove('past-mode');
+    _pickerSetPastMode(picker, false);
   }
 
   // disabled = locked OR currently viewing a past snapshot
@@ -183,12 +183,12 @@ function setViewingPast(viewing) {
       const btn = document.getElementById(id);
       if (btn) btn.disabled = true;
     });
-    if (picker) picker.classList.add('past-mode');
+    _pickerSetPastMode(picker, true);
     if (jumpBtn) jumpBtn.style.display = '';
   } else {
     // Restore whatever the current lock state demands
     setReadOnly(_readOnly);
-    if (picker) picker.classList.remove('past-mode');
+    _pickerSetPastMode(picker, false);
     if (jumpBtn) jumpBtn.style.display = 'none';
   }
   updateExportButtonState();
@@ -1168,6 +1168,12 @@ function buildDateMask() {
 let _flatpickr    = null;
 let _publishedDates = new Set(); // YYYY-MM-DD strings fetched from /api/published-dates
 
+// Apply/remove past-mode class to the visible picker input (altInput when available)
+function _pickerSetPastMode(picker, on) {
+  const visible = (_flatpickr && _flatpickr.altInput) || picker;
+  if (visible) visible.classList.toggle('past-mode', on);
+}
+
 function initDatePicker() {
   const pickerEl = document.getElementById('publishDatePicker');
   if (!pickerEl || typeof flatpickr === 'undefined') return;
@@ -1176,24 +1182,24 @@ function initDatePicker() {
 
   _flatpickr = flatpickr(pickerEl, {
     dateFormat:    'Y-m-d',
+    altInput:      true,
+    altFormat:     'd/m/Y',           // display format: DD/MM/YYYY
+    altInputClass: 'publish-date-picker', // inherits all our input styles
     minDate:       `${new Date().getFullYear()}-01-01`,
-    disableMobile: true, // always use flatpickr UI so onDayCreate runs on mobile too
+    disableMobile: true,
 
     onDayCreate(dObj, dStr, fp, dayElem) {
-      // Skip days outside the current month (flatpickr shows prev/next month faintly)
+      // Leave prev/next-month overflow days unstyled
       if (dayElem.classList.contains('prevMonthDay') ||
           dayElem.classList.contains('nextMonthDay')) return;
 
-      const iso        = dayElem.dateObj.toISOString().split('T')[0];
-      const hasPuzzle  = _publishedDates.has(iso);
+      const iso       = dayElem.dateObj.toISOString().split('T')[0];
+      const hasPuzzle = _publishedDates.has(iso);
 
       if (hasPuzzle && iso < todayIso) {
-        // Past + published — gray
-        dayElem.style.background = '#f0f0f0';
-        dayElem.style.color      = '#aaa';
+        dayElem.classList.add('fp-past-published');
       } else if (hasPuzzle) {
-        // Future/present + waiting to be published — green
-        dayElem.style.background = '#dcfce7';
+        dayElem.classList.add('fp-upcoming');
       }
       // else: no puzzle — white (default)
     },
