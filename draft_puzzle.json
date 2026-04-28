@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Contain hidden beverages",
+      "name": "Things you might steal from a hotel",
       "words": [
-        "STEAM",
-        "COFFEE_TABLE",
-        "JUICER",
-        "MILKSHAKE"
+        "SHAMPOO",
+        "TOWEL",
+        "PEN",
+        "ROBE"
       ]
     }
   ],
@@ -69,12 +69,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'STEAM' within this puzzle"
-    ],
-    "duplicate_words": [
-      "STEAM"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
