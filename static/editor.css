@@ -658,37 +658,15 @@ input[type="text"]:focus {
 .auth-panel.show { display: flex; }
 
 .auth-panel input[type="password"] {
+  flex: 1;
   padding: 8px 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 13px;
-  width: 130px;
   font-family: inherit;
   outline: none;
 }
 .auth-panel input[type="password"]:focus { border-color: #8b5cf6; }
-
-.unlock-btn {
-  padding: 8px 14px;
-  background: #8b5cf6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-  font-family: inherit;
-}
-.unlock-btn:hover { background: #7c3aed; }
-.unlock-btn:disabled { background: #aaa; cursor: not-allowed; }
-
-/* On narrow screens the auth panel still overlays, input stretches */
-@media (max-width: 600px) {
-  .auth-panel { padding-right: 44px; }
-  .auth-panel input[type="password"] { flex: 1; }
-}
 
 /* Read-only dimming for inputs */
 .word-input:disabled,

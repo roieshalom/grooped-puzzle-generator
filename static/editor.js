@@ -213,8 +213,6 @@ async function apiFetch(url, options = {}) {
 
 async function attemptUnlock(password) {
   if (!password) return;
-  const btn = document.getElementById('inlineUnlockBtn');
-  if (btn) btn.disabled = true;
 
   try {
     const r = await fetch('/api/auth', {
@@ -234,8 +232,6 @@ async function attemptUnlock(password) {
     }
   } catch (e) {
     setStatus('Login failed — check your connection', 'error', 3000);
-  } finally {
-    if (btn) btn.disabled = false;
   }
 }
 
@@ -1139,11 +1135,6 @@ document.getElementById('lockBtn').addEventListener('click', () => {
       if (inp) setTimeout(() => inp.focus(), 50);
     }
   }
-});
-
-document.getElementById('inlineUnlockBtn').addEventListener('click', () => {
-  const inp = document.getElementById('inlinePasswordInput');
-  if (inp) attemptUnlock(inp.value);
 });
 
 document.getElementById('inlinePasswordInput').addEventListener('keydown', (e) => {
