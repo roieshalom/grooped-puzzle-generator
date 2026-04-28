@@ -659,12 +659,14 @@ input[type="text"]:focus {
 
 .auth-panel input[type="password"] {
   flex: 1;
-  padding: 8px 10px;
+  align-self: stretch;
+  padding: 0 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 13px;
   font-family: inherit;
   outline: none;
+  box-sizing: border-box;
 }
 .auth-panel input[type="password"]:focus { border-color: #8b5cf6; }
 
