@@ -3,74 +3,85 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Things that rise",
+      "name": "Types of weather",
       "words": [
-        "STEAM",
-        "SMOKE",
-        "BALLOON",
-        "DOUGH"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Can be pressed",
-      "words": [
-        "IRON",
-        "SHIRT",
-        "PANTS",
-        "RECORD"
+        "WIND",
+        "RAIN",
+        "THUNDER",
+        "SNOW"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SYNONYMS",
-      "difficulty": "blue",
-      "name": "Can be set",
+      "difficulty": "green",
+      "name": "Synonyms for beginning",
       "words": [
-        "STAGE",
-        "TABLE",
-        "SCENE",
-        "SLACKS"
+        "ORIGIN",
+        "SOURCE",
+        "ROOT",
+        "BIRTH"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "purple",
-      "name": "Things you might steal from a hotel",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "blue",
+      "name": "___ STONE",
       "words": [
-        "SHAMPOO",
-        "TOWEL",
-        "PEN",
-        "ROBE"
+        "CORNER",
+        "KEY",
+        "LIME",
+        "COLD"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "difficulty": "purple",
+      "name": "Words hiding drinks",
+      "words": [
+        "STEAM",
+        "STRUMPET",
+        "ORIGIN",
+        "GALE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that rise",
-      "category_b": "Contain hidden beverages",
-      "reason_a": "Steam naturally rises upward",
-      "reason_b": "Contains TEA as consecutive letters",
-      "word": "STEAM"
+      "category_a": "Words hiding drinks",
+      "category_b": "Synonyms for beginning",
+      "reason_a": "contains GIN as consecutive letters O-R-I-G-I-N",
+      "reason_b": "origin is a perfect synonym for beginning and will strongly pull solvers to the green category first",
+      "word": "ORIGIN"
+    },
+    {
+      "category_a": "Words hiding drinks",
+      "category_b": "Types of weather",
+      "reason_a": "contains ALE as consecutive letters G-A-L-E",
+      "reason_b": "gale is a weather term (strong wind) so solvers will be tempted to group it with WIND, RAIN, THUNDER",
+      "word": "GALE"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "note": "Successfully found four natural words each containing complete beverage names: STEAM (TEA), COFFEE_TABLE (COFFEE), JUICER (JUICE), MILKSHAKE (MILK)",
+      "reason": "successfully verified four words with consecutive hidden beverage names",
       "result": "shipped",
       "tier": 3
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'ORIGIN' within this puzzle"
+    ],
+    "duplicate_words": [
+      "ORIGIN"
+    ]
   }
 }
