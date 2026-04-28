@@ -461,37 +461,71 @@ async function renderMechanicBar(forceRefresh = false) {
   const tierColors = { 1: '#74bdee', 2: '#8b5cf6', 3: '#f97316', 4: '#ec4899' };
   const tierLabels = { 1: 'Tier 1', 2: 'Tier 2', 3: 'Tier 3', 4: 'Tier 4' };
 
-  let html = `<div class="mb-heading">Mechanic usage — last ${tagged_count} tagged puzzles (${total} categories)</div>`;
-  html += '<div class="mb-row">';
+  let rowHtml = '<div class="mb-row">';
   [1, 2, 3, 4].forEach(t => {
     const count = tierCounts[t] || 0;
     const pct = total > 0 ? Math.round((count / total) * 100) : 0;
-    html += `<div class="mb-tier-item">
+    rowHtml += `<div class="mb-tier-item">
       <span class="mb-tier-label" style="color:${tierColors[t]}">${tierLabels[t]}</span>
       <div class="mb-track"><div class="mb-fill" style="width:${pct}%;background:${tierColors[t]}"></div></div>
       <span class="mb-pct">${pct}% (${count})</span>
     </div>`;
   });
-  html += '</div>';
+  rowHtml += '</div>';
 
   // Underused Tier 2 & 3 mechanics (used 0 times in window)
   const underused2 = _TIER2_MECHANICS.filter(m => !(all_mechanics[m] > 0));
   const underused3 = _TIER3_MECHANICS.filter(m => !(all_mechanics[m] > 0));
+  let detailHtml = '';
   if (underused2.length > 0 || underused3.length > 0) {
-    html += '<div class="mb-underused"><strong>Unused in window:</strong> ';
+    detailHtml += '<div class="mb-underused"><strong>Unused in window:</strong> ';
     const items = [
       ...underused2.map(m => `<span class="mb-tag mb-t2">${m}</span>`),
       ...underused3.map(m => `<span class="mb-tag mb-t3">${m}</span>`),
     ];
-    html += items.join(' ') + '</div>';
+    detailHtml += items.join(' ') + '</div>';
+  }
+  if (tagged_count < window_size) {
+    detailHtml += `<div class="mb-warmup">⚠ Only ${tagged_count} of ${window_size} window puzzles are tagged. Stats will improve as more puzzles are exported with mechanic data.</div>`;
   }
 
-  if (tagged_count < window_size) {
-    html += `<div class="mb-warmup">⚠ Only ${tagged_count} of ${window_size} window puzzles are tagged. Stats will improve as more puzzles are exported with mechanic data.</div>`;
-  }
+  const headingText = `Mechanic usage — last ${tagged_count} tagged puzzles (${total} categories)`;
+  const html = `
+    <div class="mb-toggle-row" id="mbToggleRow">
+      <span class="mb-heading">${headingText}</span>
+      <span class="mb-chevron" id="mbChevron">▲</span>
+    </div>
+    ${rowHtml}
+    <div class="mb-detail" id="mbDetail">${detailHtml}</div>
+  `;
 
   _mechBarContent = html;
   bar.innerHTML = html;
+
+  // Apply persisted collapsed state
+  const collapsed = localStorage.getItem('mb-collapsed') === '1';
+  if (collapsed) _applyMbCollapsed(bar, true, false);
+
+  // Wire up toggle
+  document.getElementById('mbToggleRow').addEventListener('click', () => {
+    const isCollapsed = bar.classList.contains('mb-collapsed');
+    _applyMbCollapsed(bar, !isCollapsed, true);
+  });
+}
+
+function _applyMbCollapsed(bar, collapse, persist) {
+  const detail = document.getElementById('mbDetail');
+  const chevron = document.getElementById('mbChevron');
+  if (collapse) {
+    bar.classList.add('mb-collapsed');
+    if (detail) detail.style.display = 'none';
+    if (chevron) chevron.textContent = '▼';
+  } else {
+    bar.classList.remove('mb-collapsed');
+    if (detail) detail.style.display = '';
+    if (chevron) chevron.textContent = '▲';
+  }
+  if (persist) localStorage.setItem('mb-collapsed', collapse ? '1' : '0');
 }
 
 function showValidationErrors(puzzle) {
