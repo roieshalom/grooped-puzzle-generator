@@ -368,14 +368,6 @@ input[type="text"]:focus {
   .action-btn { flex: 1; min-width: 0; }
 }
 
-/* Small phones */
-@media (max-width: 600px) {
-  .title { font-size: 14px; }
-  .actions { gap: 4px; }
-  .action-btn { padding: 10px 0; font-size: 11px; font-weight: 500; white-space: nowrap; overflow: visible; }
-  .lock-btn { padding: 10px 8px; flex-shrink: 0; font-size: 14px; }
-}
-
 .actions {
   display: flex;
   gap: 10px;
@@ -395,11 +387,12 @@ input[type="text"]:focus {
   transition: all 0.2s;
   white-space: nowrap;
 }
-@media (max-width: 480px) {
-  .action-btn {
-    padding: 10px 16px;
-    font-size: 13px;
-  }
+/* Small phones — must come AFTER base .action-btn rule to win the cascade */
+@media (max-width: 600px) {
+  .title { font-size: 14px; }
+  .actions { gap: 4px; }
+  .action-btn { padding: 10px 0; font-size: 11px; font-weight: 500; }
+  .lock-btn { padding: 10px 8px; font-size: 14px; }
 }
 .action-btn.save {
   background: #74bdee;
