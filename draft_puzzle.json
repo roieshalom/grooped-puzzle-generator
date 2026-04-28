@@ -4,65 +4,66 @@
   "categories": [
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "yellow",
-      "name": "Things that weep (release liquid slowly)",
+      "name": "Things that wrinkle",
       "words": [
-        "LEAK",
-        "DRIP",
-        "RUN",
-        "SWEAT"
+        "IRON",
+        "LINEN",
+        "SHIRT",
+        "PANTS"
       ]
     },
     {
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Financial instruments you can trade",
+      "name": "Medieval weapons",
       "words": [
-        "STOCK",
-        "BOND",
-        "SHARE",
-        "EQUITY"
+        "CLUB",
+        "MACE",
+        "STAFF",
+        "ROD"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things with teeth",
+      "name": "Things that get struck or stamped",
       "words": [
-        "CROWN",
-        "COMB",
-        "SAW",
-        "GEAR"
+        "FORGE",
+        "PRESS",
+        "MINT",
+        "STAMP"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding clothing items",
+      "name": "Words hiding card suits",
       "words": [
-        "VESTED",
-        "CAPRICE",
-        "MITIGATION",
-        "BOATER"
+        "RECLUSE",
+        "SWEETHEART",
+        "SPADEWORK",
+        "DIAMONDS"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Words hiding clothing items",
-      "category_b": "Financial instruments you can trade",
-      "reason_a": "contains VEST as consecutive letters",
-      "reason_b": "vested interest is a finance/business term, sounds like it belongs with STOCK, BOND, EQUITY",
-      "word": "VESTED"
+      "category_a": "Things that get struck or stamped",
+      "category_b": "Things that wrinkle",
+      "reason_a": "A printing press strikes/stamps ink onto paper",
+      "reason_b": "Clothes can be pressed to remove wrinkles, opposite of wrinkling",
+      "word": "PRESS"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Successfully found four natural words each containing a card suit as consecutive letters after verification",
       "result": "shipped",
       "tier": 3
     }
