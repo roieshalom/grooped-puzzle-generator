@@ -1011,6 +1011,8 @@ def regenerate_category():
         banned, _ = _load_banned()
         banned_text = ", ".join(sorted({_normalize(n) for n in banned})) or "none"
 
+        mechanic_list = ", ".join(sorted(_TIER_LOOKUP.keys()))
+
         if category_name:
             prompt = f"""Generate exactly 4 words for this Connections-style puzzle category.
 
@@ -1020,9 +1022,10 @@ DIFFICULTY: {difficulty} (easy=common words, medium=light knowledge, hard=wordpl
 Rules:
 - Words must be UPPERCASE
 - No word should appear inside the category name itself
+- Choose the mechanic from this list that best describes the category: {mechanic_list}
 
 Return ONLY valid JSON:
-{{"name": "{category_name}", "difficulty": "{difficulty}", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
+{{"name": "{category_name}", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
         else:
             prompt = f"""Create a brand-new category for a Connections-style word puzzle.
 
@@ -1034,11 +1037,21 @@ Requirements:
 - Category name: sentence case (e.g. "Things in a junk drawer"), NOT all caps
 - Casual register — pop culture, everyday objects, common phrases
 - No academic jargon, no "words that are both X and Y"
+- Choose the mechanic from this list that best describes the category: {mechanic_list}
 
 Return ONLY valid JSON:
-{{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
+{{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
 
-        data = _call_claude(prompt, max_tokens=200, model=VERIFY_MODEL)
+        data = _call_claude(prompt, max_tokens=300, model=VERIFY_MODEL)
+
+        # Inject tier from lookup; clear any stale mechanic if not in the list
+        mechanic = data.get("mechanic")
+        if mechanic and mechanic in _TIER_LOOKUP:
+            data["tier"] = _TIER_LOOKUP[mechanic]
+        else:
+            data.pop("mechanic", None)
+            data.pop("tier", None)
+
         return jsonify(data)
 
     except Exception as e:
