@@ -1230,7 +1230,7 @@ async function handleDatePickerChange(selected) {
         updateUI();
         setViewingPast(true);
         const [y, m, d] = selected.split('-');
-        setStatus(`Viewing snapshot: ${parseInt(d)}.${parseInt(m)}.${y}`, 'info', 0);
+        setStatus(`Viewing snapshot: ${parseInt(d)}.${parseInt(m)}.${y}`, 'info', 3000);
       } else {
         setStatus('No puzzle published on that date', 'error', 3000);
         if (!_viewingPast) _savedDraft = null;
