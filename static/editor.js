@@ -1180,16 +1180,22 @@ function initDatePicker() {
     disableMobile: true, // always use flatpickr UI so onDayCreate runs on mobile too
 
     onDayCreate(dObj, dStr, fp, dayElem) {
-      const iso = dayElem.dateObj.toISOString().split('T')[0];
-      if (iso < todayIso) {
-        // Past date — light gray
-        dayElem.style.background = '#f3f4f6';
-        dayElem.style.color      = '#9ca3af';
-      } else if (_publishedDates.has(iso)) {
-        // Future/present with a puzzle saved — light green
+      // Skip days outside the current month (flatpickr shows prev/next month faintly)
+      if (dayElem.classList.contains('prevMonthDay') ||
+          dayElem.classList.contains('nextMonthDay')) return;
+
+      const iso        = dayElem.dateObj.toISOString().split('T')[0];
+      const hasPuzzle  = _publishedDates.has(iso);
+
+      if (hasPuzzle && iso < todayIso) {
+        // Past + published — gray
+        dayElem.style.background = '#f0f0f0';
+        dayElem.style.color      = '#aaa';
+      } else if (hasPuzzle) {
+        // Future/present + waiting to be published — green
         dayElem.style.background = '#dcfce7';
       }
-      // else: white (default)
+      // else: no puzzle — white (default)
     },
 
     onChange(selectedDates, dateStr) {
