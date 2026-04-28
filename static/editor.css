@@ -372,7 +372,7 @@ input[type="text"]:focus {
 @media (max-width: 600px) {
   .title { font-size: 14px; }
   .actions { gap: 5px; }
-  .action-btn { padding: 10px 0; font-size: 12px; }
+  .action-btn { padding: 10px 0; font-size: 12px; text-align: center; overflow: hidden; }
   .lock-btn { padding: 10px 10px; flex-shrink: 0; }
 }
 
