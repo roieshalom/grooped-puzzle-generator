@@ -3,74 +3,74 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "______ STONE",
+      "name": "Things that flow with water",
       "words": [
-        "CORNER",
-        "KEY",
-        "SAND",
-        "LIME"
+        "SPRING",
+        "RIVER",
+        "WELL",
+        "FOUNTAIN"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_PAIRS",
+      "tier": 1,
+      "mechanic": "SYNONYMS",
       "difficulty": "green",
-      "name": "Second word of a body part",
+      "name": "Mountain tops",
       "words": [
-        "CAGE",
-        "NAIL",
-        "APPLE",
-        "BUTTON"
+        "PEAK",
+        "SUMMIT",
+        "CREST",
+        "CROWN"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Thrown in Sports",
+      "name": "Things ink can do on paper",
       "words": [
-        "HAMMER",
-        "DART",
-        "FRISBEE",
-        "DWARF"
+        "SPREAD",
+        "RUN",
+        "BLEED",
+        "SEEP"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding numbers inside",
+      "name": "Words hiding metals",
       "words": [
-        "STONE",
-        "OFTEN",
-        "CANINE",
-        "WEIGHT"
+        "MARIGOLD",
+        "ENVIRONMENT",
+        "MISLEAD",
+        "ZINC"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Words hiding numbers inside",
-      "category_b": "___ STONE",
-      "reason_a": "Contains ONE (O-N-E) as consecutive letters",
-      "reason_b": "The word STONE itself appears in the blank pattern, making solvers think it belongs to the PREFIX group",
-      "word": "STONE"
+      "category_a": "Things that flow with water",
+      "category_b": "Mountain tops",
+      "reason_a": "A spring is a natural water source that flows from the ground",
+      "reason_b": "Mountain spring is a common phrase, and solvers might associate springs with mountain locations",
+      "word": "SPRING"
     },
     {
-      "category_a": "Things you can lift at the gym",
-      "category_b": "___ STONE",
-      "reason_a": "Pumping iron is a gym phrase, iron weights are lifted",
-      "reason_b": "IRONSTONE is a real compound word, creating surface-level pull toward the blank pattern",
-      "word": "IRON"
+      "category_a": "Things ink can do on paper",
+      "category_b": "Things that flow with water",
+      "reason_a": "Ink runs when it's too wet or the paper absorbs it improperly",
+      "reason_b": "Water runs - rivers run, streams run, faucets run - this is a classic water verb",
+      "word": "RUN"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing a hidden number as consecutive letters, with strong decoy potential",
+      "reason": "Successfully found four natural words each containing a different metal as consecutive letters",
       "result": "shipped",
       "tier": 3
     }
