@@ -769,6 +769,10 @@ input[type="text"]:focus {
   font-weight: 700;
   letter-spacing: 0.04em;
 }
+.view-mode-banner a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
 
 /* ── Masked content (locked view) — ● circle style matches date mask ────────── */
 .word-input.masked,
