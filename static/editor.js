@@ -1156,11 +1156,9 @@ function puzzleDateToIso(d) {
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 }
 
-// Build the masked date string shown when locked: ●●/●●/YYYY
+// Build the masked date string shown when locked: ●●/●●/2026
 function buildDateMask() {
-  const picker = document.getElementById('publishDatePicker');
-  const year = picker?.value ? picker.value.split('-')[0] : '●●●●';
-  return `●●/●●/${year}`;
+  return '●●/●●/2026';
 }
 
 // ── Flatpickr date picker ─────────────────────────────────────────────────────
