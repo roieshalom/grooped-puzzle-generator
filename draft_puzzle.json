@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "___ STONE",
+      "name": "______ STONE",
       "words": [
         "CORNER",
         "KEY",
@@ -15,27 +15,27 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 3,
+      "mechanic": "HOMOPHONE_PAIRS",
       "difficulty": "green",
-      "name": "Things you can lift at the gym",
+      "name": "Second word of a body part",
       "words": [
-        "IRON",
-        "PRESS",
-        "CURL",
-        "BENCH"
+        "CAGE",
+        "NAIL",
+        "APPLE",
+        "BUTTON"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "EPONYMS",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things named after people",
+      "name": "Thrown in Sports",
       "words": [
-        "DERBY",
-        "BOYCOTT",
-        "CARDIGAN",
-        "SILHOUETTE"
+        "HAMMER",
+        "DART",
+        "FRISBEE",
+        "DWARF"
       ]
     },
     {
