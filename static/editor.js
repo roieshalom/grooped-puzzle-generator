@@ -133,11 +133,11 @@ function setReadOnly(readOnly) {
   // Date row: always visible; swap picker ↔ mask based on lock state
   const dateRow = document.getElementById('dateRow');
   if (dateRow) dateRow.style.display = 'flex';
-  const picker = document.getElementById('publishDatePicker');
-  // Flatpickr wraps the input in a div.flatpickr-wrapper — hide that wrapper, not just the input
-  const pickerToHide = picker?.parentElement?.classList.contains('flatpickr-wrapper')
-    ? picker.parentElement : picker;
-  if (pickerToHide) pickerToHide.style.display = readOnly ? 'none' : '';
+  // .flatpickr-wrapper has display:inline-block !important in CSS, so hiding the wrapper
+  // doesn't work — target the visible altInput directly instead.
+  const pickerVisible = (_flatpickr && _flatpickr.altInput)
+    || document.getElementById('publishDatePicker');
+  if (pickerVisible) pickerVisible.style.display = readOnly ? 'none' : '';
   if (readOnly && _flatpickr) _flatpickr.close();
   const dateMask = document.getElementById('dateMask');
   if (dateMask) {
