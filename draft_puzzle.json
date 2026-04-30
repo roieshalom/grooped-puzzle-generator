@@ -42,12 +42,12 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding metals",
+      "name": "Tracks from Joni mitchell's Blue album",
       "words": [
-        "MARIGOLD",
-        "ENVIRONMENT",
-        "MISLEAD",
-        "ZINC"
+        "RIVER",
+        "A CASE OF YOU",
+        "CALIFORNIA",
+        "LITTLE GREEN"
       ]
     }
   ],
@@ -76,8 +76,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'RIVER' within this puzzle"
+    ],
+    "duplicate_words": [
+      "RIVER"
+    ]
   }
 }
