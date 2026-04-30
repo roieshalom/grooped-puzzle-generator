@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "COMPOUND_BOTH_WAYS",
       "difficulty": "blue",
-      "name": "Things ink can do on paper",
+      "name": "Terms woth \"belly\"",
       "words": [
-        "SPREAD",
-        "RUN",
-        "BLEED",
-        "SEEP"
+        "BUTTON",
+        "LAUGH",
+        "DANCE",
+        "JELLY"
       ]
     },
     {
