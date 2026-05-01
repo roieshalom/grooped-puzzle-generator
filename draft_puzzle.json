@@ -3,74 +3,67 @@
   "date": "28.04.2026",
   "categories": [
     {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "FIRE ___",
+      "words": [
+        "ALARM",
+        "HYDRANT",
+        "DRILL",
+        "WORKS"
+      ]
+    },
+    {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "yellow",
-      "name": "Things that flow with water",
-      "words": [
-        "SPRING",
-        "RIVER",
-        "WELL",
-        "FOUNTAIN"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
       "difficulty": "green",
-      "name": "Mountain tops",
+      "name": "Things that spread",
       "words": [
-        "BLAH",
-        "HA",
-        "YADDA",
-        "HO"
+        "RUMOR",
+        "DISEASE",
+        "WILDFIRE",
+        "YAWN"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "COMPOUND_BOTH_WAYS",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "Terms with \"Belly\"",
+      "name": "Break the ___",
       "words": [
-        "UP",
-        "BEER",
-        "DANCE",
-        "JELLY"
+        "ICE",
+        "NEWS",
+        "SPELL",
+        "BANK"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Tracks from Joni mitchell's Blue",
+      "name": "Words hiding beverages",
       "words": [
-        "BLUE",
-        "A CASE OF YOU",
-        "CALIFORNIA",
-        "LITTLE GREEN"
+        "RUMPLE",
+        "STEALTH",
+        "SHALE",
+        "GINKGO"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that flow with water",
-      "category_b": "Mountain tops",
-      "reason_a": "A spring is a natural water source that flows from the ground",
-      "reason_b": "Mountain spring is a common phrase, and solvers might associate springs with mountain locations",
-      "word": "SPRING"
-    },
-    {
-      "category_a": "Things ink can do on paper",
-      "category_b": "Things that flow with water",
-      "reason_a": "Ink runs when it's too wet or the paper absorbs it improperly",
-      "reason_b": "Water runs - rivers run, streams run, faucets run - this is a classic water verb",
-      "word": "RUN"
+      "category_a": "Things that spread",
+      "category_b": "Words hiding beverages",
+      "reason_a": "Rumors spread from person to person",
+      "reason_b": "Contains RUM at the start (R-U-M-O-R), could trap solvers looking for hidden drinks",
+      "word": "RUMOR"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing a different metal as consecutive letters",
+      "reason": "Successfully found four natural words each containing different beverages as consecutive letters",
       "result": "shipped",
       "tier": 3
     }
