@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "female singers",
+      "name": "Female singers",
       "words": [
         "JEWEL",
         "PINK",
@@ -40,14 +40,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "purple",
-      "name": "Things To Be Seen With",
+      "name": "Sad",
       "words": [
-        "EYE",
-        "HAND",
-        "DATE",
-        "DAY"
+        "LOW",
+        "UPSET",
+        "",
+        ""
       ]
     }
   ],
