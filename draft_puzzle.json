@@ -1,75 +1,90 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "18.05.2024",
+  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
+  "date": "YYYY.MM.DD",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "FINGER ___",
+      "name": "Things Found In Or Near The Ocean",
       "words": [
-        "PRINT",
-        "PAINT",
-        "LICKING",
-        "FOOD"
+        "SAND",
+        "WAVE",
+        "SHELL",
+        "KELP"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Have a Head",
+      "name": "Words For Being Cheated Or Tricked",
       "words": [
-        "BED",
-        "NAIL",
-        "COIN",
-        "CABBAGE"
+        "SWINDLED",
+        "DUPED",
+        "HOAXED",
+        "FLEECED"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Can be BROKEN",
+      "name": "Things That Fly",
       "words": [
-        "HEART",
-        "GLASS",
-        "SILENCE",
-        "RECORD"
+        "PLANE",
+        "KITE",
+        "BIRD",
+        "BALL"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "purple",
-      "name": "appear on playing cards",
+      "name": "Sounds Like A Letter",
       "words": [
-        "SPADE",
-        "CLUB",
-        "SWORD",
-        "NUMBER"
+        "SEA",
+        "ARE",
+        "WHY",
+        "JAY"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things with a HEAD",
-      "category_b": "FINGER ___",
-      "reason_a": "A nail has a head",
-      "reason_b": "Can form 'fingernail', leading solvers to think it belongs to this group.",
-      "word": "NAIL"
+      "category_a": "Sounds Like A Letter",
+      "category_b": "Things Found In Or Near The Ocean",
+      "reason_a": "Sounds like the letter 'C'.",
+      "reason_b": "The word 'sea' directly refers to the ocean, a natural fit for this category.",
+      "word": "SEA"
     },
     {
-      "category_a": "Can be BROKEN",
-      "category_b": "FINGER ___",
-      "reason_a": "One can break a record (e.g., a vinyl record, or a sports record)",
-      "reason_b": "Can form 'fingerprint record', tempting solvers to place it with other 'FINGER' words.",
-      "word": "RECORD"
+      "category_a": "Sounds Like A Letter",
+      "category_b": "Things That Fly",
+      "reason_a": "Sounds like the letter 'J'.",
+      "reason_b": "A 'jay' is a type of bird (e.g., blue jay), and birds are known to fly, making it a plausible fit for 'Things That Fly'.",
+      "word": "JAY"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "FOUND_IN_SCENE",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "result": "shipped",
       "tier": 3
     }
