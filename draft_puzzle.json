@@ -22,7 +22,7 @@
       "words": [
         "EGG",
         "CODE",
-        "WHIP",
+        "NUT",
         "SMILE"
       ]
     },
@@ -42,7 +42,7 @@
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "purple",
-      "name": "items you take into the shower",
+      "name": "Take into the shower",
       "words": [
         "SOAP",
         "SHAMPOO",
