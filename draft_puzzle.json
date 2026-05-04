@@ -4,58 +4,66 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "___ SANDWICH",
+      "name": "Card suits",
       "words": [
         "CLUB",
-        "KNUCKLE",
-        "DAGWOOD",
-        "OPEN"
+        "DIAMOND",
+        "HEART",
+        "SPADE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Things that drip or run",
+      "name": "Things that STRIKE",
       "words": [
-        "FAUCET",
-        "WICK",
-        "NOSE",
-        "ENGINE"
+        "MATCH",
+        "BELL",
+        "CLOCK",
+        "CHORD"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "blue",
+      "name": "___ COLD",
+      "words": [
+        "STONE",
+        "ICE",
+        "BLOOD",
+        "SHOULDER"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "difficulty": "blue",
-      "name": "Words containing ASH",
-      "words": [
-        "LEASH",
-        "STASH",
-        "BRASH",
-        "THRASH"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
       "difficulty": "purple",
-      "name": "DRUM ___",
+      "name": "Words hiding numbers",
       "words": [
-        "ROLL",
-        "BEAT",
-        "STICK",
-        "LINE"
+        "PHONE",
+        "OFTEN",
+        "CANINE",
+        "FREIGHT"
       ]
     }
   ],
-  "decoys": [],
+  "decoys": [
+    {
+      "category_a": "___ COLD",
+      "category_b": "Words hiding numbers",
+      "reason_a": "STONE COLD is a common phrase meaning completely cold or emotionless",
+      "reason_b": "STONE contains the hidden number ONE (st-ONE)",
+      "word": "STONE"
+    }
+  ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "note": "Successfully found four natural words containing ASH after verification",
+      "reason": "Successfully found four natural words each containing a hidden number",
       "result": "shipped",
       "tier": 3
     }
