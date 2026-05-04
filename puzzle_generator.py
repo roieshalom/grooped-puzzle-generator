@@ -214,6 +214,7 @@ Slightly more lateral. These should appear every 1 to 2 weeks.
 - ORDERED_SET_MEMBER: planets, Greek letters, NATO alphabet, ranks, days, months.
 - WORKS_BY_ONE_MAKER: songs by an artist, films by a director.
 - CHARACTERS_IN_ONE_WORK: cast of one show or book.
+- FACETS_OF_SUBJECT: different angles on one named subject. "Facets of TRUMP" -> BUSINESSMAN, PRESIDENT, TV HOST, BEAUTY PAGEANT.
 
 TIER 3: SPECIALS — cooldown 21 puzzles, ~20% of categories long-term
 ====================================================================
