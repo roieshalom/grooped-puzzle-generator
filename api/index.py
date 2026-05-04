@@ -601,7 +601,7 @@ def _build_prompt(banned_list: list) -> str:
     preview = sorted(set(recent) | set(sampled))
     preview_text = ", ".join(preview) if preview else "none"
 
-    return f"""GROOPED PUZZLE GENERATION PROMPT (v5)
+    template = """GROOPED PUZZLE GENERATION PROMPT (v5)
 =====================================
 
 You are designing a single 4x4 NYT Connections-style puzzle for Grooped. 16 unique words, four groups of four, each tagged with a difficulty color: yellow (easiest), green, blue, purple (hardest). Output schema must match puzzles.json.
@@ -616,7 +616,7 @@ ALREADY-USED / BANNED CATEGORIES — DO NOT REUSE ANY OF THESE
 
 The following category names have already been used or are permanently banned. Do not use them, rephrase them, narrow/broaden them, or approach them from a different angle. Create something completely new.
 
-{preview_text}
+__BANNED_LIST__
 
 STEP 0: CORPUS NOTE
 ===================
@@ -919,6 +919,7 @@ REFERENCE: TARGET QUALITY PUZZLE
 ===============================
 
 The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, one wordplay in Tier 1 purple, real cross-pulls between groups (CHANGE could be pocket or could be improvement, JAM could be food or trouble, BEAT could be drum or DEAD BEAT). Strong board, varied mechanics, no Tier 4 forced. This is what good looks like."""
+    return template.replace("__BANNED_LIST__", preview_text)
 
 @app.route("/api/generate-puzzle", methods=["POST"])
 @require_auth
@@ -1071,7 +1072,7 @@ Requirements:
 Return ONLY valid JSON:
 {{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
 
-        data = _call_claude(prompt, max_tokens=300, model=VERIFY_MODEL)
+        data = _call_claude(prompt, max_tokens=800, model=VERIFY_MODEL)
 
         # Inject tier from lookup; clear any stale mechanic if not in the list
         mechanic = data.get("mechanic")
