@@ -196,8 +196,8 @@ The reliable backbones. Repeating these every few days is fine because the conte
 
 - TAXONOMY: flat list of a category type (cheeses, currencies, dog breeds). Allowed only when at least 2 of its 4 words pull toward another group on the board. Otherwise it is filler.
 - FOUND_IN_SCENE: things in a place. "At the dentist" -> BRACE, CAVITY, CROWN, BRIDGE.
-- PREFIX_BLANK: "___ X". "___ STONE" -> CORNER, KEY, SAND, LIME.
-- SUFFIX_BLANK: "X ___". "DEAD ___" -> PAN, BEAT, POOL, RINGER.
+- PREFIX_BLANK: "___ X". "___ STONE" -> CORNER, KEY, SAND, LIME. CRITICAL: verify every word individually — "cold shoulder" means SHOULDER goes in SUFFIX_BLANK ("___ cold"), not PREFIX_BLANK. If the hub word comes AFTER any of the four words, it belongs in SUFFIX_BLANK, not here. Never mix directions in one category.
+- SUFFIX_BLANK: "X ___". "DEAD ___" -> PAN, BEAT, POOL, RINGER. Same rule applies in reverse — if the hub word comes BEFORE any of the four words, it belongs in PREFIX_BLANK.
 - SYNONYMS: literal synonyms for one word. "Walk" -> STROLL, TREAD, WANDER, MARCH.
 
 TIER 2: REGULARS — cooldown 7 puzzles, ~35% of categories long-term
@@ -221,7 +221,7 @@ TIER 3: SPECIALS — cooldown 21 puzzles, ~20% of categories long-term
 
 Wordplay-flavored mechanics that lose punch with overuse. Roughly once every 3 weeks each.
 
-- HIDDEN_WORD: each word contains a hidden item from a category — anywhere inside (STONE/one), at the start (CRUSHWORTHY/crush), or at the end (PACKAGE/age). Specify the variant in the category label.
+- HIDDEN_WORD: each word contains a hidden item from a category — anywhere inside (STONE/one), at the start (CRUSHWORTHY/crush), or at the end (PACKAGE/age). Specify the variant in the category label. WARNING: if using the "at the end" variant, all four words will rhyme — this makes the mechanic immediately obvious and ruins the puzzle. Avoid "hidden at end" unless the rhyme is a known red herring. Strongly prefer "inside" or "at start" variants where the hidden element lands in different positions across the four words.
 - HOMOPHONES: words that sound like something in a shared category — single letters (SEA=C, ARE=R), numbers (ATE=8, WON=1), or each has a homophone fitting a category (BARE/bear, FLOWER/flour). Specify the variant in the category label.
 - COMPOUND: words that form compound words as both prefix and suffix to one hub word (SUN+flower, door+STEP, FIRE+place, rain+COAT).
 - ADD_DROP_LETTER: each word becomes a new real word when the same letter is added (CARE->SCARE) or dropped (BRAVE->RAVE). Specify add or drop in the category label.
