@@ -1,82 +1,97 @@
 {
   "id": "GROOPED_PUZZLE_ID",
-  "date": "20.06.2024",
+  "date": "YYYY-MM-DD",
   "categories": [
     {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "HOMOPHONES OF NUMBERS",
+      "name": "PAPER ___",
       "words": [
-        "FOR",
-        "WON",
-        "TOO",
-        "ATE"
+        "CLIP",
+        "TRAIL",
+        "WEIGHT",
+        "WORK"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "difficulty": "green",
+      "name": "Can be CRACKED",
+      "words": [
+        "EGG",
+        "CODE",
+        "WHIP",
+        "SMILE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "green",
-      "name": "THINGS THAT BREAK",
-      "words": [
-        "WAVE",
-        "RECORD",
-        "NEWS",
-        "STORY"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "_______ BREAK",
+      "name": "Things that FLOAT",
       "words": [
-        "COFFEE",
-        "SPRING",
-        "JAIL",
-        "LUCKY"
+        "DUST",
+        "ICE",
+        "BOAT",
+        "IDEA"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 3,
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "purple",
-      "name": "ON THE _______",
+      "name": "Sounds like letters of the alphabet",
       "words": [
-        "HOUSE",
-        "FENCE",
-        "MARKET",
-        "GO"
+        "EYE",
+        "YOU",
+        "BEE",
+        "TEA"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "THINGS THAT BREAK",
-      "category_b": "_______ BREAK",
-      "reason_a": "News breaks, one can break news",
-      "reason_b": "A common phrase is 'news break'",
-      "word": "NEWS"
+      "category_a": "Sounds like letters of the alphabet",
+      "category_b": "Can be CRACKED",
+      "reason_a": "Sounds like the letter 'I'",
+      "reason_b": "One can 'crack an eye' open, or have 'cracked eyes' from fatigue.",
+      "word": "EYE"
     },
     {
-      "category_a": "THINGS THAT BREAK",
-      "category_b": "_______ BREAK",
-      "reason_a": "One can break a record",
-      "reason_b": "The concept of 'breaking a record' might lead solvers to connect 'record' with the 'break' category, even if 'record break' isn't a standard fill-in-the-blank.",
-      "word": "RECORD"
+      "category_a": "Sounds like letters of the alphabet",
+      "category_b": "Things that FLOAT",
+      "reason_a": "Sounds like the letter 'T'",
+      "reason_b": "Tea leaves or tea bags float in water.",
+      "word": "TEA"
     },
     {
-      "category_a": "THINGS THAT BREAK",
-      "category_b": "_______ BREAK",
-      "reason_a": "One can break a story (publish it first)",
-      "reason_b": "Similar to 'news break', 'story break' might be considered by solvers, though less common.",
-      "word": "STORY"
+      "category_a": "Sounds like letters of the alphabet",
+      "category_b": "Things that FLOAT",
+      "reason_a": "Sounds like the letter 'B'",
+      "reason_b": "Bees float (fly) in the air.",
+      "word": "BEE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "result": "shipped",
       "tier": 3
     }
