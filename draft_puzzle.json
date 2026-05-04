@@ -18,7 +18,7 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Power rangers color",
+      "name": "Power Rangers' color",
       "words": [
         "BLUE",
         "YELLOW",
@@ -30,12 +30,12 @@
       "tier": 1,
       "mechanic": "SUFFIX_BLANK",
       "difficulty": "blue",
-      "name": "Words Before 'Up'",
+      "name": "Jewelry",
       "words": [
-        "ANTE",
-        "GEAR",
-        "SHAPE",
-        "WIND"
+        "RING",
+        "EARRING",
+        "BRACELET",
+        "PENDANT"
       ]
     },
     {
