@@ -69,7 +69,7 @@ Return ONLY a JSON object with this structure:
 
     try:
         gmodel = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
+            model_name="gemini-2.5-flash",
             system_instruction="You are a strict fact-checker. Return only valid JSON.",
         )
         resp = gmodel.generate_content(
@@ -444,7 +444,7 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
         print(f"Puzzle generation attempt {attempt}")
 
         gmodel = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
+            model_name="gemini-2.5-flash",
             system_instruction="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
         )
         response = gmodel.generate_content(

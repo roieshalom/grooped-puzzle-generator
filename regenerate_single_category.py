@@ -107,7 +107,7 @@ No extra text, no explanations, just JSON.
             normalize_category = lambda s: (s or "").strip().lower()  # noqa: E731
 
         gmodel = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
+            model_name="gemini-2.5-flash",
             system_instruction="You are an expert Grooped puzzle category generator. Always return valid JSON only.",
         )
 
@@ -181,7 +181,7 @@ No extra text, no explanations, just JSON.
     try:
         _configure_genai()
         gmodel = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
+            model_name="gemini-2.5-flash",
             system_instruction="You are an expert at generating words for word puzzle categories. Always return valid JSON only.",
         )
         response = gmodel.generate_content(

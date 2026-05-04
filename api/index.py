@@ -37,8 +37,8 @@ DRAFT_PATH    = "draft_puzzle.json"
 BANNED_PATH   = "banned_categories.json"
 
 # Anthropic models
-GEN_MODEL    = os.environ.get("GEN_MODEL", "gemini-2.0-flash")
-VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gemini-2.0-flash")
+GEN_MODEL    = os.environ.get("GEN_MODEL", "gemini-2.5-flash")
+VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gemini-2.5-flash")
 
 # ─── GitHub helpers ───────────────────────────────────────────────────────────
 
