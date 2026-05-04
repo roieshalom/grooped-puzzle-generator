@@ -4,50 +4,50 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Things Found In Or Near The Ocean",
+      "name": "female singers",
       "words": [
-        "SAND",
-        "WAVE",
-        "SHELL",
-        "KELP"
+        "JEWEL",
+        "PINK",
+        "SHAKIRA",
+        "MADONNA"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Words For Being Cheated Or Tricked",
+      "name": "Power rangers color",
       "words": [
-        "SWINDLED",
-        "DUPED",
-        "HOAXED",
-        "FLEECED"
+        "BLUE",
+        "YELLOW",
+        "RED",
+        "BLACK"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "blue",
+      "name": "Words Before 'Up'",
+      "words": [
+        "ANTE",
+        "GEAR",
+        "SHAPE",
+        "WIND"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "blue",
-      "name": "Things That Fly",
-      "words": [
-        "PLANE",
-        "KITE",
-        "BIRD",
-        "BALL"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Sounds Like A Letter",
+      "name": "Things To Be Seen With",
       "words": [
-        "SEA",
-        "ARE",
-        "WHY",
-        "JAY"
+        "EYE",
+        "HAND",
+        "DATE",
+        "DAY"
       ]
     }
   ],
