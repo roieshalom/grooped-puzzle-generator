@@ -133,9 +133,14 @@ No extra text, no explanations, just JSON.
                 generation_config=genai.GenerationConfig(
                     max_output_tokens=512,
                     temperature=0.8,
+                    response_mime_type="application/json",
                 ),
             )
-            data = json.loads(_extract_json(response.text))
+            raw = response.text
+            try:
+                data = json.loads(raw)
+            except json.JSONDecodeError:
+                data = json.loads(_extract_json(raw))
             last_candidate = data
 
             name = (data.get("name") or "").strip()
@@ -200,9 +205,14 @@ No extra text, no explanations, just JSON.
             generation_config=genai.GenerationConfig(
                 max_output_tokens=512,
                 temperature=0.7,
+                response_mime_type="application/json",
             ),
         )
-        return json.loads(_extract_json(response.text))
+        raw = response.text
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return json.loads(_extract_json(raw))
     except Exception as e:
         raise Exception(f"Failed to generate words for category: {str(e)}")
 

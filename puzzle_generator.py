@@ -91,9 +91,14 @@ Return ONLY a JSON object with this structure:
             generation_config=genai.GenerationConfig(
                 max_output_tokens=1024,
                 temperature=0.1,
+                response_mime_type="application/json",
             ),
         )
-        result = json.loads(_extract_json(resp.text))
+        raw = resp.text
+        try:
+            result = json.loads(raw)
+        except json.JSONDecodeError:
+            result = json.loads(_extract_json(raw))
         verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
 
         verified = []
@@ -463,9 +468,14 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
             generation_config=genai.GenerationConfig(
                 max_output_tokens=4096,
                 temperature=0.9,
+                response_mime_type="application/json",
             ),
         )
-        data = json.loads(_extract_json(response.text))
+        raw = response.text
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            data = json.loads(_extract_json(raw))
 
         # Check for banned categories first (hard constraint)
         banned_set = set(banned_norm)

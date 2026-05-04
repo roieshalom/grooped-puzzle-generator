@@ -522,13 +522,19 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
         prompt,
         generation_config=genai.GenerationConfig(
             max_output_tokens=max_tokens,
+            response_mime_type="application/json",
         ),
     )
-    extracted = _extract_json(response.text)
+    raw = response.text
     try:
-        return json.loads(extracted)
+        return json.loads(raw)
     except json.JSONDecodeError:
-        raise ValueError(f"Could not parse JSON from Gemini response: {response.text[:300]}")
+        # Fallback: try stripping any accidental markdown fences
+        extracted = _extract_json(raw)
+        try:
+            return json.loads(extracted)
+        except json.JSONDecodeError:
+            raise ValueError(f"Could not parse JSON from Gemini response: {raw[:300]}")
 
 # ─── Decoy verification ───────────────────────────────────────────────────────
 
