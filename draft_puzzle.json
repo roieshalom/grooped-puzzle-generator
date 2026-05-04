@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "PAPER ___",
+      "name": "Paper ___",
       "words": [
         "CLIP",
         "TRAIL",
@@ -18,7 +18,7 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Can be CRACKED",
+      "name": "Can be Cracked",
       "words": [
         "EGG",
         "CODE",
@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 3,
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "blue",
-      "name": "Things that FLOAT",
+      "name": "Words That Sound Like Letters",
       "words": [
-        "DUST",
-        "ICE",
-        "BOAT",
-        "IDEA"
+        "BEE",
+        "EYE",
+        "TEE",
+        "CUE"
       ]
     },
     {
@@ -97,8 +97,14 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'BEE' within this puzzle",
+      "Duplicate word 'EYE' within this puzzle"
+    ],
+    "duplicate_words": [
+      "BEE",
+      "EYE"
+    ]
   }
 }
