@@ -221,15 +221,10 @@ TIER 3: SPECIALS — cooldown 21 puzzles, ~20% of categories long-term
 
 Wordplay-flavored mechanics that lose punch with overuse. Roughly once every 3 weeks each.
 
-- HIDDEN_WORD_INSIDE: each word secretly contains an item from a hidden category, anywhere. Hidden numbers -> STONE (one), OFTEN (ten), CANINE (nine), FREIGHT (eight).
-- HIDDEN_WORD_AT_START: each word starts with a hidden item. Soda brands -> CRUSHWORTHY, FANTAGRAPHICS, FRESCADE, PEPSINOGEN.
-- HIDDEN_WORD_AT_END: same idea, at the end.
-- HOMOPHONE_OF_LETTER: sound like single letters. SEA (C), ARE (R), WHY (Y), JAY (J).
-- HOMOPHONE_OF_NUMBER: sound like numbers. ATE (8), FOR (4), WON (1), TOO (2).
-- HOMOPHONE_PAIRS: each has a homophone fitting a category. BARE/BEAR, FLOWER/FLOUR.
-- COMPOUND_BOTH_WAYS: words that work as both prefix and suffix to one hub.
-- ADD_LETTER: become other real words when you add the same letter (CARE -> SCARE).
-- DROP_LETTER: same in reverse.
+- HIDDEN_WORD: each word contains a hidden item from a category — anywhere inside (STONE/one), at the start (CRUSHWORTHY/crush), or at the end (PACKAGE/age). Specify the variant in the category label.
+- HOMOPHONES: words that sound like something in a shared category — single letters (SEA=C, ARE=R), numbers (ATE=8, WON=1), or each has a homophone fitting a category (BARE/bear, FLOWER/flour). Specify the variant in the category label.
+- COMPOUND: words that form compound words as both prefix and suffix to one hub word (SUN+flower, door+STEP, FIRE+place, rain+COAT).
+- ADD_DROP_LETTER: each word becomes a new real word when the same letter is added (CARE->SCARE) or dropped (BRAVE->RAVE). Specify add or drop in the category label.
 - EPONYMS: things named after people. SANDWICH, BOYCOTT, GUILLOTINE, CARDIGAN.
 - CROSS_LANGUAGE: same concept across languages. "Cheers" -> SLAINTE, KAMPAI, PROST, CIN-CIN.
 - ABBREVIATION_EXPANSION: common acronyms read as letters (NASA, FBI, SCUBA, RADAR).
