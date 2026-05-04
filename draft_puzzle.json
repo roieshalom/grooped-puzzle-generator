@@ -4,85 +4,58 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Bases for soup or sauce",
+      "name": "___ SANDWICH",
       "words": [
-        "STOCK",
-        "BROTH",
-        "ROUX",
-        "MIREPOIX"
+        "CLUB",
+        "KNUCKLE",
+        "DAGWOOD",
+        "OPEN"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Things that strike",
+      "name": "Things that drip or run",
       "words": [
-        "CLUB",
-        "IRON",
-        "BAT",
-        "HAMMER"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "Golf clubs",
-      "words": [
-        "WOOD",
-        "DRIVER",
-        "WEDGE",
-        "PUTTER"
+        "FAUCET",
+        "WICK",
+        "NOSE",
+        "ENGINE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
-      "difficulty": "purple",
-      "name": "Named after people",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "difficulty": "blue",
+      "name": "Words containing ASH",
       "words": [
-        "DIESEL",
-        "SANDWICH",
-        "CARDIGAN",
-        "SILHOUETTE"
+        "LEASH",
+        "STASH",
+        "BRASH",
+        "THRASH"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "purple",
+      "name": "DRUM ___",
+      "words": [
+        "ROLL",
+        "BEAT",
+        "STICK",
+        "LINE"
       ]
     }
   ],
-  "decoys": [
-    {
-      "category_a": "Things that strike",
-      "category_b": "Golf clubs",
-      "reason_a": "A club is a weapon that strikes or hits",
-      "reason_b": "A club is literally a type of golf club (though the category uses more specific names)",
-      "word": "CLUB"
-    },
-    {
-      "category_a": "Things that strike",
-      "category_b": "Golf clubs",
-      "reason_a": "An iron can be a striking tool (like a blacksmith's iron or tire iron used as weapon)",
-      "reason_b": "Iron is a standard golf club type",
-      "word": "IRON"
-    },
-    {
-      "category_a": "Golf clubs",
-      "category_b": "Things that strike",
-      "reason_a": "Wood is a type of golf club",
-      "reason_b": "A wooden club or piece of wood can be used to strike something",
-      "word": "WOOD"
-    }
-  ],
+  "decoys": [],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Attempted hidden card suits (CLUB, HEART, SPADE, DIAMOND) as consecutive letters inside words. Could not find four natural words for each suit without forcing obscure terms. Verified letter-by-letter and confirmed inability to land clean examples.",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "EPONYMS",
+      "note": "Successfully found four natural words containing ASH after verification",
       "result": "shipped",
       "tier": 3
     }
