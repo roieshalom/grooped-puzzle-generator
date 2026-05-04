@@ -30,7 +30,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Things a vegan wouldn't eat",
+      "name": "A vegan wouldn't eat",
       "words": [
         "CHEESE",
         "HONEY",
@@ -40,14 +40,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "purple",
-      "name": "Words That Read The Same Backwards",
+      "name": "items you take into the shower",
       "words": [
-        "MADAM",
-        "LEVEL",
-        "ROTOR",
-        "KAYAK"
+        "SOAP",
+        "SHAMPOO",
+        "LOOFAH",
+        "SCRUB"
       ]
     }
   ],
