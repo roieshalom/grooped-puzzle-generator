@@ -1072,7 +1072,7 @@ Requirements:
 Return ONLY valid JSON:
 {{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
 
-        data = _call_claude(prompt, max_tokens=800, model=VERIFY_MODEL)
+        data = _call_claude(prompt, max_tokens=4000, model=VERIFY_MODEL)
 
         # Inject tier from lookup; clear any stale mechanic if not in the list
         mechanic = data.get("mechanic")
