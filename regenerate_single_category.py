@@ -4,32 +4,30 @@
 import os
 import re
 import json
-import anthropic
+import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Don't create client at module level - create it when needed
-
-def get_client():
-    """Get Anthropic client with API key loaded from .env or environment"""
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+def _configure_genai():
+    """Configure Gemini with API key loaded from .env or environment"""
+    api_key = os.environ.get("GEMINI_API_KEY")
 
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         load_dotenv()
         env_path = os.path.join(script_dir, '.env')
         load_dotenv(dotenv_path=env_path, override=False)
-        api_key = os.environ.get("ANTHROPIC_API_KEY")
+        api_key = os.environ.get("GEMINI_API_KEY")
 
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         env_path = os.path.join(script_dir, '.env')
         raise ValueError(
-            f"ANTHROPIC_API_KEY not found. Either:\n"
-            f"1. Set it as an environment variable: export ANTHROPIC_API_KEY=your_key\n"
-            f"2. Create a .env file at {env_path} with: ANTHROPIC_API_KEY=your_key"
+            f"GEMINI_API_KEY not found. Either:\n"
+            f"1. Set it as an environment variable: export GEMINI_API_KEY=your_key\n"
+            f"2. Create a .env file at {env_path} with: GEMINI_API_KEY=your_key"
         )
 
-    return anthropic.Anthropic(api_key=api_key)
+    genai.configure(api_key=api_key)
 
 
 def generate_single_category(difficulty="medium", existing_categories=None):
@@ -98,7 +96,7 @@ No extra text, no explanations, just JSON.
 """
     
     try:
-        client = get_client()
+        _configure_genai()
 
         # Prepare banned-check helpers (graceful if banned_categories module missing)
         try:
@@ -108,17 +106,23 @@ No extra text, no explanations, just JSON.
             banned_set = set()
             normalize_category = lambda s: (s or "").strip().lower()  # noqa: E731
 
+        gmodel = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            system_instruction="You are an expert Grooped puzzle category generator. Always return valid JSON only.",
+        )
+
         max_attempts = 8
         last_candidate = None
         for attempt in range(1, max_attempts + 1):
-            response = client.messages.create(
-                model="claude-haiku-4-5",
-                max_tokens=512,
-                system="You are an expert Grooped puzzle category generator. Always return valid JSON only.",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.8,
+            response = gmodel.generate_content(
+                prompt,
+                generation_config=genai.GenerationConfig(
+                    max_output_tokens=512,
+                    temperature=0.8,
+                    response_mime_type="application/json",
+                ),
             )
-            text = response.content[0].text.strip()
+            text = response.text.strip()
             match = re.search(r"\{[\s\S]*\}", text)
             data = json.loads(match.group() if match else text)
             last_candidate = data
@@ -175,15 +179,20 @@ No extra text, no explanations, just JSON.
 """
     
     try:
-        client = get_client()
-        response = client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=512,
-            system="You are an expert at generating words for word puzzle categories. Always return valid JSON only.",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7,
+        _configure_genai()
+        gmodel = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            system_instruction="You are an expert at generating words for word puzzle categories. Always return valid JSON only.",
         )
-        text = response.content[0].text.strip()
+        response = gmodel.generate_content(
+            prompt,
+            generation_config=genai.GenerationConfig(
+                max_output_tokens=512,
+                temperature=0.7,
+                response_mime_type="application/json",
+            ),
+        )
+        text = response.text.strip()
         match = re.search(r"\{[\s\S]*\}", text)
         return json.loads(match.group() if match else text)
     except Exception as e:

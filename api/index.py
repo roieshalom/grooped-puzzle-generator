@@ -14,7 +14,7 @@ from collections import Counter
 from datetime import datetime, timedelta
 from functools import wraps
 
-import anthropic
+import google.generativeai as genai
 import requests
 from flask import Flask, request, jsonify
 
@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 # ─── Config ──────────────────────────────────────────────────────────────────
 
-ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GITHUB_TOKEN      = os.environ.get("GITHUB_TOKEN", "")
 EDITOR_PASSWORD   = os.environ.get("EDITOR_PASSWORD", "")
 EDITOR_SECRET     = os.environ.get("EDITOR_SECRET", "grooped-editor-secret-v1")
@@ -37,8 +37,8 @@ DRAFT_PATH    = "draft_puzzle.json"
 BANNED_PATH   = "banned_categories.json"
 
 # Anthropic models
-GEN_MODEL    = os.environ.get("GEN_MODEL", "claude-sonnet-4-5")
-VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "claude-haiku-4-5")
+GEN_MODEL    = os.environ.get("GEN_MODEL", "gemini-2.0-flash")
+VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gemini-2.0-flash")
 
 # ─── GitHub helpers ───────────────────────────────────────────────────────────
 
@@ -495,20 +495,22 @@ def get_mechanic_stats():
 
 # ─── Anthropic helpers ────────────────────────────────────────────────────────
 
-def _anthropic_client():
-    return anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
-    """Call Claude and parse JSON from the response."""
+    """Call Gemini and parse JSON from the response."""
     model = model or GEN_MODEL
-    ac = _anthropic_client()
-    message = ac.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
-        messages=[{"role": "user", "content": prompt}],
+    genai.configure(api_key=GEMINI_API_KEY)
+    gmodel = genai.GenerativeModel(
+        model_name=model,
+        system_instruction="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
     )
-    text = message.content[0].text.strip()
+    response = gmodel.generate_content(
+        prompt,
+        generation_config=genai.GenerationConfig(
+            max_output_tokens=max_tokens,
+            response_mime_type="application/json",
+        ),
+    )
+    text = response.text.strip()
 
     # Try direct parse
     try:
@@ -521,7 +523,7 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
     if match:
         return json.loads(match.group())
 
-    raise ValueError(f"Could not parse JSON from Claude response: {text[:300]}")
+    raise ValueError(f"Could not parse JSON from Gemini response: {text[:300]}")
 
 # ─── Decoy verification ───────────────────────────────────────────────────────
 
@@ -1116,7 +1118,7 @@ def published_dates():
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"ok": True, "env": {
-        "anthropic": bool(ANTHROPIC_API_KEY),
+        "gemini": bool(GEMINI_API_KEY),
         "github": bool(GITHUB_TOKEN),
         "password": bool(EDITOR_PASSWORD),
     }})

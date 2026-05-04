@@ -2,7 +2,7 @@ import os
 import re
 import json
 from datetime import datetime, timedelta
-import anthropic
+import google.generativeai as genai
 from dotenv import load_dotenv
 from banned_categories import (
     load_banned_categories,
@@ -11,7 +11,7 @@ from banned_categories import (
 
 load_dotenv()  # This loads the .env file
 
-client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 
 def _verify_decoys_semantically(decoys, categories, client):
@@ -68,14 +68,19 @@ Return ONLY a JSON object with this structure:
 }}"""
 
     try:
-        resp = client.messages.create(
-            model="claude-haiku-4-5",
-            max_tokens=1024,
-            system="You are a strict fact-checker. Return only valid JSON.",
-            messages=[{"role": "user", "content": verify_prompt}],
-            temperature=0.1,
+        gmodel = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            system_instruction="You are a strict fact-checker. Return only valid JSON.",
         )
-        text = resp.content[0].text.strip()
+        resp = gmodel.generate_content(
+            verify_prompt,
+            generation_config=genai.GenerationConfig(
+                max_output_tokens=1024,
+                temperature=0.1,
+                response_mime_type="application/json",
+            ),
+        )
+        text = resp.text.strip()
         match = re.search(r"\{[\s\S]*\}", text)
         result = json.loads(match.group() if match else text)
         verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
@@ -438,14 +443,19 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
         attempt += 1
         print(f"Puzzle generation attempt {attempt}")
 
-        response = client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=4096,
-            system="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.9,
+        gmodel = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            system_instruction="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
         )
-        text = response.content[0].text.strip()
+        response = gmodel.generate_content(
+            prompt,
+            generation_config=genai.GenerationConfig(
+                max_output_tokens=4096,
+                temperature=0.9,
+                response_mime_type="application/json",
+            ),
+        )
+        text = response.text.strip()
         match = re.search(r"\{[\s\S]*\}", text)
         data = json.loads(match.group() if match else text)
 
