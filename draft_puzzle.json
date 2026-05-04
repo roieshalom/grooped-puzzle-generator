@@ -8,7 +8,7 @@
       "difficulty": "yellow",
       "name": "Paper ___",
       "words": [
-        "CLIP",
+        "BOY",
         "TRAIL",
         "WEIGHT",
         "WORK"
@@ -27,27 +27,27 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Words That Sound Like Letters",
+      "name": "Things a vegan wouldn't eat",
       "words": [
-        "BEE",
-        "EYE",
-        "TEE",
-        "CUE"
+        "CHEESE",
+        "HONEY",
+        "PORK",
+        "FISH"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "purple",
-      "name": "Sounds like letters of the alphabet",
+      "name": "Homophones For Letters of the Alphabet",
       "words": [
-        "EYE",
-        "YOU",
-        "BEE",
-        "TEA"
+        "QUEUE",
+        "TEA",
+        "WHY",
+        "EWE"
       ]
     }
   ],
@@ -97,14 +97,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'BEE' within this puzzle",
-      "Duplicate word 'EYE' within this puzzle"
-    ],
-    "duplicate_words": [
-      "BEE",
-      "EYE"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
