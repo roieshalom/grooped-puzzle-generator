@@ -18,7 +18,7 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Things with a HEAD",
+      "name": "Have a Head",
       "words": [
         "BED",
         "NAIL",
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Words that sound like numbers",
+      "name": "appear on playing cards",
       "words": [
-        "ATE",
-        "FOR",
-        "TOO",
-        "WON"
+        "SPADE",
+        "CLUB",
+        "SWORD",
+        "NUMBER"
       ]
     }
   ],
