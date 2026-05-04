@@ -228,6 +228,13 @@ Wordplay-flavored mechanics that lose punch with overuse. Roughly once every 3 w
 - EPONYMS: things named after people. SANDWICH, BOYCOTT, GUILLOTINE, CARDIGAN.
 - CROSS_LANGUAGE: same concept across languages. "Cheers" -> SLAINTE, KAMPAI, PROST, CIN-CIN.
 - ABBREVIATION_EXPANSION: common acronyms read as letters (NASA, FBI, SCUBA, RADAR).
+- LINGUISTIC_NOVELTY: all four words share an unusual linguistic property. Use sparingly — the pool for each flavor is small. Flavors (specify in the category label):
+  - Word reversal: each word spells a different real word backwards (DOG/god, LIVE/evil, STRESSED/desserts, POTS/stop).
+  - Rhymes with ___: all four rhyme with the same target word (rhymes with MOON: spoon, tune, June, boon).
+  - Toponyms: words derived from place names (DENIM/Nîmes, CHAMPAGNE/region, TUXEDO/New York, CHEDDAR/village). Natural companion to EPONYMS.
+  - Capitonym: same spelling, different meaning when capitalized (march/March, polish/Polish, china/China, may/May).
+  - Famous ___s: all four are famously associated with the same number (things in threes: bears, musketeers, stooges, tenors).
+  - Contronym: all four words are their own antonym — Janus words (SANCTION: permit or penalize; CLEAVE: split or cling; DUST: remove or apply; OVERSIGHT: supervision or mistake). Hardest flavor — only use if all four examples are airtight.
 
 TIER 4: TREATS — cooldown 45 puzzles, ~5% of categories long-term
 ==================================================================
