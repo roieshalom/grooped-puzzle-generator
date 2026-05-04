@@ -1,88 +1,73 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "GROOPED_PUZZLE_ID",
+  "date": "18.05.2024",
   "categories": [
     {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "CROSS ___",
+      "name": "FINGER ___",
       "words": [
-        "ROADS",
-        "TRAINING",
-        "WORD",
-        "HAIR"
+        "PRINT",
+        "PAINT",
+        "LICKING",
+        "FOOD"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Things with a Tongue",
+      "name": "Things with a HEAD",
       "words": [
-        "SHOE",
-        "BELL",
-        "RIVER",
-        "LANGUAGE"
+        "BED",
+        "NAIL",
+        "COIN",
+        "CABBAGE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Things that Swell",
+      "name": "Can be BROKEN",
       "words": [
-        "TIDE",
-        "GUM",
-        "MUSIC",
-        "ANKLE"
+        "HEART",
+        "GLASS",
+        "SILENCE",
+        "RECORD"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Sounds like a number",
+      "name": "Words that sound like numbers",
       "words": [
         "ATE",
         "FOR",
-        "WON",
-        "TOO"
+        "TOO",
+        "WON"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "CROSS ___",
-      "category_b": "Things with a Tongue",
-      "reason_a": "Completes the phrase 'CROSSWORD'.",
-      "reason_b": "A tongue is used to speak words; words are fundamental to language, which is in the category.",
-      "word": "WORD"
+      "category_a": "Things with a HEAD",
+      "category_b": "FINGER ___",
+      "reason_a": "A nail has a head",
+      "reason_b": "Can form 'fingernail', leading solvers to think it belongs to this group.",
+      "word": "NAIL"
     },
     {
-      "category_a": "Things with a Tongue",
-      "category_b": "Things that Swell",
-      "reason_a": "A bell has a clapper, which is often called its 'tongue'.",
-      "reason_b": "The sound of a bell can 'swell' (increase in volume or intensity).",
-      "word": "BELL"
+      "category_a": "Can be BROKEN",
+      "category_b": "FINGER ___",
+      "reason_a": "One can break a record (e.g., a vinyl record, or a sports record)",
+      "reason_b": "Can form 'fingerprint record', tempting solvers to place it with other 'FINGER' words.",
+      "word": "RECORD"
     }
   ],
   "attempt_log": [
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
     {
       "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
