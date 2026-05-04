@@ -10,7 +10,7 @@
       "words": [
         "BOY",
         "TRAIL",
-        "WEIGHT",
+        "TOWEL",
         "WORK"
       ]
     },
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Homophones For Letters of the Alphabet",
+      "name": "Words That Read The Same Backwards",
       "words": [
-        "QUEUE",
-        "TEA",
-        "WHY",
-        "EWE"
+        "MADAM",
+        "LEVEL",
+        "ROTOR",
+        "KAYAK"
       ]
     }
   ],
