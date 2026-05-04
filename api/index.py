@@ -496,12 +496,19 @@ def get_mechanic_stats():
 # ─── Anthropic helpers ────────────────────────────────────────────────────────
 
 def _extract_json(text: str) -> str:
-    """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
-    # Strip all backtick fence markers (```json, ```, etc.)
+    """Extract raw JSON from Gemini output — handles prose, code fences, any wrapping."""
+    # Strip code fences first
     text = re.sub(r'```(?:json)?', '', text, flags=re.IGNORECASE).strip()
-    # Find first {...} block
-    obj = re.search(r'\{[\s\S]*\}', text)
-    return obj.group() if obj else text
+    # Scan for the first position that starts a valid JSON object
+    decoder = json.JSONDecoder()
+    for i, ch in enumerate(text):
+        if ch == '{':
+            try:
+                obj, _ = decoder.raw_decode(text, i)
+                return json.dumps(obj)
+            except json.JSONDecodeError:
+                continue
+    return text
 
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
     """Call Gemini and parse JSON from the response."""

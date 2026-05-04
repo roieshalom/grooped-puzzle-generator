@@ -15,10 +15,17 @@ genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 
 def _extract_json(text: str) -> str:
-    """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
+    """Extract raw JSON from Gemini output — handles prose, code fences, any wrapping."""
     text = re.sub(r'```(?:json)?', '', text, flags=re.IGNORECASE).strip()
-    obj = re.search(r'\{[\s\S]*\}', text)
-    return obj.group() if obj else text
+    decoder = json.JSONDecoder()
+    for i, ch in enumerate(text):
+        if ch == '{':
+            try:
+                obj, _ = decoder.raw_decode(text, i)
+                return json.dumps(obj)
+            except json.JSONDecodeError:
+                continue
+    return text
 
 
 def _verify_decoys_semantically(decoys, categories, client):
