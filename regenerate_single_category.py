@@ -7,6 +7,18 @@ import json
 import google.generativeai as genai
 from dotenv import load_dotenv
 
+
+def _extract_json(text: str) -> str:
+    """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
+    text = text.strip()
+    fence = re.search(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', text, re.IGNORECASE)
+    if fence:
+        return fence.group(1).strip()
+    obj = re.search(r'\{[\s\S]*\}', text)
+    if obj:
+        return obj.group()
+    return text
+
 def _configure_genai():
     """Configure Gemini with API key loaded from .env or environment"""
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -119,12 +131,9 @@ No extra text, no explanations, just JSON.
                 generation_config=genai.GenerationConfig(
                     max_output_tokens=512,
                     temperature=0.8,
-                    response_mime_type="application/json",
                 ),
             )
-            text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
-            match = re.search(r"\{[\s\S]*\}", text)
-            data = json.loads(match.group() if match else text)
+            data = json.loads(_extract_json(response.text))
             last_candidate = data
 
             name = (data.get("name") or "").strip()
@@ -189,12 +198,9 @@ No extra text, no explanations, just JSON.
             generation_config=genai.GenerationConfig(
                 max_output_tokens=512,
                 temperature=0.7,
-                response_mime_type="application/json",
             ),
         )
-        text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
-        match = re.search(r"\{[\s\S]*\}", text)
-        return json.loads(match.group() if match else text)
+        return json.loads(_extract_json(response.text))
     except Exception as e:
         raise Exception(f"Failed to generate words for category: {str(e)}")
 

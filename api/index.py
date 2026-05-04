@@ -495,12 +495,18 @@ def get_mechanic_stats():
 
 # ─── Anthropic helpers ────────────────────────────────────────────────────────
 
-def _strip_fences(text: str) -> str:
-    """Strip markdown code fences that Gemini sometimes wraps around JSON."""
+def _extract_json(text: str) -> str:
+    """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
     text = text.strip()
-    text = re.sub(r'^```(?:json)?\s*', '', text, flags=re.IGNORECASE)
-    text = re.sub(r'```\s*$', '', text)
-    return text.strip()
+    # Prefer JSON inside a code fence
+    fence = re.search(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', text, re.IGNORECASE)
+    if fence:
+        return fence.group(1).strip()
+    # Fall back to first {...} block anywhere in the text
+    obj = re.search(r'\{[\s\S]*\}', text)
+    if obj:
+        return obj.group()
+    return text
 
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
     """Call Gemini and parse JSON from the response."""
@@ -514,23 +520,13 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
         prompt,
         generation_config=genai.GenerationConfig(
             max_output_tokens=max_tokens,
-            response_mime_type="application/json",
         ),
     )
-    text = _strip_fences(response.text)
-
-    # Try direct parse
+    extracted = _extract_json(response.text)
     try:
-        return json.loads(text)
+        return json.loads(extracted)
     except json.JSONDecodeError:
-        pass
-
-    # Extract first {...} block
-    match = re.search(r"\{[\s\S]*\}", text)
-    if match:
-        return json.loads(match.group())
-
-    raise ValueError(f"Could not parse JSON from Gemini response: {text[:300]}")
+        raise ValueError(f"Could not parse JSON from Gemini response: {response.text[:300]}")
 
 # ─── Decoy verification ───────────────────────────────────────────────────────
 

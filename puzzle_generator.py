@@ -14,6 +14,18 @@ load_dotenv()  # This loads the .env file
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 
+def _extract_json(text: str) -> str:
+    """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
+    text = text.strip()
+    fence = re.search(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', text, re.IGNORECASE)
+    if fence:
+        return fence.group(1).strip()
+    obj = re.search(r'\{[\s\S]*\}', text)
+    if obj:
+        return obj.group()
+    return text
+
+
 def _verify_decoys_semantically(decoys, categories, client):
     """
     Ask a second LLM call to fact-check each decoy's claimed connections.
@@ -77,12 +89,9 @@ Return ONLY a JSON object with this structure:
             generation_config=genai.GenerationConfig(
                 max_output_tokens=1024,
                 temperature=0.1,
-                response_mime_type="application/json",
             ),
         )
-        text = re.sub(r"^```(?:json)?\s*", "", resp.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
-        match = re.search(r"\{[\s\S]*\}", text)
-        result = json.loads(match.group() if match else text)
+        result = json.loads(_extract_json(resp.text))
         verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
 
         verified = []
@@ -452,12 +461,9 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
             generation_config=genai.GenerationConfig(
                 max_output_tokens=4096,
                 temperature=0.9,
-                response_mime_type="application/json",
             ),
         )
-        text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
-        match = re.search(r"\{[\s\S]*\}", text)
-        data = json.loads(match.group() if match else text)
+        data = json.loads(_extract_json(response.text))
 
         # Check for banned categories first (hard constraint)
         banned_set = set(banned_norm)
