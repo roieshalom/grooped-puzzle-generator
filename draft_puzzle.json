@@ -4,80 +4,85 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "PRESS ___",
+      "name": "Bases for soup or sauce",
       "words": [
-        "BOX",
-        "AGENT",
-        "SECRETARY",
-        "CONFERENCE"
+        "STOCK",
+        "BROTH",
+        "ROUX",
+        "MIREPOIX"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "green",
+      "name": "Things that strike",
+      "words": [
+        "CLUB",
+        "IRON",
+        "BAT",
+        "HAMMER"
       ]
     },
     {
       "tier": 1,
       "mechanic": "TAXONOMY",
-      "difficulty": "green",
+      "difficulty": "blue",
       "name": "Golf clubs",
       "words": [
-        "IRON",
-        "CLUB",
         "WOOD",
-        "WEDGE"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Things that can be pressed",
-      "words": [
-        "OLIVES",
-        "GRAPES",
-        "SHIRTS",
-        "CHARGES"
+        "DRIVER",
+        "WEDGE",
+        "PUTTER"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Contain hidden alcoholic drinks",
+      "name": "Named after people",
       "words": [
-        "GRUMPY",
-        "BREWING",
-        "TWINE",
-        "SHALE"
+        "DIESEL",
+        "SANDWICH",
+        "CARDIGAN",
+        "SILHOUETTE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Golf clubs",
-      "category_b": "PRESS ___",
-      "reason_a": "A type of golf club",
-      "reason_b": "PRESS CLUB is a valid phrase (a club for journalists)",
+      "category_a": "Things that strike",
+      "category_b": "Golf clubs",
+      "reason_a": "A club is a weapon that strikes or hits",
+      "reason_b": "A club is literally a type of golf club (though the category uses more specific names)",
       "word": "CLUB"
     },
     {
-      "category_a": "Golf clubs",
-      "category_b": "Things that can be pressed",
-      "reason_a": "A type of golf club",
-      "reason_b": "Wood can be pressed (pressed wood, particle board)",
-      "word": "WOOD"
+      "category_a": "Things that strike",
+      "category_b": "Golf clubs",
+      "reason_a": "An iron can be a striking tool (like a blacksmith's iron or tire iron used as weapon)",
+      "reason_b": "Iron is a standard golf club type",
+      "word": "IRON"
     },
     {
       "category_a": "Golf clubs",
-      "category_b": "Things that can be pressed",
-      "reason_a": "A type of golf club",
-      "reason_b": "An iron is literally the tool used to press shirts",
-      "word": "IRON"
+      "category_b": "Things that strike",
+      "reason_a": "Wood is a type of golf club",
+      "reason_b": "A wooden club or piece of wood can be used to strike something",
+      "word": "WOOD"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "note": "Successfully verified all four words contain hidden beverages as consecutive letters",
+      "reason": "Attempted hidden card suits (CLUB, HEART, SPADE, DIAMOND) as consecutive letters inside words. Could not find four natural words for each suit without forcing obscure terms. Verified letter-by-letter and confirmed inability to land clean examples.",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
     }
