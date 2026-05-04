@@ -6,64 +6,78 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "FIRE ___",
+      "name": "PRESS ___",
       "words": [
-        "ALARM",
-        "HYDRANT",
-        "DRILL",
-        "WORKS"
+        "BOX",
+        "AGENT",
+        "SECRETARY",
+        "CONFERENCE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Things that spread",
+      "name": "Golf clubs",
       "words": [
-        "RUMOR",
-        "DISEASE",
-        "WILDFIRE",
-        "YAWN"
+        "IRON",
+        "CLUB",
+        "WOOD",
+        "WEDGE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Break the ___",
+      "name": "Things that can be pressed",
       "words": [
-        "ICE",
-        "NEWS",
-        "SPELL",
-        "BANK"
+        "OLIVES",
+        "GRAPES",
+        "SHIRTS",
+        "CHARGES"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words hiding beverages",
+      "name": "Contain hidden alcoholic drinks",
       "words": [
-        "RUMPLE",
-        "STEALTH",
-        "SHALE",
-        "GINKGO"
+        "GRUMPY",
+        "BREWING",
+        "TWINE",
+        "SHALE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that spread",
-      "category_b": "Words hiding beverages",
-      "reason_a": "Rumors spread from person to person",
-      "reason_b": "Contains RUM at the start (R-U-M-O-R), could trap solvers looking for hidden drinks",
-      "word": "RUMOR"
+      "category_a": "Golf clubs",
+      "category_b": "PRESS ___",
+      "reason_a": "A type of golf club",
+      "reason_b": "PRESS CLUB is a valid phrase (a club for journalists)",
+      "word": "CLUB"
+    },
+    {
+      "category_a": "Golf clubs",
+      "category_b": "Things that can be pressed",
+      "reason_a": "A type of golf club",
+      "reason_b": "Wood can be pressed (pressed wood, particle board)",
+      "word": "WOOD"
+    },
+    {
+      "category_a": "Golf clubs",
+      "category_b": "Things that can be pressed",
+      "reason_a": "A type of golf club",
+      "reason_b": "An iron is literally the tool used to press shirts",
+      "word": "IRON"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Successfully found four natural words each containing different beverages as consecutive letters",
+      "note": "Successfully verified all four words contain hidden beverages as consecutive letters",
       "result": "shipped",
       "tier": 3
     }
