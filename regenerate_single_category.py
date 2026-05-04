@@ -10,14 +10,9 @@ from dotenv import load_dotenv
 
 def _extract_json(text: str) -> str:
     """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
-    text = text.strip()
-    fence = re.search(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', text, re.IGNORECASE)
-    if fence:
-        return fence.group(1).strip()
+    text = re.sub(r'```(?:json)?', '', text, flags=re.IGNORECASE).strip()
     obj = re.search(r'\{[\s\S]*\}', text)
-    if obj:
-        return obj.group()
-    return text
+    return obj.group() if obj else text
 
 def _configure_genai():
     """Configure Gemini with API key loaded from .env or environment"""

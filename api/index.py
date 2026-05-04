@@ -497,16 +497,11 @@ def get_mechanic_stats():
 
 def _extract_json(text: str) -> str:
     """Extract raw JSON from Gemini output, handling prose preambles and code fences."""
-    text = text.strip()
-    # Prefer JSON inside a code fence
-    fence = re.search(r'```(?:json)?\s*\n?([\s\S]*?)\n?```', text, re.IGNORECASE)
-    if fence:
-        return fence.group(1).strip()
-    # Fall back to first {...} block anywhere in the text
+    # Strip all backtick fence markers (```json, ```, etc.)
+    text = re.sub(r'```(?:json)?', '', text, flags=re.IGNORECASE).strip()
+    # Find first {...} block
     obj = re.search(r'\{[\s\S]*\}', text)
-    if obj:
-        return obj.group()
-    return text
+    return obj.group() if obj else text
 
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
     """Call Gemini and parse JSON from the response."""
