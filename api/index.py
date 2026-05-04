@@ -601,7 +601,7 @@ def _build_prompt(banned_list: list) -> str:
     preview = sorted(set(recent) | set(sampled))
     preview_text = ", ".join(preview) if preview else "none"
 
-    return """GROOPED PUZZLE GENERATION PROMPT (v5)
+    return f"""GROOPED PUZZLE GENERATION PROMPT (v5)
 =====================================
 
 You are designing a single 4x4 NYT Connections-style puzzle for Grooped. 16 unique words, four groups of four, each tagged with a difficulty color: yellow (easiest), green, blue, purple (hardest). Output schema must match puzzles.json.
@@ -611,17 +611,22 @@ NORTH STAR
 
 A great Grooped puzzle is not four neat lists. It is four groups that bleed into each other on the board, so a solver feels multiple words could plausibly live in multiple homes. A STRONG BOARD BEATS EVERY RULE BELOW. That cross-pull tension is the puzzle. Without it, you made a quiz.
 
-STEP 0: FETCH THE LIVE CORPUS
-============================
+ALREADY-USED / BANNED CATEGORIES — DO NOT REUSE ANY OF THESE
+=============================================================
 
-Before drafting, fetch https://raw.githubusercontent.com/roieshalom/grooped/refs/heads/main/puzzles.json. You will use it for four things:
+The following category names have already been used or are permanently banned. Do not use them, rephrase them, narrow/broaden them, or approach them from a different angle. Create something completely new.
 
-1. REPEAT CHECK: no category theme or individual word may repeat from the last 60 days.
-2. STYLE CALIBRATION: absorb the corpus voice.
-3. MECHANIC BALANCING: read the 'mechanic' field on each category and the 'attempt_log' field on each puzzle. See "MECHANIC FREQUENCY SYSTEM" below.
-4. WARMUP AWARENESS: puzzles before #137 do not have 'mechanic' fields. They are untagged history. Your cooldown calculations only run on tagged puzzles.
+{preview_text}
 
-If you cannot fetch it, say so and stop.
+STEP 0: CORPUS NOTE
+===================
+
+The puzzle corpus is managed externally. You do not need to fetch anything. The banned categories above capture all used themes. Proceed directly to puzzle design.
+
+1. REPEAT CHECK: avoid themes in the banned list above.
+2. STYLE CALIBRATION: aim for casual, pop-cultural, playful tone.
+3. MECHANIC BALANCING: use the MECHANIC FREQUENCY SYSTEM below to pick varied mechanics.
+4. WARMUP AWARENESS: use a mix of Tier 1, 2, and occasionally Tier 3 mechanics.
 
 MECHANIC FREQUENCY SYSTEM
 =========================
@@ -817,9 +822,9 @@ the property is not hidden enough.
 WORKFLOW
 ========
 
-1. FETCH puzzles.json.
-2. RUN THE MECHANIC BALANCER: scan the last 21 tagged puzzles. For each tier, list which mechanics appeared (in 'mechanic' fields or 'attempt_log' entries). Identify Tier 2 and Tier 3 mechanics that haven't appeared. Note any Tier 4 mechanics that haven't appeared in the last 45.
-3. PICK THE SPINE MECHANIC (often purple). Prefer underused candidates. If a Tier 4 idea is calling to you and the cooldown allows, go for it.
+1. CHECK the banned category list provided above. Keep it in mind throughout.
+2. RUN THE MECHANIC BALANCER: aim for a mix of Tier 1, Tier 2, and occasionally Tier 3. Avoid repeating the same mechanic within one puzzle.
+3. PICK THE SPINE MECHANIC (often purple). Prefer Tier 2 or Tier 3 if they feel fresh and natural. If a Tier 4 idea is calling to you, go for it.
 4. PLANT A DECOY SEED: a word that plausibly lives in two of your groups.
 5. BUILD THE OTHER THREE GROUPS so the decoy seed pulls between them. Pick mechanics that haven't appeared recently when you have a choice.
 6. ADD A SECOND DECOY.
@@ -930,7 +935,7 @@ def generate_puzzle():
             print(f"Generation attempt {attempt}")
 
             try:
-                data = _call_claude(prompt, max_tokens=3000)
+                data = _call_claude(prompt, max_tokens=6000)
             except Exception as e:
                 print(f"Claude call failed on attempt {attempt}: {e}")
                 continue
