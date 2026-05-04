@@ -80,7 +80,7 @@ Return ONLY a JSON object with this structure:
                 response_mime_type="application/json",
             ),
         )
-        text = resp.text.strip()
+        text = re.sub(r"^```(?:json)?\s*", "", resp.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
         match = re.search(r"\{[\s\S]*\}", text)
         result = json.loads(match.group() if match else text)
         verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
@@ -455,7 +455,7 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
                 response_mime_type="application/json",
             ),
         )
-        text = response.text.strip()
+        text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
         match = re.search(r"\{[\s\S]*\}", text)
         data = json.loads(match.group() if match else text)
 

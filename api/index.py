@@ -495,6 +495,13 @@ def get_mechanic_stats():
 
 # ─── Anthropic helpers ────────────────────────────────────────────────────────
 
+def _strip_fences(text: str) -> str:
+    """Strip markdown code fences that Gemini sometimes wraps around JSON."""
+    text = text.strip()
+    text = re.sub(r'^```(?:json)?\s*', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'```\s*$', '', text)
+    return text.strip()
+
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
     """Call Gemini and parse JSON from the response."""
     model = model or GEN_MODEL
@@ -510,7 +517,7 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
             response_mime_type="application/json",
         ),
     )
-    text = response.text.strip()
+    text = _strip_fences(response.text)
 
     # Try direct parse
     try:

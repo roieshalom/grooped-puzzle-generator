@@ -122,7 +122,7 @@ No extra text, no explanations, just JSON.
                     response_mime_type="application/json",
                 ),
             )
-            text = response.text.strip()
+            text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
             match = re.search(r"\{[\s\S]*\}", text)
             data = json.loads(match.group() if match else text)
             last_candidate = data
@@ -192,7 +192,7 @@ No extra text, no explanations, just JSON.
                 response_mime_type="application/json",
             ),
         )
-        text = response.text.strip()
+        text = re.sub(r"^```(?:json)?\s*", "", response.text.strip(), flags=re.IGNORECASE); text = re.sub(r"```\s*$", "", text).strip()
         match = re.search(r"\{[\s\S]*\}", text)
         return json.loads(match.group() if match else text)
     except Exception as e:
