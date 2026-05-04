@@ -1,77 +1,70 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "YYYY-MM-DD",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Paper ___",
+      "name": "CROSS ___",
       "words": [
-        "BOY",
-        "TRAIL",
-        "TOWEL",
-        "WORK"
+        "ROADS",
+        "TRAINING",
+        "WORD",
+        "HAIR"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Can be Cracked",
+      "name": "Things with a Tongue",
       "words": [
-        "EGG",
-        "CODE",
-        "NUT",
-        "SMILE"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "A vegan wouldn't eat",
-      "words": [
-        "CHEESE",
-        "HONEY",
-        "PORK",
-        "FISH"
+        "SHOE",
+        "BELL",
+        "RIVER",
+        "LANGUAGE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "purple",
-      "name": "Take into the shower",
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "blue",
+      "name": "Things that Swell",
       "words": [
-        "SOAP",
-        "SHAMPOO",
-        "LOOFAH",
-        "SCRUB"
+        "TIDE",
+        "GUM",
+        "MUSIC",
+        "ANKLE"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "difficulty": "purple",
+      "name": "Sounds like a number",
+      "words": [
+        "ATE",
+        "FOR",
+        "WON",
+        "TOO"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Sounds like letters of the alphabet",
-      "category_b": "Can be CRACKED",
-      "reason_a": "Sounds like the letter 'I'",
-      "reason_b": "One can 'crack an eye' open, or have 'cracked eyes' from fatigue.",
-      "word": "EYE"
+      "category_a": "CROSS ___",
+      "category_b": "Things with a Tongue",
+      "reason_a": "Completes the phrase 'CROSSWORD'.",
+      "reason_b": "A tongue is used to speak words; words are fundamental to language, which is in the category.",
+      "word": "WORD"
     },
     {
-      "category_a": "Sounds like letters of the alphabet",
-      "category_b": "Things that FLOAT",
-      "reason_a": "Sounds like the letter 'T'",
-      "reason_b": "Tea leaves or tea bags float in water.",
-      "word": "TEA"
-    },
-    {
-      "category_a": "Sounds like letters of the alphabet",
-      "category_b": "Things that FLOAT",
-      "reason_a": "Sounds like the letter 'B'",
-      "reason_b": "Bees float (fly) in the air.",
-      "word": "BEE"
+      "category_a": "Things with a Tongue",
+      "category_b": "Things that Swell",
+      "reason_a": "A bell has a clapper, which is often called its 'tongue'.",
+      "reason_b": "The sound of a bell can 'swell' (increase in volume or intensity).",
+      "word": "BELL"
     }
   ],
   "attempt_log": [
@@ -91,7 +84,7 @@
       "tier": 2
     },
     {
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
       "tier": 3
     }
