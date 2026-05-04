@@ -2,39 +2,34 @@
 """Generate a single category for regeneration."""
 
 import os
+import re
 import json
-from openai import OpenAI
+import anthropic
 from dotenv import load_dotenv
 
 # Don't create client at module level - create it when needed
 
 def get_client():
-    """Get OpenAI client with API key loaded from .env or environment"""
-    # First check if already in environment
-    api_key = os.environ.get("OPENAI_API_KEY")
-    
-    # If not, try loading from .env file
+    """Get Anthropic client with API key loaded from .env or environment"""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        # Try loading from current directory
         load_dotenv()
-        # Try loading from script directory
         env_path = os.path.join(script_dir, '.env')
         load_dotenv(dotenv_path=env_path, override=False)
-        
-        # Check again after loading
-        api_key = os.environ.get("OPENAI_API_KEY")
-    
+        api_key = os.environ.get("ANTHROPIC_API_KEY")
+
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         env_path = os.path.join(script_dir, '.env')
         raise ValueError(
-            f"OPENAI_API_KEY not found. Either:\n"
-            f"1. Set it as an environment variable: export OPENAI_API_KEY=your_key\n"
-            f"2. Create a .env file at {env_path} with: OPENAI_API_KEY=your_key"
+            f"ANTHROPIC_API_KEY not found. Either:\n"
+            f"1. Set it as an environment variable: export ANTHROPIC_API_KEY=your_key\n"
+            f"2. Create a .env file at {env_path} with: ANTHROPIC_API_KEY=your_key"
         )
-    
-    return OpenAI(api_key=api_key)
+
+    return anthropic.Anthropic(api_key=api_key)
 
 
 def generate_single_category(difficulty="medium", existing_categories=None):
@@ -107,37 +102,25 @@ No extra text, no explanations, just JSON.
 
         # Prepare banned-check helpers (graceful if banned_categories module missing)
         try:
-            from banned_categories import (
-                load_banned_categories,
-                load_banned_embeddings,
-                find_semantically_banned,
-                normalize_category,
-            )
+            from banned_categories import load_banned_categories, normalize_category
             banned_set = {normalize_category(n) for n in load_banned_categories()}
-            try:
-                banned_embeddings = load_banned_embeddings(client)
-            except Exception:
-                banned_embeddings = None
         except Exception:
             banned_set = set()
-            banned_embeddings = None
             normalize_category = lambda s: (s or "").strip().lower()  # noqa: E731
-            find_semantically_banned = None
 
         max_attempts = 8
         last_candidate = None
         for attempt in range(1, max_attempts + 1):
-            response = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "You are an expert Grooped puzzle category generator. Always return valid JSON only."},
-                    {"role": "user", "content": prompt},
-                ],
+            response = client.messages.create(
+                model="claude-haiku-4-5",
+                max_tokens=512,
+                system="You are an expert Grooped puzzle category generator. Always return valid JSON only.",
+                messages=[{"role": "user", "content": prompt}],
                 temperature=0.8,
-                response_format={"type": "json_object"},
             )
-            puzzle_json = response.choices[0].message.content
-            data = json.loads(puzzle_json)
+            text = response.content[0].text.strip()
+            match = re.search(r"\{[\s\S]*\}", text)
+            data = json.loads(match.group() if match else text)
             last_candidate = data
 
             name = (data.get("name") or "").strip()
@@ -147,16 +130,6 @@ No extra text, no explanations, just JSON.
             if norm and norm in banned_set:
                 print(f"[regenerate_single_category] Rejected (banned exact): {name}")
                 continue
-
-            # Hard reject: semantic match against banned embeddings
-            if banned_embeddings is not None and find_semantically_banned is not None and name:
-                matched, sim = find_semantically_banned(name, banned_embeddings, client)
-                if matched is not None:
-                    print(
-                        f"[regenerate_single_category] Rejected (semantically banned): "
-                        f"'{name}' ~ '{matched}' (sim {sim:.3f})"
-                    )
-                    continue
 
             print(f"[regenerate_single_category] Accepted on attempt {attempt}: {name}")
             return data
@@ -203,17 +176,16 @@ No extra text, no explanations, just JSON.
     
     try:
         client = get_client()
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert at generating words for word puzzle categories. Always return valid JSON only."},
-                {"role": "user", "content": prompt},
-            ],
+        response = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=512,
+            system="You are an expert at generating words for word puzzle categories. Always return valid JSON only.",
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            response_format={"type": "json_object"},
         )
-        puzzle_json = response.choices[0].message.content
-        return json.loads(puzzle_json)
+        text = response.content[0].text.strip()
+        match = re.search(r"\{[\s\S]*\}", text)
+        return json.loads(match.group() if match else text)
     except Exception as e:
         raise Exception(f"Failed to generate words for category: {str(e)}")
 

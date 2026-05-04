@@ -1,19 +1,17 @@
 import os
+import re
 import json
 from datetime import datetime, timedelta
-from openai import OpenAI
+import anthropic
 from dotenv import load_dotenv
 from banned_categories import (
     load_banned_categories,
-    load_banned_embeddings,
-    find_semantically_banned,
     normalize_category,
 )
 
 load_dotenv()  # This loads the .env file
 
-# API key comes from environment (set OPENAI_API_KEY in GitHub secrets / local env)
-client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
 
 def _verify_decoys_semantically(decoys, categories, client):
@@ -70,16 +68,16 @@ Return ONLY a JSON object with this structure:
 }}"""
 
     try:
-        resp = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[
-                {"role": "system", "content": "You are a strict fact-checker. Return only valid JSON."},
-                {"role": "user", "content": verify_prompt},
-            ],
+        resp = client.messages.create(
+            model="claude-haiku-4-5",
+            max_tokens=1024,
+            system="You are a strict fact-checker. Return only valid JSON.",
+            messages=[{"role": "user", "content": verify_prompt}],
             temperature=0.1,
-            response_format={"type": "json_object"},
         )
-        result = json.loads(resp.choices[0].message.content)
+        text = resp.content[0].text.strip()
+        match = re.search(r"\{[\s\S]*\}", text)
+        result = json.loads(match.group() if match else text)
         verdicts = {v["index"]: v["keep"] for v in result.get("verdicts", [])}
 
         verified = []
@@ -109,9 +107,6 @@ def generate_connections_puzzle():
     # Load banned categories and normalize them once
     banned = load_banned_categories()
     banned_norm = sorted({normalize_category(name) for name in banned})
-
-    # Load (or recompute) embedding vectors for semantic similarity checks
-    banned_embeddings = load_banned_embeddings(client)
 
     # Build a SAMPLED banned list for the prompt. The full list (1000+) is too
     # large to include in every prompt and the model can't meaningfully scan
@@ -443,17 +438,16 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
         attempt += 1
         print(f"Puzzle generation attempt {attempt}")
 
-        response = client.chat.completions.create(
-            model="gpt-4.1",
-            messages=[
-                {"role": "system", "content": "You are an expert Grooped puzzle generator."},
-                {"role": "user", "content": prompt},
-            ],
+        response = client.messages.create(
+            model="claude-sonnet-4-5",
+            max_tokens=4096,
+            system="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.9,
-            response_format={"type": "json_object"},
         )
-        puzzle_json = response.choices[0].message.content
-        data = json.loads(puzzle_json)
+        text = response.content[0].text.strip()
+        match = re.search(r"\{[\s\S]*\}", text)
+        data = json.loads(match.group() if match else text)
 
         # Check for banned categories first (hard constraint)
         banned_set = set(banned_norm)
@@ -469,23 +463,7 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
             # Never accept puzzles with banned categories
             continue
 
-        # Semantic similarity check — catch paraphrases of banned ideas
-        has_semantic_banned = False
-        for cat in data["categories"]:
-            name = cat.get("name", "")
-            matched, sim = find_semantically_banned(name, banned_embeddings, client)
-            if matched is not None:
-                has_semantic_banned = True
-                print(
-                    f"Rejected puzzle (semantically banned): '{name}' "
-                    f"≈ '{matched}' (similarity {sim:.3f})"
-                )
-                break
-
-        if has_semantic_banned:
-            continue
-
-        # At this point, NO banned categories (exact or semantic)
+        # At this point, NO banned categories (exact match)
         # Check uniqueness of words (soft constraint)
         words = []
         for cat in data["categories"]:
