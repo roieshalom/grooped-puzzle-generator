@@ -6,12 +6,12 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Female singers",
+      "name": "Singers",
       "words": [
         "JEWEL",
         "PINK",
-        "SHAKIRA",
-        "MADONNA"
+        "PRINCE",
+        "SEAL"
       ]
     },
     {
@@ -42,12 +42,12 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "purple",
-      "name": "Sad",
+      "name": "Semiaquatics",
       "words": [
-        "LOW",
-        "UPSET",
-        "",
-        ""
+        "HIPPO",
+        "WATER LILY",
+        "TURTLE",
+        "CAPYBARA"
       ]
     }
   ],
