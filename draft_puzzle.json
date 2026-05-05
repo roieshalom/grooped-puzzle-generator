@@ -1,90 +1,75 @@
 {
-  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
-  "date": "YYYY.MM.DD",
+  "id": "000",
+  "date": "XX.XX.XXXX",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Singers",
+      "name": "Things Found in a Bakery",
       "words": [
-        "JEWEL",
-        "PINK",
-        "PRINCE",
-        "SEAL"
+        "OVEN",
+        "DOUGH",
+        "CAKE",
+        "BREAD"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Power Rangers' color",
+      "name": "Slang for 'Crazy'",
       "words": [
-        "BLUE",
-        "YELLOW",
-        "RED",
-        "BLACK"
+        "NUTS",
+        "LOONY",
+        "BONKERS",
+        "MAD"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SUFFIX_BLANK",
       "difficulty": "blue",
-      "name": "Jewelry",
+      "name": "HEAD ___",
       "words": [
-        "RING",
-        "EARRING",
-        "BRACELET",
-        "PENDANT"
+        "MASTER",
+        "START",
+        "STRONG",
+        "LIGHT"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 3,
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Semiaquatics",
+      "name": "Sounds like a Number",
       "words": [
-        "HIPPO",
-        "WATER LILY",
-        "TURTLE",
-        "CAPYBARA"
+        "WON",
+        "TOO",
+        "FOR",
+        "ATE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Sounds Like A Letter",
-      "category_b": "Things Found In Or Near The Ocean",
-      "reason_a": "Sounds like the letter 'C'.",
-      "reason_b": "The word 'sea' directly refers to the ocean, a natural fit for this category.",
-      "word": "SEA"
+      "category_a": "Slang for 'Crazy'",
+      "category_b": "Things Found in a Bakery",
+      "reason_a": "To be 'nuts' means to be crazy.",
+      "reason_b": "Nuts are a common ingredient in many baked goods (e.g., nut bread, nutty cake).",
+      "word": "NUTS"
     },
     {
-      "category_a": "Sounds Like A Letter",
-      "category_b": "Things That Fly",
-      "reason_a": "Sounds like the letter 'J'.",
-      "reason_b": "A 'jay' is a type of bird (e.g., blue jay), and birds are known to fly, making it a plausible fit for 'Things That Fly'.",
-      "word": "JAY"
+      "category_a": "Sounds like a Number",
+      "category_b": "HEAD ___",
+      "reason_a": "Homophone of the number 'four'.",
+      "reason_b": "Part of the common phrase 'HEAD FOR' (e.g., 'head for home', 'head for trouble').",
+      "word": "FOR"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "FOUND_IN_SCENE",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
       "tier": 3
     }
