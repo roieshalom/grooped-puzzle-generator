@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "___ the Day",
+      "name": "commands you give to a dog",
       "words": [
-        "SEIZE",
-        "CARRY",
-        "SAVE",
-        "RULE"
+        "HEEL",
+        "FETCH",
+        "SPEAK",
+        "PAW"
       ]
     },
     {
@@ -90,12 +90,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'SAVE' within this puzzle"
-    ],
-    "duplicate_words": [
-      "SAVE"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
