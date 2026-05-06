@@ -1,73 +1,88 @@
 {
-  "id": "000",
-  "date": "XX.XX.XXXX",
+  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
+  "date": "29.07.2024",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Things Found in a Bakery",
+      "name": "Very Small",
       "words": [
-        "OVEN",
-        "DOUGH",
-        "CAKE",
-        "BREAD"
+        "TINY",
+        "PETITE",
+        "MINUTE",
+        "LITTLE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Slang for 'Crazy'",
+      "name": "Things That Can Be Broken",
       "words": [
-        "NUTS",
-        "LOONY",
-        "BONKERS",
-        "MAD"
+        "SILENCE",
+        "LAW",
+        "HEART",
+        "CODE"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "HEAD ___",
+      "name": "___ the Day",
       "words": [
-        "MASTER",
-        "START",
-        "STRONG",
-        "LIGHT"
+        "SEIZE",
+        "CARRY",
+        "SAVE",
+        "RULE"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Sounds like a Number",
+      "name": "Sounds Like a Number",
       "words": [
-        "WON",
-        "TOO",
         "FOR",
+        "TOO",
+        "WON",
         "ATE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Slang for 'Crazy'",
-      "category_b": "Things Found in a Bakery",
-      "reason_a": "To be 'nuts' means to be crazy.",
-      "reason_b": "Nuts are a common ingredient in many baked goods (e.g., nut bread, nutty cake).",
-      "word": "NUTS"
+      "category_a": "Sounds Like a Number",
+      "category_b": "___ the Day",
+      "reason_a": "Homophone for the number 'one'",
+      "reason_b": "To 'won the day' means to achieve victory or success, completing the idiom category.",
+      "word": "WON"
     },
     {
-      "category_a": "Sounds like a Number",
-      "category_b": "HEAD ___",
-      "reason_a": "Homophone of the number 'four'.",
-      "reason_b": "Part of the common phrase 'HEAD FOR' (e.g., 'head for home', 'head for trouble').",
-      "word": "FOR"
+      "category_a": "___ the Day",
+      "category_b": "Things That Can Be Broken",
+      "reason_a": "To 'rule the day' means to dominate or prevail.",
+      "reason_b": "A 'rule' can be broken, similar to a 'law' which is in this category.",
+      "word": "RULE"
     }
   ],
   "attempt_log": [
+    {
+      "mechanic": "SYNONYMS",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
     {
       "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
