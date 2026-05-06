@@ -1,90 +1,75 @@
 {
   "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
-  "date": "29.07.2024",
+  "date": "YYYY.MM.DD",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Very small",
+      "name": "___ UP",
       "words": [
-        "TINY",
-        "PETITE",
-        "MINUTE",
-        "LITTLE"
+        "MAKE",
+        "BRING",
+        "CLEAN",
+        "WASH"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "To support",
+      "name": "Things With a Shell",
       "words": [
-        "SAVE",
-        "SECOND",
-        "PREACH",
-        "STAY"
+        "EGG",
+        "NUT",
+        "TURTLE",
+        "TACO"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Dog commands",
+      "name": "Things That Can Be Stretched",
       "words": [
-        "HEEL",
-        "FETCH",
-        "SPEAK",
-        "PAW"
+        "RUBBER",
+        "WIRE",
+        "LIMIT",
+        "TRUTH"
       ]
     },
     {
-      "tier": null,
-      "mechanic": null,
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_AT_START",
       "difficulty": "purple",
-      "name": "At church",
+      "name": "Colors Hidden at the Start",
       "words": [
-        "PRAY",
-        "WORSHIP",
-        "COMMUNE",
-        "SING"
+        "REDUCE",
+        "BLUEPRINT",
+        "GREENHOUSE",
+        "GREYHOUND"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Sounds Like a Number",
-      "category_b": "___ the Day",
-      "reason_a": "Homophone for the number 'one'",
-      "reason_b": "To 'won the day' means to achieve victory or success, completing the idiom category.",
-      "word": "WON"
+      "category_a": "Colors Hidden at the Start",
+      "category_b": "Things With a Shell",
+      "reason_a": "'GREEN' is a color hidden at the start of the word.",
+      "reason_b": "A greenhouse has a protective outer structure, often made of glass or plastic, enclosing its contents, like a shell.",
+      "word": "GREENHOUSE"
     },
     {
-      "category_a": "___ the Day",
-      "category_b": "Things That Can Be Broken",
-      "reason_a": "To 'rule the day' means to dominate or prevail.",
-      "reason_b": "A 'rule' can be broken, similar to a 'law' which is in this category.",
-      "word": "RULE"
+      "category_a": "Things That Can Be Stretched",
+      "category_b": "Things With a Shell",
+      "reason_a": "Wire is physically stretched to extend it or when pulled under tension.",
+      "reason_b": "Electrical wires are typically covered in an insulating outer layer or 'shell'.",
+      "word": "WIRE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SYNONYMS",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "CAN_BE_VERBED",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "IDIOM_COMPLETION",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "HIDDEN_WORD_AT_START",
       "result": "shipped",
       "tier": 3
     }
