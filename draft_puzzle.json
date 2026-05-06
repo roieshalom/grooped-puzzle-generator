@@ -30,7 +30,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "commands you give to a dog",
+      "name": "Dog commands",
       "words": [
         "HEEL",
         "FETCH",
