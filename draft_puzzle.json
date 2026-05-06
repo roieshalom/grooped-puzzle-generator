@@ -37,6 +37,18 @@
         "SPEAK",
         "PAW"
       ]
+    },
+    {
+      "tier": null,
+      "mechanic": null,
+      "difficulty": "purple",
+      "name": "At church",
+      "words": [
+        "PRAY",
+        "WORSHIP",
+        "COMMUNE",
+        "SING"
+      ]
     }
   ],
   "decoys": [
@@ -78,10 +90,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Need exactly 4 categories, got 3"
-    ],
+    "valid": true,
+    "errors": [],
     "duplicate_words": []
   }
 }
