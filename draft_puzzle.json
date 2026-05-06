@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Very Small",
+      "name": "Very small",
       "words": [
         "TINY",
         "PETITE",
@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "SYNONYMS",
       "difficulty": "green",
-      "name": "Things That Can Be Broken",
+      "name": "To support",
       "words": [
-        "SILENCE",
-        "LAW",
-        "HEART",
-        "CODE"
+        "SAVE",
+        "SECOND",
+        "PREACH",
+        "STAY"
       ]
     },
     {
@@ -90,8 +90,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'SAVE' within this puzzle"
+    ],
+    "duplicate_words": [
+      "SAVE"
+    ]
   }
 }
