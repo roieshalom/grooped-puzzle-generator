@@ -1230,7 +1230,7 @@ async function loadPublishedDates() {
     const data = await r.json();
     _publishedDates = new Set(data.dates || []);
     // Re-render the calendar so day colours and orange dot are up to date
-    if (_flatpickr && _flatpickr.isOpen) _flatpickr.changeMonth(0, false);
+    if (_flatpickr && _flatpickr.isOpen) _flatpickr.changeMonth(0);
   } catch (e) { /* silently ignore */ }
 }
 
@@ -1306,7 +1306,7 @@ async function refreshNextDate() {
           _flatpickr.setDate(iso, false); // false = don't trigger onChange
         }
         // Re-render current month so the orange dot appears immediately
-        if (_flatpickr.isOpen) _flatpickr.changeMonth(0, false);
+        if (_flatpickr.isOpen) _flatpickr.changeMonth(0);
       } else if (picker) {
         picker.min = minDate;
         if (!_viewingPast && (!picker.value || picker.value < iso)) picker.value = iso;
@@ -1343,10 +1343,9 @@ async function startup() {
   // Init flatpickr FIRST so the native browser date UI never appears
   initDatePicker();
   setReadOnly(!getAuthToken());
-  // Run in parallel — date label and puzzle content load concurrently
-  await Promise.all([load(), refreshNextDate()]);
-  // Fetch published dates in the background for calendar day coloring
-  loadPublishedDates();
+  // Run all three in parallel — published dates must be ready before the
+  // calendar can be opened so day colours appear on first open
+  await Promise.all([load(), refreshNextDate(), loadPublishedDates()]);
   // Fetch mechanic stats after initial load (only shown when unlocked)
   renderMechanicBar(true);
 }
