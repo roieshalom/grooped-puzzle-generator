@@ -42,12 +42,12 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_AT_START",
       "difficulty": "purple",
-      "name": "Colors Hidden at the Start",
+      "name": "Violin parts",
       "words": [
-        "REDUCE",
-        "BLUEPRINT",
-        "GREENHOUSE",
-        "GREYHOUND"
+        "WAIST",
+        "NECK",
+        "PEG",
+        "F-HOLE"
       ]
     }
   ],
