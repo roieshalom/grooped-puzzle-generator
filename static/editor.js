@@ -1163,8 +1163,9 @@ function buildDateMask() {
 
 // ── Flatpickr date picker ─────────────────────────────────────────────────────
 
-let _flatpickr    = null;
+let _flatpickr      = null;
 let _publishedDates = new Set(); // YYYY-MM-DD strings fetched from /api/published-dates
+let _nextFreeDate   = null;      // YYYY-MM-DD string — the next unpublished slot
 
 // Apply/remove past-mode class to the visible picker input (altInput when available)
 function _pickerSetPastMode(picker, on) {
@@ -1200,6 +1201,11 @@ function initDatePicker() {
         dayElem.classList.add('fp-upcoming');
       }
       // else: no puzzle — white (default)
+
+      // Orange dot marks the next free slot regardless of selection state
+      if (_nextFreeDate && iso === _nextFreeDate) {
+        dayElem.classList.add('fp-next-free');
+      }
     },
 
     onChange(selectedDates, dateStr) {
@@ -1214,7 +1220,7 @@ async function loadPublishedDates() {
     const r = await fetch('/api/published-dates');
     const data = await r.json();
     _publishedDates = new Set(data.dates || []);
-    // Re-render the current month if the calendar is already open
+    // Re-render the calendar so day colours and orange dot are up to date
     if (_flatpickr && _flatpickr.isOpen) _flatpickr.changeMonth(0, false);
   } catch (e) { /* silently ignore */ }
 }
@@ -1281,11 +1287,17 @@ async function refreshNextDate() {
       const iso     = puzzleDateToIso(date);
       const minDate = `${new Date().getFullYear()}-01-01`;
       const picker  = document.getElementById('publishDatePicker');
+
+      // Track next free date so onDayCreate can paint the orange dot
+      _nextFreeDate = iso;
+
       if (_flatpickr) {
         _flatpickr.set('minDate', minDate);
         if (!_viewingPast && (!picker?.value || picker.value < iso)) {
           _flatpickr.setDate(iso, false); // false = don't trigger onChange
         }
+        // Re-render current month so the orange dot appears immediately
+        if (_flatpickr.isOpen) _flatpickr.changeMonth(0, false);
       } else if (picker) {
         picker.min = minDate;
         if (!_viewingPast && (!picker.value || picker.value < iso)) picker.value = iso;

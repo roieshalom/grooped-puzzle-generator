@@ -335,6 +335,30 @@ input[type="text"]:focus {
   color: #555 !important;
 }
 
+/* Next free date — orange dot below the number */
+.flatpickr-day.fp-next-free {
+  position: relative;
+}
+.flatpickr-day.fp-next-free::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e67e22;
+}
+
+/* Selected + next-free: blue ring, keep the orange dot */
+.flatpickr-day.selected.fp-next-free,
+.flatpickr-day.selected.fp-next-free:hover {
+  background: transparent !important;
+  border: 2px solid #2471a3 !important;
+  color: #2471a3 !important;
+}
+
 .publish-date-picker {
   font-family: inherit;
   font-size: 14px;
