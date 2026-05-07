@@ -1177,7 +1177,16 @@ function initDatePicker() {
   const pickerEl = document.getElementById('publishDatePicker');
   if (!pickerEl || typeof flatpickr === 'undefined') return;
 
-  const todayIso = new Date().toISOString().split('T')[0];
+  // Use local date, not UTC — toISOString() shifts midnight-local back by one
+  // day for any timezone east of UTC, causing all calendar dots to land on
+  // the wrong cell.
+  const localIso = d => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+  const todayIso = localIso(new Date());
 
   _flatpickr = flatpickr(pickerEl, {
     dateFormat:    'Y-m-d',
@@ -1192,7 +1201,7 @@ function initDatePicker() {
       if (dayElem.classList.contains('prevMonthDay') ||
           dayElem.classList.contains('nextMonthDay')) return;
 
-      const iso       = dayElem.dateObj.toISOString().split('T')[0];
+      const iso       = localIso(dayElem.dateObj);
       const hasPuzzle = _publishedDates.has(iso);
 
       if (hasPuzzle && iso < todayIso) {
