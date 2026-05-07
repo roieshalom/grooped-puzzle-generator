@@ -30,12 +30,12 @@
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Things That Can Be Stretched",
+      "name": "Physical Health Metrics",
       "words": [
-        "RUBBER",
-        "WIRE",
-        "LIMIT",
-        "TRUTH"
+        "HEIGHT",
+        "WEIGHT",
+        "BMI",
+        "PULSE"
       ]
     },
     {
