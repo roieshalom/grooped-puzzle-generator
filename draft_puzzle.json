@@ -1,75 +1,82 @@
 {
-  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
-  "date": "YYYY.MM.DD",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Sugar forms",
+      "name": "___ POINT",
       "words": [
-        "POWDER",
-        "CUBE",
-        "GRAIN",
-        "CRYSTAL"
+        "HIGH",
+        "BREAKING",
+        "VANTAGE",
+        "MATCH"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Ice ____",
+      "name": "Metaphors for Difficult Predicaments",
       "words": [
-        "ICE BABY",
-        "TEA",
-        "HOCKEY",
-        "AGE"
+        "FIX",
+        "STRAIT",
+        "CORNER",
+        "PLIGHT"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Physical Health Metrics",
+      "name": "Things that FALL",
       "words": [
-        "HEIGHT",
-        "WEIGHT",
-        "BMI",
-        "PULSE"
+        "DOMINO",
+        "SHADOW",
+        "RAIN",
+        "TEMPLE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Violin parts",
+      "name": "Named After a Person",
       "words": [
-        "WAIST",
-        "NECK",
-        "PEG",
-        "F-HOLE"
+        "SANDWICH",
+        "BOYCOTT",
+        "CARDIGAN",
+        "SAXOPHONE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Colors Hidden at the Start",
-      "category_b": "Things With a Shell",
-      "reason_a": "'GREEN' is a color hidden at the start of the word.",
-      "reason_b": "A greenhouse has a protective outer structure, often made of glass or plastic, enclosing its contents, like a shell.",
-      "word": "GREENHOUSE"
+      "category_a": "Named After a Person",
+      "category_b": "Metaphors for Difficult Predicaments",
+      "reason_a": "The term 'boycott' is an eponym, named after Captain Charles Boycott.",
+      "reason_b": "A boycott creates a difficult situation for the target, or for those participating in a protest.",
+      "word": "BOYCOTT"
     },
     {
-      "category_a": "Things That Can Be Stretched",
-      "category_b": "Things With a Shell",
-      "reason_a": "Wire is physically stretched to extend it or when pulled under tension.",
-      "reason_b": "Electrical wires are typically covered in an insulating outer layer or 'shell'.",
-      "word": "WIRE"
+      "category_a": "Metaphors for Difficult Predicaments",
+      "category_b": "___ POINT",
+      "reason_a": "To be 'backed into a corner' means to be in a difficult position.",
+      "reason_b": "A 'corner point' is a plausible phrase, referring to a specific location or detail.",
+      "word": "CORNER"
+    },
+    {
+      "category_a": "Things that FALL",
+      "category_b": "___ POINT",
+      "reason_a": "A structure, like a temple, can 'fall' or collapse.",
+      "reason_b": "The 'temple point' refers to a specific anatomical area on the side of the head.",
+      "word": "TEMPLE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
     }
