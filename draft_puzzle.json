@@ -16,38 +16,38 @@
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Metaphors for Difficult Predicaments",
+      "name": "Famous Swedes",
       "words": [
-        "FIX",
-        "STRAIT",
-        "CORNER",
-        "PLIGHT"
+        "BERGMAN",
+        "LINDGREN",
+        "AVICII",
+        "NOBEL"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "TAXONOMY",
+      "difficulty": "blue",
+      "name": "Sailing vehicles",
+      "words": [
+        "YACHT",
+        "DINGHY",
+        "CATAMARAN",
+        "KAYAK"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "blue",
-      "name": "Things that FALL",
-      "words": [
-        "DOMINO",
-        "SHADOW",
-        "RAIN",
-        "TEMPLE"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Named After a Person",
+      "name": "Palindromes",
       "words": [
-        "SANDWICH",
-        "BOYCOTT",
-        "CARDIGAN",
-        "SAXOPHONE"
+        "ABBA",
+        "REVIVER",
+        "ROTATOR",
+        "MINIM"
       ]
     }
   ],
