@@ -6,12 +6,12 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "yellow",
-      "name": "Point types",
+      "name": "Words hiding animals",
       "words": [
-        "TIP",
-        "DEW",
-        "HIGH",
-        "WAY"
+        "PIGMENT",
+        "BULLDOZER",
+        "STICKER",
+        "WHEEL"
       ]
     },
     {
@@ -23,7 +23,7 @@
         "BERGMAN",
         "LINDGREN",
         "AVICII",
-        "NOBEL"
+        "ABBA"
       ]
     },
     {
@@ -44,7 +44,7 @@
       "difficulty": "purple",
       "name": "Palindromes",
       "words": [
-        "ABBA",
+        "POOP",
         "REVIVER",
         "ROTATOR",
         "MINIM"
