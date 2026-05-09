@@ -1,77 +1,77 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "GROOPED-PUZZLE-GENERATION",
+  "date": "30.07.2024",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "yellow",
-      "name": "Words hiding animals",
-      "words": [
-        "PIGMENT",
-        "BULLDOZER",
-        "STICKER",
-        "WHEEL"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "green",
-      "name": "Famous Swedes",
-      "words": [
-        "BERGMAN",
-        "LINDGREN",
-        "AVICII",
-        "ABBA"
-      ]
-    },
-    {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "Watercraft",
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "___ Driver",
       "words": [
-        "YACHT",
-        "DINGHY",
-        "CATAMARAN",
-        "KAYAK"
+        "SCREW",
+        "CAB",
+        "TEST",
+        "BACKSEAT"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "green",
+      "name": "Things That Can Be Punched",
+      "words": [
+        "CLOCK",
+        "TICKET",
+        "LINE",
+        "BAG"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "purple",
-      "name": "Palindromes",
+      "difficulty": "blue",
+      "name": "Things That Have a Collar",
       "words": [
-        "RACE CAR",
-        "REVIVER",
-        "PULL UP",
-        "RADAR"
+        "SHIRT",
+        "DOG",
+        "PRIEST",
+        "TUBE"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "EPONYMS",
+      "difficulty": "purple",
+      "name": "Eponyms",
+      "words": [
+        "SANDWICH",
+        "BOYCOTT",
+        "GUILLOTINE",
+        "CARDIGAN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Named After a Person",
-      "category_b": "Metaphors for Difficult Predicaments",
-      "reason_a": "The term 'boycott' is an eponym, named after Captain Charles Boycott.",
-      "reason_b": "A boycott creates a difficult situation for the target, or for those participating in a protest.",
-      "word": "BOYCOTT"
+      "category_a": "Eponyms",
+      "category_b": "Things That Have a Collar",
+      "reason_a": "Named after James Brudenell, 7th Earl of Cardigan.",
+      "reason_b": "A cardigan is a type of garment, and many cardigans have collars.",
+      "word": "CARDIGAN"
     },
     {
-      "category_a": "Metaphors for Difficult Predicaments",
-      "category_b": "___ POINT",
-      "reason_a": "To be 'backed into a corner' means to be in a difficult position.",
-      "reason_b": "A 'corner point' is a plausible phrase, referring to a specific location or detail.",
-      "word": "CORNER"
+      "category_a": "Things That Have a Collar",
+      "category_b": "___ Driver",
+      "reason_a": "Refers to a 'tube top' which can have a collar, or a tube as part of a collar system (e.g., pipe fitting, medical).",
+      "reason_b": "A 'Tube Driver' is the term for a train operator on the London Underground.",
+      "word": "TUBE"
     },
     {
-      "category_a": "Things that FALL",
-      "category_b": "___ POINT",
-      "reason_a": "A structure, like a temple, can 'fall' or collapse.",
-      "reason_b": "The 'temple point' refers to a specific anatomical area on the side of the head.",
-      "word": "TEMPLE"
+      "category_a": "___ Driver",
+      "category_b": "Things That Can Be Punched",
+      "reason_a": "A 'test driver' is someone who drives cars to test them.",
+      "reason_b": "One can 'punch a test' (a physical exam or paper) or perform a 'punch test' in engineering.",
+      "word": "TEST"
     }
   ],
   "attempt_log": [
