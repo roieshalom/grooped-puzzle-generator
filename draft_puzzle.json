@@ -30,12 +30,12 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Things That Have a Collar",
+      "name": "Wines",
       "words": [
-        "SHIRT",
-        "DOG",
-        "PRIEST",
-        "TUBE"
+        "ROSE",
+        "PORT",
+        "SHERRY",
+        "STRAW"
       ]
     },
     {
