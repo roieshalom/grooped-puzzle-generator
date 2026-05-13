@@ -1,84 +1,92 @@
 {
-  "id": "GROOPED-PUZZLE-GENERATION",
+  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
   "date": "30.07.2024",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "___ Driver",
+      "name": "Things that are spherical",
       "words": [
-        "SCREW",
-        "CAB",
-        "TEST",
-        "BACKSEAT"
+        "EARTH",
+        "ORB",
+        "GLOBE",
+        "BALL"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "green",
+      "name": "___ HOUSE",
+      "words": [
+        "LIGHT",
+        "OPERA",
+        "DOG",
+        "CLUB"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Things That Can Be Punched",
-      "words": [
-        "CLOCK",
-        "TICKET",
-        "LINE",
-        "BAG"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Wines",
+      "name": "Things that can be 'shot'",
       "words": [
-        "ROSE",
-        "PORT",
-        "SHERRY",
-        "STRAW"
+        "PHOTO",
+        "DRINK",
+        "DOSE",
+        "MARBLE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Words of disappointment",
+      "name": "Words that are homophones of numbers",
       "words": [
-        "BALLS",
-        "CRAP",
-        "NUTS",
-        "FUDGE"
+        "ATE",
+        "WON",
+        "TOO",
+        "FOR"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Eponyms",
-      "category_b": "Things That Have a Collar",
-      "reason_a": "Named after James Brudenell, 7th Earl of Cardigan.",
-      "reason_b": "A cardigan is a type of garment, and many cardigans have collars.",
-      "word": "CARDIGAN"
+      "category_a": "Things that can be 'shot'",
+      "category_b": "Things that are spherical",
+      "reason_a": "One can 'shoot marbles' in a game.",
+      "reason_b": "Marbles are small, spherical objects.",
+      "word": "MARBLE"
     },
     {
-      "category_a": "Things That Have a Collar",
-      "category_b": "___ Driver",
-      "reason_a": "Refers to a 'tube top' which can have a collar, or a tube as part of a collar system (e.g., pipe fitting, medical).",
-      "reason_b": "A 'Tube Driver' is the term for a train operator on the London Underground.",
-      "word": "TUBE"
-    },
-    {
-      "category_a": "___ Driver",
-      "category_b": "Things That Can Be Punched",
-      "reason_a": "A 'test driver' is someone who drives cars to test them.",
-      "reason_b": "One can 'punch a test' (a physical exam or paper) or perform a 'punch test' in engineering.",
-      "word": "TEST"
+      "category_a": "Things that are spherical",
+      "category_b": "Things that can be 'shot'",
+      "reason_a": "A ball is a common spherical object.",
+      "reason_b": "Many types of balls (e.g., basketball, soccer ball) can be 'shot' or kicked.",
+      "word": "BALL"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "EPONYMS",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
       "tier": 3
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "TAXONOMY",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "_validation": {
