@@ -3,22 +3,22 @@
   "date": "30.07.2024",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "yellow",
-      "name": "Things that are spherical",
+      "name": "Inside an aquarium",
       "words": [
-        "EARTH",
-        "ORB",
-        "GLOBE",
-        "BALL"
+        "GRAVEL",
+        "WATER",
+        "PUMP",
+        "THERMOMETER"
       ]
     },
     {
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Crackers",
+      "name": "Cracker types",
       "words": [
         "GOLDFISH",
         "ANIMAL",
@@ -30,7 +30,7 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Pop",
+      "name": "Pop ______",
       "words": [
         "CORN",
         "UP",
