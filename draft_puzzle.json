@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "purple",
-      "name": "Add 'S' To The Start",
+      "name": "Types of wood connectors",
       "words": [
-        "LASH",
-        "LICK",
-        "LIME",
-        "PORT"
+        "LAP",
+        "RABBET",
+        "DOVETAIL",
+        "BISCUIT"
       ]
     }
   ],
