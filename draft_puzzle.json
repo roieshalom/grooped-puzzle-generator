@@ -1,92 +1,77 @@
 {
-  "id": "GROOPED_PUZZLE_ID_PLACEHOLDER",
+  "id": "GROOPED_PUZZLE_ID",
   "date": "30.07.2024",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Inside an aquarium",
+      "name": "BACK ___",
       "words": [
-        "GRAVEL",
-        "WATER",
-        "PUMP",
-        "THERMOMETER"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Cracker types",
-      "words": [
-        "GOLDFISH",
-        "ANIMAL",
-        "SODA",
-        "TUC"
+        "HAND",
+        "TRACK",
+        "LASH",
+        "FIRE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "blue",
-      "name": "Pop ______",
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "green",
+      "name": "Metaphors for Being Stuck",
       "words": [
-        "CORN",
-        "UP",
-        "CULTURE",
-        "MUSIC"
+        "RUT",
+        "MIRE",
+        "QUAGMIRE",
+        "SWAMP"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "purple",
-      "name": "Types of wood connectors",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "blue",
+      "name": "Things One Can CAST",
       "words": [
-        "LAP",
-        "RABBET",
-        "DOVETAIL",
-        "BISCUIT"
+        "SHADOW",
+        "VOTE",
+        "SPELL",
+        "NET"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "EPONYMS",
+      "difficulty": "purple",
+      "name": "Words from People's Names (Eponyms)",
+      "words": [
+        "SANDWICH",
+        "BOYCOTT",
+        "GUILLOTINE",
+        "CARDIGAN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that can be 'shot'",
-      "category_b": "Things that are spherical",
-      "reason_a": "One can 'shoot marbles' in a game.",
-      "reason_b": "Marbles are small, spherical objects.",
-      "word": "MARBLE"
+      "category_a": "Things One Can CAST",
+      "category_b": "Metaphors for Being Stuck",
+      "reason_a": "One can 'cast a net'.",
+      "reason_b": "Being 'caught in a net' is a metaphor for being trapped or stuck.",
+      "word": "NET"
     },
     {
-      "category_a": "Things that are spherical",
-      "category_b": "Things that can be 'shot'",
-      "reason_a": "A ball is a common spherical object.",
-      "reason_b": "Many types of balls (e.g., basketball, soccer ball) can be 'shot' or kicked.",
-      "word": "BALL"
+      "category_a": "BACK ___",
+      "category_b": "Metaphors for Being Stuck",
+      "reason_a": "Completes the phrase 'backfire'.",
+      "reason_b": "Being 'caught in the crossfire' or 'stuck in the fire' implies being in a difficult, unavoidable situation.",
+      "word": "FIRE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
-    },
-    {
-      "mechanic": "CAN_BE_VERBED",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "TAXONOMY",
-      "result": "shipped",
-      "tier": 1
     }
   ],
   "_validation": {
