@@ -28,26 +28,26 @@
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Things that can be 'shot'",
+      "name": "Pop",
       "words": [
-        "PHOTO",
-        "DRINK",
-        "DOSE",
-        "MARBLE"
+        "CORN",
+        "SODA",
+        "CULTURE",
+        "MUSIC"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Words that are homophones of numbers",
+      "name": "Add 'S' To The Start",
       "words": [
-        "ATE",
-        "WON",
-        "TOO",
-        "FOR"
+        "LASH",
+        "LICK",
+        "LIME",
+        "PORT"
       ]
     }
   ],
