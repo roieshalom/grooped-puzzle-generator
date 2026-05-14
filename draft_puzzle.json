@@ -16,14 +16,14 @@
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "___ HOUSE",
+      "name": "Crackers",
       "words": [
-        "LIGHT",
-        "OPERA",
-        "DOG",
-        "CLUB"
+        "GOLDFISH",
+        "ANIMAL",
+        "SODA",
+        "TUC"
       ]
     },
     {
@@ -33,7 +33,7 @@
       "name": "Pop",
       "words": [
         "CORN",
-        "SODA",
+        "UP",
         "CULTURE",
         "MUSIC"
       ]
