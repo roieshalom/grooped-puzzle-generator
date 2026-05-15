@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "In a ___ (Predicament)",
+      "name": "one word U2 songs",
       "words": [
-        "FIX",
-        "SPOT",
-        "SCRAPE",
-        "BIND"
+        "VERTIGO",
+        "ELEVATION",
+        "DESIRE",
+        "LEMON"
       ]
     },
     {
@@ -44,8 +44,8 @@
       "difficulty": "purple",
       "name": "Words Starting with Birds",
       "words": [
-        "CRANBERRY",
-        "SWALLOWTAIL",
+        "TUITION",
+        "LOONIE",
         "DOVETAIL",
         "CROWBAR"
       ]
