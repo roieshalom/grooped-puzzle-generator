@@ -1,82 +1,90 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "27.04.2026",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Building Components",
+      "name": "Words for a Short Sleep",
       "words": [
-        "BEAM",
-        "NAIL",
-        "BRICK",
-        "BLOCK"
+        "NAP",
+        "DOZE",
+        "SNOOZE",
+        "WINK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Pry Tools",
+      "name": "Things with a 'HEAD'",
       "words": [
-        "CAT'S PAW",
-        "CHISEL",
-        "WEDGE",
-        "MATTOCK"
+        "BED",
+        "HAMMER",
+        "LION",
+        "CABBAGE"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "U2 songs",
+      "name": "Things that STRIKE",
       "words": [
-        "VERTIGO",
-        "BABYFACE",
-        "DESIRE",
-        "LEMON"
+        "CLOCK",
+        "MATCH",
+        "OIL",
+        "JUDGE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Words Starting with Birds",
+      "name": "Sounds Like a Number",
       "words": [
-        "TUITION",
-        "LOONIE",
-        "DOVETAIL",
-        "CROWBAR"
+        "ATE",
+        "WON",
+        "FOR",
+        "TOO"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Building Components",
-      "category_b": "Things With a Sharp Point",
-      "reason_a": "A common fastener used in construction.",
-      "reason_b": "Nails have a sharp point for piercing.",
-      "word": "NAIL"
+      "category_a": "Things with a 'HEAD'",
+      "category_b": "Things that STRIKE",
+      "reason_a": "A hammer has a distinct head.",
+      "reason_b": "A hammer is primarily used to strike objects.",
+      "word": "HAMMER"
     },
     {
-      "category_a": "Words Starting with Birds",
-      "category_b": "Building Components",
-      "reason_a": "Contains 'DOVE' at the beginning.",
-      "reason_b": "A dovetail joint is a woodworking technique used in building.",
-      "word": "DOVETAIL"
-    },
-    {
-      "category_a": "Words Starting with Birds",
-      "category_b": "Things With a Sharp Point",
-      "reason_a": "Contains 'CROW' at the beginning.",
-      "reason_b": "A crowbar is a prying tool, often with a sharpened or tapered end.",
-      "word": "CROWBAR"
+      "category_a": "Things with a 'HEAD'",
+      "category_b": "Words for a Short Sleep",
+      "reason_a": "Refers to a 'bed head' (a disheveled hairstyle).",
+      "reason_b": "A bed is the primary place for sleeping.",
+      "word": "BED"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "SYNONYMS",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
       "tier": 3
     }
