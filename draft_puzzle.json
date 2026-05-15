@@ -1,97 +1,82 @@
 {
-  "id": "UNIQUE_ID",
-  "date": "01.01.2024",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Things with a Point",
+      "name": "HEAD ___",
       "words": [
-        "NEEDLE",
-        "ARROW",
-        "SPEAR",
-        "STAR"
+        "CHEESE",
+        "START",
+        "LIGHT",
+        "STRONG"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Metaphors for Intelligence",
+      "name": "Things That Can Break (Idiomatically)",
       "words": [
-        "SHARP",
-        "BRIGHT",
-        "QUICK",
-        "KEEN"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "blue",
-      "name": "Things that Can Strike",
-      "words": [
-        "CLOCK",
-        "MATCH",
-        "MINE",
-        "LUCK"
+        "HEART",
+        "RECORD",
+        "ICE",
+        "WIND"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "purple",
-      "name": "Words Paired With 'High'",
+      "difficulty": "blue",
+      "name": "Types of Waves",
       "words": [
-        "NOON",
-        "PITCH",
-        "ROLLER",
-        "WIRE"
+        "HAND",
+        "HEAT",
+        "SOUND",
+        "OCEAN"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "EPONYMS",
+      "difficulty": "purple",
+      "name": "Eponymous Creations",
+      "words": [
+        "SANDWICH",
+        "BOYCOTT",
+        "GUILLOTINE",
+        "CARDIGAN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Metaphors for Intelligence",
-      "category_b": "Things with a Point",
-      "reason_a": "a sharp mind is intelligent",
-      "reason_b": "a sharp object has a point",
-      "word": "SHARP"
+      "category_a": "Types of Waves",
+      "category_b": "Things That Can Break (Idiomatically)",
+      "reason_a": "Heat wave",
+      "reason_b": "To 'break the heat' means to alleviate warm weather.",
+      "word": "HEAT"
     },
     {
-      "category_a": "Things with a Point",
-      "category_b": "Metaphors for Intelligence",
-      "reason_a": "a star has points",
-      "reason_b": "a 'bright star' can refer to a talented, intelligent person",
-      "word": "STAR"
+      "category_a": "Types of Waves",
+      "category_b": "Things That Can Break (Idiomatically)",
+      "reason_a": "Sound wave",
+      "reason_b": "To 'break the sound barrier' is a common phrase.",
+      "word": "SOUND"
     },
     {
-      "category_a": "Things that Can Strike",
-      "category_b": "Things with a Point",
-      "reason_a": "a clock strikes the hour",
-      "reason_b": "clock hands are pointers",
-      "word": "CLOCK"
+      "category_a": "HEAD ___",
+      "category_b": "Types of Waves",
+      "reason_a": "HEAD LIGHT",
+      "reason_b": "Light is commonly understood as a type of wave (light wave).",
+      "word": "LIGHT"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "TAXONOMY",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
     }
