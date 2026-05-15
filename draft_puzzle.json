@@ -30,24 +30,24 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things One Can CAST",
+      "name": "",
       "words": [
-        "SHADOW",
-        "VOTE",
-        "SPELL",
-        "NET"
+        "BIRDS",
+        "GAME",
+        "ARTIST",
+        ""
       ]
     },
     {
       "tier": 3,
       "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Words from People's Names (Eponyms)",
+      "name": "Departments in Tech",
       "words": [
-        "SANDWICH",
-        "BOYCOTT",
-        "GUILLOTINE",
-        "CARDIGAN"
+        "SALES",
+        "HR",
+        "QA",
+        ""
       ]
     }
   ],
