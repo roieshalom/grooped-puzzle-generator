@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Last years Eurovision winners",
+      "name": "Last years' Eurovision winners",
       "words": [
         "THE CODE",
         "WASTED LOVE",
@@ -20,7 +20,7 @@
       "difficulty": "green",
       "name": "Body modificationa",
       "words": [
-        "TATTOO",
+        "TIGHTLACING",
         "PIERCING",
         "BRANDING",
         "IMPLANT"
@@ -75,12 +75,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'TATTOO' within this puzzle"
-    ],
-    "duplicate_words": [
-      "TATTOO"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
