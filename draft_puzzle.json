@@ -15,39 +15,39 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "green",
-      "name": "Things That Can Break (Idiomatically)",
+      "name": "Words Before 'Proof'",
       "words": [
-        "HEART",
-        "RECORD",
-        "ICE",
-        "WIND"
+        "WATER",
+        "BULLET",
+        "SHOCK",
+        "CHILD"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Types of Waves",
+      "name": "Types of beans",
       "words": [
-        "HAND",
-        "HEAT",
-        "SOUND",
-        "OCEAN"
+        "LENTILS",
+        "LIMA",
+        "EDAMAME",
+        "MOTH"
       ]
     },
     {
       "tier": 3,
       "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Eponymous Creations",
+      "name": "Dog bark in different languages",
       "words": [
-        "SANDWICH",
-        "BOYCOTT",
-        "GUILLOTINE",
-        "CARDIGAN"
+        "BLAF",
+        "HAM",
+        "MUNG",
+        "BHUF"
       ]
     }
   ],
