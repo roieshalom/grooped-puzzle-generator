@@ -1165,7 +1165,6 @@ function buildDateMask() {
 
 let _flatpickr      = null;
 let _publishedDates = new Set(); // YYYY-MM-DD strings fetched from /api/published-dates
-let _nextFreeDate   = null;      // YYYY-MM-DD string — the next unpublished slot
 
 // Apply/remove past-mode class to the visible picker input (altInput when available)
 function _pickerSetPastMode(picker, on) {
@@ -1211,10 +1210,6 @@ function initDatePicker() {
       }
       // else: no puzzle — white (default)
 
-      // Orange dot marks the next free slot regardless of selection state
-      if (_nextFreeDate && iso === _nextFreeDate) {
-        dayElem.classList.add('fp-next-free');
-      }
     },
 
     onChange(selectedDates, dateStr) {
@@ -1300,9 +1295,6 @@ async function refreshNextDate() {
       const iso     = puzzleDateToIso(date);
       const minDate = `${new Date().getFullYear()}-01-01`;
       const picker  = document.getElementById('publishDatePicker');
-
-      // Track next free date so onDayCreate can paint the orange dot
-      _nextFreeDate = iso;
 
       if (_flatpickr) {
         _flatpickr.set('minDate', minDate);
