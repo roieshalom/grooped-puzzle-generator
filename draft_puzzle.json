@@ -1,82 +1,82 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "GROOPED_PUZZLE_ID",
+  "date": "27.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "HEAD ___",
+      "name": "Building Components",
       "words": [
-        "CHEESE",
-        "START",
-        "LIGHT",
-        "STRONG"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
-      "difficulty": "green",
-      "name": "Words Before 'Proof'",
-      "words": [
-        "WATER",
-        "BULLET",
-        "SHOCK",
-        "CHILD"
+        "BEAM",
+        "NAIL",
+        "BRICK",
+        "BLOCK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "blue",
-      "name": "Types of beans",
+      "difficulty": "green",
+      "name": "Things With a Sharp Point",
       "words": [
-        "LENTILS",
-        "LIMA",
-        "EDAMAME",
-        "MOTH"
+        "PIN",
+        "NEEDLE",
+        "SPEAR",
+        "AWL"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "blue",
+      "name": "In a ___ (Predicament)",
+      "words": [
+        "FIX",
+        "SPOT",
+        "SCRAPE",
+        "BIND"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "HIDDEN_WORD_AT_START",
       "difficulty": "purple",
-      "name": "Dog bark in different languages",
+      "name": "Words Starting with Birds",
       "words": [
-        "BLAF",
-        "HAM",
-        "MUNG",
-        "BHUF"
+        "CRANBERRY",
+        "SWALLOWTAIL",
+        "DOVETAIL",
+        "CROWBAR"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Types of Waves",
-      "category_b": "Things That Can Break (Idiomatically)",
-      "reason_a": "Heat wave",
-      "reason_b": "To 'break the heat' means to alleviate warm weather.",
-      "word": "HEAT"
+      "category_a": "Building Components",
+      "category_b": "Things With a Sharp Point",
+      "reason_a": "A common fastener used in construction.",
+      "reason_b": "Nails have a sharp point for piercing.",
+      "word": "NAIL"
     },
     {
-      "category_a": "Types of Waves",
-      "category_b": "Things That Can Break (Idiomatically)",
-      "reason_a": "Sound wave",
-      "reason_b": "To 'break the sound barrier' is a common phrase.",
-      "word": "SOUND"
+      "category_a": "Words Starting with Birds",
+      "category_b": "Building Components",
+      "reason_a": "Contains 'DOVE' at the beginning.",
+      "reason_b": "A dovetail joint is a woodworking technique used in building.",
+      "word": "DOVETAIL"
     },
     {
-      "category_a": "HEAD ___",
-      "category_b": "Types of Waves",
-      "reason_a": "HEAD LIGHT",
-      "reason_b": "Light is commonly understood as a type of wave (light wave).",
-      "word": "LIGHT"
+      "category_a": "Words Starting with Birds",
+      "category_b": "Things With a Sharp Point",
+      "reason_a": "Contains 'CROW' at the beginning.",
+      "reason_b": "A crowbar is a prying tool, often with a sharpened or tapered end.",
+      "word": "CROWBAR"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "EPONYMS",
+      "mechanic": "HIDDEN_WORD_AT_START",
       "result": "shipped",
       "tier": 3
     }
