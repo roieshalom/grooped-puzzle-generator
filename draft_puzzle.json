@@ -30,12 +30,12 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "",
+      "name": "The second word of Movie names with \"The\"",
       "words": [
+        "INTERNATIONAL",
         "BIRDS",
         "GAME",
-        "ARTIST",
-        ""
+        "ARTIST"
       ]
     },
     {
