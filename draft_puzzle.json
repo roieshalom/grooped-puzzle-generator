@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Metaphors for Being Stuck",
+      "name": "Body modificationa",
       "words": [
-        "RUT",
-        "MIRE",
-        "QUAGMIRE",
-        "SWAMP"
+        "TATTOO",
+        "PIERCING",
+        "BRANDING",
+        "IMPLANT"
       ]
     },
     {
@@ -75,8 +75,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'TATTOO' within this puzzle"
+    ],
+    "duplicate_words": [
+      "TATTOO"
+    ]
   }
 }
