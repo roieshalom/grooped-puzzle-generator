@@ -309,6 +309,15 @@ input[type="text"]:focus {
   border-color: transparent !important;
 }
 
+/* Today — amber underline so it's always visible regardless of other states */
+.flatpickr-day.today,
+.flatpickr-day.today:hover {
+  border-bottom: 2px solid #e67e22 !important;
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
 /* Selected date — blue ring only, no fill; text in same blue */
 .flatpickr-day.selected,
 .flatpickr-day.selected:hover,

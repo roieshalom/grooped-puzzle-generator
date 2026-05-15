@@ -1238,10 +1238,14 @@ async function loadPublishedDates() {
 async function handleDatePickerChange(selected) {
   if (_readOnly) return; // only available when unlocked
 
-  const today      = new Date().toISOString().split('T')[0];
+  // Use local date — toISOString() converts to UTC and shifts midnight-local
+  // back by one day for any timezone east of UTC, making today look like
+  // "tomorrow" and breaking the past/today load condition.
+  const now   = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   const hasPuzzle  = _publishedDates.has(selected);
 
-  if (selected < today || hasPuzzle) {
+  if (selected <= today || hasPuzzle) {
     // ── Date with a puzzle (past or future scheduled) — load it ──────────
     if (!_viewingPast) {
       _savedDraft = puzzles.length > 0 && puzzles[0] ? { ...puzzles[0] } : null;
