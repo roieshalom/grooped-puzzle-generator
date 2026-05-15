@@ -1,75 +1,97 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "30.07.2024",
+  "id": "UNIQUE_ID",
+  "date": "01.01.2024",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Last years' Eurovision winners",
+      "name": "Things with a Point",
       "words": [
-        "THE CODE",
-        "WASTED LOVE",
-        "TATTOO",
-        "STEFANIA"
+        "NEEDLE",
+        "ARROW",
+        "SPEAR",
+        "STAR"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Body modificationa",
+      "name": "Metaphors for Intelligence",
       "words": [
-        "TIGHTLACING",
-        "PIERCING",
-        "BRANDING",
-        "IMPLANT"
+        "SHARP",
+        "BRIGHT",
+        "QUICK",
+        "KEEN"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "The second word of Movie names with \"The\"",
+      "name": "Things that Can Strike",
       "words": [
-        "INTERNATIONAL",
-        "BIRDS",
-        "GAME",
-        "ARTIST"
+        "CLOCK",
+        "MATCH",
+        "MINE",
+        "LUCK"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "difficulty": "purple",
-      "name": "Departments in Tech",
+      "name": "Homophones of Numbers",
       "words": [
-        "SALES",
-        "HR",
-        "QA",
-        "DESIGN"
+        "WON",
+        "FOR",
+        "EIGHT",
+        "TOO"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things One Can CAST",
-      "category_b": "Metaphors for Being Stuck",
-      "reason_a": "One can 'cast a net'.",
-      "reason_b": "Being 'caught in a net' is a metaphor for being trapped or stuck.",
-      "word": "NET"
+      "category_a": "Metaphors for Intelligence",
+      "category_b": "Things with a Point",
+      "reason_a": "a sharp mind is intelligent",
+      "reason_b": "a sharp object has a point",
+      "word": "SHARP"
     },
     {
-      "category_a": "BACK ___",
-      "category_b": "Metaphors for Being Stuck",
-      "reason_a": "Completes the phrase 'backfire'.",
-      "reason_b": "Being 'caught in the crossfire' or 'stuck in the fire' implies being in a difficult, unavoidable situation.",
-      "word": "FIRE"
+      "category_a": "Things with a Point",
+      "category_b": "Metaphors for Intelligence",
+      "reason_a": "a star has points",
+      "reason_b": "a 'bright star' can refer to a talented, intelligent person",
+      "word": "STAR"
+    },
+    {
+      "category_a": "Things that Can Strike",
+      "category_b": "Things with a Point",
+      "reason_a": "a clock strikes the hour",
+      "reason_b": "clock hands are pointers",
+      "word": "CLOCK"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "EPONYMS",
+      "mechanic": "TAXONOMY",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "HOMOPHONE_OF_NUMBER",
       "result": "shipped",
       "tier": 3
     }
