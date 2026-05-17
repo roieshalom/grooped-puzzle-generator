@@ -172,7 +172,6 @@ def _parse_any_date(ds: str):
     return None
 
 @app.route("/api/puzzle-by-date", methods=["GET"])
-@require_auth
 def get_puzzle_by_date():
     date_str = request.args.get("date", "")
     if not date_str:

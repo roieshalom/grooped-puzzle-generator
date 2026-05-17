@@ -1231,7 +1231,8 @@ async function loadPublishedDates() {
 
 // ── Date picker change handler (shared by flatpickr onChange) ────────────────
 async function handleDatePickerChange(selected) {
-  if (_readOnly) return; // only available when unlocked
+  // Past-date viewing is allowed even in read-only mode (the endpoint is public).
+  // Future-date selection (no puzzle) only makes sense when unlocked — return early.
 
   // Use local date — toISOString() converts to UTC and shifts midnight-local
   // back by one day for any timezone east of UTC, making today look like
@@ -1247,7 +1248,10 @@ async function handleDatePickerChange(selected) {
     }
     setStatus('Loading puzzle…', 'info', 0);
     try {
-      const r = await apiFetch(`/api/puzzle-by-date?date=${selected}`);
+      // Use plain fetch — endpoint is public (no auth required for read-only viewing)
+      const token = getAuthToken();
+      const headers = token ? { 'X-Editor-Token': token } : {};
+      const r = await fetch(`/api/puzzle-by-date?date=${selected}`, { headers });
       if (r.ok) {
         const snapshot = await r.json();
         puzzles = [snapshot];
@@ -1266,8 +1270,11 @@ async function handleDatePickerChange(selected) {
       setStatus('Failed to load puzzle', 'error', 3000);
     }
   } else {
-    // ── Future date with no puzzle — restore draft ────────────────────────
+    // ── Future date with no puzzle ───────────────────────────────────────
+    if (_readOnly) return; // changing publish date requires edit access
+
     if (_viewingPast) {
+      // Coming back from a past-snapshot view — restore the draft
       if (_savedDraft) {
         puzzles = [_savedDraft];
         _savedDraft = null;
@@ -1323,10 +1330,11 @@ document.getElementById('jumpToNextBtn').addEventListener('click', async () => {
     currentIndex = 0;
     updateUI();
   } else {
+    // No saved draft (e.g. was in read-only mode) — reload the current server state
     await load();
   }
   setViewingPast(false);
-  await refreshNextDate();
+  if (!_readOnly) await refreshNextDate();
   setStatus('Ready', 'info', 2000);
 });
 
