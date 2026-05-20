@@ -27,27 +27,27 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "Things That BREAK",
+      "name": "Words Preceding 'Deck'",
       "words": [
-        "RECORD",
-        "WAVE",
-        "FAST",
-        "LAW"
+        "SUN",
+        "POOL",
+        "OBSERVATION",
+        "FLIGHT"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "purple",
-      "name": "Words That Are Fruity Inside",
+      "name": "Things That Can Be Spun",
       "words": [
-        "LEMONADE",
-        "MANGROVE",
-        "PEACHY",
-        "PLUMMET"
+        "YARN",
+        "WEB",
+        "RECORD",
+        "TALE"
       ]
     }
   ],
