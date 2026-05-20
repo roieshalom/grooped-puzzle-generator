@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things You'd Find in a Library",
+      "name": "In the Library",
       "words": [
         "BOOK",
         "SHELF",
@@ -18,7 +18,7 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Expressions of Ill Fortune",
+      "name": "Ill Fortune",
       "words": [
         "JINX",
         "CURSE",
