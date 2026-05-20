@@ -1,90 +1,75 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "GROOPED_PUZZLE_ID",
+  "date": "YYYY.MM.DD",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Words for a Short Sleep",
+      "name": "Things You'd Find in a Library",
       "words": [
-        "NAP",
-        "DOZE",
-        "SNOOZE",
-        "WINK"
+        "BOOK",
+        "SHELF",
+        "CARD",
+        "INDEX"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Things with a 'HEAD'",
+      "name": "Expressions of Ill Fortune",
       "words": [
-        "BED",
-        "HAMMER",
-        "LION",
-        "CABBAGE"
+        "JINX",
+        "CURSE",
+        "HEX",
+        "DOOM"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things that STRIKE",
+      "name": "Things That BREAK",
       "words": [
-        "CLOCK",
-        "MATCH",
-        "OIL",
-        "JUDGE"
+        "RECORD",
+        "WAVE",
+        "FAST",
+        "LAW"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "synonym for Match",
+      "name": "Words That Are Fruity Inside",
       "words": [
-        "ACCORD",
-        "CONCUR",
-        "JIBE",
-        "TALLY"
+        "LEMONADE",
+        "MANGROVE",
+        "PEACHY",
+        "PLUMMET"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things with a 'HEAD'",
-      "category_b": "Things that STRIKE",
-      "reason_a": "A hammer has a distinct head.",
-      "reason_b": "A hammer is primarily used to strike objects.",
-      "word": "HAMMER"
+      "category_a": "Expressions of Ill Fortune",
+      "category_b": "Things That BREAK",
+      "reason_a": "A jinx is a specific type of bad luck or spell causing misfortune.",
+      "reason_b": "One can 'break a jinx' to reverse its negative effects.",
+      "word": "JINX"
     },
     {
-      "category_a": "Things with a 'HEAD'",
-      "category_b": "Words for a Short Sleep",
-      "reason_a": "Refers to a 'bed head' (a disheveled hairstyle).",
-      "reason_b": "A bed is the primary place for sleeping.",
-      "word": "BED"
+      "category_a": "Things That BREAK",
+      "category_b": "Things You'd Find in a Library",
+      "reason_a": "To 'break a record' means to surpass a previous achievement.",
+      "reason_b": "Libraries and archives commonly house historical 'records' and documents.",
+      "word": "RECORD"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SYNONYMS",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "HOMOPHONE_OF_NUMBER",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "result": "shipped",
       "tier": 3
     }
