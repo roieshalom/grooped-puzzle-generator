@@ -1,77 +1,92 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "YYYY.MM.DD",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "In the Library",
+      "name": "At the Office",
       "words": [
-        "BOOK",
-        "SHELF",
-        "CARD",
-        "INDEX"
+        "DESK",
+        "CHAIR",
+        "FILE",
+        "CUBICLE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Ill Fortune",
+      "name": "Things with a SHELL",
       "words": [
-        "JINX",
-        "CURSE",
-        "HEX",
-        "DOOM"
+        "EGG",
+        "TURTLE",
+        "TACO",
+        "NUT"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Words Preceding 'Deck'",
+      "name": "Things that 'BREAK'",
       "words": [
-        "SUN",
-        "POOL",
-        "OBSERVATION",
-        "FLIGHT"
+        "WAVES",
+        "NEWS",
+        "RECORD",
+        "HABIT"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "_____ Clock",
+      "name": "Add 'S' to make a new word",
       "words": [
-        "SAND",
-        "FLORAL",
-        "WATER",
-        "RADIO"
+        "CARE",
+        "PORT",
+        "LATE",
+        "TAB"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Expressions of Ill Fortune",
-      "category_b": "Things That BREAK",
-      "reason_a": "A jinx is a specific type of bad luck or spell causing misfortune.",
-      "reason_b": "One can 'break a jinx' to reverse its negative effects.",
-      "word": "JINX"
+      "category_a": "Things with a SHELL",
+      "category_b": "Things that 'BREAK'",
+      "reason_a": "Many types of nuts grow with a hard outer shell.",
+      "reason_b": "One typically 'breaks' a nut to get to the edible kernel inside.",
+      "word": "NUT"
     },
     {
-      "category_a": "Things That BREAK",
-      "category_b": "Things You'd Find in a Library",
-      "reason_a": "To 'break a record' means to surpass a previous achievement.",
-      "reason_b": "Libraries and archives commonly house historical 'records' and documents.",
-      "word": "RECORD"
+      "category_a": "Add 'S' to make a new word",
+      "category_b": "At the Office",
+      "reason_a": "Adding 'S' to PORT creates the word SPORT.",
+      "reason_b": "Office computers and networks often have various 'ports' (e.g., USB, Ethernet).",
+      "word": "PORT"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "ADD_LETTER",
       "result": "shipped",
       "tier": 3
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "FOUND_IN_SCENE",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "_validation": {
