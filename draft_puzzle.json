@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "purple",
-      "name": "Things That Can Be Spun",
+      "name": "_____ Clock",
       "words": [
-        "YARN",
-        "WEB",
-        "RECORD",
-        "TALE"
+        "SAND",
+        "FLORAL",
+        "WATER",
+        "RADIO"
       ]
     }
   ],
