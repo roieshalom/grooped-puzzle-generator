@@ -1,92 +1,77 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "137",
+  "date": "27.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "At the Office",
+      "name": "Types of Outerwear",
       "words": [
-        "DESK",
-        "CHAIR",
-        "FILE",
-        "CUBICLE"
+        "JACKET",
+        "COAT",
+        "SWEATER",
+        "PARKA"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Things with a SHELL",
+      "name": "Things that can be cut",
       "words": [
-        "EGG",
-        "TURTLE",
-        "TACO",
-        "NUT"
+        "CAKE",
+        "DIAMOND",
+        "DEAL",
+        "GRASS"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "blue",
-      "name": "Things that 'BREAK'",
+      "name": "___ PRESS",
       "words": [
-        "WAVES",
-        "NEWS",
-        "RECORD",
-        "HABIT"
+        "WINE",
+        "BENCH",
+        "PRINT",
+        "FREEDOM"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Add 'S' to make a new word",
+      "name": "Named After People (Eponyms)",
       "words": [
-        "CARE",
-        "PORT",
-        "LATE",
-        "TAB"
+        "GUILLOTINE",
+        "CARDIGAN",
+        "SANDWICH",
+        "SILHOUETTE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things with a SHELL",
-      "category_b": "Things that 'BREAK'",
-      "reason_a": "Many types of nuts grow with a hard outer shell.",
-      "reason_b": "One typically 'breaks' a nut to get to the edible kernel inside.",
-      "word": "NUT"
+      "category_a": "Named After People (Eponyms)",
+      "category_b": "Types of Outerwear",
+      "reason_a": "Named after James Brudenell, 7th Earl of Cardigan.",
+      "reason_b": "A cardigan is a common type of knitted garment or sweater, fitting this clothing category.",
+      "word": "CARDIGAN"
     },
     {
-      "category_a": "Add 'S' to make a new word",
-      "category_b": "At the Office",
-      "reason_a": "Adding 'S' to PORT creates the word SPORT.",
-      "reason_b": "Office computers and networks often have various 'ports' (e.g., USB, Ethernet).",
-      "word": "PORT"
+      "category_a": "Named After People (Eponyms)",
+      "category_b": "Things that can be cut",
+      "reason_a": "Named after Joseph-Ignace Guillotin, a French physician.",
+      "reason_b": "A guillotine is a device specifically designed for cutting, creating a strong link to 'things that can be cut'.",
+      "word": "GUILLOTINE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "ADD_LETTER",
+      "mechanic": "EPONYMS",
       "result": "shipped",
       "tier": 3
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "FOUND_IN_SCENE",
-      "result": "shipped",
-      "tier": 1
     }
   ],
   "_validation": {
