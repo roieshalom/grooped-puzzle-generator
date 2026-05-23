@@ -1,77 +1,92 @@
 {
-  "id": "137",
-  "date": "27.04.2026",
+  "id": "GROOPED_PUZZLE_ID",
+  "date": "YYYY-MM-DD",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Types of Outerwear",
+      "name": "___ BOX",
       "words": [
-        "JACKET",
-        "COAT",
-        "SWEATER",
-        "PARKA"
+        "MAIL",
+        "SAND",
+        "JUKE",
+        "MUSIC"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Things that can be cut",
+      "name": "ROLL THE ___",
       "words": [
-        "CAKE",
-        "DIAMOND",
-        "DEAL",
-        "GRASS"
+        "DICE",
+        "TAPE",
+        "HAY",
+        "CARPET"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "___ PRESS",
+      "name": "Things That Float",
       "words": [
-        "WINE",
-        "BENCH",
-        "PRINT",
-        "FREEDOM"
+        "CLOUD",
+        "CORK",
+        "OIL",
+        "ICE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "purple",
-      "name": "Named After People (Eponyms)",
+      "name": "Sounds Like a Letter of the Alphabet",
       "words": [
-        "GUILLOTINE",
-        "CARDIGAN",
-        "SANDWICH",
-        "SILHOUETTE"
+        "SEA",
+        "EYE",
+        "ARE",
+        "WHY"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Named After People (Eponyms)",
-      "category_b": "Types of Outerwear",
-      "reason_a": "Named after James Brudenell, 7th Earl of Cardigan.",
-      "reason_b": "A cardigan is a common type of knitted garment or sweater, fitting this clothing category.",
-      "word": "CARDIGAN"
+      "category_a": "ROLL THE ___",
+      "category_b": "___ BOX",
+      "reason_a": "Common phrase 'roll the dice'",
+      "reason_b": "'Dice box' is a container for dice.",
+      "word": "DICE"
     },
     {
-      "category_a": "Named After People (Eponyms)",
-      "category_b": "Things that can be cut",
-      "reason_a": "Named after Joseph-Ignace Guillotin, a French physician.",
-      "reason_b": "A guillotine is a device specifically designed for cutting, creating a strong link to 'things that can be cut'.",
-      "word": "GUILLOTINE"
+      "category_a": "Things That Float",
+      "category_b": "___ BOX",
+      "reason_a": "Ice floats on water",
+      "reason_b": "'Ice box' is an old term for a refrigerator or cooler.",
+      "word": "ICE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "EPONYMS",
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "result": "shipped",
       "tier": 3
+    },
+    {
+      "mechanic": "THINGS_THAT_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "_validation": {
