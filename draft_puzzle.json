@@ -16,14 +16,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Finish the idiom: 'Don't spill the ___'",
+      "name": "Words on buttons",
       "words": [
-        "BEANS",
-        "HORSES",
-        "CORD",
-        "PENNY"
+        "SAVE",
+        "BACK",
+        "LOCK",
+        "SHARE"
       ]
     },
     {
