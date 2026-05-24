@@ -30,24 +30,24 @@
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Things that can be snapped",
+      "name": "Seat models",
       "words": [
-        "PICTURE",
-        "FRAME",
-        "LENS",
-        "FINGER"
+        "IBIZA",
+        "ARONA",
+        "LEON",
+        "ATECA"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Words that hide types of glass inside",
+      "name": "Common phrases with hidden animals",
       "words": [
-        "MIRROR",
-        "FILM",
-        "SMASH",
-        "SLATE"
+        "CATALYST",
+        "HORSEPLAY",
+        "BUTTERFLY",
+        "DOGGEDLY"
       ]
     }
   ],
