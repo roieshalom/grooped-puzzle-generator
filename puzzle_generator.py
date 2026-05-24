@@ -2,7 +2,7 @@ import os
 import re
 import json
 from datetime import datetime, timedelta
-import google.generativeai as genai
+from openai import OpenAI
 from dotenv import load_dotenv
 from banned_categories import (
     load_banned_categories,
@@ -11,7 +11,7 @@ from banned_categories import (
 
 load_dotenv()  # This loads the .env file
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 
 def _extract_json(text: str) -> str:
@@ -82,19 +82,17 @@ Return ONLY a JSON object with this structure:
 }}"""
 
     try:
-        gmodel = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction="You are a strict fact-checker. Return only valid JSON.",
+        resp = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=[
+                {"role": "system", "content": "You are a strict fact-checker. Return only valid JSON."},
+                {"role": "user", "content": verify_prompt},
+            ],
+            max_tokens=1024,
+            temperature=0.1,
+            response_format={"type": "json_object"},
         )
-        resp = gmodel.generate_content(
-            verify_prompt,
-            generation_config=genai.GenerationConfig(
-                max_output_tokens=1024,
-                temperature=0.1,
-                response_mime_type="application/json",
-            ),
-        )
-        raw = resp.text
+        raw = resp.choices[0].message.content
         try:
             result = json.loads(raw)
         except json.JSONDecodeError:
@@ -459,19 +457,17 @@ The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, o
         attempt += 1
         print(f"Puzzle generation attempt {attempt}")
 
-        gmodel = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
+        response = client.chat.completions.create(
+            model="gpt-4.1",
+            messages=[
+                {"role": "system", "content": "You are an expert Grooped puzzle generator. Return valid JSON only, no prose."},
+                {"role": "user", "content": prompt},
+            ],
+            max_tokens=4096,
+            temperature=0.9,
+            response_format={"type": "json_object"},
         )
-        response = gmodel.generate_content(
-            prompt,
-            generation_config=genai.GenerationConfig(
-                max_output_tokens=4096,
-                temperature=0.9,
-                response_mime_type="application/json",
-            ),
-        )
-        raw = response.text
+        raw = response.choices[0].message.content
         try:
             data = json.loads(raw)
         except json.JSONDecodeError:

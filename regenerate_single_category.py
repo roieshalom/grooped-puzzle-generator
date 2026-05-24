@@ -4,12 +4,12 @@
 import os
 import re
 import json
-import google.generativeai as genai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 
 def _extract_json(text: str) -> str:
-    """Extract raw JSON from Gemini output — handles prose, code fences, any wrapping."""
+    """Extract raw JSON from response — handles prose, code fences, any wrapping."""
     text = re.sub(r'```(?:json)?', '', text, flags=re.IGNORECASE).strip()
     decoder = json.JSONDecoder()
     for i, ch in enumerate(text):
@@ -21,27 +21,27 @@ def _extract_json(text: str) -> str:
                 continue
     return text
 
-def _configure_genai():
-    """Configure Gemini with API key loaded from .env or environment"""
-    api_key = os.environ.get("GEMINI_API_KEY")
+def get_client():
+    """Get OpenAI client with API key loaded from .env or environment"""
+    api_key = os.environ.get("OPENAI_API_KEY")
 
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         load_dotenv()
         env_path = os.path.join(script_dir, '.env')
         load_dotenv(dotenv_path=env_path, override=False)
-        api_key = os.environ.get("GEMINI_API_KEY")
+        api_key = os.environ.get("OPENAI_API_KEY")
 
     if not api_key:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         env_path = os.path.join(script_dir, '.env')
         raise ValueError(
-            f"GEMINI_API_KEY not found. Either:\n"
-            f"1. Set it as an environment variable: export GEMINI_API_KEY=your_key\n"
-            f"2. Create a .env file at {env_path} with: GEMINI_API_KEY=your_key"
+            f"OPENAI_API_KEY not found. Either:\n"
+            f"1. Set it as an environment variable: export OPENAI_API_KEY=your_key\n"
+            f"2. Create a .env file at {env_path} with: OPENAI_API_KEY=your_key"
         )
 
-    genai.configure(api_key=api_key)
+    return OpenAI(api_key=api_key)
 
 
 def generate_single_category(difficulty="medium", existing_categories=None):
@@ -108,9 +108,9 @@ Return ONLY valid JSON with this exact structure:
 
 No extra text, no explanations, just JSON.
 """
-    
+
     try:
-        _configure_genai()
+        client = get_client()
 
         # Prepare banned-check helpers (graceful if banned_categories module missing)
         try:
@@ -120,23 +120,20 @@ No extra text, no explanations, just JSON.
             banned_set = set()
             normalize_category = lambda s: (s or "").strip().lower()  # noqa: E731
 
-        gmodel = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction="You are an expert Grooped puzzle category generator. Always return valid JSON only.",
-        )
-
         max_attempts = 8
         last_candidate = None
         for attempt in range(1, max_attempts + 1):
-            response = gmodel.generate_content(
-                prompt,
-                generation_config=genai.GenerationConfig(
-                    max_output_tokens=512,
-                    temperature=0.8,
-                    response_mime_type="application/json",
-                ),
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "You are an expert Grooped puzzle category generator. Always return valid JSON only."},
+                    {"role": "user", "content": prompt},
+                ],
+                max_tokens=512,
+                temperature=0.8,
+                response_format={"type": "json_object"},
             )
-            raw = response.text
+            raw = response.choices[0].message.content
             try:
                 data = json.loads(raw)
             except json.JSONDecodeError:
@@ -193,26 +190,23 @@ Return ONLY valid JSON with this exact structure:
 
 No extra text, no explanations, just JSON.
 """
-    
+
     try:
-        _configure_genai()
-        gmodel = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
-            system_instruction="You are an expert at generating words for word puzzle categories. Always return valid JSON only.",
+        client = get_client()
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are an expert at generating words for word puzzle categories. Always return valid JSON only."},
+                {"role": "user", "content": prompt},
+            ],
+            max_tokens=512,
+            temperature=0.7,
+            response_format={"type": "json_object"},
         )
-        response = gmodel.generate_content(
-            prompt,
-            generation_config=genai.GenerationConfig(
-                max_output_tokens=512,
-                temperature=0.7,
-                response_mime_type="application/json",
-            ),
-        )
-        raw = response.text
+        raw = response.choices[0].message.content
         try:
             return json.loads(raw)
         except json.JSONDecodeError:
             return json.loads(_extract_json(raw))
     except Exception as e:
         raise Exception(f"Failed to generate words for category: {str(e)}")
-

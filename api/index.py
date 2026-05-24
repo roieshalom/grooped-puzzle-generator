@@ -1,6 +1,6 @@
 """
 Vercel serverless backend for Grooped Puzzle Editor.
-Handles all /api/* routes. Uses Anthropic for generation, GitHub API for storage.
+Handles all /api/* routes. Uses OpenAI for generation, GitHub API for storage.
 """
 
 import os
@@ -14,7 +14,7 @@ from collections import Counter
 from datetime import datetime, timedelta
 from functools import wraps
 
-import google.generativeai as genai
+from openai import OpenAI
 import requests
 from flask import Flask, request, jsonify
 
@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 # ─── Config ──────────────────────────────────────────────────────────────────
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+OPENAI_API_KEY    = os.environ.get("OPENAI_API_KEY", "")
 GITHUB_TOKEN      = os.environ.get("GITHUB_TOKEN", "")
 EDITOR_PASSWORD   = os.environ.get("EDITOR_PASSWORD", "")
 EDITOR_SECRET     = os.environ.get("EDITOR_SECRET", "grooped-editor-secret-v1")
@@ -36,9 +36,9 @@ PUZZLES_PATH  = "puzzles.json"
 DRAFT_PATH    = "draft_puzzle.json"
 BANNED_PATH   = "banned_categories.json"
 
-# Anthropic models
-GEN_MODEL    = os.environ.get("GEN_MODEL", "gemini-2.5-flash")
-VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gemini-2.5-flash")
+# OpenAI models
+GEN_MODEL    = os.environ.get("GEN_MODEL", "gpt-4.1")
+VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gpt-4.1-mini")
 
 # ─── GitHub helpers ───────────────────────────────────────────────────────────
 
@@ -510,21 +510,19 @@ def _extract_json(text: str) -> str:
     return text
 
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
-    """Call Gemini and parse JSON from the response."""
+    """Call OpenAI and parse JSON from the response."""
     model = model or GEN_MODEL
-    genai.configure(api_key=GEMINI_API_KEY)
-    gmodel = genai.GenerativeModel(
-        model_name=model,
-        system_instruction="You are an expert Grooped puzzle generator. Return valid JSON only, no prose.",
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": "You are an expert Grooped puzzle generator. Return valid JSON only, no prose."},
+            {"role": "user", "content": prompt},
+        ],
+        max_tokens=max_tokens,
+        response_format={"type": "json_object"},
     )
-    response = gmodel.generate_content(
-        prompt,
-        generation_config=genai.GenerationConfig(
-            max_output_tokens=max_tokens,
-            response_mime_type="application/json",
-        ),
-    )
-    raw = response.text
+    raw = response.choices[0].message.content
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
@@ -533,7 +531,7 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
         try:
             return json.loads(extracted)
         except json.JSONDecodeError:
-            raise ValueError(f"Could not parse JSON from Gemini response: {raw[:300]}")
+            raise ValueError(f"Could not parse JSON from OpenAI response: {raw[:300]}")
 
 # ─── Decoy verification ───────────────────────────────────────────────────────
 
@@ -1134,7 +1132,7 @@ def published_dates():
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"ok": True, "env": {
-        "gemini": bool(GEMINI_API_KEY),
+        "openai": bool(OPENAI_API_KEY),
         "github": bool(GITHUB_TOKEN),
         "password": bool(EDITOR_PASSWORD),
     }})
