@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 4,
+      "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "blue",
-      "name": "Things That Float",
+      "name": "European dictators",
       "words": [
-        "CLOUD",
-        "CORK",
-        "OIL",
-        "ICE"
+        "STALIN",
+        "HOXHA",
+        "MUSSOLINI",
+        "FRANCO"
       ]
     },
     {
