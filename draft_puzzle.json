@@ -40,14 +40,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "Complete the idiom: 'Hold the ___'",
+      "name": "Thrown in sports",
       "words": [
-        "CUE",
-        "LINE",
-        "TIE",
-        "END"
+        "PENALTY",
+        "DART",
+        "JAVELIN",
+        "DISCUS"
       ]
     }
   ],
