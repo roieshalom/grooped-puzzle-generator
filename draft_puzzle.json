@@ -1,70 +1,70 @@
 {
-  "id": "163",
-  "date": "25.06.2026",
+  "id": "144",
+  "date": "01.05.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "In a movie theater",
+      "name": "Given when you have a reservation",
       "words": [
-        "SCREEN",
-        "POSTER",
-        "SEAT",
-        "REEL"
+        "MATCH",
+        "DATE",
+        "TICKET",
+        "MENU"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Filter",
+      "name": "Metaphors for a tense moment",
       "words": [
-        "SIFT",
-        "STRAIN",
-        "PURIFY",
-        "REFINE"
+        "CORNER",
+        "CRUNCH",
+        "HEAT",
+        "SINK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Seat models",
+      "name": "Can be passed",
       "words": [
-        "IBIZA",
-        "ARONA",
-        "LEON",
-        "ATECA"
+        "PASS",
+        "BATON",
+        "BALL",
+        "TORCH"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Movies starring Natalie Portman",
+      "name": "Complete the idiom: 'Hold the ___'",
       "words": [
-        "BLACK SWAN",
-        "CLOSER",
-        "JACKIE",
-        "HEAT"
+        "CUE",
+        "LINE",
+        "TIE",
+        "END"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Words that can complete 'take a ___'",
-      "category_b": "Things that can be snapped",
-      "reason_a": "'take a shot' is a familiar phrase",
-      "reason_b": "'snap a shot' is fairly common, as in photography",
-      "word": "SHOT"
+      "category_a": "Can be passed",
+      "category_b": "Given when you have a reservation",
+      "reason_a": "Balls are passed in sports.",
+      "reason_b": "You can have a ticket to a ball (dance), a formal event requiring a reservation.",
+      "word": "BALL"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
-      "tier": 3
+      "tier": 1
     }
   ],
   "_validation": {
