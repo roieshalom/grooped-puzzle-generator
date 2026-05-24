@@ -28,26 +28,26 @@
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Have holes through them",
+      "name": "Four types of social media posts",
       "words": [
-        "RING",
-        "BUTTON",
-        "APPLE",
-        "CASTLE"
+        "TWEET",
+        "POST",
+        "STORY",
+        "SNAP"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "ORDERED_SET_MEMBER",
+      "tier": 4,
+      "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "purple",
-      "name": "Things you might jump over",
+      "name": "Owned by Elon Musk",
       "words": [
-        "HILL",
-        "MOUNTAIN",
-        "TENNIS",
-        "SKIP"
+        "X",
+        "TESLA",
+        "SPACEX",
+        "WET NELLIE"
       ]
     }
   ],
