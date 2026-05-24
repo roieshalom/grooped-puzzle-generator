@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Items you’d find in a movie theater",
+      "name": "In a movie theater",
       "words": [
         "SCREEN",
         "POSTER",
@@ -16,14 +16,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "WAYS_TO_VERB",
       "difficulty": "green",
-      "name": "Words that can complete 'take a ___'",
+      "name": "Filter",
       "words": [
-        "SHOT",
-        "HAND",
-        "BREAK",
-        "STAGE"
+        "SIFT",
+        "STRAIN",
+        "PURIFY",
+        "REFINE"
       ]
     },
     {
