@@ -3,27 +3,27 @@
   "date": "YYYY-MM-DD",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "ORDERED_SET_MEMBER",
       "difficulty": "yellow",
-      "name": "___ BOX",
+      "name": "Middle eastern rivers",
       "words": [
-        "MAIL",
-        "SAND",
-        "JUKE",
-        "MUSIC"
+        "NILE",
+        "EURPHATES",
+        "TIGRIS",
+        "JORDAN"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 3,
+      "mechanic": "EPONYMS",
       "difficulty": "green",
-      "name": "ROLL THE ___",
+      "name": "Famous Michaels",
       "words": [
-        "DICE",
-        "TAPE",
-        "HAY",
-        "CARPET"
+        "JACKSON",
+        "CAINE",
+        "DOUGLAS",
+        "PHELPS"
       ]
     },
     {
@@ -33,7 +33,7 @@
       "name": "European dictators",
       "words": [
         "STALIN",
-        "HOXHA",
+        "TITO",
         "MUSSOLINI",
         "FRANCO"
       ]
@@ -45,7 +45,7 @@
       "name": "Jackson 5 members",
       "words": [
         "JACKIE",
-        "TITO",
+        "JERMAINE",
         "MICHAEL",
         "MARLON"
       ]
