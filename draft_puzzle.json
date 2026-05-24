@@ -1,57 +1,65 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "163",
+  "date": "25.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Fill to capacity",
+      "name": "Items you’d find in a movie theater",
       "words": [
-        "STUFFING",
-        "LOAD",
-        "JAM",
-        "PACK"
+        "SCREEN",
+        "POSTER",
+        "SEAT",
+        "REEL"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Words on buttons",
+      "name": "Words that can complete 'take a ___'",
       "words": [
-        "SAVE",
-        "BACK",
-        "LOCK",
-        "SHARE"
+        "SHOT",
+        "HAND",
+        "BREAK",
+        "STAGE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Types of posts",
+      "name": "Things that can be snapped",
       "words": [
-        "TWEET",
-        "POST",
-        "STORY",
-        "SNAP"
+        "PICTURE",
+        "FRAME",
+        "LENS",
+        "FINGER"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ACROSTIC_FIRST_LETTERS",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Owned by Elon Musk",
+      "name": "Words that hide types of glass inside",
       "words": [
-        "X",
-        "TESLA",
-        "SPACEX",
-        "WET NELLIE"
+        "MIRROR",
+        "FILM",
+        "SMASH",
+        "SLATE"
       ]
     }
   ],
-  "decoys": [],
+  "decoys": [
+    {
+      "category_a": "Words that can complete 'take a ___'",
+      "category_b": "Things that can be snapped",
+      "reason_a": "'take a shot' is a familiar phrase",
+      "reason_b": "'snap a shot' is fairly common, as in photography",
+      "word": "SHOT"
+    }
+  ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
