@@ -1,92 +1,62 @@
 {
-  "id": "GROOPED_PUZZLE_ID",
-  "date": "YYYY-MM-DD",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "ORDERED_SET_MEMBER",
+      "tier": 1,
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Middle eastern rivers",
+      "name": "Synonyms for 'fill to capacity'",
       "words": [
-        "NILE",
-        "EURPHATES",
-        "TIGRIS",
-        "JORDAN"
+        "STUFFING",
+        "LOAD",
+        "JAM",
+        "PACK"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "EPONYMS",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Famous Michaels",
+      "name": "Finish the idiom: 'Don't spill the ___'",
       "words": [
-        "JACKSON",
-        "CAINE",
-        "DOUGLAS",
-        "PHELPS"
+        "BEANS",
+        "HORSES",
+        "CORD",
+        "PENNY"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ACROSTIC_FIRST_LETTERS",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "European dictators",
+      "name": "Have holes through them",
       "words": [
-        "STALIN",
-        "TITO",
-        "MUSSOLINI",
-        "FRANCO"
+        "RING",
+        "BUTTON",
+        "APPLE",
+        "CASTLE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "ORDERED_SET_MEMBER",
       "difficulty": "purple",
-      "name": "Jackson 5 members",
+      "name": "Things you might jump over",
       "words": [
-        "JACKIE",
-        "JERMAINE",
-        "MICHAEL",
-        "MARLON"
+        "HILL",
+        "MOUNTAIN",
+        "TENNIS",
+        "SKIP"
       ]
     }
   ],
-  "decoys": [
-    {
-      "category_a": "ROLL THE ___",
-      "category_b": "___ BOX",
-      "reason_a": "Common phrase 'roll the dice'",
-      "reason_b": "'Dice box' is a container for dice.",
-      "word": "DICE"
-    },
-    {
-      "category_a": "Things That Float",
-      "category_b": "___ BOX",
-      "reason_a": "Ice floats on water",
-      "reason_b": "'Ice box' is an old term for a refrigerator or cooler.",
-      "word": "ICE"
-    }
-  ],
+  "decoys": [],
   "attempt_log": [
     {
-      "mechanic": "HOMOPHONE_OF_LETTER",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "result": "shipped",
       "tier": 3
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "IDIOM_COMPLETION",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
     }
   ],
   "_validation": {
