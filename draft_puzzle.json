@@ -18,7 +18,7 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Metaphors for a tense moment",
+      "name": "A tense moment",
       "words": [
         "CORNER",
         "CRUNCH",
@@ -32,7 +32,7 @@
       "difficulty": "blue",
       "name": "Can be passed",
       "words": [
-        "PASS",
+        "BUCK",
         "BATON",
         "BALL",
         "TORCH"
