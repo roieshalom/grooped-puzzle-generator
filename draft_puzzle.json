@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Common phrases with hidden animals",
+      "name": "Movies starring Natalie Portman",
       "words": [
-        "CATALYST",
-        "HORSEPLAY",
-        "BUTTERFLY",
-        "DOGGEDLY"
+        "BLACK SWAN",
+        "CLOSER",
+        "JACKIE",
+        "HEAT"
       ]
     }
   ],
