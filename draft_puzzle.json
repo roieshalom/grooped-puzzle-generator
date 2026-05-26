@@ -1,75 +1,100 @@
 {
-  "id": "144",
-  "date": "01.05.2026",
+  "id": "201",
+  "date": "09.06.2024",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Given when you have a reservation",
+      "name": "Things found on a bed",
       "words": [
-        "MATCH",
-        "DATE",
-        "TICKET",
-        "MENU"
+        "SHEET",
+        "BANK",
+        "PILLOW",
+        "CLOCK"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "A tense moment",
+      "name": "Things that can be flipped",
       "words": [
-        "CORNER",
-        "CRUNCH",
-        "HEAT",
-        "SINK"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Can be passed",
-      "words": [
-        "BUCK",
-        "BATON",
-        "BALL",
-        "TORCH"
+        "SHEET",
+        "BRICK",
+        "CASE",
+        "CLOCK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "purple",
-      "name": "Thrown in sports",
+      "difficulty": "blue",
+      "name": "Metaphors for a difficult problem",
       "words": [
-        "PENALTY",
-        "DART",
-        "JAVELIN",
-        "DISCUS"
+        "NUT",
+        "BRICK",
+        "CASE",
+        "BANK"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "ORDERED_SET_MEMBER",
+      "difficulty": "purple",
+      "name": "Face cards in a deck",
+      "words": [
+        "ACE",
+        "JACK",
+        "KING",
+        "QUEEN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can be passed",
-      "category_b": "Given when you have a reservation",
-      "reason_a": "Balls are passed in sports.",
-      "reason_b": "You can have a ticket to a ball (dance), a formal event requiring a reservation.",
-      "word": "BALL"
+      "category_a": "Things found on a bed",
+      "category_b": "Things that can be flipped",
+      "reason_a": "a literal bedding item",
+      "reason_b": "to flip a sheet or a sheet of paper",
+      "word": "SHEET"
+    },
+    {
+      "category_a": "Things that can be flipped",
+      "category_b": "Metaphors for a difficult problem",
+      "reason_a": "flip a case open or closed",
+      "reason_b": "a tough case refers to a hard-to-solve problem",
+      "word": "CASE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "HIDDEN_WORD_AT_END",
+      "reason": "Could not find four common words with different endings hiding the same category; forced or obscure.",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "ORDERED_SET_MEMBER",
       "result": "shipped",
-      "tier": 1
+      "tier": 2
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'SHEET' within this puzzle",
+      "Duplicate word 'BANK' within this puzzle",
+      "Duplicate word 'CLOCK' within this puzzle",
+      "Duplicate word 'BRICK' within this puzzle",
+      "Duplicate word 'CASE' within this puzzle"
+    ],
+    "duplicate_words": [
+      "SHEET",
+      "BANK",
+      "CLOCK",
+      "BRICK",
+      "CASE"
+    ]
   }
 }
