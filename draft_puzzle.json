@@ -1,100 +1,75 @@
 {
-  "id": "201",
-  "date": "09.06.2024",
+  "id": "190",
+  "date": "10.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Things found on a bed",
+      "name": "___ SPOT",
       "words": [
-        "SHEET",
-        "BANK",
-        "PILLOW",
-        "CLOCK"
+        "HOT",
+        "SWEET",
+        "SOFT",
+        "BLIND"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Things that can be flipped",
+      "name": "Can be bowled",
       "words": [
-        "SHEET",
-        "BRICK",
-        "CASE",
-        "CLOCK"
+        "LANES",
+        "STRIKE",
+        "TICKET",
+        "FRAME"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "blue",
-      "name": "Metaphors for a difficult problem",
+      "name": "Metaphors for repairing",
       "words": [
-        "NUT",
-        "BRICK",
-        "CASE",
-        "BANK"
+        "FIX",
+        "PATCH",
+        "GLUE",
+        "TAPE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "ORDERED_SET_MEMBER",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Face cards in a deck",
+      "name": "Hidden kinds of trees",
       "words": [
-        "ACE",
-        "JACK",
-        "KING",
-        "QUEEN"
+        "MAPLE",
+        "BARK",
+        "CHIP",
+        "PALM"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things found on a bed",
-      "category_b": "Things that can be flipped",
-      "reason_a": "a literal bedding item",
-      "reason_b": "to flip a sheet or a sheet of paper",
-      "word": "SHEET"
-    },
-    {
-      "category_a": "Things that can be flipped",
-      "category_b": "Metaphors for a difficult problem",
-      "reason_a": "flip a case open or closed",
-      "reason_b": "a tough case refers to a hard-to-solve problem",
-      "word": "CASE"
+      "category_a": "Metaphors for repairing",
+      "category_b": "___ SPOT",
+      "reason_a": "Patch means to repair or fix something, especially as a metaphor.",
+      "reason_b": "Solvers may think of 'PATCH' as in a grass patch or a worn spot in fabric.",
+      "word": "PATCH"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_END",
-      "reason": "Could not find four common words with different endings hiding the same category; forced or obscure.",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "ORDERED_SET_MEMBER",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "result": "shipped",
-      "tier": 2
+      "tier": 3
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'SHEET' within this puzzle",
-      "Duplicate word 'BANK' within this puzzle",
-      "Duplicate word 'CLOCK' within this puzzle",
-      "Duplicate word 'BRICK' within this puzzle",
-      "Duplicate word 'CASE' within this puzzle"
-    ],
-    "duplicate_words": [
-      "SHEET",
-      "BANK",
-      "CLOCK",
-      "BRICK",
-      "CASE"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
