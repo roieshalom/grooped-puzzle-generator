@@ -30,24 +30,24 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "blue",
-      "name": "Metaphors for repairing",
+      "name": "Card games",
       "words": [
-        "FIX",
-        "PATCH",
-        "GLUE",
-        "TAPE"
+        "HEARTS",
+        "BRIDGE",
+        "UNO",
+        "PRESIDENT"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "purple",
-      "name": "Hidden kinds of trees",
+      "name": "",
       "words": [
-        "MAPLE",
-        "BARK",
-        "CHIP",
-        "PALM"
+        "POTATO",
+        "CHOCOLATE",
+        "BANANA",
+        "POKER"
       ]
     }
   ],
