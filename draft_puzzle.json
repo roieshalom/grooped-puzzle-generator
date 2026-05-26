@@ -6,24 +6,24 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "___ SPOT",
+      "name": "Connect",
       "words": [
-        "HOT",
-        "SWEET",
-        "SOFT",
-        "BLIND"
+        "BOND",
+        "LINK",
+        "CONTACT",
+        "TIE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 3,
+      "mechanic": "ABBREVIATION_EXPANSION",
       "difficulty": "green",
-      "name": "Can be bowled",
+      "name": "Head of the country",
       "words": [
-        "LANES",
-        "STRIKE",
-        "TICKET",
-        "FRAME"
+        "KING",
+        "KANZLER",
+        "EMPEROR",
+        "SUPREME LEADER"
       ]
     },
     {
