@@ -1,70 +1,83 @@
 {
-  "id": "190",
-  "date": "10.06.2026",
+  "id": "185",
+  "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Connect",
+      "name": "On the dinner table",
       "words": [
-        "BOND",
-        "LINK",
-        "CONTACT",
-        "TIE"
+        "FORK",
+        "SPOON",
+        "KNIFE",
+        "PLATE"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ABBREVIATION_EXPANSION",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Head of the country",
+      "name": "Objects that can be stuck in or on something",
       "words": [
-        "KING",
-        "KANZLER",
-        "EMPEROR",
-        "SUPREME LEADER"
+        "STUMP",
+        "BLOCK",
+        "JAM",
+        "LOG"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "blue",
+      "name": "Hidden in a ___",
+      "words": [
+        "STORM",
+        "CLOUD",
+        "NEEDLE",
+        "HAYSTACK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "blue",
-      "name": "Card games",
-      "words": [
-        "HEARTS",
-        "BRIDGE",
-        "UNO",
-        "PRESIDENT"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
       "difficulty": "purple",
-      "name": "Types of chips",
+      "name": "Metaphors for getting caught",
       "words": [
-        "POTATO",
-        "CHOCOLATE",
-        "BANANA",
-        "POKER"
+        "FREEZE",
+        "BOARD",
+        "WAVE",
+        "RED HANDED"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Metaphors for repairing",
-      "category_b": "___ SPOT",
-      "reason_a": "Patch means to repair or fix something, especially as a metaphor.",
-      "reason_b": "Solvers may think of 'PATCH' as in a grass patch or a worn spot in fabric.",
-      "word": "PATCH"
+      "category_a": "Objects that can be stuck in or on something",
+      "category_b": "On the dinner table",
+      "reason_a": "A jam is a blockage (traffic jam, printer jam)",
+      "reason_b": "Jam is a common food at the table",
+      "word": "JAM"
+    },
+    {
+      "category_a": "On the dinner table",
+      "category_b": "Objects that can be stuck in or on something",
+      "reason_a": "Utensil used with food",
+      "reason_b": "A fork can be stuck in the ground or food",
+      "word": "FORK"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
+      "reason": "Could not naturally hide thematic words in four surface answers without forced wordlist. Rebuilt with Tier 2/1 mechanics for stronger board.",
+      "result": "abandoned",
       "tier": 3
+    },
+    {
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "result": "shipped",
+      "tier": 2
     }
   ],
   "_validation": {
