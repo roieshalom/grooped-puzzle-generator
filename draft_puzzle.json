@@ -1,79 +1,66 @@
 {
-  "id": "185",
-  "date": "28.04.2026",
+  "id": "215",
+  "date": "08.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Provided by Cattle",
+      "name": "___ BREAK",
       "words": [
-        "MILK",
-        "GELATIN",
-        "LEATHER",
-        "BRAKE FLUID"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "EPONYMS",
-      "difficulty": "green",
-      "name": "Spoon types",
-      "words": [
-        "TEA",
-        "COFFEE",
-        "BONBON",
-        "CHINESE"
+        "LUCKY",
+        "CLEAN",
+        "SLATE",
+        "TIME"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "blue",
-      "name": "Idioms with numbers",
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "green",
+      "name": "Phrases for exiting discreetly",
       "words": [
-        "SQUARE",
-        "CLOUD",
-        "CATCH",
-        "HEAVEN"
+        "TIPTOE",
+        "DUCK OUT",
+        "WAVE HAND",
+        "TIME BOMB"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "CHAIN_THROUGH_HUB",
-      "difficulty": "purple",
-      "name": "Kids' games",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "difficulty": "blue",
+      "name": "Hidden social archetypes (animal/plant)",
       "words": [
-        "MARBLES",
-        "TAG",
-        "SIMON SAYS",
-        "FRISBEE"
+        "SOCIAL BUTTERFLY",
+        "WALLFLOWER",
+        "LONE WOLF",
+        "BOOKWORM"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "TAXONOMY",
+      "difficulty": "purple",
+      "name": "Things that protect your head",
+      "words": [
+        "LID",
+        "CROWN",
+        "SHIELD",
+        "ARMOR"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Objects that can be stuck in or on something",
-      "category_b": "On the dinner table",
-      "reason_a": "A jam is a blockage (traffic jam, printer jam)",
-      "reason_b": "Jam is a common food at the table",
-      "word": "JAM"
-    },
-    {
-      "category_a": "On the dinner table",
-      "category_b": "Objects that can be stuck in or on something",
-      "reason_a": "Utensil used with food",
-      "reason_b": "A fork can be stuck in the ground or food",
-      "word": "FORK"
+      "category_a": "Phrases for exiting discreetly",
+      "category_b": "Things that protect your head",
+      "reason_a": "Waving goodbye is a subtle exit gesture.",
+      "reason_b": "A \"wave\" can be thought of as a covering motion or protector (as in a wave of the hand to shield one's face); \"hand\" is also sometimes slang for something you use for defense, tempting mis-association.",
+      "word": "WAVE HAND"
     }
   ],
   "attempt_log": [
-    {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not naturally hide thematic words in four surface answers without forced wordlist. Rebuilt with Tier 2/1 mechanics for stronger board.",
-      "result": "abandoned",
-      "tier": 3
-    },
     {
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "result": "shipped",
