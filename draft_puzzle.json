@@ -4,26 +4,26 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "On the dinner table",
+      "name": "Provided by Cattle",
       "words": [
-        "FORK",
-        "SPOON",
-        "KNIFE",
-        "PLATE"
+        "MILK",
+        "GELATIN",
+        "LEATHER",
+        "BRAKE FLUID"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "EPONYMS",
       "difficulty": "green",
-      "name": "Objects that can be stuck in or on something",
+      "name": "Spoon types",
       "words": [
-        "STUMP",
-        "BLOCK",
-        "JAM",
-        "LOG"
+        "TEA",
+        "COFFEE",
+        "BONBON",
+        "CHINESE"
       ]
     },
     {
