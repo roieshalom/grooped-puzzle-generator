@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 4,
+      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "purple",
-      "name": "Metaphors for getting caught",
+      "name": "Kids' games",
       "words": [
-        "FREEZE",
-        "BOARD",
-        "WAVE",
-        "RED HANDED"
+        "MARBLES",
+        "TAG",
+        "SIMON SAYS",
+        "FRISBEE"
       ]
     }
   ],
