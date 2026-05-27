@@ -30,12 +30,12 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "Hidden in a ___",
+      "name": "Idioms with numbers",
       "words": [
-        "STORM",
+        "SQUARE",
         "CLOUD",
-        "NEEDLE",
-        "HAYSTACK"
+        "CATCH",
+        "HEAVEN"
       ]
     },
     {
