@@ -3,15 +3,15 @@
   "date": "08.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "tier": 2,
+      "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "yellow",
-      "name": "___ BREAK",
+      "name": "Women in Beatles songs",
       "words": [
-        "LUCKY",
-        "CLEAN",
-        "SLATE",
-        "TIME"
+        "ELEANOR",
+        "JULIA",
+        "MARGO",
+        "LUCY"
       ]
     },
     {
