@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "CHAIN_THROUGH_HUB",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Circus acts",
+      "name": "Poultry",
       "words": [
-        "JUGGLER",
-        "BALANCE",
-        "TRAPEZE",
-        "CLOWN"
+        "CHICKEN",
+        "PIGEON",
+        "DUCK",
+        "GOOSE"
       ]
     },
     {
