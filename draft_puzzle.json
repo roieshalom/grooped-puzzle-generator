@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 4,
+      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "green",
-      "name": "Being captivated",
+      "name": "Euroasian countries",
       "words": [
-        "HOOKED",
-        "SWOONING",
-        "MESMERIZED",
-        "ENCHANTED"
+        "RUSSIA",
+        "CYPRUS",
+        "AZERBAIJAN",
+        "TURKEY"
       ]
     },
     {
@@ -35,7 +35,7 @@
         "JUGGLER",
         "BALANCE",
         "TRAPEZE",
-        ""
+        "CLOWN"
       ]
     },
     {
