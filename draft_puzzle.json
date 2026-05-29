@@ -4,21 +4,21 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Things you open in the kitchen",
+      "name": "wall of ____",
       "words": [
-        "CUPBOARD",
-        "DRAWER",
-        "FRIDGE",
-        "SHOE"
+        "CHINA",
+        "SOUND",
+        "FIRE",
+        "DEATH"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Metaphors for being captivated",
+      "name": "Being captivated",
       "words": [
         "HOOKED",
         "SWOONING",
@@ -27,27 +27,27 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 4,
+      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "blue",
-      "name": "Can complete 'power ___'",
+      "name": "Circus acts",
       "words": [
-        "PLUG",
-        "CORD",
-        "STRIP",
-        "BUTTON"
+        "JUGGLER",
+        "BALANCE",
+        "TRAPEZE",
+        ""
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "EPONYMS",
       "difficulty": "purple",
-      "name": "Things with a hidden fastener",
+      "name": "Fender models",
       "words": [
-        "PEANUT",
-        "CLIP",
-        "CHIP",
-        "POKER"
+        "STRATOCASTER",
+        "TELECASTER",
+        "JAZZMASTER",
+        "JAGUAR"
       ]
     }
   ],
