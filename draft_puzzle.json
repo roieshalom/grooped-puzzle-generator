@@ -6,7 +6,7 @@
       "tier": 2,
       "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "yellow",
-      "name": "Women in Beatles songs",
+      "name": "Women in Beatles' songs",
       "words": [
         "ELEANOR",
         "JULIA",
@@ -32,7 +32,7 @@
       "difficulty": "blue",
       "name": "Hidden social archetypes (animal/plant)",
       "words": [
-        "SOCIAL BUTTERFLY",
+        "JOHN",
         "WALLFLOWER",
         "LONE WOLF",
         "BOOKWORM"
