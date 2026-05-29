@@ -1,83 +1,84 @@
 {
-  "id": "202",
-  "date": "10.06.2024",
+  "id": "178",
+  "date": "18.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "wall of ____",
+      "name": "Things found in a backpack",
       "words": [
-        "CHINA",
-        "SOUND",
-        "FIRE",
-        "DEATH"
+        "STICKER",
+        "RECEIPT",
+        "PEN",
+        "GUM"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "CHAIN_THROUGH_HUB",
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Euroasian countries",
+      "name": "Metaphors for obstruction",
       "words": [
-        "RUSSIA",
-        "CYPRUS",
-        "AZERBAIJAN",
-        "TURKEY"
+        "DRAIN",
+        "PLUG",
+        "BLOCK",
+        "LOG"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Poultry",
+      "name": "Can be filtered",
       "words": [
-        "CHICKEN",
-        "PIGEON",
-        "DUCK",
-        "GOOSE"
+        "MOOD",
+        "WATER",
+        "EMAIL",
+        "NOISE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "EPONYMS",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Fender models",
+      "name": "Words hiding the name of an insect",
       "words": [
-        "STRATOCASTER",
-        "TELECASTER",
-        "JAZZMASTER",
-        "JAGUAR"
+        "FILTER",
+        "SIEVE",
+        "CATERPILLAR",
+        "EIGHT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things with a hidden fastener",
-      "category_b": "Can complete 'power ___'",
-      "reason_a": "paperclip (fastener) is hidden in 'clip'",
-      "reason_b": "Solvers may attempt 'power clip' as a plausible modern device or concept.",
-      "word": "CLIP"
+      "category_a": "Things found in a backpack",
+      "category_b": "Metaphors for obstruction",
+      "reason_a": "Gum is a common backpack item.",
+      "reason_b": "Gum can mean to block something up (gum up the works).",
+      "word": "GUM"
     },
     {
-      "category_a": "Can complete 'power ___'",
-      "category_b": "Things with a hidden fastener",
-      "reason_a": "Power button is a physical button used to turn on electronics.",
-      "reason_b": "Button is directly a fastener; solvers may want to place it there, but in this puzzle, it lands in the idiom group instead.",
-      "word": "BUTTON"
+      "category_a": "Words hiding the name of an insect",
+      "category_b": "Can be filtered",
+      "reason_a": "FILTER contains 'F-LY'.",
+      "reason_b": "A literal filter is used to filter substances, making it a natural candidate for both.",
+      "word": "FILTER"
+    },
+    {
+      "category_a": "Metaphors for obstruction",
+      "category_b": "Can be filtered",
+      "reason_a": "Block = to impede or obstruct.",
+      "reason_b": "You can block spam emails with a filter.",
+      "word": "BLOCK"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_END",
-      "reason": "Could not find four everyday words ending with a hidden fastener cleanly, too forced.",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "result": "shipped",
-      "tier": 2
+      "tier": 3
     }
   ],
   "_validation": {
