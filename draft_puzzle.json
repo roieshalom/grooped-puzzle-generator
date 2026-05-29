@@ -1,66 +1,79 @@
 {
-  "id": "215",
-  "date": "08.06.2026",
+  "id": "202",
+  "date": "10.06.2024",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "CHARACTERS_IN_ONE_WORK",
+      "tier": 1,
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Women in Beatles' songs",
+      "name": "Things you open in the kitchen",
       "words": [
-        "ELEANOR",
-        "JULIA",
-        "MARGO",
-        "LUCY"
+        "CUPBOARD",
+        "DRAWER",
+        "FRIDGE",
+        "SHOE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Cartoons' wives",
+      "name": "Metaphors for being captivated",
       "words": [
-        "MINI",
-        "DAISY",
-        "LOLA",
-        "WILMA"
+        "HOOKED",
+        "SWOONING",
+        "MESMERIZED",
+        "ENCHANTED"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "ORDERED_SET_MEMBER",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "queens of england",
+      "name": "Can complete 'power ___'",
       "words": [
-        "ELIZABETH",
-        "VICTORIA",
-        "ANNE",
-        "MARY"
+        "PLUG",
+        "CORD",
+        "STRIP",
+        "BUTTON"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Branjelina's kids",
+      "name": "Things with a hidden fastener",
       "words": [
-        "KNOX",
-        "VIVIENNE",
-        "SHILOH",
-        "ZAHARA"
+        "PEANUT",
+        "CLIP",
+        "CHIP",
+        "POKER"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Phrases for exiting discreetly",
-      "category_b": "Things that protect your head",
-      "reason_a": "Waving goodbye is a subtle exit gesture.",
-      "reason_b": "A \"wave\" can be thought of as a covering motion or protector (as in a wave of the hand to shield one's face); \"hand\" is also sometimes slang for something you use for defense, tempting mis-association.",
-      "word": "WAVE HAND"
+      "category_a": "Things with a hidden fastener",
+      "category_b": "Can complete 'power ___'",
+      "reason_a": "paperclip (fastener) is hidden in 'clip'",
+      "reason_b": "Solvers may attempt 'power clip' as a plausible modern device or concept.",
+      "word": "CLIP"
+    },
+    {
+      "category_a": "Can complete 'power ___'",
+      "category_b": "Things with a hidden fastener",
+      "reason_a": "Power button is a physical button used to turn on electronics.",
+      "reason_b": "Button is directly a fastener; solvers may want to place it there, but in this puzzle, it lands in the idiom group instead.",
+      "word": "BUTTON"
     }
   ],
   "attempt_log": [
+    {
+      "mechanic": "HIDDEN_WORD_AT_END",
+      "reason": "Could not find four everyday words ending with a hidden fastener cleanly, too forced.",
+      "result": "abandoned",
+      "tier": 3
+    },
     {
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "result": "shipped",
