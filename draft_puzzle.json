@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Things that protect your head",
+      "name": "Branjelina's kids",
       "words": [
-        "LID",
-        "CROWN",
-        "SHIELD",
-        "ARMOR"
+        "KNOX",
+        "VIVIENNE",
+        "SHILOH",
+        "ZAHARA"
       ]
     }
   ],
