@@ -28,14 +28,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "ORDERED_SET_MEMBER",
       "difficulty": "blue",
-      "name": "Hidden social archetypes (animal/plant)",
+      "name": "queens of england",
       "words": [
-        "JOHN",
-        "WALLFLOWER",
-        "LONE WOLF",
-        "BOOKWORM"
+        "ELIZABETH",
+        "VICTORIA",
+        "ANNE",
+        "MARY"
       ]
     },
     {
