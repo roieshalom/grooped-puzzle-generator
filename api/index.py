@@ -589,6 +589,61 @@ Return ONLY JSON:
         print(f"Decoy verification failed ({e}), keeping all")
         return decoys
 
+
+def _verify_categories(categories: list) -> tuple:
+    """Verify that each category's 4 words genuinely fit the category name.
+
+    Returns (all_valid: bool, failing_reason: str). If verification call
+    fails for infrastructure reasons, returns (True, "") — i.e. don't block
+    on transient model errors.
+    """
+    if not categories:
+        return False, "no categories"
+
+    cats_block = "\n".join(
+        f'{i}. "{c.get("name", "")}": {", ".join(c.get("words", []))}'
+        for i, c in enumerate(categories, 1)
+    )
+
+    prompt = f"""Fact-check these Connections-style puzzle categories.
+
+CATEGORIES:
+{cats_block}
+
+For EACH category, verify whether ALL 4 listed words genuinely fit the category as stated.
+
+STRICT rules apply to wordplay mechanics:
+- "Hidden X inside" / "Begins with X" / "Ends with X" — the substring must literally appear at that position. The whole word being X does NOT count as "hidden inside X".
+- "Anagram of X" / "Sounds like X" — the relationship must actually hold.
+- "Words that follow X" / "X ___" — the resulting phrase must be a real common phrase.
+
+LENIENT rules apply to semantic/thematic categories:
+- "Things in a kitchen", "Ways to say yes" — accept if a typical adult would agree.
+- Slightly tangential fits are OK if widely recognizable.
+
+For each category, mark valid=true ONLY if all 4 words clearly fit. Mark valid=false if even ONE word fails.
+
+Return ONLY JSON:
+{{"verdicts": [{{"index": 1, "valid": true, "reason": "brief"}}, ...]}}"""
+
+    try:
+        result = _call_claude(prompt, max_tokens=900, model=VERIFY_MODEL, temperature=0.1)
+        verdicts = result.get("verdicts", [])
+        for v in verdicts:
+            if not v.get("valid", True):
+                idx = v.get("index", 0)
+                reason = v.get("reason", "no reason given")
+                cat_name = (
+                    categories[idx - 1].get("name", "?")
+                    if 0 < idx <= len(categories) else "?"
+                )
+                return False, f"'{cat_name}' — {reason}"
+        return True, ""
+    except Exception as e:
+        print(f"Category verification failed ({e}), accepting puzzle")
+        return True, ""
+
+
 # ─── Puzzle generation ────────────────────────────────────────────────────────
 
 def _build_prompt(banned_list: list) -> str:
@@ -990,6 +1045,14 @@ def generate_puzzle():
                 if has_circular:
                     break
             if has_circular:
+                continue
+
+            # Verify each category's 4 words actually fit the category name.
+            # This catches execution failures like "Begins with a day hidden inside" → SUNDAY (the whole word IS the day, not hidden).
+            cats_valid, fail_reason = _verify_categories(data["categories"])
+            if not cats_valid:
+                print(f"Rejected: category-words mismatch — {fail_reason}")
+                last_data = data
                 continue
 
             # Normalise decoy schema: model sometimes uses home/tempts_toward instead of category_a/b
