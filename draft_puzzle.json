@@ -1,76 +1,70 @@
 {
-  "id": "201",
+  "id": "138",
   "date": "28.04.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things you might slip on",
+      "name": "Things you might bring on a long train trip",
       "words": [
-        "BANANA",
-        "SLIPPER",
-        "ICE",
-        "ORANGE"
+        "BRIDGE",
+        "SUITCASE",
+        "TICKET",
+        "SNACK"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Ways to say hello without words",
+      "name": "Words for a pause or interruption",
       "words": [
-        "WAVE",
-        "SALUTE",
-        "TIP",
-        "CAP"
+        "STALL",
+        "BLOW",
+        "SLIP",
+        "MISS"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Nonverbal clues to get someone's attention",
+      "name": "Things that can TRAIN",
       "words": [
-        "WINK",
-        "NUDGE",
-        "TAP",
-        "SIGNAL"
+        "HOST",
+        "SINK",
+        "FREEZE",
+        "BOMB"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Complete the idiom: 'as ___ as _____'",
+      "name": "Each word hides a type of light fixture (in order: LAMP, SHADE, RATE, TRAIN)",
       "words": [
-        "SLEEPY",
-        "GREEN",
-        "CHEESE",
-        "TEA"
+        "LAMP",
+        "SHADE",
+        "RATE",
+        "TRAIN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Nonverbal clues to get someone's attention",
-      "category_b": "Ways to say hello without words",
-      "reason_a": "signal is a way to nonverbally attract notice",
-      "reason_b": "waving is literally 'giving a signal', tempting solvers to connect these",
-      "word": "SIGNAL"
+      "category_a": "Things that can TRAIN",
+      "category_b": "Things you might bring on a long train trip",
+      "reason_a": "A host can train, i.e. teach or introduce, as in host a training session.",
+      "reason_b": "A travel host or tour host is plausible on a train trip.",
+      "word": "HOST"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four natural words cleanly hiding required embedded items without resorting to obscurities or sabotage to decoy logic",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
-      "tier": 1
+      "tier": 3
     }
   ],
   "_validation": {
