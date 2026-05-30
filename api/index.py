@@ -591,48 +591,14 @@ Return ONLY JSON:
 
 # ─── Puzzle generation ────────────────────────────────────────────────────────
 
-def _build_prompt(banned_list: list, published_puzzles: list = None) -> str:
+def _build_prompt(banned_list: list) -> str:
+    # Include ALL banned categories. At ~1500 entries × ~25 chars = ~37KB
+    # (~10K tokens) which fits comfortably in gpt-4.1's 128K input window.
+    # The previous "smart sampling" sorted alphabetically and kept only the
+    # last 60, which meant C/D/E-starting bans (like "card suits") were
+    # never shown — and the model kept reaching for them.
     banned_norm = sorted({_normalize(n) for n in banned_list})
-    recent = banned_norm[-60:] if len(banned_norm) > 60 else banned_norm
-    remaining = [c for c in banned_norm if c not in set(recent)]
-    sampled = random.sample(remaining, min(40, len(remaining))) if remaining else []
-    preview = sorted(set(recent) | set(sampled))
-    preview_text = ", ".join(preview) if preview else "none"
-
-    # Build style-reference section from the last 90 days of published puzzles.
-    # Sample a SMALL, diverse set so the model has calibration without being
-    # flooded into pattern-mimicry. ~8 per difficulty color = ~32 total.
-    style_lines = []
-    if published_puzzles:
-        cutoff = (datetime.now() - timedelta(days=90)).date()
-        by_difficulty = {"yellow": [], "green": [], "blue": [], "purple": []}
-        sorted_pub = sorted(
-            published_puzzles,
-            key=lambda p: _parse_any_date(p.get("date", "")) or datetime.min.date(),
-            reverse=True,
-        )
-        for puzzle in sorted_pub:
-            d = _parse_any_date(puzzle.get("date", ""))
-            if not d or d < cutoff:
-                break
-            for cat in puzzle.get("categories", []):
-                name = cat.get("name", "").strip()
-                diff = cat.get("difficulty", "").strip()
-                if name and diff in by_difficulty:
-                    by_difficulty[diff].append(name)
-
-        # For each difficulty: take 4 most recent + 4 random older
-        for color in ("yellow", "green", "blue", "purple"):
-            names = by_difficulty[color]
-            if not names:
-                continue
-            recent_n = names[:4]
-            older = names[4:]
-            older_n = random.sample(older, min(4, len(older))) if older else []
-            for n in recent_n + older_n:
-                style_lines.append(f"- [{color}] {n}")
-
-    style_text = "\n".join(style_lines) if style_lines else "- (no recent history yet)"
+    preview_text = ", ".join(banned_norm) if banned_norm else "none"
 
     template = """GROOPED PUZZLE GENERATION PROMPT (v5)
 =====================================
@@ -651,17 +617,28 @@ The following category names have already been used or are permanently banned. D
 
 __BANNED_LIST__
 
-RECENT CATEGORY STYLE REFERENCE (last 90 days)
-===============================================
+FORBIDDEN "STARTER PACK" THEMES — DO NOT USE EVEN IF NOT EXPLICITLY BANNED
+==========================================================================
 
-These are real categories from recently published Grooped puzzles. DO NOT reuse or rephrase them — they are already banned above. Study them to calibrate tone, difficulty level, and format. This is what "acceptable" looks like.
+These are obvious 4-element sets that come up too easily and feel like training-data filler. DO NOT use them, in any framing, ever:
 
-__STYLE_EXAMPLES__
+- Card suits / playing card things (hearts, spades, diamonds, clubs)
+- Cardinal directions (north, south, east, west)
+- Days of the week, months, seasons
+- Planets, zodiac signs, Greek letters, NATO alphabet
+- Primary colors, rainbow colors, traffic light colors
+- Compass points, continents, oceans
+- Standard chess pieces, standard yoga poses, standard kitchen utensils
+- "Types of [common noun]" formulations in general
+- Famous quartets that everyone knows (Beatles, Ninja Turtles, four seasons)
+- Periodic table elements, Roman numerals, vowels
+
+If your first instinct is one of these, STOP and try something genuinely fresh. The whole point of Grooped is that solvers find the categories surprising.
 
 STEP 0: CORPUS NOTE
 ===================
 
-The puzzle corpus is managed externally. You do not need to fetch anything. The banned categories and style examples above capture all used themes. Proceed directly to puzzle design.
+The puzzle corpus is managed externally. You do not need to fetch anything. The banned categories above capture all used themes. Proceed directly to puzzle design.
 
 1. REPEAT CHECK: avoid themes in the banned list above.
 2. STYLE CALIBRATION: aim for casual, pop-cultural, playful tone.
@@ -959,26 +936,14 @@ REFERENCE: TARGET QUALITY PUZZLE
 ===============================
 
 The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, one wordplay in Tier 1 purple, real cross-pulls between groups (CHANGE could be pocket or could be improvement, JAM could be food or trouble, BEAT could be drum or DEAD BEAT). Strong board, varied mechanics, no Tier 4 forced. This is what good looks like."""
-    return (template
-            .replace("__BANNED_LIST__", preview_text)
-            .replace("__STYLE_EXAMPLES__", style_text))
+    return template.replace("__BANNED_LIST__", preview_text)
 
 @app.route("/api/generate-puzzle", methods=["POST"])
 @require_auth
 def generate_puzzle():
     try:
         banned, _ = _load_banned()
-
-        # Load published puzzles for style-reference injection
-        try:
-            pub, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
-            published_puzzles = (
-                pub.get("puzzles", []) if isinstance(pub, dict) else (pub or [])
-            )
-        except Exception:
-            published_puzzles = []
-
-        prompt = _build_prompt(banned, published_puzzles=published_puzzles)
+        prompt = _build_prompt(banned)
 
         max_attempts = 5
         last_data = None
