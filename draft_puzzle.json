@@ -1,75 +1,82 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "139",
+  "date": "29.04.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things you might find on a train journey",
+      "name": "Things you might find on a coffee table",
       "words": [
-        "TICKET",
-        "UMBRELLA",
-        "NOVEL",
-        "CANDY"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Metaphors for losing an opportunity",
-      "words": [
-        "SPILL",
-        "DROP",
-        "SLIP",
-        "MISS"
+        "MIRROR",
+        "REMOTE",
+        "COASTER",
+        "BATTERY"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Can be caught",
+      "difficulty": "green",
+      "name": "Can be cracked (in very different ways)",
       "words": [
-        "TRAIN",
-        "TUNE",
-        "SHIFT",
-        "WAVE"
+        "CODE",
+        "DESK",
+        "PASSWORD",
+        "FILES"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "blue",
+      "name": "Metaphors for disappointment",
+      "words": [
+        "HEART",
+        "SINK",
+        "CLOUD",
+        "BUG"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Begins with a day of the week hidden inside",
+      "name": "Hide types of pitches (sports/music) inside",
       "words": [
-        "SUNDAY",
-        "SUGAR",
-        "SAND",
-        "SUNDER"
+        "STAR",
+        "PITCH",
+        "BOMB",
+        "WAVE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can be caught",
-      "category_b": "Things you might find on a train journey",
-      "reason_a": "You can catch a train.",
-      "reason_b": "Solvers may think TRAIN belongs with TICKET/NOVEL/UMBRELLA/CANDY since it's a classic train journey noun.",
-      "word": "TRAIN"
+      "category_a": "Metaphors for disappointment",
+      "category_b": "Can be cracked (in very different ways)",
+      "reason_a": "Having a 'bug' can disappoint/ruin things, especially in tech or metaphorically.",
+      "reason_b": "Solvers may think of bug as something to crack/fix (crack a bug in code).",
+      "word": "BUG"
     },
     {
-      "category_a": "Begins with a day of the week hidden inside",
-      "category_b": "Things you might find on a train journey",
-      "reason_a": "'SAN' in SAND as start of 'SUNDAY'.",
-      "reason_b": "Some trains carry sandbags for traction or you might see sand on a journey, tempting a misgroup.",
-      "word": "SAND"
+      "category_a": "Things you might find on a coffee table",
+      "category_b": "HIDDEN_TYPES_OF_PITCHES",
+      "reason_a": "A battery is common on a table.",
+      "reason_b": "BATTERY contains 'BAT', and in baseball, 'bat' relates to pitching (though not literally a pitch type, it's a strong cross-pull for sports solvers).",
+      "word": "BATTERY"
+    },
+    {
+      "category_a": "Metaphors for disappointment",
+      "category_b": "Things you might find on a coffee table",
+      "reason_a": "A 'cloud' over something means disappointment.",
+      "reason_b": "Solvers might have a cloud-shaped coaster or art piece, making them hesitate.",
+      "word": "CLOUD"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_START",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "result": "shipped",
       "tier": 3
     }
