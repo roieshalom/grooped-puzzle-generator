@@ -1,90 +1,70 @@
 {
-  "id": "195",
-  "date": "09.06.2026",
+  "id": "140",
+  "date": "30.04.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Things found on a desk",
+      "name": "___ Board",
       "words": [
-        "GLASS",
-        "PEN",
-        "STAMP",
-        "BLOWN"
+        "BANK",
+        "SPRING",
+        "LEAF",
+        "FLIP"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "green",
+      "name": "Animals in an idiom meaning 'to change direction suddenly'",
+      "words": [
+        "CAT",
+        "DOG",
+        "FISH",
+        "SNAKE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "ORDERED_SET_MEMBER",
-      "difficulty": "green",
-      "name": "Face cards in a standard deck",
-      "words": [
-        "QUEEN",
-        "JACK",
-        "ACE",
-        "KING"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "blue",
-      "name": "Metaphors for being trapped",
+      "name": "Playing cards with faces",
       "words": [
-        "TUNNEL",
-        "WALL",
-        "CORNER",
-        "PICKLE"
+        "ACE",
+        "QUEEN",
+        "KING",
+        "JACK"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 3,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Complete the idiom: 'Bite the ___'",
+      "name": "Can all be followed by 'fly' to make a real animal",
       "words": [
-        "BEANS",
-        "DUST",
-        "BULLET",
-        "APPLE"
+        "CRANE",
+        "SPIDER",
+        "DART",
+        "HAWK"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things found on a desk",
-      "category_b": "Metaphors for being trapped",
-      "reason_a": "Writing tool commonly found on a desk.",
-      "reason_b": "A pen (as in animal enclosure) can trap something.",
-      "word": "PEN"
-    },
-    {
-      "category_a": "Metaphors for being trapped",
-      "category_b": "Things found on a desk",
-      "reason_a": "To be 'cornered' is to be trapped.",
-      "reason_b": "A desk has corners.",
-      "word": "CORNER"
-    },
-    {
-      "category_a": "Face cards in a standard deck",
-      "category_b": "Things found on a desk",
-      "reason_a": "Queen is a face card.",
-      "reason_b": "Queen is used in stamp collecting (e.g., stamps featuring the Queen).",
-      "word": "QUEEN"
+      "category_a": "Playing cards with faces",
+      "category_b": "Can all be followed by 'fly' to make a real animal",
+      "reason_a": "KING is one of the face cards",
+      "reason_b": "Kingfisher and kingbird are both birds, and solver may see KING and think of 'kingfisher', 'kingbird', and misgroup.",
+      "word": "KING"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four natural words each hiding unique face card names (KING, QUEEN, JACK, ACE) concurrently with good overlap.",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "result": "shipped",
-      "tier": 2
+      "tier": 3
     }
   ],
   "_validation": {
