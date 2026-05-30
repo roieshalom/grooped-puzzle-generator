@@ -1,70 +1,76 @@
 {
-  "id": "140",
-  "date": "30.04.2026",
+  "id": "202",
+  "date": "17.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "yellow",
-      "name": "___ Board",
+      "name": "Metaphors for 'something hidden'",
       "words": [
-        "BANK",
-        "SPRING",
-        "LEAF",
-        "FLIP"
+        "CLOUD",
+        "SHADOW",
+        "MIRROR",
+        "CHECK"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Animals in an idiom meaning 'to change direction suddenly'",
+      "name": "Things you can 'deal' (literally)",
       "words": [
-        "CAT",
-        "DOG",
-        "FISH",
-        "SNAKE"
+        "DECK",
+        "HAND",
+        "CHIP",
+        "FACE"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "blue",
+      "name": "Can finish 'scrambled ___'",
+      "words": [
+        "PASSWORD",
+        "PUZZLE",
+        "EGGS",
+        "SIGNAL"
       ]
     },
     {
       "tier": 2,
       "mechanic": "ORDERED_SET_MEMBER",
-      "difficulty": "blue",
-      "name": "Playing cards with faces",
-      "words": [
-        "ACE",
-        "QUEEN",
-        "KING",
-        "JACK"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Can all be followed by 'fly' to make a real animal",
+      "name": "Playing card suits",
       "words": [
-        "CRANE",
-        "SPIDER",
-        "DART",
-        "HAWK"
+        "DIAMOND",
+        "CLUB",
+        "HEART",
+        "SPADE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Playing cards with faces",
-      "category_b": "Can all be followed by 'fly' to make a real animal",
-      "reason_a": "KING is one of the face cards",
-      "reason_b": "Kingfisher and kingbird are both birds, and solver may see KING and think of 'kingfisher', 'kingbird', and misgroup.",
-      "word": "KING"
+      "category_a": "Can finish 'scrambled ___'",
+      "category_b": "Metaphors for 'something hidden'",
+      "reason_a": "Scrambled eggs is a common phrase.",
+      "reason_b": "Eggs hide things inside their shells, fitting the 'hidden' metaphor.",
+      "word": "EGGS"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "result": "shipped",
+      "mechanic": "HIDDEN_WORD_AT_START",
+      "reason": "Struggled to find four natural words starting with hidden elements with strong cross-pulls",
+      "result": "abandoned",
       "tier": 3
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "result": "shipped",
+      "tier": 2
     }
   ],
   "_validation": {
