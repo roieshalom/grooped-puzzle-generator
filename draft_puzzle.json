@@ -18,12 +18,12 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Obstruction",
+      "name": "Sleeping like a ___",
       "words": [
-        "DRAIN",
-        "PLUG",
-        "BLOCK",
-        "LOG"
+        "LOG",
+        "BABY",
+        "ROCK",
+        "DOG"
       ]
     },
     {
