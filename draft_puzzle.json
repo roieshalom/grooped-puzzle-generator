@@ -1,84 +1,90 @@
 {
-  "id": "178",
-  "date": "18.06.2026",
+  "id": "195",
+  "date": "09.06.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things found in a backpack",
+      "name": "Things found on a desk",
       "words": [
-        "STICKER",
-        "RECEIPT",
+        "GLASS",
         "PEN",
-        "GUM"
+        "STAMP",
+        "BLOWN"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "ORDERED_SET_MEMBER",
+      "difficulty": "green",
+      "name": "Face cards in a standard deck",
+      "words": [
+        "QUEEN",
+        "JACK",
+        "ACE",
+        "KING"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Sleeping like a ___",
+      "difficulty": "blue",
+      "name": "Metaphors for being trapped",
       "words": [
-        "LOG",
-        "BABY",
-        "ROCK",
-        "DOG"
+        "TUNNEL",
+        "WALL",
+        "CORNER",
+        "PICKLE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Can be filtered",
-      "words": [
-        "UV",
-        "WATER",
-        "EMAILS",
-        "NOISE"
-      ]
-    },
-    {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Building materials",
+      "name": "Complete the idiom: 'Bite the ___'",
       "words": [
-        "BRICK",
-        "DRYWALL",
-        "CONCRETE",
-        "MUD"
+        "BEANS",
+        "DUST",
+        "BULLET",
+        "APPLE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things found in a backpack",
-      "category_b": "Metaphors for obstruction",
-      "reason_a": "Gum is a common backpack item.",
-      "reason_b": "Gum can mean to block something up (gum up the works).",
-      "word": "GUM"
+      "category_a": "Things found on a desk",
+      "category_b": "Metaphors for being trapped",
+      "reason_a": "Writing tool commonly found on a desk.",
+      "reason_b": "A pen (as in animal enclosure) can trap something.",
+      "word": "PEN"
     },
     {
-      "category_a": "Words hiding the name of an insect",
-      "category_b": "Can be filtered",
-      "reason_a": "FILTER contains 'F-LY'.",
-      "reason_b": "A literal filter is used to filter substances, making it a natural candidate for both.",
-      "word": "FILTER"
+      "category_a": "Metaphors for being trapped",
+      "category_b": "Things found on a desk",
+      "reason_a": "To be 'cornered' is to be trapped.",
+      "reason_b": "A desk has corners.",
+      "word": "CORNER"
     },
     {
-      "category_a": "Metaphors for obstruction",
-      "category_b": "Can be filtered",
-      "reason_a": "Block = to impede or obstruct.",
-      "reason_b": "You can block spam emails with a filter.",
-      "word": "BLOCK"
+      "category_a": "Face cards in a standard deck",
+      "category_b": "Things found on a desk",
+      "reason_a": "Queen is a face card.",
+      "reason_b": "Queen is used in stamp collecting (e.g., stamps featuring the Queen).",
+      "word": "QUEEN"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
+      "reason": "Could not find four natural words each hiding unique face card names (KING, QUEEN, JACK, ACE) concurrently with good overlap.",
+      "result": "abandoned",
       "tier": 3
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "result": "shipped",
+      "tier": 2
     }
   ],
   "_validation": {
