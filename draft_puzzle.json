@@ -1,84 +1,90 @@
 {
-  "id": "139",
-  "date": "29.04.2026",
+  "id": "138",
+  "date": "28.04.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "yellow",
-      "name": "Things you might find on a coffee table",
+      "name": "Complete the idiom: 'burn the midnight ___'",
       "words": [
-        "MIRROR",
-        "REMOTE",
-        "COASTER",
-        "BATTERY"
+        "OIL",
+        "CANDLE",
+        "LAMP",
+        "WICK"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Can be cracked (in very different ways)",
+      "name": "Things that swing",
       "words": [
-        "CODE",
-        "DESK",
-        "PASSWORD",
-        "FILES"
+        "PENDULUM",
+        "DRUM",
+        "CLOCK",
+        "WING"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Metaphors for disappointment",
+      "name": "Share a hidden trait: all are kinds of fasteners",
       "words": [
-        "HEART",
-        "SINK",
-        "CLOUD",
-        "BUG"
+        "STAPLE",
+        "TIE",
+        "STAMP",
+        "BRIDGE"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "purple",
-      "name": "Hide types of pitches (sports/music) inside",
+      "name": "___ DUST",
       "words": [
+        "SPACE",
         "STAR",
-        "PITCH",
-        "BOMB",
-        "WAVE"
+        "GOLD",
+        "COIN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Metaphors for disappointment",
-      "category_b": "Can be cracked (in very different ways)",
-      "reason_a": "Having a 'bug' can disappoint/ruin things, especially in tech or metaphorically.",
-      "reason_b": "Solvers may think of bug as something to crack/fix (crack a bug in code).",
-      "word": "BUG"
+      "category_a": "___ DUST",
+      "category_b": "Things that swing",
+      "reason_a": "COIN DUST (as in the phrase, rare coins and gold dust)",
+      "reason_b": "You 'flip' or 'swing' a coin; solver may try to place it among swinging things",
+      "word": "COIN"
     },
     {
-      "category_a": "Things you might find on a coffee table",
-      "category_b": "HIDDEN_TYPES_OF_PITCHES",
-      "reason_a": "A battery is common on a table.",
-      "reason_b": "BATTERY contains 'BAT', and in baseball, 'bat' relates to pitching (though not literally a pitch type, it's a strong cross-pull for sports solvers).",
-      "word": "BATTERY"
+      "category_a": "Share a hidden trait: all are kinds of fasteners",
+      "category_b": "Things that swing",
+      "reason_a": "Bridge as a dental or structural fastener",
+      "reason_b": "A bridge can swing (as in a swinging bridge), tempting placement",
+      "word": "BRIDGE"
     },
     {
-      "category_a": "Metaphors for disappointment",
-      "category_b": "Things you might find on a coffee table",
-      "reason_a": "A 'cloud' over something means disappointment.",
-      "reason_b": "Solvers might have a cloud-shaped coaster or art piece, making them hesitate.",
-      "word": "CLOUD"
+      "category_a": "Things that swing",
+      "category_b": "Share a hidden trait: all are kinds of fasteners",
+      "reason_a": "Wings swing or flap",
+      "reason_b": "Wing nut is a type of fastener; could tempt solvers",
+      "word": "WING"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
+      "reason": "Could not find four natural words that hide the same word fragment cleanly while allowing decoy cross-pulls.",
+      "result": "abandoned",
       "tier": 3
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
     }
   ],
   "_validation": {
