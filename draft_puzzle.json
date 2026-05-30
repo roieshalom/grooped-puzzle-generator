@@ -6,63 +6,70 @@
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things you might bring on a long train trip",
+      "name": "Things you might find on a train journey",
       "words": [
-        "BRIDGE",
-        "SUITCASE",
         "TICKET",
-        "SNACK"
+        "UMBRELLA",
+        "NOVEL",
+        "CANDY"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Words for a pause or interruption",
+      "name": "Metaphors for losing an opportunity",
       "words": [
-        "STALL",
-        "BLOW",
+        "SPILL",
+        "DROP",
         "SLIP",
         "MISS"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Things that can TRAIN",
+      "name": "Can be caught",
       "words": [
-        "HOST",
-        "SINK",
-        "FREEZE",
-        "BOMB"
+        "TRAIN",
+        "TUNE",
+        "SHIFT",
+        "WAVE"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "HIDDEN_WORD_AT_START",
       "difficulty": "purple",
-      "name": "Each word hides a type of light fixture (in order: LAMP, SHADE, RATE, TRAIN)",
+      "name": "Begins with a day of the week hidden inside",
       "words": [
-        "LAMP",
-        "SHADE",
-        "RATE",
-        "TRAIN"
+        "SUNDAY",
+        "SUGAR",
+        "SAND",
+        "SUNDER"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that can TRAIN",
-      "category_b": "Things you might bring on a long train trip",
-      "reason_a": "A host can train, i.e. teach or introduce, as in host a training session.",
-      "reason_b": "A travel host or tour host is plausible on a train trip.",
-      "word": "HOST"
+      "category_a": "Can be caught",
+      "category_b": "Things you might find on a train journey",
+      "reason_a": "You can catch a train.",
+      "reason_b": "Solvers may think TRAIN belongs with TICKET/NOVEL/UMBRELLA/CANDY since it's a classic train journey noun.",
+      "word": "TRAIN"
+    },
+    {
+      "category_a": "Begins with a day of the week hidden inside",
+      "category_b": "Things you might find on a train journey",
+      "reason_a": "'SAN' in SAND as start of 'SUNDAY'.",
+      "reason_b": "Some trains carry sandbags for traction or you might see sand on a journey, tempting a misgroup.",
+      "word": "SAND"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "HIDDEN_WORD_AT_START",
       "result": "shipped",
       "tier": 3
     }
