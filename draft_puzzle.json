@@ -1,76 +1,76 @@
 {
-  "id": "202",
-  "date": "17.06.2026",
+  "id": "201",
+  "date": "28.04.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "yellow",
-      "name": "Metaphors for 'something hidden'",
-      "words": [
-        "CLOUD",
-        "SHADOW",
-        "MIRROR",
-        "CHECK"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Things you can 'deal' (literally)",
-      "words": [
-        "DECK",
-        "HAND",
-        "CHIP",
-        "FACE"
-      ]
-    },
-    {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
-      "difficulty": "blue",
-      "name": "Can finish 'scrambled ___'",
+      "mechanic": "FOUND_IN_SCENE",
+      "difficulty": "yellow",
+      "name": "Things you might slip on",
       "words": [
-        "PASSWORD",
-        "PUZZLE",
-        "EGGS",
+        "BANANA",
+        "SLIPPER",
+        "ICE",
+        "ORANGE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "green",
+      "name": "Ways to say hello without words",
+      "words": [
+        "WAVE",
+        "SALUTE",
+        "TIP",
+        "CAP"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "difficulty": "blue",
+      "name": "Nonverbal clues to get someone's attention",
+      "words": [
+        "WINK",
+        "NUDGE",
+        "TAP",
         "SIGNAL"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "ORDERED_SET_MEMBER",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Playing card suits",
+      "name": "Complete the idiom: 'as ___ as _____'",
       "words": [
-        "DIAMOND",
-        "CLUB",
-        "HEART",
-        "SPADE"
+        "SLEEPY",
+        "GREEN",
+        "CHEESE",
+        "TEA"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can finish 'scrambled ___'",
-      "category_b": "Metaphors for 'something hidden'",
-      "reason_a": "Scrambled eggs is a common phrase.",
-      "reason_b": "Eggs hide things inside their shells, fitting the 'hidden' metaphor.",
-      "word": "EGGS"
+      "category_a": "Nonverbal clues to get someone's attention",
+      "category_b": "Ways to say hello without words",
+      "reason_a": "signal is a way to nonverbally attract notice",
+      "reason_b": "waving is literally 'giving a signal', tempting solvers to connect these",
+      "word": "SIGNAL"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_START",
-      "reason": "Struggled to find four natural words starting with hidden elements with strong cross-pulls",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Could not find four natural words cleanly hiding required embedded items without resorting to obscurities or sabotage to decoy logic",
       "result": "abandoned",
       "tier": 3
     },
     {
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
-      "tier": 2
+      "tier": 1
     }
   ],
   "_validation": {
