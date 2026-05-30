@@ -509,7 +509,7 @@ def _extract_json(text: str) -> str:
                 continue
     return text
 
-def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict:
+def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None, temperature: float = 0.9) -> dict:
     """Call OpenAI and parse JSON from the response."""
     model = model or GEN_MODEL
     client = OpenAI(api_key=OPENAI_API_KEY)
@@ -520,6 +520,7 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None) -> dict
             {"role": "user", "content": prompt},
         ],
         max_tokens=max_tokens,
+        temperature=temperature,
         response_format={"type": "json_object"},
     )
     raw = response.choices[0].message.content
@@ -598,11 +599,13 @@ def _build_prompt(banned_list: list, published_puzzles: list = None) -> str:
     preview = sorted(set(recent) | set(sampled))
     preview_text = ", ".join(preview) if preview else "none"
 
-    # Build style-reference section from the last 90 days of published puzzles
+    # Build style-reference section from the last 90 days of published puzzles.
+    # Sample a SMALL, diverse set so the model has calibration without being
+    # flooded into pattern-mimicry. ~8 per difficulty color = ~32 total.
     style_lines = []
     if published_puzzles:
         cutoff = (datetime.now() - timedelta(days=90)).date()
-        seen_names = set()
+        by_difficulty = {"yellow": [], "green": [], "blue": [], "purple": []}
         sorted_pub = sorted(
             published_puzzles,
             key=lambda p: _parse_any_date(p.get("date", "")) or datetime.min.date(),
@@ -615,9 +618,19 @@ def _build_prompt(banned_list: list, published_puzzles: list = None) -> str:
             for cat in puzzle.get("categories", []):
                 name = cat.get("name", "").strip()
                 diff = cat.get("difficulty", "").strip()
-                if name and name not in seen_names:
-                    seen_names.add(name)
-                    style_lines.append(f'- [{diff}] {name}')
+                if name and diff in by_difficulty:
+                    by_difficulty[diff].append(name)
+
+        # For each difficulty: take 4 most recent + 4 random older
+        for color in ("yellow", "green", "blue", "purple"):
+            names = by_difficulty[color]
+            if not names:
+                continue
+            recent_n = names[:4]
+            older = names[4:]
+            older_n = random.sample(older, min(4, len(older))) if older else []
+            for n in recent_n + older_n:
+                style_lines.append(f"- [{color}] {n}")
 
     style_text = "\n".join(style_lines) if style_lines else "- (no recent history yet)"
 
