@@ -6,7 +6,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "BOOK ___",
+      "name": "Book ___",
       "words": [
         "WORM",
         "REPORT",
@@ -42,12 +42,12 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_AT_START",
       "difficulty": "purple",
-      "name": "Each starts with a postal term",
+      "name": "Wander & Explore",
       "words": [
-        "POST",
-        "PITCH",
-        "POINT",
-        "RUSH"
+        "TRAVEL",
+        "VOYAGE",
+        "TOUR",
+        "EXPEDITE"
       ]
     }
   ],
