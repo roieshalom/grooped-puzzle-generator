@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 2,
+      "mechanic": "WORKS_BY_ONE_MAKER",
       "difficulty": "blue",
-      "name": "Hide currency names inside",
+      "name": "Kafka's stories ('The' removed')",
       "words": [
-        "STONE",
-        "MINERAL",
-        "DIME",
-        "MINT"
+        "TRIAL",
+        "CASTLE",
+        "METAMORPHOSIS",
+        "JUDGMENT"
       ]
     },
     {
