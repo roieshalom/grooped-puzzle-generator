@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 4,
+      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "purple",
-      "name": "Can be wrapped (literally or figuratively)",
+      "name": "Dutch companies",
       "words": [
-        "CHEW",
-        "WRAP",
-        "SPRING",
-        "BAR"
+        "SHELL",
+        "HEINEKEN",
+        "UNILEVER",
+        "KLM"
       ]
     }
   ],
