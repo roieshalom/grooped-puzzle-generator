@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Things you hand to someone on entry",
+      "name": "Curve types",
       "words": [
-        "TICKET",
-        "PLATE",
-        "ARM",
-        "BELL"
+        "S",
+        "BELL",
+        "HELIX",
+        "PHILLIPS"
       ]
     },
     {
