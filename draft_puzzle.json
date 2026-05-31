@@ -4,83 +4,92 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Things you might find rattling in a kitchen drawer",
+      "name": "BOOK ___",
       "words": [
-        "SALT",
-        "SUGAR",
-        "PEPPER",
-        "COINS"
+        "CANDLE",
+        "CREAM",
+        "CARD",
+        "COOK"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "Things that spin",
+      "name": "Can be closed",
       "words": [
-        "NEEDLE",
-        "TOP",
-        "WHEEL",
-        "WRITER"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "difficulty": "blue",
-      "name": "Hidden types of protective roles (word contains it)",
-      "words": [
-        "STRETCHER",
-        "GUARDIAN",
-        "WRITER",
-        "SINK"
+        "SHUTTER",
+        "BLINDS",
+        "SHADES",
+        "CURTAIN"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "purple",
-      "name": "Metaphors for showing off",
+      "difficulty": "blue",
+      "name": "Basketball scoring terms",
       "words": [
-        "BUBBLE",
-        "WRAP",
-        "GLOAT",
-        "HIDE"
+        "SLAM",
+        "DUNK",
+        "SWISH",
+        "BANK"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_AT_START",
+      "difficulty": "purple",
+      "name": "Each starts with a postal term",
+      "words": [
+        "POST",
+        "PITCH",
+        "POINT",
+        "RUSH"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things you might find rattling in a kitchen drawer",
-      "category_b": "Things that spin",
-      "reason_a": "Coins are a classic kitchen drawer rattle",
-      "reason_b": "Coins can be spun, tempting a solver here.",
-      "word": "COINS"
+      "category_a": "Basketball scoring terms",
+      "category_b": "Each starts with a postal term",
+      "reason_a": "To bank a shot means to score off the backboard",
+      "reason_b": "Bank is also a term in mailing (mail bank as a sorting place) and 'bank' could fit as a hidden word start, tempting a solver to look for a wordplay.",
+      "word": "BANK"
     },
     {
-      "category_a": "Things that spin",
-      "category_b": "Hidden types of protective roles (word contains it)",
-      "reason_a": "WRITER can refer to a spinning writer in a metaphorical sense (plot spins), and is a spinning mechanism part in some devices",
-      "reason_b": "WRITER contains 'rite' (as in tradition/protection) and also is a literal member here. The duality is a cross-pull.",
-      "word": "WRITER"
+      "category_a": "BOOK ___",
+      "category_b": "Each starts with a postal term",
+      "reason_a": "Book card (library thing), card book",
+      "reason_b": "CARD is associated with 'postcard', a postal term, possibly tempting solvers here.",
+      "word": "CARD"
+    },
+    {
+      "category_a": "Can be closed",
+      "category_b": "BOOK ___",
+      "reason_a": "Window shades can be closed",
+      "reason_b": "Book shades is not a phrase, but 'shades' in books (literature, nuances) could trick a literary-minded solver.",
+      "word": "SHADES"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Could not find four common words hiding postal terms as consecutive letters naturally",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "HIDDEN_WORD_AT_START",
       "result": "shipped",
       "tier": 3
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'WRITER' within this puzzle"
-    ],
-    "duplicate_words": [
-      "WRITER"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
