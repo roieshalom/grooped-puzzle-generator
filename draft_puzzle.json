@@ -3,75 +3,75 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "___ CRACKER",
+      "name": "Things that can 'break'",
       "words": [
-        "PEPPER",
-        "GRAHAM",
-        "CHEESE",
-        "OYSTER"
+        "ICE",
+        "GROUND",
+        "NEWS",
+        "SHADE"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "green",
+      "name": "___ DRUM",
+      "words": [
+        "BASS",
+        "SNARE",
+        "STEEL",
+        "OIL"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Metaphors for authority figures",
-      "words": [
-        "KING",
-        "JUDGE",
-        "HAMMER",
-        "HEAD"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Can be melted",
+      "name": "Metaphors for being relaxed",
       "words": [
-        "CHEESE",
-        "GOLD",
-        "HEART",
-        "ICE"
+        "CHILL",
+        "FRESH",
+        "BUZZ",
+        "SPRING"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Hide types of birds (in order: DOVE, HERO, GOOSE, COAST)",
+      "name": "Contains a hidden number (as consecutive letters)",
       "words": [
-        "DOVETAIL",
-        "HERORIC",
-        "GOOSEBUMP",
-        "COASTLINE"
+        "PASTA",
+        "CANINE",
+        "FREIGHT",
+        "STONE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can be melted",
-      "category_b": "___ CRACKER",
-      "reason_a": "Cheese is commonly melted.",
-      "reason_b": "Cheese cracker is a common phrase, so CHEESE could plausibly belong to either group.",
-      "word": "CHEESE"
+      "category_a": "Metaphors for being relaxed",
+      "category_b": "Things that can 'break'",
+      "reason_a": "to have a 'spring' in your step, be easy-going",
+      "reason_b": "a spring can be broken physically",
+      "word": "SPRING"
     },
     {
-      "category_a": "Metaphors for authority figures",
-      "category_b": "___ CRACKER",
-      "reason_a": "Hammer as in 'the hammer' is a judge or authority.",
-      "reason_b": "Hammer cracker could tempt solvers toward tool-related answers (even if not a formal phrase).",
-      "word": "HAMMER"
+      "category_a": "Metaphors for being relaxed",
+      "category_b": "___ DRUM",
+      "reason_a": "having a 'buzz', feeling mellow or at ease",
+      "reason_b": "buzz drum is not a real phrase but the words feel musical together",
+      "word": "BUZZ"
     },
     {
-      "category_a": "Metaphors for authority figures",
-      "category_b": "Can be melted",
-      "reason_a": "Head is the leader or authority of a group.",
-      "reason_b": "The phrase 'melt someone's head' or 'hot head' could tempt a stretch toward melting.",
-      "word": "HEAD"
+      "category_a": "Contains a hidden number (as consecutive letters)",
+      "category_b": "Things that can 'break'",
+      "reason_a": "'one' is inside STONE",
+      "reason_b": "stones can be broken",
+      "word": "STONE"
     }
   ],
   "attempt_log": [
@@ -82,12 +82,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'CHEESE' within this puzzle"
-    ],
-    "duplicate_words": [
-      "CHEESE"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
