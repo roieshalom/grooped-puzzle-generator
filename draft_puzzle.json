@@ -42,9 +42,9 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Contains a hidden number (as consecutive letters)",
+      "name": "Contains a hidden number",
       "words": [
-        "PASTA",
+        "OFTEN",
         "CANINE",
         "FREIGHT",
         "STONE"
