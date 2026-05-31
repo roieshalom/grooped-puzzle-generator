@@ -18,7 +18,7 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "green",
-      "name": "Found in a cathedral",
+      "name": "In a cathedral",
       "words": [
         "CATHEDRA",
         "ALTAR",
@@ -30,7 +30,7 @@
       "tier": 2,
       "mechanic": "WORKS_BY_ONE_MAKER",
       "difficulty": "blue",
-      "name": "Kafka's stories ('The' removed')",
+      "name": "Kafka's stories ('The' removed)",
       "words": [
         "TRIAL",
         "CASTLE",
