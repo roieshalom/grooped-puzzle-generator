@@ -4,85 +4,79 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Book ___",
+      "name": "Things you hand to someone on entry",
       "words": [
-        "WORM",
-        "REPORT",
-        "CARD",
-        "STORE"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Portfolio websites",
-      "words": [
-        "DRIBBBLE",
-        "WIX",
-        "SQUARESPACE",
-        "BEHANCE"
+        "TICKET",
+        "PLATE",
+        "ARM",
+        "BELL"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "blue",
-      "name": "Basketball terms",
+      "difficulty": "green",
+      "name": "Metaphors for a collision",
       "words": [
-        "REBOUND",
-        "DUNK",
-        "SWISH",
-        "BANK"
+        "CRUNCH",
+        "CRASH",
+        "BLOW",
+        "HIT"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_AT_START",
-      "difficulty": "purple",
-      "name": "Wander & Explore",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "difficulty": "blue",
+      "name": "Hide currency names inside",
       "words": [
-        "TRAVEL",
-        "VOYAGE",
-        "TOUR",
-        "EXPEDITE"
+        "STONE",
+        "MINERAL",
+        "DIME",
+        "MINT"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "purple",
+      "name": "Can be wrapped (literally or figuratively)",
+      "words": [
+        "CHEW",
+        "WRAP",
+        "SPRING",
+        "BAR"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Basketball scoring terms",
-      "category_b": "Each starts with a postal term",
-      "reason_a": "To bank a shot means to score off the backboard",
-      "reason_b": "Bank is also a term in mailing (mail bank as a sorting place) and 'bank' could fit as a hidden word start, tempting a solver to look for a wordplay.",
-      "word": "BANK"
+      "category_a": "Things you hand to someone on entry",
+      "category_b": "Can be wrapped (literally or figuratively)",
+      "reason_a": "Tickets are literal entries for events or rides.",
+      "reason_b": "Tickets can be wrapped as gifts or envelopes, a mild decoy.",
+      "word": "TICKET"
     },
     {
-      "category_a": "BOOK ___",
-      "category_b": "Each starts with a postal term",
-      "reason_a": "Book card (library thing), card book",
-      "reason_b": "CARD is associated with 'postcard', a postal term, possibly tempting solvers here.",
-      "word": "CARD"
+      "category_a": "Metaphors for a collision",
+      "category_b": "Can be wrapped (literally or figuratively)",
+      "reason_a": "A crunch can mean a collision metaphorically.",
+      "reason_b": "Crunch (as in candy bar) can be 'wrapped', so may lure solvers.",
+      "word": "CRUNCH"
     },
     {
-      "category_a": "Can be closed",
-      "category_b": "BOOK ___",
-      "reason_a": "Window shades can be closed",
-      "reason_b": "Book shades is not a phrase, but 'shades' in books (literature, nuances) could trick a literary-minded solver.",
-      "word": "SHADES"
+      "category_a": "Can be wrapped (literally or figuratively)",
+      "category_b": "Things you hand to someone on entry",
+      "reason_a": "Candy or soap bars are wrapped.",
+      "reason_b": "Bar as in 'entry to a bar/venue', tempting a scene misgroup.",
+      "word": "BAR"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four common words hiding postal terms as consecutive letters naturally",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "HIDDEN_WORD_AT_START",
       "result": "shipped",
       "tier": 3
     }
