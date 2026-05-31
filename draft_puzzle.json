@@ -4,74 +4,74 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Curve types",
+      "name": "___ CRACKER",
       "words": [
-        "S",
-        "BELL",
-        "HELIX",
-        "PHILLIPS"
+        "PEPPER",
+        "GRAHAM",
+        "CHEESE",
+        "OYSTER"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "green",
+      "name": "Metaphors for authority figures",
+      "words": [
+        "KING",
+        "JUDGE",
+        "HAMMER",
+        "HEAD"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "blue",
+      "name": "Can be melted",
+      "words": [
+        "CHEESE",
+        "GOLD",
+        "HEART",
+        "ICE"
       ]
     },
     {
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "difficulty": "green",
-      "name": "In a cathedral",
-      "words": [
-        "CATHEDRA",
-        "ALTAR",
-        "CRUCIFIX",
-        "ORGAN"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "WORKS_BY_ONE_MAKER",
-      "difficulty": "blue",
-      "name": "Kafka's stories ('The' removed)",
-      "words": [
-        "TRIAL",
-        "CASTLE",
-        "METAMORPHOSIS",
-        "JUDGMENT"
-      ]
-    },
-    {
-      "tier": 4,
-      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "purple",
-      "name": "Dutch companies",
+      "name": "Hide types of birds (in order: DOVE, HERO, GOOSE, COAST)",
       "words": [
-        "SHELL",
-        "HEINEKEN",
-        "UNILEVER",
-        "KLM"
+        "DOVETAIL",
+        "HERORIC",
+        "GOOSEBUMP",
+        "COASTLINE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things you hand to someone on entry",
-      "category_b": "Can be wrapped (literally or figuratively)",
-      "reason_a": "Tickets are literal entries for events or rides.",
-      "reason_b": "Tickets can be wrapped as gifts or envelopes, a mild decoy.",
-      "word": "TICKET"
+      "category_a": "Can be melted",
+      "category_b": "___ CRACKER",
+      "reason_a": "Cheese is commonly melted.",
+      "reason_b": "Cheese cracker is a common phrase, so CHEESE could plausibly belong to either group.",
+      "word": "CHEESE"
     },
     {
-      "category_a": "Metaphors for a collision",
-      "category_b": "Can be wrapped (literally or figuratively)",
-      "reason_a": "A crunch can mean a collision metaphorically.",
-      "reason_b": "Crunch (as in candy bar) can be 'wrapped', so may lure solvers.",
-      "word": "CRUNCH"
+      "category_a": "Metaphors for authority figures",
+      "category_b": "___ CRACKER",
+      "reason_a": "Hammer as in 'the hammer' is a judge or authority.",
+      "reason_b": "Hammer cracker could tempt solvers toward tool-related answers (even if not a formal phrase).",
+      "word": "HAMMER"
     },
     {
-      "category_a": "Can be wrapped (literally or figuratively)",
-      "category_b": "Things you hand to someone on entry",
-      "reason_a": "Candy or soap bars are wrapped.",
-      "reason_b": "Bar as in 'entry to a bar/venue', tempting a scene misgroup.",
-      "word": "BAR"
+      "category_a": "Metaphors for authority figures",
+      "category_b": "Can be melted",
+      "reason_a": "Head is the leader or authority of a group.",
+      "reason_b": "The phrase 'melt someone's head' or 'hot head' could tempt a stretch toward melting.",
+      "word": "HEAD"
     }
   ],
   "attempt_log": [
@@ -82,8 +82,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'CHEESE' within this puzzle"
+    ],
+    "duplicate_words": [
+      "CHEESE"
+    ]
   }
 }
