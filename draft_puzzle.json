@@ -4,85 +4,85 @@
   "categories": [
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "Complete the idiom: 'burn the midnight ___'",
+      "name": "Things that can be crossed",
       "words": [
-        "OIL",
-        "CANDLE",
-        "LAMP",
-        "WICK"
+        "BRIDGE",
+        "ROAD",
+        "RIVER",
+        "LINE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Things that swing",
+      "name": "Metaphors for something that's easy",
       "words": [
-        "PENDULUM",
-        "DRUM",
-        "CLOCK",
-        "WING"
+        "PIECE OF CAKE",
+        "BREEZE",
+        "CHILD'S PLAY",
+        "WALK IN THE PARK"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "blue",
+      "name": "Finish the idiom: '___ break'",
+      "words": [
+        "LUCKY",
+        "COFFEE",
+        "COLD",
+        "FAST"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "blue",
-      "name": "Share a hidden trait: all are kinds of fasteners",
-      "words": [
-        "STAPLE",
-        "TIE",
-        "STAMP",
-        "BRIDGE"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
       "difficulty": "purple",
-      "name": "___ DUST",
+      "name": "Share a property: Can hold or contain something",
       "words": [
-        "SPACE",
-        "STAR",
-        "GOLD",
-        "COIN"
+        "BANK",
+        "TANK",
+        "VAULT",
+        "JAR"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ DUST",
-      "category_b": "Things that swing",
-      "reason_a": "COIN DUST (as in the phrase, rare coins and gold dust)",
-      "reason_b": "You 'flip' or 'swing' a coin; solver may try to place it among swinging things",
-      "word": "COIN"
+      "category_a": "Share a property: Can hold or contain something",
+      "category_b": "Things that can be crossed",
+      "reason_a": "A bank can contain money",
+      "reason_b": "Solvers may think of 'crossing the bank of a river'",
+      "word": "BANK"
     },
     {
-      "category_a": "Share a hidden trait: all are kinds of fasteners",
-      "category_b": "Things that swing",
-      "reason_a": "Bridge as a dental or structural fastener",
-      "reason_b": "A bridge can swing (as in a swinging bridge), tempting placement",
+      "category_a": "Things that can be crossed",
+      "category_b": "Share a property: Can hold or contain something",
+      "reason_a": "A bridge is crossed physically",
+      "reason_b": "Bridge can metaphorically hold traffic or people",
       "word": "BRIDGE"
     },
     {
-      "category_a": "Things that swing",
-      "category_b": "Share a hidden trait: all are kinds of fasteners",
-      "reason_a": "Wings swing or flap",
-      "reason_b": "Wing nut is a type of fastener; could tempt solvers",
-      "word": "WING"
+      "category_a": "Finish the idiom: '___ break'",
+      "category_b": "Metaphors for something that's easy",
+      "reason_a": "Cold break is a phrase in brewing and occurs in idioms",
+      "reason_b": "'Cold' could fit metaphors for ease, as in 'cold as ice' meaning untroubled",
+      "word": "COLD"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four natural words that hide the same word fragment cleanly while allowing decoy cross-pulls.",
+      "reason": "Could not find 4 natural words cleanly hiding the same property without replacing other strong groups",
       "result": "abandoned",
       "tier": 3
     },
     {
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "THINGS_THAT_VERB",
       "result": "shipped",
       "tier": 2
     }
