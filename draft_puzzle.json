@@ -28,14 +28,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "ORDERED_SET_MEMBER",
       "difficulty": "blue",
-      "name": "Metaphors for being relaxed",
+      "name": "Caprese salad ingredients",
       "words": [
-        "CHILL",
-        "FRESH",
-        "BUZZ",
-        "SPRING"
+        "MOZZARELLA",
+        "BASIL",
+        "TOMATO",
+        "VINEGAR"
       ]
     },
     {
