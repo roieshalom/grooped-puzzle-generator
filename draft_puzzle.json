@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "green",
-      "name": "Metaphors for a collision",
+      "name": "Found in a cathedral",
       "words": [
-        "CRUNCH",
-        "CRASH",
-        "BLOW",
-        "HIT"
+        "CATHEDRA",
+        "ALTAR",
+        "CRUCIFIX",
+        "ORGAN"
       ]
     },
     {
