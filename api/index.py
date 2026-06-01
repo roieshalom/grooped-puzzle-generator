@@ -646,6 +646,28 @@ Return ONLY JSON:
 
 # ─── Puzzle generation ────────────────────────────────────────────────────────
 
+# Shared anti-vanilla list used by both _build_prompt (full puzzle) and
+# regenerate_category (single category). Single source of truth — if you add
+# a forbidden theme, both call sites pick it up.
+_STARTER_PACK_BLOCK = """FORBIDDEN "STARTER PACK" THEMES — DO NOT USE EVEN IF NOT EXPLICITLY BANNED
+==========================================================================
+
+These are obvious 4-element sets that come up too easily and feel like training-data filler. DO NOT use them, in any framing, ever:
+
+- Card suits / playing card things (hearts, spades, diamonds, clubs)
+- Cardinal directions (north, south, east, west)
+- Days of the week, months, seasons
+- Planets, zodiac signs, Greek letters, NATO alphabet
+- Primary colors, rainbow colors, traffic light colors
+- Compass points, continents, oceans
+- Standard chess pieces, standard yoga poses, standard kitchen utensils
+- "Types of [common noun]" formulations in general
+- Famous quartets that everyone knows (Beatles, Ninja Turtles, four seasons)
+- Periodic table elements, Roman numerals, vowels
+
+If your first instinct is one of these, STOP and try something genuinely fresh. The whole point of Grooped is that solvers find the categories surprising."""
+
+
 def _build_prompt(banned_list: list) -> str:
     # Include ALL banned categories. At ~1500 entries × ~25 chars = ~37KB
     # (~10K tokens) which fits comfortably in gpt-4.1's 128K input window.
@@ -672,23 +694,7 @@ The following category names have already been used or are permanently banned. D
 
 __BANNED_LIST__
 
-FORBIDDEN "STARTER PACK" THEMES — DO NOT USE EVEN IF NOT EXPLICITLY BANNED
-==========================================================================
-
-These are obvious 4-element sets that come up too easily and feel like training-data filler. DO NOT use them, in any framing, ever:
-
-- Card suits / playing card things (hearts, spades, diamonds, clubs)
-- Cardinal directions (north, south, east, west)
-- Days of the week, months, seasons
-- Planets, zodiac signs, Greek letters, NATO alphabet
-- Primary colors, rainbow colors, traffic light colors
-- Compass points, continents, oceans
-- Standard chess pieces, standard yoga poses, standard kitchen utensils
-- "Types of [common noun]" formulations in general
-- Famous quartets that everyone knows (Beatles, Ninja Turtles, four seasons)
-- Periodic table elements, Roman numerals, vowels
-
-If your first instinct is one of these, STOP and try something genuinely fresh. The whole point of Grooped is that solvers find the categories surprising.
+__STARTER_PACK__
 
 STEP 0: CORPUS NOTE
 ===================
@@ -991,7 +997,9 @@ REFERENCE: TARGET QUALITY PUZZLE
 ===============================
 
 The example above (puzzle #137) is the target. Two scenes/idioms in Tiers 1-2, one wordplay in Tier 1 purple, real cross-pulls between groups (CHANGE could be pocket or could be improvement, JAM could be food or trouble, BEAT could be drum or DEAD BEAT). Strong board, varied mechanics, no Tier 4 forced. This is what good looks like."""
-    return template.replace("__BANNED_LIST__", preview_text)
+    return (template
+            .replace("__BANNED_LIST__", preview_text)
+            .replace("__STARTER_PACK__", _STARTER_PACK_BLOCK))
 
 @app.route("/api/generate-puzzle", methods=["POST"])
 @require_auth
@@ -1111,17 +1119,52 @@ def generate_puzzle():
 
 # ─── Regenerate single category ───────────────────────────────────────────────
 
+_STOPWORDS = {
+    "a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "for",
+    "with", "by", "as", "is", "are", "be", "that", "this", "what", "which",
+    "things", "stuff", "kind", "kinds", "type", "types",
+}
+
+
+def _significant_words(name: str) -> set:
+    return {
+        w for w in _normalize(name).split()
+        if w and w not in _STOPWORDS and len(w) > 2
+    }
+
+
+def _is_paraphrase(name: str, existing_sigs: list) -> bool:
+    """True if `name` shares any significant word with one of the
+    precomputed `existing_sigs` sets — catches near-paraphrases like
+    "Breakfast favorites" → "Breakfast essentials"."""
+    candidate = _significant_words(name)
+    return any(candidate & e for e in existing_sigs)
+
+
+def _inject_tier(data: dict) -> None:
+    """Inject tier from mechanic lookup; clear stale mechanic if not in list."""
+    mechanic = data.get("mechanic")
+    if mechanic and mechanic in _TIER_LOOKUP:
+        data["tier"] = _TIER_LOOKUP[mechanic]
+    else:
+        data.pop("mechanic", None)
+        data.pop("tier", None)
+
+
 @app.route("/api/regenerate-category", methods=["GET"])
 @require_auth
 def regenerate_category():
     difficulty    = request.args.get("difficulty", "medium")
     category_name = request.args.get("category_name", "").strip()
+    existing      = [s.strip() for s in request.args.get("existing", "").split("|") if s.strip()]
 
     try:
         banned, _ = _load_banned()
-        banned_text = ", ".join(sorted({_normalize(n) for n in banned})) or "none"
-
-        mechanic_list = ", ".join(sorted(_TIER_LOOKUP.keys()))
+        banned_norm    = {_normalize(n) for n in banned}
+        existing_norm  = {_normalize(n) for n in existing}
+        forbidden_norm = banned_norm | existing_norm
+        banned_text    = ", ".join(sorted(banned_norm)) or "none"
+        mechanic_list  = ", ".join(sorted(_TIER_LOOKUP.keys()))
 
         if category_name:
             prompt = f"""Generate exactly 4 words for this Connections-style puzzle category.
@@ -1136,33 +1179,62 @@ Rules:
 
 Return ONLY valid JSON:
 {{"name": "{category_name}", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
-        else:
-            prompt = f"""Create a brand-new category for a Connections-style word puzzle.
+            data = _call_claude(prompt, max_tokens=2000, model=GEN_MODEL, temperature=0.7)
+            _inject_tier(data)
+            return jsonify(data)
 
-BANNED (do not reuse, even rephrased): {banned_text}
+        existing_block = ""
+        if existing:
+            bullets = "\n- ".join(existing)
+            existing_block = (
+                "OTHER CATEGORIES ALREADY ON THE PUZZLE (your new category must be thematically DIFFERENT from these — not a paraphrase, narrower/broader version, or different angle on the same theme):\n"
+                f"- {bullets}\n\n"
+            )
+
+        prompt = f"""Create a brand-new category for a Connections-style word puzzle.
+
+{existing_block}BANNED (do not reuse or rephrase any of these): {banned_text}
+
+{_STARTER_PACK_BLOCK}
 
 Requirements:
 - Difficulty: {difficulty}
 - Exactly 4 words, UPPERCASE
 - Category name: sentence case (e.g. "Things in a junk drawer"), NOT all caps
-- Casual register — pop culture, everyday objects, common phrases
-- No academic jargon, no "words that are both X and Y"
-- Choose the mechanic from this list that best describes the category: {mechanic_list}
+- Casual register — pop culture, everyday objects, common phrases, idioms
+- AVOID safe/vanilla themes — surprise the solver
+- No academic jargon, no "words that are both X and Y" framings
+- Choose the mechanic from this list: {mechanic_list}
 
 Return ONLY valid JSON:
 {{"name": "Things in a junk drawer", "difficulty": "{difficulty}", "mechanic": "MECHANIC_NAME", "words": ["WORD1", "WORD2", "WORD3", "WORD4"]}}"""
 
-        data = _call_claude(prompt, max_tokens=4000, model=VERIFY_MODEL)
+        existing_sigs = [s for s in (_significant_words(e) for e in existing) if s]
 
-        # Inject tier from lookup; clear any stale mechanic if not in the list
-        mechanic = data.get("mechanic")
-        if mechanic and mechanic in _TIER_LOOKUP:
-            data["tier"] = _TIER_LOOKUP[mechanic]
-        else:
-            data.pop("mechanic", None)
-            data.pop("tier", None)
+        for attempt in range(1, 6):
+            try:
+                candidate = _call_claude(prompt, max_tokens=2000, model=GEN_MODEL, temperature=0.9)
+            except Exception as e:
+                print(f"[regen] attempt {attempt}: call failed: {e}")
+                continue
 
-        return jsonify(data)
+            name = (candidate.get("name") or "").strip()
+            if not name:
+                continue
+
+            norm = _normalize(name)
+            if norm in forbidden_norm:
+                print(f"[regen] attempt {attempt}: '{name}' is banned or already on board")
+                continue
+            if _is_paraphrase(name, existing_sigs):
+                print(f"[regen] attempt {attempt}: '{name}' is a paraphrase of an existing category")
+                continue
+
+            print(f"[regen] accepted on attempt {attempt}: {name}")
+            _inject_tier(candidate)
+            return jsonify(candidate)
+
+        return jsonify({"error": "Could not generate a fresh category after several attempts."}), 500
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

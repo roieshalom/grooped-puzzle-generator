@@ -1007,6 +1007,16 @@ async function regenerateCategoryForIndex(categoryIdx, options = {}) {
   if (usePromptIfEmpty && allWordsEmpty && categoryName) {
     apiUrl += `&category_name=${encodeURIComponent(categoryName)}`;
   }
+  // Send the other categories' names so the backend can avoid near-duplicates
+  // (e.g. "Breakfast favorites" → "Breakfast essentials").
+  const idxStr = String(categoryIdx);
+  const otherNames = Array.from(document.querySelectorAll('.category'))
+    .filter((el) => el.dataset.categoryIndex !== idxStr)
+    .map((el) => el.querySelector('.category-name-input')?.value.trim())
+    .filter(Boolean);
+  if (otherNames.length) {
+    apiUrl += `&existing=${encodeURIComponent(otherNames.join('|'))}`;
+  }
 
   const regenBtn = categoryEl.querySelector('.regenerate-btn');
   if (regenBtn) {
