@@ -4,86 +4,96 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Items you find in a grocery store (not food)",
+      "name": "___ BURNER",
       "words": [
-        "CHECKOUT",
-        "BASKET",
-        "AISLE",
-        "CART"
+        "BACK",
+        "FRONT",
+        "SIDE",
+        "DOUBLE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "difficulty": "green",
+      "name": "Things that cast a shadow",
+      "words": [
+        "BALLOON",
+        "RUG",
+        "CURTAIN",
+        "RECORD"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "blue",
+      "name": "Can be tipped",
+      "words": [
+        "SEAT",
+        "HAND",
+        "FILE",
+        "BALLOON"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Metaphoric ways to cut off from something",
-      "words": [
-        "BURN",
-        "BRIDGE",
-        "ZIP",
-        "TONGUE"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "blue",
-      "name": "Finishes the idiom 'long ____'",
-      "words": [
-        "TAIL",
-        "SPOT",
-        "ROPE",
-        "PIECE OF CAKE"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Contains a hidden animal in its letters",
+      "name": "Metaphors for evidence",
       "words": [
-        "LUCKY BREAK",
-        "EASY STREET",
-        "HOME RUN",
-        "SNAPDRAGON"
+        "MARK",
+        "GEAR",
+        "CORD",
+        "DRUM"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Metaphoric ways to cut off from something",
-      "category_b": "Items you find in a grocery store (not food)",
-      "reason_a": "'burn a bridge' means to sever a connection",
-      "reason_b": "A bridge could be thought of as a physical structure in a store or supermarket.",
-      "word": "BRIDGE"
+      "category_a": "Things that cast a shadow",
+      "category_b": "Can be tipped",
+      "reason_a": "A balloon floating in light casts a shadow",
+      "reason_b": "You can 'tip' a balloon over (as a physical tip, or pop it and it tips over)",
+      "word": "BALLOON"
     },
     {
-      "category_a": "Items you find in a grocery store (not food)",
-      "category_b": "Contains a hidden animal in its letters",
-      "reason_a": "A cart is a shopping tool",
-      "reason_b": "'CART' contains 'CAT' in order, tempting solvers to look for animals.",
-      "word": "CART"
+      "category_a": "Metaphors for evidence",
+      "category_b": "___ BURNER",
+      "reason_a": "A mark is a trace or evidence left behind",
+      "reason_b": "MARK BURNER feels plausible as a name or phrase, especially with other household objects",
+      "word": "MARK"
     },
     {
-      "category_a": "Finishes the idiom 'long ____'",
-      "category_b": "Contains a hidden animal in its letters",
-      "reason_a": "long tail is the idiom",
-      "reason_b": "'TAIL' is an animal body part and could tempt solvers to look for that pattern.",
-      "word": "TAIL"
+      "category_a": "Things that cast a shadow",
+      "category_b": "Metaphors for evidence",
+      "reason_a": "A record (vinyl or digital) is a physical item and can cast a shadow",
+      "reason_b": "A 'record' is literally documentary evidence",
+      "word": "RECORD"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
+      "reason": "Could not find four natural words containing a specific hidden item with sufficient decoy tension",
+      "result": "abandoned",
       "tier": 3
+    },
+    {
+      "mechanic": "SUFFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'BALLOON' within this puzzle"
+    ],
+    "duplicate_words": [
+      "BALLOON"
+    ]
   }
 }
