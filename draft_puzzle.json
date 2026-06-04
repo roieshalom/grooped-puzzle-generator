@@ -3,97 +3,97 @@
   "date": "28.04.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "yellow",
-      "name": "___ BURNER",
+      "name": "Can be broken (literally or figuratively)",
       "words": [
-        "BACK",
-        "FRONT",
-        "SIDE",
-        "DOUBLE"
+        "MIRROR",
+        "RECORD",
+        "SEAL",
+        "FILE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "green",
+      "name": "Things you can 'leak'",
+      "words": [
+        "BEANS",
+        "NEWS",
+        "CLOCK",
+        "WHISTLE"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "blue",
+      "name": "LIGHT ___",
+      "words": [
+        "EARLY",
+        "HAND",
+        "FACE",
+        "SPRING"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "green",
-      "name": "Things that cast a shadow",
-      "words": [
-        "BALLOON",
-        "RUG",
-        "CURTAIN",
-        "RECORD"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "Can be tipped",
-      "words": [
-        "SEAT",
-        "HAND",
-        "FILE",
-        "BALLOON"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "Metaphors for evidence",
+      "name": "Parts of a plant, but also body parts",
       "words": [
-        "MARK",
-        "GEAR",
-        "CORD",
-        "DRUM"
+        "NAILS",
+        "ROOTS",
+        "LEAVES",
+        "FACE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that cast a shadow",
-      "category_b": "Can be tipped",
-      "reason_a": "A balloon floating in light casts a shadow",
-      "reason_b": "You can 'tip' a balloon over (as a physical tip, or pop it and it tips over)",
-      "word": "BALLOON"
+      "category_a": "LIGHT ___",
+      "category_b": "Parts of a plant, but also body parts",
+      "reason_a": "Light face is a term in printing; 'face' is also on clocks (clock face)",
+      "reason_b": "Face is both part of a plant (sunflower face) and a body part, pulling as a decoy.",
+      "word": "FACE"
     },
     {
-      "category_a": "Metaphors for evidence",
-      "category_b": "___ BURNER",
-      "reason_a": "A mark is a trace or evidence left behind",
-      "reason_b": "MARK BURNER feels plausible as a name or phrase, especially with other household objects",
-      "word": "MARK"
+      "category_a": "LIGHT ___",
+      "category_b": "Parts of a plant, but also body parts",
+      "reason_a": "'Light spring' is a seasonal term and palette in color theory",
+      "reason_b": "'Spring' makes one think of leaves and roots, tempting confusion with the plant/body part group.",
+      "word": "SPRING"
     },
     {
-      "category_a": "Things that cast a shadow",
-      "category_b": "Metaphors for evidence",
-      "reason_a": "A record (vinyl or digital) is a physical item and can cast a shadow",
-      "reason_b": "A 'record' is literally documentary evidence",
-      "word": "RECORD"
+      "category_a": "Things you can 'leak'",
+      "category_b": "LIGHT ___",
+      "reason_a": "'Leak the clock' is a stretch but 'clock' cues time, which leaks, and clock face/hands are literal",
+      "reason_b": "Light clock is an actual physics term; clock hands and face connect to the blue group.",
+      "word": "CLOCK"
     }
   ],
   "attempt_log": [
     {
       "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four natural words containing a specific hidden item with sufficient decoy tension",
+      "reason": "Tried hiding plant names inside words, but couldn't find four fair surface words without obscure fills or forced overlap. Rebuilt using other underused mechanics with more decoy tension.",
       "result": "abandoned",
       "tier": 3
     },
     {
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "CAN_BE_VERBED",
       "result": "shipped",
-      "tier": 1
+      "tier": 2
     }
   ],
   "_validation": {
     "valid": false,
     "errors": [
-      "Duplicate word 'BALLOON' within this puzzle"
+      "Duplicate word 'FACE' within this puzzle"
     ],
     "duplicate_words": [
-      "BALLOON"
+      "FACE"
     ]
   }
 }
