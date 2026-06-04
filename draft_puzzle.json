@@ -28,26 +28,26 @@
     },
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Synonyms for being sneaky",
+      "name": "Winter clothes",
       "words": [
-        "CAGEY",
-        "SHIFTY",
-        "SLY",
-        "FOXY"
+        "PARKA",
+        "BALACLAVA",
+        "CARDIGAN",
+        "MITTENS"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "CROSS_LANGUAGE",
       "difficulty": "purple",
-      "name": "MParts of a plant, but also B body parts",
+      "name": "Arabic sweets",
       "words": [
-        "NAILS",
-        "ROOTS",
-        "LEAVES",
-        "FACE"
+        "MAAMOUL",
+        "QATAYEF",
+        "KNAFEH",
+        "BASBOUSA"
       ]
     }
   ],
