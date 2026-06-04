@@ -6,7 +6,7 @@
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "yellow",
-      "name": "Can be broken (literally or figuratively)",
+      "name": "Can be broken",
       "words": [
         "MIRROR",
         "RECORD",
@@ -15,34 +15,34 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "green",
-      "name": "Things you can 'leak'",
+      "name": "In a magician's act",
       "words": [
-        "BEANS",
-        "NEWS",
-        "CLOCK",
-        "WHISTLE"
+        "RABBIT",
+        "WAND",
+        "SCARF",
+        "CARDS"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "difficulty": "blue",
-      "name": "LIGHT ___",
+      "name": "Synonyms for being sneaky",
       "words": [
-        "EARLY",
-        "HAND",
-        "FACE",
-        "SPRING"
+        "CAGEY",
+        "SHIFTY",
+        "SLY",
+        "FOXY"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Parts of a plant, but also body parts",
+      "name": "MParts of a plant, but also B body parts",
       "words": [
         "NAILS",
         "ROOTS",
@@ -88,12 +88,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'FACE' within this puzzle"
-    ],
-    "duplicate_words": [
-      "FACE"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
