@@ -8,7 +8,7 @@
       "difficulty": "yellow",
       "name": "Payment Networks (Financial Context)",
       "words": [
-        "VISA",
+        "DINERS CLUB",
         "MASTERCARD",
         "DISCOVER",
         "AMEX"
@@ -90,12 +90,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'VISA' within this puzzle"
-    ],
-    "duplicate_words": [
-      "VISA"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
