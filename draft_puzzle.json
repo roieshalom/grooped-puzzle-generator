@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Things that can 'sound' (as a verb or noun)",
+      "name": "Beer glass types",
       "words": [
-        "HORN",
-        "NOTE",
-        "BARK",
-        "STUMP"
+        "PINT",
+        "IPA",
+        "TULIP",
+        "SNIFTER"
       ]
     },
     {
@@ -82,12 +82,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'HORN' within this puzzle"
-    ],
-    "duplicate_words": [
-      "HORN"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
