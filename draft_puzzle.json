@@ -30,12 +30,12 @@
       "tier": 2,
       "mechanic": "WAYS_TO_VERB",
       "difficulty": "blue",
-      "name": "Daft Punk's song title",
+      "name": "Daft Punk's song, minus \"er\"",
       "words": [
-        "HARDER",
-        "BETTER",
-        "FASTER",
-        "STRONGER"
+        "HARD",
+        "BETT",
+        "FAST",
+        "STRONG"
       ]
     },
     {
