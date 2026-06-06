@@ -18,36 +18,36 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "green",
-      "name": "Things that make a sound AND are also verbs",
+      "name": "",
       "words": [
-        "BARK",
-        "CRASH",
-        "BLUSH",
-        "WAVE"
+        "BOX",
+        "PUSSY",
+        "MAP OF TASSIE",
+        "VAG"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Complete the idiom: \"Turn a blind ___\"",
+      "name": "Rodents",
       "words": [
-        "HAND",
-        "DECK",
-        "EAR",
-        "EYE"
+        "BEAVER",
+        "CAPYBARA",
+        "GROUNDHOG",
+        "GOPHER"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Hide the names of times of day inside",
+      "name": "______ Day",
       "words": [
-        "SIGH",
-        "NIGHT",
-        "SHORT",
-        "TIDE"
+        "DOG",
+        "JUDGMENT",
+        "HEY",
+        "RACE"
       ]
     }
   ],
