@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "yellow",
-      "name": "Can be opened and closed",
+      "name": "Delivery can come in those shapes",
       "words": [
-        "DRAWER",
-        "CHEST",
-        "BIN",
-        "JAR"
+        "POLYBAG",
+        "TUBE",
+        "ENVELOPE",
+        "CRATE"
       ]
     },
     {
