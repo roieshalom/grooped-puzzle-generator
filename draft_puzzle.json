@@ -1,82 +1,92 @@
 {
-  "id": "176",
+  "id": "138",
   "date": "06.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "yellow",
-      "name": "Things that click",
-      "words": [
-        "MOUSE",
-        "PEN",
-        "CAMERA",
-        "BUCKLE"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
-      "difficulty": "green",
-      "name": "Parts you'll find in a car",
-      "words": [
-        "HOOD",
-        "SEATBELT",
-        "PEDAL",
-        "MIRROR"
-      ]
-    },
-    {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
-      "difficulty": "blue",
-      "name": "DOUBLE ___",
+      "difficulty": "yellow",
+      "name": "___ FAN",
       "words": [
-        "DOWN",
-        "DATE",
-        "AGENT",
-        "ESPRESSO"
+        "CEILING",
+        "BOX",
+        "EXHAUST",
+        "ATTIC"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "purple",
-      "name": "Words with a silent letter",
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "green",
+      "name": "Can be raised",
       "words": [
-        "KNEE",
-        "SALMON",
-        "DEBT",
-        "SWORD"
+        "BAR",
+        "ROOF",
+        "FLAG",
+        "HAND"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "blue",
+      "name": "UNDER THE ___",
+      "words": [
+        "RADAR",
+        "WEATHER",
+        "GUN",
+        "SUN"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
+      "difficulty": "purple",
+      "name": "Add E to the end to make a new word",
+      "words": [
+        "PLAN",
+        "TON",
+        "RID",
+        "NOT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that click",
-      "category_b": "Parts you'll find in a car",
-      "reason_a": "A camera shutter makes an audible click.",
-      "reason_b": "Dash/backup cameras live in cars, so it feels like a car item.",
-      "word": "CAMERA"
+      "category_a": "Can be raised",
+      "category_b": "___ FAN",
+      "reason_a": "You raise your hand.",
+      "reason_b": "Hand fan is a common phrase/object, tempting a misgroup.",
+      "word": "HAND"
     },
     {
-      "category_a": "Parts you'll find in a car",
-      "category_b": "Things that click",
-      "reason_a": "A standard, built-in part of a car interior.",
-      "reason_b": "Seatbelts click when the buckle latches.",
-      "word": "SEATBELT"
-    },
-    {
-      "category_a": "Things that click",
-      "category_b": "Parts you'll find in a car",
-      "reason_a": "Buckles click when they snap into place.",
-      "reason_b": "Commonly associated with car seatbelts, tempting a car-category placement.",
-      "word": "BUCKLE"
+      "category_a": "___ FAN",
+      "category_b": "Can be raised",
+      "reason_a": "Ceiling fan is a very common phrase.",
+      "reason_b": "Raise the ceiling (e.g., debt ceiling) is a familiar expression.",
+      "word": "CEILING"
     }
   ],
   "attempt_log": [
     {
-      "result": "shipped"
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "ADD_LETTER",
+      "result": "shipped",
+      "tier": 3
     }
   ],
   "_validation": {
