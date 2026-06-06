@@ -1,84 +1,82 @@
 {
-  "id": "153",
-  "date": "05.06.2026",
+  "id": "176",
+  "date": "06.06.2026",
   "categories": [
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "Hiding a tree",
+      "name": "Things that click",
       "words": [
-        "SPINE",
-        "FIRE",
-        "SOAK",
-        "FIGURE"
+        "MOUSE",
+        "PEN",
+        "CAMERA",
+        "BUCKLE"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "green",
-      "name": "French ____",
+      "name": "Parts you'll find in a car",
       "words": [
-        "TOAST",
-        "PRESS",
-        "HORN",
-        "KISS"
+        "HOOD",
+        "SEATBELT",
+        "PEDAL",
+        "MIRROR"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "Beer glass types",
+      "name": "DOUBLE ___",
       "words": [
-        "PINT",
-        "IPA",
-        "TULIP",
-        "SNIFTER"
+        "DOWN",
+        "DATE",
+        "AGENT",
+        "ESPRESSO"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "CROSS_LANGUAGE",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Symbols of The Netherlands (single form)",
+      "name": "Words with a silent letter",
       "words": [
-        "WINDMILL",
-        "GOUDA",
-        "DELFTWARE",
-        "WOODEN CLOG"
+        "KNEE",
+        "SALMON",
+        "DEBT",
+        "SWORD"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that can 'sound' (as a verb or noun)",
-      "category_b": "Each word hides a kind of tree",
-      "reason_a": "Bark is a sound (dog bark), and 'sound' can mean to make noise.",
-      "reason_b": "Bark comes from trees, and all the tree words are hidden in the purple group; BARK may tempt as a fake tree connection.",
-      "word": "BARK"
+      "category_a": "Things that click",
+      "category_b": "Parts you'll find in a car",
+      "reason_a": "A camera shutter makes an audible click.",
+      "reason_b": "Dash/backup cameras live in cars, so it feels like a car item.",
+      "word": "CAMERA"
     },
     {
-      "category_a": "Things that can 'sound' (as a verb or noun)",
-      "category_b": "___ OUT",
-      "reason_a": "Horn is an instrument that makes sound.",
-      "reason_b": "HORN OUT is a plausible phrase; 'horn out' can mean to sound a horn as a warning.",
-      "word": "HORN"
+      "category_a": "Parts you'll find in a car",
+      "category_b": "Things that click",
+      "reason_a": "A standard, built-in part of a car interior.",
+      "reason_b": "Seatbelts click when the buckle latches.",
+      "word": "SEATBELT"
     },
     {
-      "category_a": "Ways to say 'leave' (phrasal verbs)",
-      "category_b": "___ OUT",
-      "reason_a": "'Sign off' means to leave or end participation.",
-      "reason_b": "People might think of 'sign out' (log out), which overlaps with 'sign off' and both mean leaving.",
-      "word": "SIGN OFF"
+      "category_a": "Things that click",
+      "category_b": "Parts you'll find in a car",
+      "reason_a": "Buckles click when they snap into place.",
+      "reason_b": "Commonly associated with car seatbelts, tempting a car-category placement.",
+      "word": "BUCKLE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
-      "tier": 3
+      "result": "shipped"
     }
   ],
   "_validation": {
