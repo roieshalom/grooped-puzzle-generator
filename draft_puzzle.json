@@ -6,7 +6,7 @@
       "tier": 2,
       "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "yellow",
-      "name": "Characters from The Office (US)",
+      "name": "\"The Office\" characters",
       "words": [
         "JIM",
         "PAM",
@@ -18,7 +18,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "places or things to hang your coat on",
+      "name": "Where you hang your coat",
       "words": [
         "GARDEROBE",
         "PEG",
@@ -30,7 +30,7 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "OFF THE ___",
+      "name": "Off the ___",
       "words": [
         "HOOK",
         "CUFF",
