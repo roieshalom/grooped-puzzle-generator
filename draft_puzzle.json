@@ -40,14 +40,14 @@
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "HIDDEN_WORD_AT_END",
       "difficulty": "purple",
-      "name": "Add 'P' to the front to make a new word",
+      "name": "Expressing unity",
       "words": [
-        "EAR",
-        "LATE",
-        "RANK",
-        "RICE"
+        "SOLID",
+        "IN UNISON",
+        "HARMONIOUS",
+        "CONSISTENT"
       ]
     }
   ],
