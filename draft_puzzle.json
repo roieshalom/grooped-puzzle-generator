@@ -1,82 +1,89 @@
 {
-  "id": "138",
+  "id": "182",
   "date": "06.06.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Payment Networks",
+      "name": "Touchscreen motions",
       "words": [
-        "DINERS CLUB",
-        "MASTERCARD",
-        "DISCOVER",
-        "AMEX"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Can be raised",
-      "words": [
-        "BAR",
-        "KIDS",
-        "FLAG",
-        "HAND"
+        "TAP",
+        "SWIPE",
+        "PINCH",
+        "ZOOM"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "FIFA 2026 world cup partners",
+      "mechanic": "SYNONYMS",
+      "difficulty": "green",
+      "name": "Synonyms for “steal”",
       "words": [
-        "ADIDAS",
-        "VISA",
-        "QATAR AIRWAYS",
-        "COCA-COLA"
+        "LIFT",
+        "ROB",
+        "NICK",
+        "FILCH"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "blue",
+      "name": "OFF THE ___ (common phrases)",
+      "words": [
+        "HOOK",
+        "CUFF",
+        "RECORD",
+        "WALL"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "COMPOUND_BOTH_WAYS",
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "To find out",
+      "name": "Add S to the start to form a new word",
       "words": [
-        "LEARN",
-        "DETERMINE",
-        "REALIZE",
-        "UNMASK"
+        "LIP",
+        "TOP",
+        "NOW",
+        "CARE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can be raised",
-      "category_b": "___ FAN",
-      "reason_a": "You raise your hand.",
-      "reason_b": "Hand fan is a common phrase/object, tempting a misgroup.",
-      "word": "HAND"
+      "category_a": "Touchscreen motions",
+      "category_b": "Synonyms for “steal”",
+      "reason_a": "A named gesture on phones and tablets.",
+      "reason_b": "To swipe something is to steal it.",
+      "word": "SWIPE"
     },
     {
-      "category_a": "___ FAN",
-      "category_b": "Can be raised",
-      "reason_a": "Ceiling fan is a very common phrase.",
-      "reason_b": "Raise the ceiling (e.g., debt ceiling) is a familiar expression.",
-      "word": "CEILING"
+      "category_a": "Touchscreen motions",
+      "category_b": "Synonyms for “steal”",
+      "reason_a": "Common multi-touch gesture to zoom.",
+      "reason_b": "In British English, to pinch can mean to steal.",
+      "word": "PINCH"
+    },
+    {
+      "category_a": "Add S to the start to form a new word",
+      "category_b": "OFF THE ___ (common phrases)",
+      "reason_a": "Becomes STOP when adding S.",
+      "reason_b": "“Off the top (of my head)” is a familiar phrase, tempting a fit in this idiom set.",
+      "word": "TOP"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "SYNONYMS",
       "result": "shipped",
-      "tier": 2
+      "tier": 1
     },
     {
       "mechanic": "IDIOM_COMPLETION",
