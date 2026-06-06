@@ -3,95 +3,87 @@
   "date": "06.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "CHARACTERS_IN_ONE_WORK",
-      "difficulty": "yellow",
-      "name": "\"The Office\" characters",
-      "words": [
-        "JIM",
-        "PAM",
-        "DWIGHT",
-        "MICHAEL"
-      ]
-    },
-    {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Where you hang your coat",
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "OPEN ___",
       "words": [
-        "GARDEROBE",
-        "PEG",
-        "RACK",
-        "HANGER"
+        "BOOK",
+        "HOUSE",
+        "MIC",
+        "SECRET"
       ]
     },
     {
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "blue",
-      "name": "Off the ___",
+      "difficulty": "green",
+      "name": "Under the ___",
       "words": [
-        "HOOK",
-        "CUFF",
-        "RECORD",
-        "WALL"
+        "WEATHER",
+        "RADAR",
+        "TABLE",
+        "HOOD"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WORKS_BY_ONE_MAKER",
-      "difficulty": "purple",
-      "name": "Michael Jackson's albums",
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "blue",
+      "name": "Ways to tell someone to be quiet",
       "words": [
-        "THRILLER",
-        "BAD",
-        "BEN",
-        "INVINCIBLE"
+        "ZIP IT",
+        "CAN IT",
+        "PIPE DOWN",
+        "BUTTON IT"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
+      "difficulty": "purple",
+      "name": "Add 'P' to the front to make a new word",
+      "words": [
+        "EAR",
+        "LATE",
+        "RANK",
+        "RICE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Touchscreen motions",
-      "category_b": "Synonyms for “steal”",
-      "reason_a": "A named gesture on phones and tablets.",
-      "reason_b": "To swipe something is to steal it.",
-      "word": "SWIPE"
+      "category_a": "OPEN ___",
+      "category_b": "Ways to tell someone to be quiet",
+      "reason_a": "OPEN MIC is a common phrase for a live-mic event",
+      "reason_b": "Cut the mic is a way to silence someone; feels like it belongs with hush commands",
+      "word": "MIC"
     },
     {
-      "category_a": "Touchscreen motions",
-      "category_b": "Synonyms for “steal”",
-      "reason_a": "Common multi-touch gesture to zoom.",
-      "reason_b": "In British English, to pinch can mean to steal.",
-      "word": "PINCH"
+      "category_a": "Add 'P' to the front to make a new word",
+      "category_b": "OPEN ___",
+      "reason_a": "LATE becomes PLATE when you add P",
+      "reason_b": "OPEN LATE is a familiar storefront phrase, tempting a misgroup",
+      "word": "LATE"
     },
     {
-      "category_a": "Add S to the start to form a new word",
-      "category_b": "OFF THE ___ (common phrases)",
-      "reason_a": "Becomes STOP when adding S.",
-      "reason_b": "“Off the top (of my head)” is a familiar phrase, tempting a fit in this idiom set.",
-      "word": "TOP"
+      "category_a": "Under the ___",
+      "category_b": "OPEN ___",
+      "reason_a": "Under the hood is a common idiom/phrase",
+      "reason_b": "OPEN HOOD is a natural automotive phrase, pulling it toward that group",
+      "word": "HOOD"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "TAXONOMY",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "SYNONYMS",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "IDIOM_COMPLETION",
-      "result": "shipped",
-      "tier": 2
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Could not find four clean hosts for a single hidden set that also offered cross-board decoys without resorting to obscure words",
+      "result": "abandoned",
+      "tier": 3
     },
     {
       "mechanic": "ADD_LETTER",
+      "reason": "Strong wordplay anchor with natural decoys and no surface tells",
       "result": "shipped",
       "tier": 3
     }
