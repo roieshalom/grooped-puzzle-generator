@@ -11,19 +11,19 @@
         "BOOK",
         "HOUSE",
         "MIC",
-        "SECRET"
+        "CODE"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "WAYS_TO_VERB",
       "difficulty": "green",
-      "name": "Under the ___",
+      "name": "to make an appointment",
       "words": [
-        "WEATHER",
-        "RADAR",
-        "TABLE",
-        "HOOD"
+        "RESERVE",
+        "SCHEDULE",
+        "ARRANGE",
+        "SET UP"
       ]
     },
     {
