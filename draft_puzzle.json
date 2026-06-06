@@ -1,77 +1,77 @@
 {
-  "id": "138",
-  "date": "28.04.2026",
+  "id": "153",
+  "date": "05.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "yellow",
-      "name": "Delivery can come in those shapes",
+      "name": "Each word hides a kind of tree",
       "words": [
-        "POLYBAG",
-        "TUBE",
-        "ENVELOPE",
-        "CRATE"
+        "RACKET",
+        "NESTED",
+        "ARCHIVE",
+        "SALT AWAY"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "WAYS_TO_VERB",
       "difficulty": "green",
-      "name": "Vulgar slang for female genitals",
+      "name": "Ways to say 'leave' (phrasal verbs)",
       "words": [
-        "BOX",
-        "PUSSY",
-        "PUNANI",
-        "VAG"
+        "HAND OFF",
+        "BOW OUT",
+        "SIGN OFF",
+        "KNOCK OUT"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "blue",
+      "name": "Things that can 'sound' (as a verb or noun)",
+      "words": [
+        "HORN",
+        "NOTE",
+        "BARK",
+        "STUMP"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "Rodents",
-      "words": [
-        "BEAVER",
-        "CAPYBARA",
-        "GROUNDHOG",
-        "GOPHER"
-      ]
-    },
-    {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "purple",
-      "name": "______ Day",
+      "name": "___ OUT",
       "words": [
-        "DOG",
-        "JUDGMENT",
-        "HEY",
-        "RACE"
+        "TUNE OUT",
+        "LEAF OUT",
+        "HORN OUT",
+        "NOTE OUT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Can be opened and closed",
-      "category_b": "Things that make a sound AND are also verbs",
-      "reason_a": "A jar is a container you open and close",
-      "reason_b": "JAR can be a verb meaning to shake or to make a jarring sound, tempting a solver toward the verb/sound group",
-      "word": "JAR"
+      "category_a": "Things that can 'sound' (as a verb or noun)",
+      "category_b": "Each word hides a kind of tree",
+      "reason_a": "Bark is a sound (dog bark), and 'sound' can mean to make noise.",
+      "reason_b": "Bark comes from trees, and all the tree words are hidden in the purple group; BARK may tempt as a fake tree connection.",
+      "word": "BARK"
     },
     {
-      "category_a": "Complete the idiom: \"Turn a blind ___\"",
-      "category_b": "Can be opened and closed",
-      "reason_a": "Deck is used in the idiom as in \"turn a blind deck\" pun (but only EYE and EAR are common),",
-      "reason_b": "Decks (as in cards) are opened and closed, and the word can mean to hit (making a sound), tempting a move",
-      "word": "DECK"
+      "category_a": "Things that can 'sound' (as a verb or noun)",
+      "category_b": "___ OUT",
+      "reason_a": "Horn is an instrument that makes sound.",
+      "reason_b": "HORN OUT is a plausible phrase; 'horn out' can mean to sound a horn as a warning.",
+      "word": "HORN"
     },
     {
-      "category_a": "Things that make a sound AND are also verbs",
-      "category_b": "Hide the names of times of day inside",
-      "reason_a": "WAVE (verb) and sound (as in sound wave)",
-      "reason_b": "'EVE' is hidden in WAVE, so solvers may think it fits the hidden time group",
-      "word": "WAVE"
+      "category_a": "Ways to say 'leave' (phrasal verbs)",
+      "category_b": "___ OUT",
+      "reason_a": "'Sign off' means to leave or end participation.",
+      "reason_b": "People might think of 'sign out' (log out), which overlaps with 'sign off' and both mean leaving.",
+      "word": "SIGN OFF"
     }
   ],
   "attempt_log": [
