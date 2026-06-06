@@ -3,15 +3,15 @@
   "date": "06.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "yellow",
-      "name": "Touchscreen motions",
+      "name": "Characters from The Office (US)",
       "words": [
-        "TAP",
-        "SWIPE",
-        "PINCH",
-        "ZOOM"
+        "JIM",
+        "PAM",
+        "DWIGHT",
+        "MICHAEL"
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 2,
+      "mechanic": "WORKS_BY_ONE_MAKER",
       "difficulty": "purple",
-      "name": "Add S to the start to form a new word",
+      "name": "Michael Jackson's albums",
       "words": [
-        "LIP",
-        "TOP",
-        "NOW",
-        "CARE"
+        "THRILLER",
+        "BAD",
+        "BEN",
+        "INVINCIBLE"
       ]
     }
   ],
