@@ -27,27 +27,27 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "UNDER THE ___",
+      "name": "FIFA 2026 world cup sponsors",
       "words": [
-        "RADAR",
-        "WEATHER",
-        "GUN",
-        "SUN"
+        "ADIDAS",
+        "VISA",
+        "QATAR AIRWAYS",
+        "COCA-COLA"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Add E to the end to make a new word",
+      "name": "Same letters, shuffled",
       "words": [
-        "PLAN",
-        "TON",
-        "RID",
-        "NOT"
+        "TEACHER",
+        "CHEATER",
+        "HECTARE",
+        "RETEACH"
       ]
     }
   ],
