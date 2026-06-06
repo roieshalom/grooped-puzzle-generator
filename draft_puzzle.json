@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "green",
-      "name": "Ways to say 'leave' (phrasal verbs)",
+      "name": "French ____",
       "words": [
-        "HAND OFF",
-        "BOW OUT",
-        "SIGN OFF",
-        "KNOCK OUT"
+        "TOAST",
+        "PRESS",
+        "HORN",
+        "KISS"
       ]
     },
     {
@@ -82,8 +82,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'HORN' within this puzzle"
+    ],
+    "duplicate_words": [
+      "HORN"
+    ]
   }
 }
