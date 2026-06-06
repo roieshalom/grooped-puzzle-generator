@@ -36,9 +36,18 @@ PUZZLES_PATH  = "puzzles.json"
 DRAFT_PATH    = "draft_puzzle.json"
 BANNED_PATH   = "banned_categories.json"
 
-# OpenAI models
-GEN_MODEL    = os.environ.get("GEN_MODEL", "gpt-4.1")
-VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gpt-4.1-mini")
+# ─── OpenAI models ────────────────────────────────────────────────────────────
+# GEN_MODEL  = writes the puzzle.   VERIFY_MODEL = fact-checks it before shipping.
+# Both are env-overridable, so you can change or revert without touching code:
+#   • Revert to the cheaper/faster gpt-4.1 tier (set in Vercel env):
+#       GEN_MODEL=gpt-4.1   VERIFY_MODEL=gpt-4.1-mini
+#   • Push higher for even better quality:
+#       GEN_MODEL=gpt-5.5   VERIFY_MODEL=gpt-5
+# NOTE: gpt-5 / o-series models use 'max_completion_tokens' and only accept the
+# default temperature — _call_claude() handles that automatically (see
+# _is_reasoning_model below), so any model name here just works.
+GEN_MODEL    = os.environ.get("GEN_MODEL", "gpt-5")
+VERIFY_MODEL = os.environ.get("VERIFY_MODEL", "gpt-5-mini")
 
 # ─── GitHub helpers ───────────────────────────────────────────────────────────
 
@@ -509,30 +518,53 @@ def _extract_json(text: str) -> str:
                 continue
     return text
 
+def _is_reasoning_model(model: str) -> bool:
+    """gpt-5 family and o-series use the newer Chat Completions parameter style:
+    'max_completion_tokens' instead of 'max_tokens', and they reject any
+    non-default temperature. They also spend reasoning tokens from the same
+    budget, so callers must leave headroom."""
+    m = (model or "").lower()
+    return m.startswith(("gpt-5", "o1", "o3", "o4"))
+
+
+# Reasoning-token headroom: gpt-5 burns ~2.5-4K tokens thinking before it
+# writes any JSON. Add this on top of the requested output budget so the
+# actual JSON never gets truncated.
+_REASONING_HEADROOM = 8000
+
+
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None, temperature: float = 0.9) -> dict:
-    """Call OpenAI and parse JSON from the response."""
+    """Call OpenAI and parse JSON from the response. Adapts parameters to the
+    model family so gen/verify models can be swapped freely via env vars."""
     model = model or GEN_MODEL
     client = OpenAI(api_key=OPENAI_API_KEY)
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
+
+    kwargs = {
+        "model": model,
+        "messages": [
             {"role": "system", "content": "You are an expert Grooped puzzle generator. Return valid JSON only, no prose."},
             {"role": "user", "content": prompt},
         ],
-        max_tokens=max_tokens,
-        temperature=temperature,
-        response_format={"type": "json_object"},
-    )
+        "response_format": {"type": "json_object"},
+    }
+    if _is_reasoning_model(model):
+        # New-style params: rename token budget + add reasoning headroom, omit temperature.
+        kwargs["max_completion_tokens"] = max_tokens + _REASONING_HEADROOM
+    else:
+        kwargs["max_tokens"] = max_tokens
+        kwargs["temperature"] = temperature
+
+    response = client.chat.completions.create(**kwargs)
     raw = response.choices[0].message.content
     try:
         return json.loads(raw)
-    except json.JSONDecodeError:
+    except (json.JSONDecodeError, TypeError):
         # Fallback: try stripping any accidental markdown fences
-        extracted = _extract_json(raw)
+        extracted = _extract_json(raw or "")
         try:
             return json.loads(extracted)
         except json.JSONDecodeError:
-            raise ValueError(f"Could not parse JSON from OpenAI response: {raw[:300]}")
+            raise ValueError(f"Could not parse JSON from OpenAI response: {(raw or '')[:300]}")
 
 # ─── Decoy verification ───────────────────────────────────────────────────────
 
@@ -610,18 +642,19 @@ def _verify_categories(categories: list) -> tuple:
 CATEGORIES:
 {cats_block}
 
-For EACH category, verify whether ALL 4 listed words genuinely fit the category as stated.
+For EACH category, verify whether ALL 4 listed words genuinely fit the category as stated. Be a STRICT, skeptical fact-checker — a wrong category that ships ruins the puzzle.
 
 STRICT rules apply to wordplay mechanics:
-- "Hidden X inside" / "Begins with X" / "Ends with X" — the substring must literally appear at that position. The whole word being X does NOT count as "hidden inside X".
-- "Anagram of X" / "Sounds like X" — the relationship must actually hold.
-- "Words that follow X" / "X ___" — the resulting phrase must be a real common phrase.
+- "Hidden X inside" / "Begins with X" / "Ends with X" — spell the word letter by letter; the hidden item must literally appear as consecutive letters at that position. The whole word BEING X does not count. (e.g. "Hide times of day inside" → NIGHT does NOT hide a time of day, it IS one; SIGH/SHORT/TIDE contain no DAWN/NOON/DUSK/EVE → INVALID.)
+- "Complete the idiom 'X ___'" / "X ___" / "___ X" — write out the full phrase for each word and confirm EACH is a real, common idiom or phrase. If the stem only completes with ONE of the four words (the other three are filler), the category is INVALID. (e.g. "Turn a blind ___" → only EYE works → INVALID.)
+- "Anagram of X" / "Sounds like X" — the relationship must actually hold; verify the letters.
+- "Things that make a sound AND are also verbs" or any "both X and Y" framing — REJECT outright: this framing is forbidden, AND verify every word truly has BOTH properties (e.g. BLUSH makes no sound → INVALID).
 
-LENIENT rules apply to semantic/thematic categories:
+LENIENT rules apply to plain semantic/thematic categories:
 - "Things in a kitchen", "Ways to say yes" — accept if a typical adult would agree.
 - Slightly tangential fits are OK if widely recognizable.
 
-For each category, mark valid=true ONLY if all 4 words clearly fit. Mark valid=false if even ONE word fails.
+For each category, mark valid=true ONLY if all 4 words clearly fit AND the category framing is legitimate. Mark valid=false if even ONE word fails or the mechanic is malformed.
 
 Return ONLY JSON:
 {{"verdicts": [{{"index": 1, "valid": true, "reason": "brief"}}, ...]}}"""
@@ -754,7 +787,7 @@ Slightly more lateral. These should appear every 1 to 2 weeks.
 - SHARED_HIDDEN_PROPERTY: surprise trait. "Have teeth" → COMB, GEAR, ZIPPER, SAW.
 - METAPHOR_SUBSTITUTES: figurative terms for one concept. "In trouble" → BIND, JAM, PICKLE, HOT WATER. UNDERUSED IN THE CORPUS. PREFER THIS.
 - WAYS_TO_VERB: phrasal styles of an action. "Ways to say yes" → SURE, BET, DEAL, GRANTED.
-- IDIOM_COMPLETION: words that finish a specific idiom. "Bite the ___" → BULLET, DUST, HAND, APPLE.
+- IDIOM_COMPLETION: a single stem ("___ X" or "X ___") where EACH of the four words forms a DIFFERENT real, common idiom or phrase. "Bite the ___" → BULLET (bite the bullet), DUST (bite the dust), HAND (bite the hand that feeds you), TONGUE (bite your tongue). CRITICAL: every word must produce a phrase a regular adult actually says. NEVER pick a stem that only one word completes — "Turn a blind ___" only works with EYE, so it is INVALID as a category (the other three words would be filler). Before using this mechanic, write out all four full phrases and confirm each is a genuine idiom. If you cannot find four real completions of the SAME stem, abandon the mechanic.
 - ORDERED_SET_MEMBER: planets, Greek letters, NATO alphabet, ranks, days, months.
 - WORKS_BY_ONE_MAKER: songs by an artist, films by a director.
 - CHARACTERS_IN_ONE_WORK: cast of one show or book.
@@ -1009,7 +1042,6 @@ def generate_puzzle():
         prompt = _build_prompt(banned)
 
         max_attempts = 5
-        last_data = None
         banned_norms = {_normalize(n) for n in banned}
 
         for attempt in range(1, max_attempts + 1):
@@ -1060,7 +1092,6 @@ def generate_puzzle():
             cats_valid, fail_reason = _verify_categories(data["categories"])
             if not cats_valid:
                 print(f"Rejected: category-words mismatch — {fail_reason}")
-                last_data = data
                 continue
 
             # Normalise decoy schema: model sometimes uses home/tempts_toward instead of category_a/b
@@ -1099,18 +1130,15 @@ def generate_puzzle():
             dups = [w for w, n in counts.items() if n > 1 and w]
             if dups or len([w for w in all_words if w]) != 16:
                 print(f"Duplicate words {dups} or wrong count, retrying…")
-                last_data = data
                 continue
 
             print(f"Puzzle accepted on attempt {attempt}")
             _inject_mechanic_tier(data)
             return jsonify(data)
 
-        if last_data:
-            _inject_mechanic_tier(last_data)
-            return jsonify(last_data)
-
-        return jsonify({"error": "Could not generate a valid puzzle after several attempts. Please try again."}), 500
+        # All attempts failed verification. Do NOT ship a rejected puzzle —
+        # surface an error so the editor prompts a fresh Generate click.
+        return jsonify({"error": "Could not generate a clean puzzle after several attempts — some categories failed verification. Please click Generate again."}), 500
 
     except Exception as e:
         import traceback
