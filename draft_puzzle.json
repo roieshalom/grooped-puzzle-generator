@@ -40,14 +40,14 @@
     },
     {
       "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "mechanic": "PORTMANTEAU",
       "difficulty": "purple",
-      "name": "Same letters, shuffled",
+      "name": "Portmanteaus",
       "words": [
-        "TEACHER",
-        "CHEATER",
-        "HECTARE",
-        "RETEACH"
+        "NETFLIX",
+        "SITCOM",
+        "SPLATTER",
+        "PINTEREST"
       ]
     }
   ],
