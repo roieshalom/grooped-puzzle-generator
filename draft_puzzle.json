@@ -16,14 +16,14 @@
     },
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Synonyms for “steal”",
+      "name": "places or things to hang your coat on",
       "words": [
-        "LIFT",
-        "ROB",
-        "NICK",
-        "FILCH"
+        "GARDEROBE",
+        "PEG",
+        "RACK",
+        "HANGER"
       ]
     },
     {
