@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "___ FAN",
+      "name": "Payment Networks (Financial Context)",
       "words": [
-        "CEILING",
-        "BOX",
-        "EXHAUST",
-        "ATTIC"
+        "VISA",
+        "MASTERCARD",
+        "DISCOVER",
+        "AMEX"
       ]
     },
     {
@@ -90,8 +90,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'VISA' within this puzzle"
+    ],
+    "duplicate_words": [
+      "VISA"
+    ]
   }
 }
