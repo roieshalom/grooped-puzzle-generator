@@ -1,91 +1,99 @@
 {
-  "id": "182",
+  "id": "146",
   "date": "06.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
-      "difficulty": "yellow",
-      "name": "OPEN ___",
-      "words": [
-        "BOOK",
-        "HOUSE",
-        "FIRE",
-        "CODE"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
-      "difficulty": "green",
-      "name": "To make an appointment",
-      "words": [
-        "RESERVE",
-        "SCHEDULE",
-        "ARRANGE",
-        "SET UP"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
-      "difficulty": "blue",
-      "name": "Daft Punk's song, minus \"er\"",
-      "words": [
-        "HARD",
-        "BETT",
-        "FAST",
-        "STRONG"
-      ]
-    },
-    {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_AT_END",
-      "difficulty": "purple",
-      "name": "Expressing unity",
+      "mechanic": "ADD_LETTER",
+      "difficulty": "yellow",
+      "name": "Add H to make a new word",
       "words": [
-        "SOLID",
-        "IN UNISON",
-        "HARMONIOUS",
-        "CONSISTENT"
+        "EAT",
+        "ARM",
+        "OLD",
+        "ARE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "green",
+      "name": "ON THE ___",
+      "words": [
+        "ROCKS",
+        "HOUSE",
+        "FENCE",
+        "NOSE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "blue",
+      "name": "Can be tipped",
+      "words": [
+        "WAITER",
+        "COW",
+        "HAT",
+        "SCALES"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "TAXONOMY",
+      "difficulty": "purple",
+      "name": "On your face",
+      "words": [
+        "CHIN",
+        "CHEEK",
+        "LIP",
+        "BROW"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "OPEN ___",
-      "category_b": "Ways to tell someone to be quiet",
-      "reason_a": "OPEN MIC is a common phrase for a live-mic event",
-      "reason_b": "Cut the mic is a way to silence someone; feels like it belongs with hush commands",
-      "word": "MIC"
+      "category_a": "ON THE ___",
+      "category_b": "On your face",
+      "reason_a": "on the nose is a common idiom meaning exactly right",
+      "reason_b": "Nose is also a literal facial feature, tempting a misgroup.",
+      "word": "NOSE"
     },
     {
-      "category_a": "Add 'P' to the front to make a new word",
-      "category_b": "OPEN ___",
-      "reason_a": "LATE becomes PLATE when you add P",
-      "reason_b": "OPEN LATE is a familiar storefront phrase, tempting a misgroup",
-      "word": "LATE"
+      "category_a": "On your face",
+      "category_b": "ON THE ___",
+      "reason_a": "Chin is a facial feature",
+      "reason_b": "take it on the chin is a familiar phrase with the same stem.",
+      "word": "CHIN"
     },
     {
-      "category_a": "Under the ___",
-      "category_b": "OPEN ___",
-      "reason_a": "Under the hood is a common idiom/phrase",
-      "reason_b": "OPEN HOOD is a natural automotive phrase, pulling it toward that group",
-      "word": "HOOD"
+      "category_a": "Can be tipped",
+      "category_b": "ON THE ___",
+      "reason_a": "tip the scales is a standard expression",
+      "reason_b": "on the scales (as when weighing) can mislead solvers toward the idiom stem.",
+      "word": "SCALES"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Could not find four clean hosts for a single hidden set that also offered cross-board decoys without resorting to obscure words",
-      "result": "abandoned",
+      "mechanic": "ADD_LETTER",
+      "result": "shipped",
       "tier": 3
     },
     {
-      "mechanic": "ADD_LETTER",
-      "reason": "Strong wordplay anchor with natural decoys and no surface tells",
+      "mechanic": "IDIOM_COMPLETION",
       "result": "shipped",
-      "tier": 3
+      "tier": 2
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "TAXONOMY",
+      "result": "shipped",
+      "tier": 1
     }
   ],
   "_validation": {
