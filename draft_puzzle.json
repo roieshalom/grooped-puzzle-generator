@@ -1,77 +1,63 @@
 {
-  "id": "146",
-  "date": "06.06.2026",
+  "id": "138",
+  "date": "07.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "yellow",
-      "name": "Key types",
+      "name": "Hit the ___",
       "words": [
-        "SKELETON",
-        "ALLEN",
-        "ALPHANUMERIC",
-        "PIANO"
+        "HAY",
+        "ROAD",
+        "SACK",
+        "GAS"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "green",
-      "name": "In the kitchen",
+      "name": "Can be inflated",
       "words": [
-        "TOASTER",
-        "BLENDER",
-        "MIXER",
-        "MICROWAVE"
+        "BALLOON",
+        "RAFT",
+        "EGO",
+        "PRICE"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "SYNONYMS",
       "difficulty": "blue",
-      "name": "Shapes",
+      "name": "Slang for money",
       "words": [
-        "PENTAGON",
-        "TRIANGLE",
-        "CRESCENT",
-        "GÖMBÖC"
+        "BREAD",
+        "DOUGH",
+        "PAPER",
+        "CHEESE"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ACROSTIC_FIRST_LETTERS",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Work at a restaurant",
+      "name": "Add S to make a new word",
       "words": [
-        "HOST",
-        "PICCOLO",
-        "DISHWASHER",
-        "CHEF"
+        "MALL",
+        "LATE",
+        "TAB",
+        "PIN"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "ON THE ___",
-      "category_b": "On your face",
-      "reason_a": "on the nose is a common idiom meaning exactly right",
-      "reason_b": "Nose is also a literal facial feature, tempting a misgroup.",
-      "word": "NOSE"
-    },
-    {
-      "category_a": "On your face",
-      "category_b": "ON THE ___",
-      "reason_a": "Chin is a facial feature",
-      "reason_b": "take it on the chin is a familiar phrase with the same stem.",
-      "word": "CHIN"
-    },
-    {
-      "category_a": "Can be tipped",
-      "category_b": "ON THE ___",
-      "reason_a": "tip the scales is a standard expression",
-      "reason_b": "on the scales (as when weighing) can mislead solvers toward the idiom stem.",
-      "word": "SCALES"
+      "category_a": "Slang for money",
+      "category_b": "Can be inflated",
+      "reason_a": "DOUGH is a casual term for money.",
+      "reason_b": "Dough literally rises, tempting a solver to place it with inflatables.",
+      "word": "DOUGH"
     }
   ],
   "attempt_log": [
@@ -79,21 +65,6 @@
       "mechanic": "ADD_LETTER",
       "result": "shipped",
       "tier": 3
-    },
-    {
-      "mechanic": "IDIOM_COMPLETION",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "CAN_BE_VERBED",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "TAXONOMY",
-      "result": "shipped",
-      "tier": 1
     }
   ],
   "_validation": {
