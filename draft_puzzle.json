@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "ON THE ___",
+      "name": "Musical instruments",
       "words": [
-        "ROCKS",
-        "HOUSE",
-        "FENCE",
-        "NOSE"
+        "BASSOON",
+        "OBOE",
+        "CLARINET",
+        "PICCOLO"
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 4,
+      "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "purple",
-      "name": "On your face",
+      "name": "work at a restaurant",
       "words": [
-        "CHIN",
-        "CHEEK",
-        "LIP",
-        "BROW"
+        "HOST",
+        "PICCOLO",
+        "DISHWASHER",
+        "CHEF"
       ]
     }
   ],
@@ -97,8 +97,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'PICCOLO' within this puzzle"
+    ],
+    "duplicate_words": [
+      "PICCOLO"
+    ]
   }
 }
