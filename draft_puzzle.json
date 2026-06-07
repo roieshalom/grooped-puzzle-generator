@@ -3,15 +3,15 @@
   "date": "06.06.2026",
   "categories": [
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "Add H to make a new word",
+      "name": "Key types",
       "words": [
-        "EAT",
-        "ARM",
-        "OLD",
-        "ARE"
+        "SKELETON",
+        "ALLEN",
+        "ALPHANUMERIC",
+        "PIANO"
       ]
     },
     {
