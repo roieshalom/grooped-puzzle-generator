@@ -18,24 +18,24 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Musical instruments",
+      "name": "electrical instruments in the kitchen",
       "words": [
-        "BASSOON",
-        "OBOE",
-        "CLARINET",
-        "PICCOL"
+        "TOASTER",
+        "BLENDER",
+        "MIXER",
+        "MICROWAVE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Can be tipped",
+      "name": "Shapes",
       "words": [
-        "WAITER",
-        "COW",
-        "HAT",
-        "SCALES"
+        "PENTAGON",
+        "TRIANGLE",
+        "CRESCENT",
+        "GÖMBÖC"
       ]
     },
     {
