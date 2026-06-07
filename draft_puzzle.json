@@ -18,7 +18,7 @@
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "electrical instruments in the kitchen",
+      "name": "In the kitchen",
       "words": [
         "TOASTER",
         "BLENDER",
@@ -42,7 +42,7 @@
       "tier": 4,
       "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "purple",
-      "name": "work at a restaurant",
+      "name": "Work at a restaurant",
       "words": [
         "HOST",
         "PICCOLO",
