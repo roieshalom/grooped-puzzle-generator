@@ -23,7 +23,7 @@
         "BASSOON",
         "OBOE",
         "CLARINET",
-        "PICCOLO"
+        "PICCOL"
       ]
     },
     {
@@ -97,12 +97,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'PICCOLO' within this puzzle"
-    ],
-    "duplicate_words": [
-      "PICCOLO"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
