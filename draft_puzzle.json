@@ -1,66 +1,88 @@
 {
   "id": "138",
-  "date": "07.06.2026",
+  "date": "11.06.2026",
   "categories": [
+    {
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "BLACK ___",
+      "words": [
+        "EYE",
+        "BOX",
+        "TIE",
+        "SHEEP"
+      ]
+    },
     {
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "yellow",
-      "name": "Hit the ___",
+      "difficulty": "green",
+      "name": "Complete: UNDER THE ___",
       "words": [
-        "HAY",
-        "ROAD",
-        "SACK",
-        "GAS"
+        "WEATHER",
+        "RADAR",
+        "TABLE",
+        "SUN"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "green",
-      "name": "Can be inflated",
-      "words": [
-        "BALLOON",
-        "RAFT",
-        "EGO",
-        "PRICE"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "blue",
-      "name": "Slang for money",
+      "name": "Start with a silent letter",
       "words": [
-        "BREAD",
-        "DOUGH",
-        "PAPER",
-        "CHEESE"
+        "KNEE",
+        "WRITE",
+        "GNOME",
+        "HOUR"
       ]
     },
     {
       "tier": 3,
       "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Add S to make a new word",
+      "name": "Add L to the front to make a new word",
       "words": [
-        "MALL",
-        "LATE",
-        "TAB",
-        "PIN"
+        "ATE",
+        "EASE",
+        "ICE",
+        "INK"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Slang for money",
-      "category_b": "Can be inflated",
-      "reason_a": "DOUGH is a casual term for money.",
-      "reason_b": "Dough literally rises, tempting a solver to place it with inflatables.",
-      "word": "DOUGH"
+      "category_a": "Add L to the front to make a new word",
+      "category_b": "BLACK ___",
+      "reason_a": "ICE becomes LICE with L added",
+      "reason_b": "BLACK ICE is a very common phrase, tempting a misgroup",
+      "word": "ICE"
+    },
+    {
+      "category_a": "Add L to the front to make a new word",
+      "category_b": "BLACK ___",
+      "reason_a": "INK becomes LINK with L added",
+      "reason_b": "BLACK INK is a standard pairing",
+      "word": "INK"
     }
   ],
   "attempt_log": [
+    {
+      "mechanic": "SUFFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "result": "shipped",
+      "tier": 2
+    },
     {
       "mechanic": "ADD_LETTER",
       "result": "shipped",
