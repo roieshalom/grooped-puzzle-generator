@@ -20,10 +20,10 @@
       "difficulty": "green",
       "name": "Complete: UNDER THE ___",
       "words": [
-        "WEATHER",
+        "HOOD",
         "RADAR",
         "TABLE",
-        "SUN"
+        "MILKY WAY"
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Add L to the front to make a new word",
+      "name": "Scrambled from react",
       "words": [
-        "ATE",
-        "EASE",
-        "ICE",
-        "INK"
+        "TRACE",
+        "CATER",
+        "CRATE",
+        "CARTE"
       ]
     }
   ],
