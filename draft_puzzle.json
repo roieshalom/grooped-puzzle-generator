@@ -4,21 +4,21 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "BLACK ___",
+      "name": "FIFA world cup balls",
       "words": [
-        "EYE",
-        "BOX",
-        "TIE",
-        "SHEEP"
+        "TELSTAR",
+        "TANGO",
+        "JABULANI",
+        "BRAZUCA"
       ]
     },
     {
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Complete: UNDER THE ___",
+      "name": "UNDER THE ___",
       "words": [
         "HOOD",
         "RADAR",
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "purple",
-      "name": "Scrambled from react",
+      "name": "National dances",
       "words": [
-        "TRACE",
-        "CATER",
-        "CRATE",
-        "CARTE"
+        "SAMBA",
+        "FLAMENCO",
+        "DEBKA",
+        "LAKALAKA"
       ]
     }
   ],
