@@ -15,27 +15,27 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Can be folded",
+      "name": "Rhythmic Gymnastics Apparatuses",
       "words": [
-        "PAPER",
-        "LAUNDRY",
-        "MAP",
-        "NAPKIN"
+        "HOOP",
+        "BALL",
+        "CLUBS",
+        "RIBBON"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SUFFIX_BLANK",
       "difficulty": "blue",
-      "name": "___ MATE",
+      "name": "Accoutrements",
       "words": [
-        "TEAM",
-        "ROOM",
-        "CHECK",
-        "PLAY"
+        "MEDAL",
+        "RIBBON",
+        "CORDS",
+        "PATCH"
       ]
     },
     {
@@ -89,8 +89,12 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
-    "duplicate_words": []
+    "valid": false,
+    "errors": [
+      "Duplicate word 'RIBBON' within this puzzle"
+    ],
+    "duplicate_words": [
+      "RIBBON"
+    ]
   }
 }
