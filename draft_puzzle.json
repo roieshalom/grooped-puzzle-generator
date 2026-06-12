@@ -23,7 +23,7 @@
         "HOOP",
         "BALL",
         "CLUBS",
-        "RIBBON"
+        "ROPE"
       ]
     },
     {
@@ -89,12 +89,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Duplicate word 'RIBBON' within this puzzle"
-    ],
-    "duplicate_words": [
-      "RIBBON"
-    ]
+    "valid": true,
+    "errors": [],
+    "duplicate_words": []
   }
 }
