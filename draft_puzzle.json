@@ -1,91 +1,77 @@
 {
-  "id": "204",
-  "date": "11.06.2026",
+  "id": "201",
+  "date": "12.06.2026",
   "categories": [
+    {
+      "tier": 1,
+      "mechanic": "FOUND_IN_SCENE",
+      "difficulty": "yellow",
+      "name": "At a car wash",
+      "words": [
+        "SPONGE",
+        "BUCKET",
+        "HOSE",
+        "TOWEL"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "green",
+      "name": "Can be folded",
+      "words": [
+        "PAPER",
+        "MAP",
+        "NAPKIN",
+        "SHIRT"
+      ]
+    },
     {
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "yellow",
-      "name": "Double  ___",
-      "words": [
-        "AGENT",
-        "DATE",
-        "PARK",
-        "DOWN"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Rhythmic Gymnastics Apparatuses",
-      "words": [
-        "HOOP",
-        "BALL",
-        "CLUBS",
-        "ROPE"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
       "difficulty": "blue",
-      "name": "Accoutrements",
+      "name": "Give someone the ___",
       "words": [
-        "MEDAL",
-        "RIBBON",
-        "CORDS",
-        "PATCH"
+        "RUNAROUND",
+        "SLIP",
+        "CREEPS",
+        "COLD SHOULDER"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 4,
+      "mechanic": "CHAIN_THROUGH_HUB",
       "difficulty": "purple",
-      "name": "A body part inside",
+      "name": "___ SHIRT",
       "words": [
-        "CHARMED",
-        "PEARL",
-        "ECLIPSE",
-        "MISTLETOE"
+        "TEE",
+        "DRESS",
+        "POLO",
+        "OXFORD"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ MATE",
-      "category_b": "DOUBLE ___",
-      "reason_a": "CHECKMATE is the target completion",
-      "reason_b": "DOUBLE-CHECK is a very common phrase, tempting a swap",
-      "word": "CHECK"
+      "category_a": "___ SHIRT",
+      "category_b": "Can be folded",
+      "reason_a": "DRESS forms the phrase DRESS SHIRT",
+      "reason_b": "Clothing can be folded, so DRESS lures solvers toward the foldable set",
+      "word": "DRESS"
     },
     {
-      "category_a": "___ MATE",
-      "category_b": "DOUBLE ___",
-      "reason_a": "ROOMMATE is the intended phrase",
-      "reason_b": "DOUBLE ROOM is a standard hotel term, so ROOM looks like it fits there",
-      "word": "ROOM"
-    },
-    {
-      "category_a": "___ MATE",
-      "category_b": "DOUBLE ___",
-      "reason_a": "PLAYMATE is the intended",
-      "reason_b": "DOUBLE PLAY is a famous baseball term, creating cross-pull",
-      "word": "PLAY"
-    },
-    {
-      "category_a": "Can be folded",
-      "category_b": "___ MATE",
-      "reason_a": "Paper is the classic foldable material",
-      "reason_b": "Paper Mate is a well-known pen brand, so PAPER feels like it belongs there",
-      "word": "PAPER"
+      "category_a": "At a car wash",
+      "category_b": "Can be folded",
+      "reason_a": "Used to dry the car",
+      "reason_b": "A towel is a classic foldable item, pulling it toward the fold set",
+      "word": "TOWEL"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "CHAIN_THROUGH_HUB",
       "result": "shipped",
-      "tier": 3
+      "tier": 4
     }
   ],
   "_validation": {
