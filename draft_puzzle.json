@@ -6,7 +6,7 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "yellow",
-      "name": "DOUBLE ___",
+      "name": "Double  ___",
       "words": [
         "AGENT",
         "DATE",
@@ -42,7 +42,7 @@
       "tier": 3,
       "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Hide a body part inside",
+      "name": "A body part inside",
       "words": [
         "CHARMED",
         "PEARL",
