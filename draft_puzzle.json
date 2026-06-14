@@ -4,21 +4,21 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "At a car wash",
+      "name": "Slang for Marijuana",
       "words": [
-        "SPONGE",
-        "BUCKET",
-        "HOSE",
-        "TOWEL"
+        "WEED",
+        "POT",
+        "GRASS",
+        "BROCCOLI"
       ]
     },
     {
       "tier": 1,
       "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Famous Female Lovers of Male Superheroes",
+      "name": "Lovers of Superheroes",
       "words": [
         "MARY JANE",
         "SELINA",
