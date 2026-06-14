@@ -28,26 +28,26 @@
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "blue",
-      "name": "Give someone the ___",
+      "name": "Names from \"Family Guy\"",
       "words": [
-        "RUNAROUND",
-        "SLIP",
-        "CREEPS",
-        "COLD SHOULDER"
+        "QUAGMIRE",
+        "LOIS",
+        "STEWIE",
+        "BRIAN"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "CHAIN_THROUGH_HUB",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "purple",
-      "name": "___ SHIRT",
+      "name": "_____ Pan",
       "words": [
-        "TEE",
-        "DRESS",
-        "POLO",
-        "OXFORD"
+        "PETER",
+        "CAKE",
+        "FRYING",
+        "DRIP"
       ]
     }
   ],
