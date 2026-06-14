@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "Can be folded",
+      "name": "Famous Female Lovers of Male Superheroes",
       "words": [
-        "PAPER",
-        "MAP",
-        "NAPKIN",
-        "SHIRT"
+        "MARY JANE",
+        "SELINA",
+        "PEPPER",
+        "IRIS"
       ]
     },
     {
