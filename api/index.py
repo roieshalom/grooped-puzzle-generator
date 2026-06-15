@@ -527,10 +527,16 @@ def _is_reasoning_model(model: str) -> bool:
     return m.startswith(("gpt-5", "o1", "o3", "o4"))
 
 
-# Reasoning-token headroom: gpt-5 burns ~2.5-4K tokens thinking before it
-# writes any JSON. Add this on top of the requested output budget so the
-# actual JSON never gets truncated.
+# Reasoning-token headroom: gpt-5 burns reasoning tokens before it writes any
+# JSON. Add this on top of the requested output budget so the JSON output never
+# gets truncated.
 _REASONING_HEADROOM = 8000
+
+# Default reasoning effort for gpt-5 / o-series. "low" keeps a single call near
+# ~25s (vs ~55s at the "medium" default) so generation + verification + retries
+# stay inside Vercel's function timeout, while still giving real reasoning that
+# catches malformed categories. Bump to "medium" only if you raise maxDuration.
+_REASONING_EFFORT = os.environ.get("REASONING_EFFORT", "low")
 
 
 def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None, temperature: float = 0.9) -> dict:
@@ -548,8 +554,10 @@ def _call_claude(prompt: str, max_tokens: int = 3000, model: str = None, tempera
         "response_format": {"type": "json_object"},
     }
     if _is_reasoning_model(model):
-        # New-style params: rename token budget + add reasoning headroom, omit temperature.
+        # New-style params: rename token budget + add reasoning headroom, omit
+        # temperature, and cap reasoning effort to keep latency in budget.
         kwargs["max_completion_tokens"] = max_tokens + _REASONING_HEADROOM
+        kwargs["reasoning_effort"] = _REASONING_EFFORT
     else:
         kwargs["max_tokens"] = max_tokens
         kwargs["temperature"] = temperature
@@ -1041,7 +1049,9 @@ def generate_puzzle():
         banned, _ = _load_banned()
         prompt = _build_prompt(banned)
 
-        max_attempts = 5
+        # gpt-5 calls are slow; cap attempts so total time stays within the
+        # Vercel function timeout (see maxDuration in vercel.json).
+        max_attempts = 3
         banned_norms = {_normalize(n) for n in banned}
 
         for attempt in range(1, max_attempts + 1):
