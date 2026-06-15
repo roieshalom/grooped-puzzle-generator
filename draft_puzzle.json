@@ -1,77 +1,98 @@
 {
-  "id": "201",
-  "date": "12.06.2026",
+  "id": "182",
+  "date": "15.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Slang for Marijuana",
+      "name": "On a webpage",
       "words": [
-        "WEED",
-        "POT",
-        "GRASS",
-        "BROCCOLI"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Lovers of Superheroes",
-      "words": [
-        "MARY JANE",
-        "SELINA",
-        "PEPPER",
-        "IRIS"
+        "HOME",
+        "MENU",
+        "HEADER",
+        "FOOTER"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CHARACTERS_IN_ONE_WORK",
-      "difficulty": "blue",
-      "name": "Names from \"Family Guy\"",
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "green",
+      "name": "Can be skipped",
       "words": [
-        "QUAGMIRE",
-        "LOIS",
-        "STEWIE",
-        "BRIAN"
+        "ROPE",
+        "STONE",
+        "CLASS",
+        "SONG"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
-      "difficulty": "purple",
-      "name": "_____ Pan",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "blue",
+      "name": "“ON THE ___” phrases",
       "words": [
-        "PETER",
-        "CAKE",
-        "FRYING",
-        "DRIP"
+        "FENCE",
+        "HOUSE",
+        "ROCKS",
+        "NOSE"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
+      "difficulty": "purple",
+      "name": "Add S to the front to make a new word",
+      "words": [
+        "TUCK",
+        "CARE",
+        "KIN",
+        "LATE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ SHIRT",
-      "category_b": "Can be folded",
-      "reason_a": "DRESS forms the phrase DRESS SHIRT",
-      "reason_b": "Clothing can be folded, so DRESS lures solvers toward the foldable set",
-      "word": "DRESS"
+      "category_a": "On a webpage",
+      "category_b": "“ON THE ___” phrases",
+      "reason_a": "Common site navigation element",
+      "reason_b": "ON THE MENU is a familiar phrase, tempting a move into the idiom group",
+      "word": "MENU"
     },
     {
-      "category_a": "At a car wash",
-      "category_b": "Can be folded",
-      "reason_a": "Used to dry the car",
-      "reason_b": "A towel is a classic foldable item, pulling it toward the fold set",
-      "word": "TOWEL"
+      "category_a": "Can be skipped",
+      "category_b": "On a webpage",
+      "reason_a": "You can skip a class",
+      "reason_b": "In web/CSS, class is a page element attribute, so it plausibly reads as part of a webpage set",
+      "word": "CLASS"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "CHAIN_THROUGH_HUB",
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "Tried hiding ROPE inside four natural words (EUROPE, TROPE, PROPER, needed a clean fourth); couldn’t land a fourth without forcing awkward or hyphenated forms",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
-      "tier": 4
+      "tier": 1
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "ADD_LETTER",
+      "result": "shipped",
+      "tier": 3
     }
   ],
   "_validation": {
