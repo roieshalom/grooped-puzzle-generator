@@ -18,12 +18,12 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Metaphors for being extremely busy",
+      "name": "Built-in macOS apps",
       "words": [
-        "SWAMPED",
-        "SLAMMED",
-        "BURIED",
-        "SNOWED UNDER"
+        "BOOKS",
+        "FREEFORM",
+        "NUMBERS",
+        "SAFARI"
       ]
     },
     {
