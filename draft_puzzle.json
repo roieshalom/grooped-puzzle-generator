@@ -30,7 +30,7 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "___ MARK",
+      "name": "___ Mark",
       "words": [
         "BOOK",
         "WATER",
@@ -42,7 +42,7 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "purple",
-      "name": "Things that stick to other stuff",
+      "name": "Sticky things",
       "words": [
         "GLUE",
         "GUM",
