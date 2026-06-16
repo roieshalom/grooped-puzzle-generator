@@ -1,83 +1,89 @@
 {
-  "id": "209",
+  "id": "182",
   "date": "16.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "yellow",
-      "name": "Things you stick on a fridge",
+      "name": "Can be folded",
       "words": [
-        "MAGNET",
-        "PHOTO",
-        "LIST",
-        "COUPON"
+        "PAPER",
+        "NAPKIN",
+        "MAP",
+        "LAUNDRY"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "green",
+      "name": "“Hit the ___” (idioms)",
+      "words": [
+        "HAY",
+        "ROAD",
+        "BOOKS",
+        "SPOT"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Built-in macOS apps",
-      "words": [
-        "BOOKS",
-        "FREEFORM",
-        "NUMBERS",
-        "SAFARI"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "___ Mark",
+      "name": "Metaphors for being very tired",
       "words": [
-        "BOOK",
-        "WATER",
-        "TRADE",
-        "BENCH"
+        "SPENT",
+        "BEAT",
+        "WIPED",
+        "FRIED"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Sticky things",
+      "name": "Add one letter (same for all) to make a new common word",
       "words": [
-        "GLUE",
-        "GUM",
-        "TAPE",
-        "HONEY"
+        "RING",
+        "RISK",
+        "LEND",
+        "RASH"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that stick to other stuff",
-      "category_b": "Things you stick on a fridge",
-      "reason_a": "Tape adheres by design.",
-      "reason_b": "You often use tape to put a PHOTO or LIST on the fridge, tempting a misgroup.",
-      "word": "TAPE"
+      "category_a": "Metaphors for being very tired",
+      "category_b": "“Hit the ___” (idioms)",
+      "reason_a": "Beat = exhausted",
+      "reason_b": "Hit and beat are near-synonyms, tempting solvers to lump BEAT with the 'hit' idiom set.",
+      "word": "BEAT"
+    },
+    {
+      "category_a": "Can be folded",
+      "category_b": "“Hit the ___” (idioms)",
+      "reason_a": "Maps are famously foldable",
+      "reason_b": "MAP feels travel-coded and wants to sit with ROAD (hit the road).",
+      "word": "MAP"
+    },
+    {
+      "category_a": "Add one letter (same for all) to make a new common word",
+      "category_b": "“Hit the ___” (idioms)",
+      "reason_a": "LEND → BLEND via +B",
+      "reason_b": "LEND pairs naturally with BOOKS (lend books), misleading toward the idiom set that includes BOOKS.",
+      "word": "LEND"
+    },
+    {
+      "category_a": "Can be folded",
+      "category_b": "“Hit the ___” (idioms)",
+      "reason_a": "Paper is easily folded",
+      "reason_b": "PAPER and BOOKS live in the same reading/study space, which can misdirect solvers toward grouping by theme instead of the exact idiom stem.",
+      "word": "PAPER"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "FOUND_IN_SCENE",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "IDIOM_COMPLETION",
       "result": "shipped",
       "tier": 2
     }
