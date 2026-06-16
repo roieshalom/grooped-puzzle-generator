@@ -30,7 +30,7 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "“ON THE ___” phrases",
+      "name": "On the _____",
       "words": [
         "FENCE",
         "HOUSE",
@@ -40,14 +40,14 @@
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "COMPOUND_BOTH_WAYS",
       "difficulty": "purple",
-      "name": "Add S to the front to make a new word",
+      "name": "Artistic style, 'ISM' dropped",
       "words": [
-        "TUCK",
-        "CARE",
-        "KIN",
-        "LATE"
+        "CUB",
+        "CLASSIC",
+        "NATURAL",
+        "ROMANTIC"
       ]
     }
   ],
