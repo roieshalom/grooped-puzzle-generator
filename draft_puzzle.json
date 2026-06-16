@@ -1,91 +1,78 @@
 {
-  "id": "182",
+  "id": "208",
   "date": "16.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "CHARACTERS_IN_ONE_WORK",
-      "difficulty": "yellow",
-      "name": "Mean Girls crew",
-      "words": [
-        "REGINA",
-        "CADY",
-        "JANIS",
-        "GRETCHEN"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "green",
-      "name": "Hit the ___",
-      "words": [
-        "HAY",
-        "ROAD",
-        "BOOKS",
-        "SPOT"
-      ]
-    },
-    {
       "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "blue",
-      "name": "Roles on the golf course",
+      "mechanic": "FOUND_IN_SCENE",
+      "difficulty": "yellow",
+      "name": "At a picnic",
       "words": [
-        "ASSISTANT",
-        "MARSHAL",
-        "RANGER",
-        "STARTER"
+        "BLANKET",
+        "COOLER",
+        "ANTS",
+        "NAPKINS"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "difficulty": "green",
+      "name": "Metaphors for being very busy",
+      "words": [
+        "SLAMMED",
+        "SWAMPED",
+        "BURIED",
+        "UNDERWATER"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "blue",
+      "name": "Ways to annoy (as verbs)",
+      "words": [
+        "BUG",
+        "IRK",
+        "VEX",
+        "PESTER"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "mechanic": "DROP_LETTER",
       "difficulty": "purple",
-      "name": "Things you flip",
+      "name": "Drop one letter (the same one) to make a new word",
       "words": [
-        "FINGER",
-        "COIN",
-        "MATTRESS",
-        "SWITCH"
+        "SNAIL",
+        "SCONE",
+        "STARE",
+        "SCENT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Metaphors for being very tired",
-      "category_b": "“Hit the ___” (idioms)",
-      "reason_a": "Beat = exhausted",
-      "reason_b": "Hit and beat are near-synonyms, tempting solvers to lump BEAT with the 'hit' idiom set.",
-      "word": "BEAT"
+      "category_a": "Ways to annoy (as verbs)",
+      "category_b": "At a picnic",
+      "reason_a": "BUG means to annoy.",
+      "reason_b": "Bugs show up at picnics, tempting a scene-based grouping.",
+      "word": "BUG"
     },
     {
-      "category_a": "Can be folded",
-      "category_b": "“Hit the ___” (idioms)",
-      "reason_a": "Maps are famously foldable",
-      "reason_b": "MAP feels travel-coded and wants to sit with ROAD (hit the road).",
-      "word": "MAP"
-    },
-    {
-      "category_a": "Add one letter (same for all) to make a new common word",
-      "category_b": "“Hit the ___” (idioms)",
-      "reason_a": "LEND → BLEND via +B",
-      "reason_b": "LEND pairs naturally with BOOKS (lend books), misleading toward the idiom set that includes BOOKS.",
-      "word": "LEND"
-    },
-    {
-      "category_a": "Can be folded",
-      "category_b": "“Hit the ___” (idioms)",
-      "reason_a": "Paper is easily folded",
-      "reason_b": "PAPER and BOOKS live in the same reading/study space, which can misdirect solvers toward grouping by theme instead of the exact idiom stem.",
-      "word": "PAPER"
+      "category_a": "Drop one letter (the same one) to make a new word",
+      "category_b": "At a picnic",
+      "reason_a": "SCONE → drop S → CONE.",
+      "reason_b": "A SCONE is food you could pack for a picnic.",
+      "word": "SCONE"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "MIXED",
+      "reason": "Balanced Tier1/2/3 set with documented cross-pulls",
       "result": "shipped",
-      "tier": 2
+      "tier": null
     }
   ],
   "_validation": {
