@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "CHARACTERS_IN_ONE_WORK",
       "difficulty": "yellow",
-      "name": "Can be folded",
+      "name": "Mean Girls crew",
       "words": [
-        "PAPER",
-        "NAPKIN",
-        "MAP",
-        "LAUNDRY"
+        "REGINA",
+        "CADY",
+        "JANIS",
+        "GRETCHEN"
       ]
     },
     {
@@ -40,14 +40,14 @@
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Add one letter (same for all) to make a new common word",
+      "name": "Things you flip",
       "words": [
-        "RING",
-        "RISK",
-        "LEND",
-        "RASH"
+        "FINGER",
+        "COIN",
+        "MATTRESS",
+        "SWITCH"
       ]
     }
   ],
