@@ -1,98 +1,85 @@
 {
-  "id": "182",
-  "date": "15.06.2026",
+  "id": "209",
+  "date": "16.06.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "On a webpage",
+      "name": "Things you stick on a fridge",
       "words": [
-        "HOME",
-        "MENU",
-        "HEADER",
-        "FOOTER"
+        "MAGNET",
+        "PHOTO",
+        "LIST",
+        "COUPON"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Can be skipped",
+      "name": "Metaphors for being extremely busy",
       "words": [
-        "ROPE",
-        "STONE",
-        "CLASS",
-        "SONG"
+        "SWAMPED",
+        "SLAMMED",
+        "BURIED",
+        "SNOWED UNDER"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "blue",
+      "name": "___ MARK",
+      "words": [
+        "BOOK",
+        "WATER",
+        "TRADE",
+        "BENCH"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
-      "difficulty": "blue",
-      "name": "On the _____",
-      "words": [
-        "FENCE",
-        "HOUSE",
-        "ROCKS",
-        "NOSE"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "COMPOUND_BOTH_WAYS",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "purple",
-      "name": "Artistic style, 'ISM' dropped",
+      "name": "Things that stick to other stuff",
       "words": [
-        "CUB",
-        "CLASSIC",
-        "REAL",
-        "ROMANTIC"
+        "GLUE",
+        "GUM",
+        "TAPE",
+        "HONEY"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "On a webpage",
-      "category_b": "“ON THE ___” phrases",
-      "reason_a": "Common site navigation element",
-      "reason_b": "ON THE MENU is a familiar phrase, tempting a move into the idiom group",
-      "word": "MENU"
-    },
-    {
-      "category_a": "Can be skipped",
-      "category_b": "On a webpage",
-      "reason_a": "You can skip a class",
-      "reason_b": "In web/CSS, class is a page element attribute, so it plausibly reads as part of a webpage set",
-      "word": "CLASS"
+      "category_a": "Things that stick to other stuff",
+      "category_b": "Things you stick on a fridge",
+      "reason_a": "Tape adheres by design.",
+      "reason_b": "You often use tape to put a PHOTO or LIST on the fridge, tempting a misgroup.",
+      "word": "TAPE"
     }
   ],
   "attempt_log": [
-    {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "Tried hiding ROPE inside four natural words (EUROPE, TROPE, PROPER, needed a clean fourth); couldn’t land a fourth without forcing awkward or hyphenated forms",
-      "result": "abandoned",
-      "tier": 3
-    },
     {
       "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "result": "shipped",
       "tier": 2
     },
     {
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "PREFIX_BLANK",
       "result": "shipped",
-      "tier": 2
+      "tier": 1
     },
     {
-      "mechanic": "ADD_LETTER",
+      "mechanic": "THINGS_THAT_VERB",
       "result": "shipped",
-      "tier": 3
+      "tier": 2
     }
   ],
   "_validation": {
