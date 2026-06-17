@@ -18,12 +18,12 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Break a ___",
+      "name": "Children's book characters",
       "words": [
-        "LEG",
-        "SWEAT",
-        "TIE",
-        "RECORD"
+        "PIPPI",
+        "ALICE",
+        "GEORGE",
+        "MAX"
       ]
     },
     {
@@ -40,14 +40,14 @@
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "COMPOUND_BOTH_WAYS",
       "difficulty": "purple",
-      "name": "Add one letter (R) to make a new word",
+      "name": "Work both ways with 'over'",
       "words": [
-        "TUNE",
-        "MINE",
-        "DIVE",
-        "BAKE"
+        "HANG",
+        "TAKE",
+        "TURN",
+        "WORK"
       ]
     }
   ],
