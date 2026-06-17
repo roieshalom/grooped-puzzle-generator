@@ -11,19 +11,19 @@
         "BLANKET",
         "COOLER",
         "ANTS",
-        "NAPKINS"
+        "NAPKIN"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Metaphors for being very busy",
+      "name": "Point winning moves in sports",
       "words": [
-        "SLAMMED",
-        "SWAMPED",
-        "BURIED",
-        "UNDERWATER"
+        "GOAL",
+        "TRY",
+        "SIX",
+        "TOUCHDOWN"
       ]
     },
     {
