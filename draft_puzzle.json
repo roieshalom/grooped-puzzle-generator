@@ -1,82 +1,90 @@
 {
-  "id": "184",
+  "id": "201",
   "date": "17.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Gods",
+      "name": "Ways to stop something",
       "words": [
-        "ISIS",
-        "XENU",
-        "LOKI",
-        "YALDABAOTH"
+        "HALT",
+        "CEASE",
+        "END",
+        "QUIT"
       ]
     },
     {
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Children's book characters",
+      "name": "“Call it a ___” completions",
       "words": [
-        "PIPPI",
-        "ALICE",
-        "GEORGE",
-        "MAX"
+        "DAY",
+        "NIGHT",
+        "DRAW",
+        "WRAP"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "blue",
-      "name": "Things that charge",
+      "name": "Overloaded, figuratively speaking",
       "words": [
-        "BULL",
-        "BANK",
-        "BATTERY",
-        "GRAND JURY"
+        "SLAMMED",
+        "SWAMPED",
+        "BURIED",
+        "SNOWED"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "COMPOUND_BOTH_WAYS",
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "difficulty": "purple",
-      "name": "Grand ___",
+      "name": "Sound like single letters",
       "words": [
-        "CANYON",
-        "MASTER",
-        "DAME",
-        "MAMA"
+        "SEA",
+        "EYE",
+        "TEA",
+        "CUE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that charge",
-      "category_b": "SMART ___",
-      "reason_a": "Phones need to charge up",
-      "reason_b": "Tempting because smartphone is common, but PHONE isn’t in the SMART set here",
-      "word": "PHONE"
+      "category_a": "“Call it a ___” completions",
+      "category_b": "Ways to stop something",
+      "reason_a": "Call it a wrap is the idiom used to end a session.",
+      "reason_b": "Wrap it up informally means stop, tempting solvers to treat WRAP as a synonym.",
+      "word": "WRAP"
     },
     {
-      "category_a": "SMART ___",
-      "category_b": "Things that charge",
-      "reason_a": "Smart watch is a familiar product",
-      "reason_b": "Modern smartwatches do charge, nudging solvers to misplace it",
-      "word": "WATCH"
-    },
-    {
-      "category_a": "SMART ___",
-      "category_b": "Things that charge",
-      "reason_a": "Smart car fits the prefix pattern",
-      "reason_b": "Electric cars charge, so CAR can feel like it belongs with BATTERY/PHONE",
-      "word": "CAR"
+      "category_a": "“Call it a ___” completions",
+      "category_b": "Ways to stop something",
+      "reason_a": "Call it a day is a common phrase.",
+      "reason_b": "Since calling it a day means to stop, DAY may feel like it belongs with HALT/CEASE.",
+      "word": "DAY"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "ADD_LETTER",
+      "mechanic": "SYNONYMS",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "HOMOPHONE_OF_LETTER",
       "result": "shipped",
       "tier": 3
     }
