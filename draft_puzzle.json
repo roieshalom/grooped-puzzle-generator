@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "DROP_LETTER",
+      "tier": 4,
+      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
       "difficulty": "purple",
-      "name": "Drop one letter (the same one) to make a new word",
+      "name": "One word scrambled",
       "words": [
-        "SNAIL",
-        "SCONE",
-        "STARE",
-        "SCENT"
+        "CATER",
+        "CRATE",
+        "TRACE",
+        "REACT"
       ]
     }
   ],
