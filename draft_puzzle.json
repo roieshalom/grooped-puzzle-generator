@@ -1,78 +1,84 @@
 {
-  "id": "208",
-  "date": "16.06.2026",
+  "id": "184",
+  "date": "17.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "At a picnic",
+      "name": "SMART ___",
       "words": [
-        "BLANKET",
-        "COOLER",
-        "ANTS",
-        "NAPKIN"
+        "HOME",
+        "WATCH",
+        "TV",
+        "CAR"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Point winning moves in sports",
+      "name": "“Break a ___” completions",
       "words": [
-        "GOAL",
-        "TRY",
-        "SIX",
-        "TOUCHDOWN"
+        "LEG",
+        "SWEAT",
+        "TIE",
+        "RECORD"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "To annoy",
+      "name": "Things that charge",
       "words": [
-        "BUG",
-        "IRK",
-        "VEX",
-        "PESTER"
+        "BULL",
+        "RHINO",
+        "BATTERY",
+        "PHONE"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ANAGRAM_OF_ONE_SOURCE",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "One word scrambled",
+      "name": "Add one letter (R) to make a new word",
       "words": [
-        "CATER",
-        "CRATE",
-        "TRACE",
-        "REACT"
+        "TUNE",
+        "MINE",
+        "DIVE",
+        "BAKE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Ways to annoy (as verbs)",
-      "category_b": "At a picnic",
-      "reason_a": "BUG means to annoy.",
-      "reason_b": "Bugs show up at picnics, tempting a scene-based grouping.",
-      "word": "BUG"
+      "category_a": "Things that charge",
+      "category_b": "SMART ___",
+      "reason_a": "Phones need to charge up",
+      "reason_b": "Tempting because smartphone is common, but PHONE isn’t in the SMART set here",
+      "word": "PHONE"
     },
     {
-      "category_a": "Drop one letter (the same one) to make a new word",
-      "category_b": "At a picnic",
-      "reason_a": "SCONE → drop S → CONE.",
-      "reason_b": "A SCONE is food you could pack for a picnic.",
-      "word": "SCONE"
+      "category_a": "SMART ___",
+      "category_b": "Things that charge",
+      "reason_a": "Smart watch is a familiar product",
+      "reason_b": "Modern smartwatches do charge, nudging solvers to misplace it",
+      "word": "WATCH"
+    },
+    {
+      "category_a": "SMART ___",
+      "category_b": "Things that charge",
+      "reason_a": "Smart car fits the prefix pattern",
+      "reason_b": "Electric cars charge, so CAR can feel like it belongs with BATTERY/PHONE",
+      "word": "CAR"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "MIXED",
-      "reason": "Balanced Tier1/2/3 set with documented cross-pulls",
+      "mechanic": "ADD_LETTER",
       "result": "shipped",
-      "tier": null
+      "tier": 3
     }
   ],
   "_validation": {
