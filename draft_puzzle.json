@@ -33,21 +33,21 @@
       "name": "Things that charge",
       "words": [
         "BULL",
-        "SOLDIER",
+        "BANK",
         "BATTERY",
-        "PHONE"
+        "GRAND JURY"
       ]
     },
     {
       "tier": 3,
       "mechanic": "COMPOUND_BOTH_WAYS",
       "difficulty": "purple",
-      "name": "Work both ways with 'over'",
+      "name": "Flip with 'out' both ways",
       "words": [
-        "HANG",
-        "TAKE",
-        "TURN",
-        "WORK"
+        "BREAK",
+        "LOOK",
+        "LAY",
+        "PUT"
       ]
     }
   ],
