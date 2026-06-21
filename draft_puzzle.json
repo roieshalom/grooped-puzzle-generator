@@ -42,12 +42,12 @@
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "Metaphors for being scared",
+      "name": "Oil types",
       "words": [
-        "SHOOK",
-        "RATTLED",
-        "JUMPY",
-        "SPOOKED"
+        "VEGETABLE",
+        "COCONUT",
+        "HYDRAULIC",
+        "CBD"
       ]
     }
   ],
