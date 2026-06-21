@@ -1,91 +1,77 @@
 {
-  "id": "182",
+  "id": "214",
   "date": "21.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Rubber ___",
+      "name": "Found on a map",
       "words": [
-        "BAND",
-        "STAMP",
-        "DUCK",
-        "CHICKEN"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
-      "difficulty": "green",
-      "name": "Collectibles (single form)",
-      "words": [
-        "ACTION FIGURE",
-        "COIN",
-        "RECORD",
-        "CARD"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
-      "difficulty": "blue",
-      "name": "Popeye characters",
-      "words": [
-        "WIMPY",
-        "OLIVE",
-        "GEEZIL",
-        "EUGENE"
+        "RIVER",
+        "SCALE",
+        "LEGEND",
+        "BORDER"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "purple",
-      "name": "Oil types",
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "green",
+      "name": "TURN THE ___",
       "words": [
-        "VEGETABLE",
-        "COCONUT",
-        "HYDRAULIC",
-        "CBD"
+        "TABLES",
+        "PAGE",
+        "TIDE",
+        "CORNER"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "blue",
+      "name": "Things that bounce",
+      "words": [
+        "BALL",
+        "CHECK",
+        "EMAIL",
+        "LIGHT"
+      ]
+    },
+    {
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
+      "difficulty": "purple",
+      "name": "Add H to make a new word",
+      "words": [
+        "ARM",
+        "EAT",
+        "EAR",
+        "OLD"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "RUBBER ___",
-      "category_b": "Metaphors for being scared",
-      "reason_a": "Forms the common phrase rubber chicken",
-      "reason_b": "Being a 'chicken' means scared, tempting a misgroup",
-      "word": "CHICKEN"
+      "category_a": "TURN THE ___",
+      "category_b": "Found on a map",
+      "reason_a": "“Turn the page” is a common idiom.",
+      "reason_b": "Maps in atlases live on pages, tempting a misgroup.",
+      "word": "PAGE"
+    },
+    {
+      "category_a": "TURN THE ___",
+      "category_b": "Found on a map",
+      "reason_a": "“Turn the corner” is a fixed expression.",
+      "reason_b": "Maps literally have corners, creating cross-pull.",
+      "word": "CORNER"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_AT_START",
-      "reason": "Could not find four natural host words with a clean, non-banned hidden set that also cross-pulled well with the rest of the board",
-      "result": "abandoned",
+      "mechanic": "ADD_LETTER",
+      "result": "shipped",
       "tier": 3
-    },
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "IDIOM_COMPLETION",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "SYNONYMS",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "result": "shipped",
-      "tier": 2
     }
   ],
   "_validation": {
