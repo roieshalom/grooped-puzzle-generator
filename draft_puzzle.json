@@ -6,72 +6,93 @@
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Found on a map",
+      "name": "On a desk",
       "words": [
-        "RIVER",
-        "SCALE",
-        "LEGEND",
-        "BORDER"
+        "STAPLER",
+        "NOTEPAD",
+        "MUG",
+        "LAMP"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "WAYS_TO_VERB",
       "difficulty": "green",
-      "name": "Anatomical Outer Units",
+      "name": "Ways to say “leave” fast",
       "words": [
-        "SCUTE",
-        "SPINE",
-        "DENTICLE",
-        "QUILL"
+        "BOUNCE",
+        "SPLIT",
+        "SCRAM",
+        "JET"
       ]
     },
     {
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things that bounce",
+      "name": "Things that click",
       "words": [
-        "BALL",
-        "CHECK",
-        "EMAIL",
-        "LIGHT"
+        "PEN",
+        "CAMERA",
+        "MOUSE",
+        "HEELS"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "CHARACTERS_IN_ONE_WORK",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Characters in The Big Lebowski",
+      "name": "Add the same letter to make a new word (S-)",
       "words": [
-        "DUDE",
-        "WALTER",
-        "DONNY",
-        "MAUDE"
+        "PIN",
+        "TABLE",
+        "MILE",
+        "LATE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "TURN THE ___",
-      "category_b": "Found on a map",
-      "reason_a": "“Turn the page” is a common idiom.",
-      "reason_b": "Maps in atlases live on pages, tempting a misgroup.",
-      "word": "PAGE"
+      "category_a": "Things that click",
+      "category_b": "On a desk",
+      "reason_a": "A retractable pen makes a clicking sound.",
+      "reason_b": "A pen is a classic desk item, tempting a misgroup.",
+      "word": "PEN"
     },
     {
-      "category_a": "TURN THE ___",
-      "category_b": "Found on a map",
-      "reason_a": "“Turn the corner” is a fixed expression.",
-      "reason_b": "Maps literally have corners, creating cross-pull.",
-      "word": "CORNER"
+      "category_a": "Things that click",
+      "category_b": "On a desk",
+      "reason_a": "You click a computer mouse.",
+      "reason_b": "A mouse often sits on a desk with other office items.",
+      "word": "MOUSE"
+    },
+    {
+      "category_a": "On a desk",
+      "category_b": "Things that click",
+      "reason_a": "A desk lamp belongs on a workspace.",
+      "reason_b": "Turning some lamps on/off makes an audible click.",
+      "word": "LAMP"
+    },
+    {
+      "category_a": "Add the same letter to make a new word (S-)",
+      "category_b": "On a desk",
+      "reason_a": "Add S → SPIN.",
+      "reason_b": "Pushpins and pins are common desk supplies, creating plausible misplacement.",
+      "word": "PIN"
+    },
+    {
+      "category_a": "Things that click",
+      "category_b": "On a desk",
+      "reason_a": "A camera’s shutter clicks.",
+      "reason_b": "A camera can sit on a desk, especially in a home office, inviting a scene-based error.",
+      "word": "CAMERA"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "ADD_LETTER",
+      "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
-      "tier": 3
+      "tier": 1
     }
   ],
   "_validation": {
