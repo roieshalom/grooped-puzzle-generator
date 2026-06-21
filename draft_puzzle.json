@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "green",
-      "name": "“Drop the ___” (real idioms)",
+      "name": "Collectibles (single form)",
       "words": [
-        "BALL",
-        "MIC",
-        "ACT",
-        "SUBJECT"
+        "ACTION FIGURE",
+        "COIN",
+        "RECORD",
+        "CARD"
       ]
     },
     {
