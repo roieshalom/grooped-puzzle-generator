@@ -1,92 +1,91 @@
 {
-  "id": "201",
+  "id": "182",
   "date": "21.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "___ BUTTON",
+      "name": "RUBBER ___",
       "words": [
-        "POWER",
-        "MUTE",
-        "MENU",
-        "INPUT"
+        "BAND",
+        "STAMP",
+        "DUCK",
+        "CHICKEN"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "green",
-      "name": "Can be delivered",
+      "name": "“Drop the ___” (real idioms)",
       "words": [
-        "BABY",
-        "PACKAGE",
-        "SPEECH",
-        "VERDICT"
+        "BALL",
+        "MIC",
+        "ACT",
+        "SUBJECT"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "SYNONYMS",
+      "difficulty": "blue",
+      "name": "Quiet laughs",
+      "words": [
+        "CHUCKLE",
+        "GIGGLE",
+        "SNICKER",
+        "TITTER"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "blue",
-      "name": "Metaphors for being very busy",
-      "words": [
-        "SWAMPED",
-        "SLAMMED",
-        "BURIED",
-        "UNDERWATER"
-      ]
-    },
-    {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Add B to the front to make a new word",
+      "name": "Metaphors for being scared",
       "words": [
-        "RING",
-        "RASH",
-        "RIDE",
-        "RINK"
+        "SHOOK",
+        "RATTLED",
+        "JUMPY",
+        "SPOOKED"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ BUTTON",
-      "category_b": "Can be delivered",
-      "reason_a": "MENU BUTTON is a common control on remotes/devices",
-      "reason_b": "Restaurants literally deliver or hand you a menu",
-      "word": "MENU"
-    },
-    {
-      "category_a": "___ BUTTON",
-      "category_b": "Can be delivered",
-      "reason_a": "INPUT BUTTON switches sources on a TV/monitor",
-      "reason_b": "People talk about delivering input/feedback on a plan",
-      "word": "INPUT"
+      "category_a": "RUBBER ___",
+      "category_b": "Metaphors for being scared",
+      "reason_a": "Forms the common phrase rubber chicken",
+      "reason_b": "Being a 'chicken' means scared, tempting a misgroup",
+      "word": "CHICKEN"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "HIDDEN_WORD_AT_START",
+      "reason": "Could not find four natural host words with a clean, non-banned hidden set that also cross-pulled well with the rest of the board",
+      "result": "abandoned",
+      "tier": 3
+    },
+    {
+      "mechanic": "PREFIX_BLANK",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "IDIOM_COMPLETION",
       "result": "shipped",
       "tier": 2
+    },
+    {
+      "mechanic": "SYNONYMS",
+      "result": "shipped",
+      "tier": 1
     },
     {
       "mechanic": "METAPHOR_SUBSTITUTES",
       "result": "shipped",
       "tier": 2
-    },
-    {
-      "mechanic": "ADD_LETTER",
-      "result": "shipped",
-      "tier": 3
     }
   ],
   "_validation": {
