@@ -1,84 +1,99 @@
 {
-  "id": "182",
+  "id": "138",
   "date": "23.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 1,
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Things that click when used",
+      "name": "On a bicycle",
       "words": [
-        "PEN",
-        "LIGHTER",
-        "MOUSE",
-        "SEATBELT"
+        "PEDAL",
+        "CHAIN",
+        "BELL",
+        "SADDLE"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
+      "difficulty": "green",
+      "name": "“Take a ___” (common phrases)",
+      "words": [
+        "SEAT",
+        "HIKE",
+        "BOW",
+        "SWING"
       ]
     },
     {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
-      "difficulty": "green",
-      "name": "More than...",
-      "words": [
-        "HEAVIER",
-        "BIGGER",
-        "TALLER",
-        "LONGER"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Seans",
+      "name": "SADDLE ___",
       "words": [
-        "COMBS",
-        "CONNERY",
-        "LENNON",
-        "PAUL"
+        "SORE",
+        "BAG",
+        "SOAP",
+        "HORSE"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Wrapped around us",
+      "name": "Add W to make a new word",
       "words": [
-        "BOA",
-        "SCARF",
-        "SARONG",
-        "BANDANA"
+        "ASH",
+        "ARM",
+        "IRE",
+        "RING"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that click when used",
-      "category_b": "Can be rolled (literally or figuratively)",
-      "reason_a": "The buckle makes a distinct click when latched.",
-      "reason_b": "Seatbelts retract and roll up, tempting placement with SLEEVES/EYES/DICE/SUSHI.",
-      "word": "SEATBELT"
+      "category_a": "“Take a ___” (common phrases)",
+      "category_b": "On a bicycle",
+      "reason_a": "“take a seat” is a common phrase",
+      "reason_b": "A bicycle has a seat; solvers may try to drop SEAT into the bike set.",
+      "word": "SEAT"
     },
     {
-      "category_a": "___ PRINT",
-      "category_b": "Can be rolled (literally or figuratively)",
-      "reason_a": "Forms the common phrase 'fingerprint'.",
-      "reason_b": "A 'finger roll' is a well-known basketball move, luring it toward the rollable set.",
-      "word": "FINGER"
+      "category_a": "SADDLE ___",
+      "category_b": "On a bicycle",
+      "reason_a": "SADDLE BAG is a standard compound",
+      "reason_b": "A saddlebag is a common bike accessory, tempting a move to the bike scene.",
+      "word": "BAG"
     },
     {
-      "category_a": "Things that click when used",
-      "category_b": "Can be rolled (literally or figuratively)",
-      "reason_a": "Computer mice click when pressing buttons.",
-      "reason_b": "Older mice and scroll wheels roll, creating cross-pull toward the rolling group.",
-      "word": "MOUSE"
+      "category_a": "On a bicycle",
+      "category_b": "Add W to make a new word",
+      "reason_a": "A bell is mounted on many bikes",
+      "reason_b": "Looks like it could fit the add-W trick (BELL → WELL), but it’s not in that set.",
+      "word": "BELL"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "FOUND_IN_SCENE",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "IDIOM_COMPLETION",
       "result": "shipped",
       "tier": 2
+    },
+    {
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "ADD_LETTER",
+      "result": "shipped",
+      "tier": 3
     }
   ],
   "_validation": {
