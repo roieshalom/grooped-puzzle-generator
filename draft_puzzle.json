@@ -18,36 +18,36 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "green",
-      "name": "___ PRINT",
+      "name": "More than...",
       "words": [
-        "BLUE",
-        "FINGER",
-        "FOOT",
-        "NEWS"
+        "HEAVIER",
+        "BIGGER",
+        "TALLER",
+        "LONGER"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Can be rolled (literally or figuratively)",
+      "name": "Seans",
       "words": [
-        "DICE",
-        "SUSHI",
-        "EYES",
-        "SLEEVES"
+        "COMBS",
+        "CONNERY",
+        "LENNON",
+        "PAUL"
       ]
     },
     {
       "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "mechanic": "CROSS_LANGUAGE",
       "difficulty": "purple",
-      "name": "Add S to make a new word",
+      "name": "Same spelling, different in Spanish",
       "words": [
-        "LATE",
-        "MILE",
-        "TONE",
-        "PINE"
+        "PAN",
+        "PIE",
+        "ONCE",
+        "SOLO"
       ]
     }
   ],
