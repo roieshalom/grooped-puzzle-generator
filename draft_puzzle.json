@@ -1,98 +1,84 @@
 {
-  "id": "214",
-  "date": "21.06.2026",
+  "id": "182",
+  "date": "23.06.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "yellow",
-      "name": "On a desk",
-      "words": [
-        "STAPLER",
-        "NOTEPAD",
-        "MUG",
-        "LAMP"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
-      "difficulty": "green",
-      "name": "Ways to say “leave” fast",
-      "words": [
-        "BOUNCE",
-        "SPLIT",
-        "SCRAM",
-        "JET"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "blue",
-      "name": "Things that click",
+      "name": "Things that click when used",
       "words": [
         "PEN",
-        "CAMERA",
+        "LIGHTER",
         "MOUSE",
-        "HEELS"
+        "SEATBELT"
+      ]
+    },
+    {
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
+      "difficulty": "green",
+      "name": "___ PRINT",
+      "words": [
+        "BLUE",
+        "FINGER",
+        "FOOT",
+        "NEWS"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "blue",
+      "name": "Can be rolled (literally or figuratively)",
+      "words": [
+        "DICE",
+        "SUSHI",
+        "EYES",
+        "SLEEVES"
       ]
     },
     {
       "tier": 3,
       "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Add the same letter to make a new word (S-)",
+      "name": "Add S to make a new word",
       "words": [
-        "PIN",
-        "TABLE",
+        "LATE",
         "MILE",
-        "LATE"
+        "TONE",
+        "PINE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Things that click",
-      "category_b": "On a desk",
-      "reason_a": "A retractable pen makes a clicking sound.",
-      "reason_b": "A pen is a classic desk item, tempting a misgroup.",
-      "word": "PEN"
+      "category_a": "Things that click when used",
+      "category_b": "Can be rolled (literally or figuratively)",
+      "reason_a": "The buckle makes a distinct click when latched.",
+      "reason_b": "Seatbelts retract and roll up, tempting placement with SLEEVES/EYES/DICE/SUSHI.",
+      "word": "SEATBELT"
     },
     {
-      "category_a": "Things that click",
-      "category_b": "On a desk",
-      "reason_a": "You click a computer mouse.",
-      "reason_b": "A mouse often sits on a desk with other office items.",
+      "category_a": "___ PRINT",
+      "category_b": "Can be rolled (literally or figuratively)",
+      "reason_a": "Forms the common phrase 'fingerprint'.",
+      "reason_b": "A 'finger roll' is a well-known basketball move, luring it toward the rollable set.",
+      "word": "FINGER"
+    },
+    {
+      "category_a": "Things that click when used",
+      "category_b": "Can be rolled (literally or figuratively)",
+      "reason_a": "Computer mice click when pressing buttons.",
+      "reason_b": "Older mice and scroll wheels roll, creating cross-pull toward the rolling group.",
       "word": "MOUSE"
-    },
-    {
-      "category_a": "On a desk",
-      "category_b": "Things that click",
-      "reason_a": "A desk lamp belongs on a workspace.",
-      "reason_b": "Turning some lamps on/off makes an audible click.",
-      "word": "LAMP"
-    },
-    {
-      "category_a": "Add the same letter to make a new word (S-)",
-      "category_b": "On a desk",
-      "reason_a": "Add S → SPIN.",
-      "reason_b": "Pushpins and pins are common desk supplies, creating plausible misplacement.",
-      "word": "PIN"
-    },
-    {
-      "category_a": "Things that click",
-      "category_b": "On a desk",
-      "reason_a": "A camera’s shutter clicks.",
-      "reason_b": "A camera can sit on a desk, especially in a home office, inviting a scene-based error.",
-      "word": "CAMERA"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "result": "shipped",
-      "tier": 1
+      "tier": 2
     }
   ],
   "_validation": {
