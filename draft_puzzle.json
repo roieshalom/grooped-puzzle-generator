@@ -28,14 +28,14 @@
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "SADDLE ___",
+      "name": "Naturally formed landscapes",
       "words": [
-        "SORE",
-        "BAG",
-        "SOAP",
-        "HORSE"
+        "MESA",
+        "DUNE",
+        "ATOLL",
+        "DELTA"
       ]
     },
     {
