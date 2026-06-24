@@ -15,15 +15,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "green",
-      "name": "“Take a ___” (common phrases)",
+      "name": "Terms with “Liberty”",
       "words": [
-        "SEAT",
-        "HIKE",
-        "BOW",
-        "SWING"
+        "SHIP",
+        "ISLAND",
+        "MUTUAL",
+        "CAP"
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": 1,
+      "mechanic": "TAXONOMY",
       "difficulty": "purple",
-      "name": "Add W to make a new word",
+      "name": "Famous elephants",
       "words": [
-        "ASH",
-        "ARM",
-        "IRE",
-        "RING"
+        "BABAR",
+        "DUMBO",
+        "HATHI",
+        "TANTOR"
       ]
     }
   ],
