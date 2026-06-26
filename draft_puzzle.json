@@ -15,8 +15,8 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "blue",
       "name": "Paul McCartney's albums",
       "words": [
@@ -27,8 +27,8 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
+      "tier": null,
+      "mechanic": null,
       "difficulty": "purple",
       "name": "Add B to the front to make a new word",
       "words": [
