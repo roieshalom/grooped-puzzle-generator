@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": null,
-      "mechanic": null,
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "purple",
-      "name": "Add B to the front to make a new word",
+      "name": "Places to grow flowers",
       "words": [
-        "RING",
-        "LOCK",
-        "RASH",
-        "RACE"
+        "PLANTER",
+        "PATCH",
+        "YARD",
+        "PLOT"
       ]
     }
   ],
