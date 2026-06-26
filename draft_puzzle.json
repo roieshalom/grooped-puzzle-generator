@@ -17,6 +17,18 @@
     {
       "tier": 3,
       "mechanic": "ADD_LETTER",
+      "difficulty": "green",
+      "name": "Horned animals",
+      "words": [
+        "IBEX",
+        "IMPALA",
+        "ELK",
+        "KUDU"
+      ]
+    },
+    {
+      "tier": null,
+      "mechanic": null,
       "difficulty": "blue",
       "name": "Paul McCartney's albums",
       "words": [
@@ -63,10 +75,8 @@
     }
   ],
   "_validation": {
-    "valid": false,
-    "errors": [
-      "Need exactly 4 categories, got 3"
-    ],
+    "valid": true,
+    "errors": [],
     "duplicate_words": []
   }
 }
