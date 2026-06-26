@@ -1053,6 +1053,7 @@ def generate_puzzle():
         # Vercel function timeout (see maxDuration in vercel.json).
         max_attempts = 3
         banned_norms = {_normalize(n) for n in banned}
+        last_call_error = None
 
         for attempt in range(1, max_attempts + 1):
             print(f"Generation attempt {attempt}")
@@ -1060,6 +1061,9 @@ def generate_puzzle():
             try:
                 data = _call_claude(prompt, max_tokens=6000)
             except Exception as e:
+                # Track this so a fully-failed run reports the real cause
+                # (e.g. OpenAI quota / auth) instead of a generic "verification failed".
+                last_call_error = str(e)
                 print(f"Claude call failed on attempt {attempt}: {e}")
                 continue
 
@@ -1146,8 +1150,21 @@ def generate_puzzle():
             _inject_mechanic_tier(data)
             return jsonify(data)
 
-        # All attempts failed verification. Do NOT ship a rejected puzzle —
-        # surface an error so the editor prompts a fresh Generate click.
+        # All attempts failed. Surface the real cause so OpenAI auth/quota
+        # issues aren't misreported as "verification failed".
+        if last_call_error:
+            err_lower = last_call_error.lower()
+            if "insufficient_quota" in err_lower or "exceeded your current quota" in err_lower:
+                msg = "OpenAI quota exhausted — check billing/credits at platform.openai.com."
+            elif "rate" in err_lower and "limit" in err_lower:
+                msg = "OpenAI rate-limited the request. Try again in a few seconds."
+            elif "401" in err_lower or "invalid api key" in err_lower or "authentication" in err_lower:
+                msg = "OpenAI authentication failed — check OPENAI_API_KEY in Vercel env."
+            else:
+                msg = f"OpenAI call failed: {last_call_error[:200]}"
+            return jsonify({"error": msg}), 502
+
+        # No call error, so all attempts returned puzzles that failed verification.
         return jsonify({"error": "Could not generate a clean puzzle after several attempts — some categories failed verification. Please click Generate again."}), 500
 
     except Exception as e:
