@@ -16,18 +16,6 @@
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "difficulty": "green",
-      "name": "Slang for being very excited",
-      "words": [
-        "AMPED",
-        "STOKED",
-        "JAZZED",
-        "HYPED"
-      ]
-    },
-    {
-      "tier": 2,
       "mechanic": "WAYS_TO_VERB",
       "difficulty": "blue",
       "name": "Paul McCartney's albums",
@@ -75,8 +63,10 @@
     }
   ],
   "_validation": {
-    "valid": true,
-    "errors": [],
+    "valid": false,
+    "errors": [
+      "Need exactly 4 categories, got 3"
+    ],
     "duplicate_words": []
   }
 }
