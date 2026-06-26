@@ -1,94 +1,72 @@
 {
-  "id": "138",
-  "date": "23.06.2026",
+  "id": "214",
+  "date": "26.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
-      "difficulty": "yellow",
-      "name": "On a bicycle",
-      "words": [
-        "PEDAL",
-        "CHAIN",
-        "BELL",
-        "SADDLE"
-      ]
-    },
-    {
-      "tier": 1,
       "mechanic": "PREFIX_BLANK",
+      "difficulty": "yellow",
+      "name": "___ BUG",
+      "words": [
+        "BED",
+        "LOVE",
+        "LADY",
+        "JITTER"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "green",
-      "name": "Terms with “Liberty”",
+      "name": "Slang for being very excited",
       "words": [
-        "SHIP",
-        "ISLAND",
-        "MUTUAL",
-        "AT"
+        "AMPED",
+        "STOKED",
+        "JAZZED",
+        "HYPED"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
       "difficulty": "blue",
-      "name": "Naturally formed landscapes",
+      "name": "Ways to leave quickly (slang)",
       "words": [
-        "MESA",
-        "DUNE",
-        "ATOLL",
-        "DELTA"
+        "BOUNCE",
+        "SPLIT",
+        "DIP",
+        "JET"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 3,
+      "mechanic": "ADD_LETTER",
       "difficulty": "purple",
-      "name": "Famous elephants",
+      "name": "Add B to the front to make a new word",
       "words": [
-        "BABAR",
-        "DUMBO",
-        "HATHI",
-        "TANTOR"
+        "RING",
+        "LOCK",
+        "RASH",
+        "RACE"
       ]
     }
   ],
-  "decoys": [
-    {
-      "category_a": "“Take a ___” (common phrases)",
-      "category_b": "On a bicycle",
-      "reason_a": "“take a seat” is a common phrase",
-      "reason_b": "A bicycle has a seat; solvers may try to drop SEAT into the bike set.",
-      "word": "SEAT"
-    },
-    {
-      "category_a": "SADDLE ___",
-      "category_b": "On a bicycle",
-      "reason_a": "SADDLE BAG is a standard compound",
-      "reason_b": "A saddlebag is a common bike accessory, tempting a move to the bike scene.",
-      "word": "BAG"
-    },
-    {
-      "category_a": "On a bicycle",
-      "category_b": "Add W to make a new word",
-      "reason_a": "A bell is mounted on many bikes",
-      "reason_b": "Looks like it could fit the add-W trick (BELL → WELL), but it’s not in that set.",
-      "word": "BELL"
-    }
-  ],
+  "decoys": [],
   "attempt_log": [
     {
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "result": "shipped",
       "tier": 2
     },
     {
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "WAYS_TO_VERB",
       "result": "shipped",
-      "tier": 1
+      "tier": 2
     },
     {
       "mechanic": "ADD_LETTER",
