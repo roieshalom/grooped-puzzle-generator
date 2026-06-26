@@ -527,7 +527,7 @@ async function renderMechanicBar(forceRefresh = false) {
     return;
   }
 
-  const { tagged_count, window_size, cat_mechanics, all_mechanics } = data;
+  const { tagged_count, cat_mechanics, all_mechanics } = data;
   const total = cat_mechanics.length;
 
   // Count by tier
@@ -549,23 +549,20 @@ async function renderMechanicBar(forceRefresh = false) {
   });
   rowHtml += '</div>';
 
-  // Underused Tier 2 & 3 mechanics (used 0 times in window)
+  // Tier 2 & 3 mechanics that have never appeared in any tagged puzzle
   const underused2 = _TIER2_MECHANICS.filter(m => !(all_mechanics[m] > 0));
   const underused3 = _TIER3_MECHANICS.filter(m => !(all_mechanics[m] > 0));
   let detailHtml = '';
   if (underused2.length > 0 || underused3.length > 0) {
-    detailHtml += '<div class="mb-underused"><strong>Unused in window:</strong> ';
+    detailHtml += '<div class="mb-underused"><strong>Never used:</strong> ';
     const items = [
       ...underused2.map(m => `<span class="mb-tag mb-t2">${m}</span>`),
       ...underused3.map(m => `<span class="mb-tag mb-t3">${m}</span>`),
     ];
     detailHtml += items.join(' ') + '</div>';
   }
-  if (tagged_count < window_size) {
-    detailHtml += `<div class="mb-warmup">⚠ Only ${tagged_count} of ${window_size} window puzzles are tagged. Stats will improve as more puzzles are exported with mechanic data.</div>`;
-  }
 
-  const headingText = `Mechanic usage — last ${tagged_count} tagged puzzles (${total} categories)`;
+  const headingText = `Mechanic usage — ${total} categories across ${tagged_count} tagged puzzles`;
   const html = `
     <div class="mb-toggle-row" id="mbToggleRow">
       <span class="mb-heading">${headingText}</span>

@@ -459,43 +459,43 @@ def _sanitize_for_export(puzzle: dict) -> dict:
 
 @app.route("/api/mechanic-stats", methods=["GET"])
 def get_mechanic_stats():
-    """Return mechanic usage data for the last N tagged puzzles (no auth required)."""
-    window = 21  # rolling window size
+    """Return all-time mechanic usage data (no auth required).
+
+    Previously this used a rolling 21-puzzle window, which made the bar's
+    'X tagged puzzles (Y categories)' count plateau at ~83 forever once
+    enough puzzles existed. Now aggregates over ALL tagged puzzles so the
+    number grows as more puzzles are exported with mechanic data.
+    """
     try:
         existing, _ = gh_read(GROOPED_REPO, PUZZLES_PATH)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
     if not existing:
-        return jsonify({"tagged_count": 0, "window_size": window, "cat_mechanics": [], "all_mechanics": {}})
+        return jsonify({"tagged_count": 0, "cat_mechanics": [], "all_mechanics": {}})
 
     puzzles_list = (
         existing.get("puzzles", []) if isinstance(existing, dict) else (existing or [])
     )
 
-    # Sort by date descending, take the last `window` tagged puzzles
-    def sort_key(p):
-        d = _parse_any_date(p.get("date", ""))
-        return d or datetime.min.date()
-
-    sorted_puzzles = sorted(puzzles_list, key=sort_key, reverse=True)
-    tagged = [p for p in sorted_puzzles if any(c.get("mechanic") for c in p.get("categories", []))]
-    recent = tagged[:window]
-
-    # Aggregate mechanic counts across all categories in the window
+    # Aggregate over every tagged category across all puzzles
+    tagged_puzzle_count = 0
     mechanic_counts: dict = {}
-    cat_mechanics = []  # flat list of all (mechanic, tier) pairs in order
-    for p in recent:
+    cat_mechanics = []
+    for p in puzzles_list:
+        has_any = False
         for cat in p.get("categories", []):
             m = cat.get("mechanic")
             if m:
+                has_any = True
                 mechanic_counts[m] = mechanic_counts.get(m, 0) + 1
                 t = cat.get("tier") or _TIER_LOOKUP.get(m)
                 cat_mechanics.append({"mechanic": m, "tier": t})
+        if has_any:
+            tagged_puzzle_count += 1
 
     return jsonify({
-        "tagged_count": len(recent),
-        "window_size": window,
+        "tagged_count": tagged_puzzle_count,
         "cat_mechanics": cat_mechanics,
         "all_mechanics": mechanic_counts,
     })
