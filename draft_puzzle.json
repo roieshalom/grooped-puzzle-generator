@@ -1,75 +1,90 @@
 {
-  "id": "214",
+  "id": "163",
   "date": "26.06.2026",
   "categories": [
     {
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "yellow",
+      "name": "Ways to say “maybe”",
+      "words": [
+        "MAYBE",
+        "PERHAPS",
+        "POSSIBLY",
+        "MIGHT"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
+      "difficulty": "green",
+      "name": "They POP",
+      "words": [
+        "BUBBLES",
+        "TIRES",
+        "EARS",
+        "CORN"
+      ]
+    },
+    {
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
-      "difficulty": "yellow",
-      "name": "___ BUG",
+      "difficulty": "blue",
+      "name": "EAR ___",
       "words": [
-        "BED",
-        "LOVE",
-        "LADY",
-        "JITTER"
+        "DRUM",
+        "WAX",
+        "PLUG",
+        "BUDS"
       ]
     },
     {
       "tier": 3,
       "mechanic": "ADD_LETTER",
-      "difficulty": "green",
-      "name": "Horned animals",
-      "words": [
-        "IBEX",
-        "IMPALA",
-        "ELK",
-        "KUDU"
-      ]
-    },
-    {
-      "tier": null,
-      "mechanic": null,
-      "difficulty": "blue",
-      "name": "Paul McCartney's albums",
-      "words": [
-        "RAM",
-        "RUSHES",
-        "NEW",
-        "CHOBA B CCCP"
-      ]
-    },
-    {
-      "tier": 1,
-      "mechanic": "PREFIX_BLANK",
       "difficulty": "purple",
-      "name": "Places to grow flowers",
+      "name": "Add P to make a new word",
       "words": [
-        "PLANTER",
-        "PATCH",
-        "YARD",
-        "PLOT"
+        "LATE",
+        "INK",
+        "RICE",
+        "EEL"
       ]
     }
   ],
-  "decoys": [],
+  "decoys": [
+    {
+      "category_a": "They POP",
+      "category_b": "EAR ___",
+      "reason_a": "Your ears can pop with pressure changes.",
+      "reason_b": "Looks like it should pair with EAR- compounds (earbuds, earplug), but it’s the popping sense.",
+      "word": "EARS"
+    },
+    {
+      "category_a": "They POP",
+      "category_b": "EAR ___",
+      "reason_a": "Corn pops when making popcorn.",
+      "reason_b": "‘Ear of corn’ tempts a move into the EAR group, even though the entries there are specific compounds.",
+      "word": "CORN"
+    },
+    {
+      "category_a": "EAR ___",
+      "category_b": "They POP",
+      "reason_a": "Ear drum is a fixed anatomical term.",
+      "reason_b": "A drum can make a ‘pop’ sound, nudging solvers toward the action group.",
+      "word": "DRUM"
+    },
+    {
+      "category_a": "Add P to make a new word",
+      "category_b": "They POP",
+      "reason_a": "RICE becomes PRICE by adding P.",
+      "reason_b": "Puffed rice and cereal ads (Snap, Crackle, Pop) can mislead toward ‘things that pop.’",
+      "word": "RICE"
+    }
+  ],
   "attempt_log": [
     {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "METAPHOR_SUBSTITUTES",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
-      "mechanic": "WAYS_TO_VERB",
-      "result": "shipped",
-      "tier": 2
-    },
-    {
       "mechanic": "ADD_LETTER",
+      "reason": "clean +P transformations with strong cross-pulls on the board",
       "result": "shipped",
       "tier": 3
     }
