@@ -374,7 +374,7 @@ _TIER_LOOKUP = {
     # Tier 3
     "HIDDEN_WORD_INSIDE": 3, "HIDDEN_WORD_AT_START": 3, "HIDDEN_WORD_AT_END": 3,
     "HOMOPHONE_OF_LETTER": 3, "HOMOPHONE_OF_NUMBER": 3, "HOMOPHONE_PAIRS": 3,
-    "COMPOUND_BOTH_WAYS": 3, "ADD_LETTER": 3, "DROP_LETTER": 3,
+    "COMPOUND_BOTH_WAYS": 3,
     "EPONYMS": 3, "CROSS_LANGUAGE": 3, "ABBREVIATION_EXPANSION": 3,
     # Tier 4
     "ANAGRAM_OF_ONE_SOURCE": 4, "ACROSTIC_FIRST_LETTERS": 4,
@@ -657,6 +657,7 @@ STRICT rules apply to wordplay mechanics:
 - "Complete the idiom 'X ___'" / "X ___" / "___ X" — write out the full phrase for each word and confirm EACH is a real, common idiom or phrase. If the stem only completes with ONE of the four words (the other three are filler), the category is INVALID. (e.g. "Turn a blind ___" → only EYE works → INVALID.)
 - "Anagram of X" / "Sounds like X" — the relationship must actually hold; verify the letters.
 - "Things that make a sound AND are also verbs" or any "both X and Y" framing — REJECT outright: this framing is forbidden, AND verify every word truly has BOTH properties (e.g. BLUSH makes no sound → INVALID).
+- "OPERATION-IN-THE-NAME" giveaways — REJECT any category whose name literally tells the solver the transformation to perform. Forbidden patterns: "Add X to the front/end to make a word" (e.g. "Add B to the front" → RING/LOCK/RASH/RACE → INVALID, the category IS the answer), "Drop the last letter", "Reverse to spell ___", "Take the first letters", "Anagram of ___", or any name where simply applying the stated operation to the four words trivially produces the answer with no theme. The category must hide the trick behind a theme; if the solver can finish the puzzle without thinking, it is INVALID.
 
 LENIENT rules apply to plain semantic/thematic categories:
 - "Things in a kitchen", "Ways to say yes" — accept if a typical adult would agree.
@@ -823,8 +824,6 @@ RUM, SPRING does not hide GIN, SPRING hides nothing drinkable).
 - HOMOPHONE_OF_NUMBER: sound like numbers. ATE (8), FOR (4), WON (1), TOO (2).
 - HOMOPHONE_PAIRS: each has a homophone fitting a category. BARE/BEAR, FLOWER/FLOUR.
 - COMPOUND_BOTH_WAYS: words that work as both prefix and suffix to one hub.
-- ADD_LETTER: become other real words when you add the same letter (CARE → SCARE).
-- DROP_LETTER: same in reverse.
 - EPONYMS: things named after people. SANDWICH, BOYCOTT, GUILLOTINE, CARDIGAN.
 - CROSS_LANGUAGE: same concept across languages. "Cheers" → SLAINTE, KAMPAI, PROST, CIN-CIN.
 - ABBREVIATION_EXPANSION: common acronyms read as letters (NASA, FBI, SCUBA, RADAR).
@@ -905,6 +904,7 @@ HARD RULES
 - No word repeats from any puzzle in the last 60 days.
 - No category theme repeats from the last 60 days. Older repeats fine if spread out.
 - No category where all four words share a surface tell (all -ISM, all start with LIM-, all Italian musical terms). Surface tells defeat the puzzle.
+- NO "OPERATION-IN-THE-NAME" CATEGORIES. Category names must NOT literally describe the wordplay transformation. Forbidden examples: "Add B to the front to make a new word" (RING/LOCK/RASH/RACE), "Drop the last letter to make a word", "Anagram of LISTEN", "Reverse to read a body part", "Take the first letters to spell ___". The trick must be hidden behind a theme, not announced in the name. If the category name fully describes what the solver has to do, you have written the answer, not a clue. Reframe with a theme that makes the connection lateral, or pick a different mechanic.
 - NO "FAMOUS BOBS / CHARLIES / AMYS / STEVES / MIKES" or any "FAMOUS [COMMON FIRST NAME]" pattern. Permanently retired.
 - No US Presidents as a category.
 - No "Words that are both X and Y" as a category name.
