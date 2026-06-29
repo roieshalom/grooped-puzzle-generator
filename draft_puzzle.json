@@ -1,92 +1,91 @@
 {
-  "id": "163",
-  "date": "26.06.2026",
+  "id": "182",
+  "date": "29.06.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "tier": 1,
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "Ways to say “maybe”",
+      "name": "Ways to say you're exhausted",
       "words": [
-        "MAYBE",
-        "PERHAPS",
-        "POSSIBLY",
-        "MIGHT"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
-      "difficulty": "green",
-      "name": "They POP",
-      "words": [
-        "BUBBLES",
-        "TIRES",
-        "EARS",
-        "CORN"
+        "BEAT",
+        "FRIED",
+        "SPENT",
+        "WIPED"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
-      "difficulty": "blue",
-      "name": "EAR ___",
+      "mechanic": "SUFFIX_BLANK",
+      "difficulty": "green",
+      "name": "UNDER ___",
       "words": [
-        "DRUM",
-        "WAX",
-        "PLUG",
-        "BUDS"
+        "DOG",
+        "WEAR",
+        "HAND",
+        "PAR"
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "ADD_LETTER",
-      "difficulty": "purple",
-      "name": "Add P to make a new word",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
+      "difficulty": "blue",
+      "name": "Things you can tip",
       "words": [
-        "LATE",
-        "INK",
-        "RICE",
-        "EEL"
+        "HAT",
+        "SCALES",
+        "WAITER",
+        "COW"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "difficulty": "purple",
+      "name": "They come with a tail",
+      "words": [
+        "COIN",
+        "KITE",
+        "COMET",
+        "BALLOON"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "They POP",
-      "category_b": "EAR ___",
-      "reason_a": "Your ears can pop with pressure changes.",
-      "reason_b": "Looks like it should pair with EAR- compounds (earbuds, earplug), but it’s the popping sense.",
-      "word": "EARS"
+      "category_a": "UNDER ___",
+      "category_b": "Things you can tip",
+      "reason_a": "UNDERHAND is a common word/phrase",
+      "reason_b": "You can “tip your hand” (reveal your intentions), tempting placement here",
+      "word": "HAND"
     },
     {
-      "category_a": "They POP",
-      "category_b": "EAR ___",
-      "reason_a": "Corn pops when making popcorn.",
-      "reason_b": "‘Ear of corn’ tempts a move into the EAR group, even though the entries there are specific compounds.",
-      "word": "CORN"
+      "category_a": "Things you can tip",
+      "category_b": "They come with a tail",
+      "reason_a": "Cow tipping is a well-known (if dubious) trope",
+      "reason_b": "Cows literally have tails, which may lure solvers to the tail group",
+      "word": "COW"
     },
     {
-      "category_a": "EAR ___",
-      "category_b": "They POP",
-      "reason_a": "Ear drum is a fixed anatomical term.",
-      "reason_b": "A drum can make a ‘pop’ sound, nudging solvers toward the action group.",
-      "word": "DRUM"
+      "category_a": "UNDER ___",
+      "category_b": "Ways to say you're exhausted",
+      "reason_a": "UNDERDOG is a familiar term",
+      "reason_b": "The phrase “dog-tired” might mislead solvers toward the exhaustion group",
+      "word": "DOG"
     },
     {
-      "category_a": "Add P to make a new word",
-      "category_b": "They POP",
-      "reason_a": "RICE becomes PRICE by adding P.",
-      "reason_b": "Puffed rice and cereal ads (Snap, Crackle, Pop) can mislead toward ‘things that pop.’",
-      "word": "RICE"
+      "category_a": "They come with a tail",
+      "category_b": "Things you can tip",
+      "reason_a": "Coins have a “tails” side",
+      "reason_b": "You can tip someone with coins, creating cross-pull",
+      "word": "COIN"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "ADD_LETTER",
-      "reason": "clean +P transformations with strong cross-pulls on the board",
+      "mechanic": "SYNONYMS",
       "result": "shipped",
-      "tier": 3
+      "tier": 1
     }
   ],
   "_validation": {
