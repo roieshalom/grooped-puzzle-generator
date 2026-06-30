@@ -293,6 +293,13 @@ input[type="text"]:focus {
 
 /* ── Calendar day states ─────────────────────────────────────────────────── */
 
+/* Sunday — canonical publish day. Subtle bold so it stands out without
+   disabling other days. Off-cycle publishes are still allowed by click. */
+.flatpickr-day.fp-publish-day {
+  font-weight: 700;
+  color: #1a365d;
+}
+
 /* Past date with a published puzzle — gray */
 .flatpickr-day.fp-past-published,
 .flatpickr-day.fp-past-published:hover {

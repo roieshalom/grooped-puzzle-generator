@@ -180,6 +180,29 @@ def _parse_any_date(ds: str):
             continue
     return None
 
+
+def _next_sunday_after(d):
+    """Return the first Sunday strictly after d.
+
+    Grooped publishes weekly on Sundays. This helper drives both the
+    /api/next-date suggestion and the date stamped onto a newly-exported
+    puzzle. 'Strictly after' means: if d is already a Sunday, we return
+    the *following* Sunday (you don't want two puzzles on the same date).
+
+    Accepts a date or datetime; always returns a date. Falls back gracefully
+    on None by returning the next Sunday after today.
+    """
+    if d is None:
+        d = datetime.now().date()
+    elif isinstance(d, datetime):
+        d = d.date()
+    # weekday(): Mon=0 ... Sat=5, Sun=6. Days until next Sunday after d:
+    #   d=Mon (0) → 6, d=Tue (1) → 5, ... d=Sat (5) → 1, d=Sun (6) → 7 (skip)
+    wd = d.weekday()
+    days_ahead = 7 if wd == 6 else (6 - wd)
+    return d + timedelta(days=days_ahead)
+
+
 @app.route("/api/puzzle-by-date", methods=["GET"])
 def get_puzzle_by_date():
     date_str = request.args.get("date", "")
@@ -317,12 +340,10 @@ def export_puzzle():
                     dates.append(datetime.strptime(ds, "%d.%m.%Y"))
                 except ValueError:
                     pass
-        if dates:
-            next_d = max(dates) + timedelta(days=1)
-            puzzle["date"] = f"{next_d.day}.{next_d.month}.{next_d.year}"
-        else:
-            now = datetime.now()
-            puzzle["date"] = f"{now.day}.{now.month}.{now.year}"
+        # Weekly cadence: stamp the next Sunday strictly after the latest
+        # published puzzle (or the next Sunday after today on a fresh install).
+        next_d = _next_sunday_after(max(dates) if dates else None)
+        puzzle["date"] = f"{next_d.day}.{next_d.month}.{next_d.year}"
 
     puzzle = _sanitize_for_export(puzzle)
     puzzles_list.append(puzzle)
@@ -1313,7 +1334,10 @@ def next_date():  # public
                     dates.append(datetime.strptime(ds, "%d.%m.%Y"))
                 except ValueError:
                     pass
-        next_d = (max(dates) + timedelta(days=1)) if dates else datetime.now()
+        # Weekly cadence: the next puzzle publishes on the next Sunday
+        # strictly after the latest existing date (or after today on a
+        # fresh install).
+        next_d = _next_sunday_after(max(dates) if dates else None)
         # No leading zeros: 3.5.2026 not 03.05.2026
         return jsonify({"date": f"{next_d.day}.{next_d.month}.{next_d.year}"})
     except Exception as e:

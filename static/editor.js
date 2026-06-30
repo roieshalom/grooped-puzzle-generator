@@ -1210,6 +1210,12 @@ function initDatePicker() {
       const iso       = localIso(dayElem.dateObj);
       const hasPuzzle = _publishedDates.has(iso);
 
+      // Mark Sundays as the canonical publish day. Doesn't disable other
+      // days — off-cycle publishes are still allowed by clicking them.
+      if (dayElem.dateObj.getDay() === 0) {
+        dayElem.classList.add('fp-publish-day');
+      }
+
       if (hasPuzzle && iso < todayIso) {
         dayElem.classList.add('fp-past-published');
       } else if (hasPuzzle) {
