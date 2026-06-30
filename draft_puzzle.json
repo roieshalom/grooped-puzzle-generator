@@ -1,91 +1,78 @@
 {
   "id": "182",
-  "date": "29.06.2026",
+  "date": "30.06.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Exhausted",
+      "name": "Things you might spill on your shirt",
       "words": [
-        "BEAT",
-        "FRIED",
-        "SPENT",
-        "WIPED"
+        "COFFEE",
+        "KETCHUP",
+        "INK",
+        "GRAVY"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SUFFIX_BLANK",
       "difficulty": "green",
-      "name": "UNDER ___",
+      "name": "___ PRESS",
       "words": [
-        "DOG",
-        "WEAR",
-        "HAND",
-        "PAR"
+        "FRENCH",
+        "BENCH",
+        "WINE",
+        "CHEST"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "blue",
-      "name": "Things you can tip",
+      "name": "Things that crack",
       "words": [
-        "HAT",
-        "SCALES",
-        "WAITER",
-        "COW"
+        "ICE",
+        "GLASS",
+        "LIPS",
+        "KNUCKLES"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "They come with a tail",
+      "name": "Put on hold or pushed aside (figuratively)",
       "words": [
-        "COIN",
-        "KITE",
-        "COMET",
-        "BALLOON"
+        "BENCHED",
+        "GHOSTED",
+        "ICED",
+        "BACK BURNER"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "UNDER ___",
-      "category_b": "Things you can tip",
-      "reason_a": "UNDERHAND is a common word/phrase",
-      "reason_b": "You can “tip your hand” (reveal your intentions), tempting placement here",
-      "word": "HAND"
+      "category_a": "___ PRESS",
+      "category_b": "Things you might spill on your shirt",
+      "reason_a": "WINE PRESS is a common term for a grape press.",
+      "reason_b": "Red wine is a classic shirt-stainer, tempting a misgroup.",
+      "word": "WINE"
     },
     {
-      "category_a": "Things you can tip",
-      "category_b": "They come with a tail",
-      "reason_a": "Cow tipping is a well-known (if dubious) trope",
-      "reason_b": "Cows literally have tails, which may lure solvers to the tail group",
-      "word": "COW"
-    },
-    {
-      "category_a": "UNDER ___",
-      "category_b": "Ways to say you're exhausted",
-      "reason_a": "UNDERDOG is a familiar term",
-      "reason_b": "The phrase “dog-tired” might mislead solvers toward the exhaustion group",
-      "word": "DOG"
-    },
-    {
-      "category_a": "They come with a tail",
-      "category_b": "Things you can tip",
-      "reason_a": "Coins have a “tails” side",
-      "reason_b": "You can tip someone with coins, creating cross-pull",
-      "word": "COIN"
+      "category_a": "___ PRESS",
+      "category_b": "Put on hold or pushed aside (figuratively)",
+      "reason_a": "BENCH PRESS is a standard gym lift.",
+      "reason_b": "Being 'benched' means sidelined, so BENCH tempts solvers toward the metaphor group.",
+      "word": "BENCH"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SYNONYMS",
+      "mechanic": "MIXED",
+      "reason": "Balanced set using Tier 1 and Tier 2 without needing a Tier 3/4 showcase.",
       "result": "shipped",
-      "tier": 1
+      "tier": 0
     }
   ],
   "_validation": {
