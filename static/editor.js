@@ -4,6 +4,7 @@ let lastSavedState = null;
 let hasUnsavedChanges = false;
 let _viewingPast = false;   // true while a past puzzle is displayed
 let _savedDraft  = null;    // draft stashed before entering past-view
+let _nextAvailableIso = null; // latest /api/next-date result (YYYY-MM-DD), the "canonical" publish date
 
 // ── Auth helpers ────────────────────────────────────────────────────────────
 // Token is stored in localStorage and sent as X-Editor-Token on every mutation.
@@ -169,13 +170,29 @@ function setReadOnly(readOnly) {
   renderMechanicBar();
 }
 
+// Show the jump-to-next button whenever the picker is NOT on the canonical
+// next-available publish date — covers viewing a past snapshot, navigating
+// to a scheduled future puzzle, or picking any off-cycle future date.
+function _updateJumpBtnVisibility() {
+  const jumpBtn = document.getElementById('jumpToNextBtn');
+  if (!jumpBtn) return;
+  // While viewing a past snapshot we always show the button (no draft on display).
+  if (_viewingPast) { jumpBtn.style.display = ''; return; }
+  // Otherwise we need a known target to compare against.
+  const picker = document.getElementById('publishDatePicker');
+  if (!_nextAvailableIso || !picker || !picker.value) {
+    jumpBtn.style.display = 'none';
+    return;
+  }
+  jumpBtn.style.display = (picker.value !== _nextAvailableIso) ? '' : 'none';
+}
+
 // Enter/exit past-puzzle snapshot mode
 function setViewingPast(viewing) {
   _viewingPast = viewing;
   const picker  = document.getElementById('publishDatePicker');
   const disabled = viewing; // when exiting, setReadOnly will re-apply correct state
 
-  const jumpBtn = document.getElementById('jumpToNextBtn');
   if (viewing) {
     document.querySelectorAll('.word-input, .category-name-input').forEach(inp => { inp.disabled = true; });
     document.querySelectorAll('.regenerate-btn, .ban-btn').forEach(btn => { btn.disabled = true; });
@@ -184,13 +201,12 @@ function setViewingPast(viewing) {
       if (btn) btn.disabled = true;
     });
     _pickerSetPastMode(picker, true);
-    if (jumpBtn) jumpBtn.style.display = '';
   } else {
     // Restore whatever the current lock state demands
     setReadOnly(_readOnly);
     _pickerSetPastMode(picker, false);
-    if (jumpBtn) jumpBtn.style.display = 'none';
   }
+  _updateJumpBtnVisibility();
   updateExportButtonState();
 }
 
@@ -1335,13 +1351,14 @@ function initDatePicker() {
     },
 
     onChange(selectedDates, dateStr) {
-      // Keep the red non-Sunday warning class in sync the moment the picker
-      // value changes (user click or programmatic select).
+      // Keep the red non-Sunday warning class and the jump-to-next button
+      // visibility in sync the moment the picker value changes.
       _refreshNonSundayMark();
+      _updateJumpBtnVisibility();
       if (dateStr) handleDatePickerChange(dateStr);
     },
-    onReady() { _refreshNonSundayMark(); },
-    onValueUpdate() { _refreshNonSundayMark(); },
+    onReady() { _refreshNonSundayMark(); _updateJumpBtnVisibility(); },
+    onValueUpdate() { _refreshNonSundayMark(); _updateJumpBtnVisibility(); },
   });
 }
 
@@ -1427,6 +1444,7 @@ async function refreshNextDate() {
       const { date } = await r.json();
       if (!date) continue;
       const iso     = puzzleDateToIso(date);
+      _nextAvailableIso = iso; // remember the canonical next-publish date
       const minDate = `${new Date().getFullYear()}-01-01`;
       const picker  = document.getElementById('publishDatePicker');
 
@@ -1443,25 +1461,44 @@ async function refreshNextDate() {
       }
       const dateMask = document.getElementById('dateMask');
       if (dateMask) dateMask.textContent = buildDateMask();
+      // Once we know the canonical date, re-evaluate the jump button so it
+      // appears / disappears against the freshly-fetched target.
+      _updateJumpBtnVisibility();
       return;
     } catch (e) { /* retry */ }
   }
 }
 
 // ── Jump-to-next-date button ─────────────────────────────────────────────────
+// Snap the picker to the canonical next-available publish date. Works in
+// both directions:
+//   - From a past snapshot: restore the stashed draft + refresh forward
+//   - From any off-cycle future date: just refresh forward (draft is already
+//     in puzzles[0] since we never left it)
 document.getElementById('jumpToNextBtn').addEventListener('click', async () => {
-  if (!_viewingPast) return;
-  if (_savedDraft) {
-    puzzles    = [_savedDraft];
-    _savedDraft = null;
-    currentIndex = 0;
-    updateUI();
-  } else {
-    // No saved draft (e.g. was in read-only mode) — reload the current server state
-    await load();
+  if (_viewingPast) {
+    if (_savedDraft) {
+      puzzles    = [_savedDraft];
+      _savedDraft = null;
+      currentIndex = 0;
+      updateUI();
+    } else {
+      // No saved draft (e.g. was in read-only mode) — reload the current server state
+      await load();
+    }
+    setViewingPast(false);
   }
-  setViewingPast(false);
+  // refreshNextDate updates _nextAvailableIso and snaps the picker forward
+  // when the picker is behind. If the picker is AHEAD of the next-available
+  // date (off-cycle future pick), set it explicitly.
   if (!_readOnly) await refreshNextDate();
+  const picker = document.getElementById('publishDatePicker');
+  if (_nextAvailableIso && picker && picker.value !== _nextAvailableIso) {
+    if (_flatpickr) _flatpickr.setDate(_nextAvailableIso, false);
+    else picker.value = _nextAvailableIso;
+    _refreshNonSundayMark();
+    _updateJumpBtnVisibility();
+  }
   setStatus('Ready', 'info', 2000);
 });
 
