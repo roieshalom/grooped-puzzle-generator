@@ -922,8 +922,8 @@ HARD RULES
 =========
 
 - 16 unique words on the board (case-insensitive).
-- No word repeats from any puzzle in the last 60 days.
-- No category theme repeats from the last 60 days. Older repeats fine if spread out.
+- No word repeats from any puzzle in the last 60 puzzles.
+- No category theme repeats from the last 60 puzzles. Older repeats fine if spread out.
 - No category where all four words share a surface tell (all -ISM, all start with LIM-, all Italian musical terms). Surface tells defeat the puzzle.
 - NO "OPERATION-IN-THE-NAME" CATEGORIES. Category names must NOT literally describe the wordplay transformation. Forbidden examples: "Add B to the front to make a new word" (RING/LOCK/RASH/RACE), "Drop the last letter to make a word", "Anagram of LISTEN", "Reverse to read a body part", "Take the first letters to spell ___". The trick must be hidden behind a theme, not announced in the name. If the category name fully describes what the solver has to do, you have written the answer, not a clue. Reframe with a theme that makes the connection lateral, or pick a different mechanic.
 - NO "FAMOUS BOBS / CHARLIES / AMYS / STEVES / MIKES" or any "FAMOUS [COMMON FIRST NAME]" pattern. Permanently retired.
