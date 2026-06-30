@@ -550,18 +550,79 @@ input[type="text"]:focus {
 }
 
 .message-box.warning {
-  background-color: #fef3c7;
-  border-color: #fbbf24;
-  color: #92400e;
+  background-color: #fee2e2;
+  border-color: #f87171;
+  color: #991b1b;
 }
 
-/* Amber outline on the publish date picker when it's not a Sunday — pairs
-   with the warning toast after a save with a non-canonical publish day. */
+/* Red outline on the publish date picker whenever the selected date is
+   NOT a Sunday. Persistent (not only post-save) so the warning is visible
+   the moment the user opens a draft set to an off-cycle date. */
 .publish-date-picker.fp-non-sunday {
-  border-color: #d97706 !important;
-  background-color: #fffbeb !important;
-  color: #92400e !important;
+  border-color: #b91c1c !important;
+  background-color: #fef2f2 !important;
+  color: #991b1b !important;
+  font-weight: 600;
 }
+
+/* ─── Generic confirmation modal (used for Save/Export safety checks) ─── */
+.confirm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.confirm-modal-backdrop.visible { display: flex; }
+
+.confirm-modal {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 440px;
+  width: calc(100% - 32px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  padding: 22px 24px 18px;
+  font-family: inherit;
+}
+.confirm-modal__title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #991b1b;
+}
+.confirm-modal__body {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1f2933;
+}
+.confirm-modal__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.confirm-modal__btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+.confirm-modal__btn--cancel {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #1f2933;
+}
+.confirm-modal__btn--cancel:hover { background: #e5e7eb; }
+.confirm-modal__btn--confirm {
+  background: #b91c1c;
+  color: #fff;
+}
+.confirm-modal__btn--confirm:hover { background: #991b1b; }
 
 .message-box.info {
   background-color: #e0f2fe;

@@ -744,7 +744,7 @@ async function load() {
 }
 
 // Return the date the picker is currently showing as a JS Date, or null.
-// Used by save() to flag off-cycle (non-Sunday) publish dates.
+// Used by save/export safety checks and by _refreshNonSundayMark.
 function _getPickerDate() {
   if (_flatpickr && _flatpickr.selectedDates && _flatpickr.selectedDates[0]) {
     return _flatpickr.selectedDates[0];
@@ -757,16 +757,87 @@ function _getPickerDate() {
   return null;
 }
 
-// Apply (or clear) the amber non-Sunday warning class on the visible picker
+// Apply (or clear) the red non-Sunday warning class on the visible picker
 // input. flatpickr swaps in an altInput when configured, so we toggle the
-// class on whichever element is actually visible.
-function _markPickerNonSunday(on) {
+// class on whichever element is actually visible. Reads the current picker
+// date itself so callers don't have to compute the boolean — this keeps the
+// warning state always in sync with what's displayed.
+function _refreshNonSundayMark() {
   const visible = (_flatpickr && _flatpickr.altInput) ||
                   document.getElementById('publishDatePicker');
-  if (visible) visible.classList.toggle('fp-non-sunday', on);
+  if (!visible) return;
+  const picked = _getPickerDate();
+  const isNonSunday = picked != null && picked.getDay() !== 0;
+  visible.classList.toggle('fp-non-sunday', isNonSunday);
+}
+
+// Format a Date as 'Tue 07/07/2026' for human-friendly confirmation copy.
+function _formatDateForModal(d) {
+  if (!d) return '?';
+  const wd = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
+  const dd = String(d.getDate()).padStart(2,'0');
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  return `${wd} ${dd}/${mm}/${d.getFullYear()}`;
+}
+
+// Promise-based confirm modal. Resolves true on confirm, false on cancel/Esc.
+// Used for non-Sunday Save and Export safety checks. Wires up once and is
+// reused across calls — listeners are added on first invocation.
+let _confirmModalWired = false;
+function _confirmModal({ title, body, confirmLabel }) {
+  return new Promise(resolve => {
+    const bd      = document.getElementById('confirmModalBackdrop');
+    const titleEl = document.getElementById('confirmModalTitle');
+    const bodyEl  = document.getElementById('confirmModalBody');
+    const okBtn   = document.getElementById('confirmModalConfirm');
+    const cancel  = document.getElementById('confirmModalCancel');
+    if (!bd || !titleEl || !bodyEl || !okBtn || !cancel) return resolve(true);
+
+    titleEl.textContent = title;
+    bodyEl.textContent  = body;
+    okBtn.textContent   = confirmLabel || 'Confirm';
+
+    const close = (result) => {
+      bd.classList.remove('visible');
+      document.removeEventListener('keydown', onKey);
+      resolve(result);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') close(false);
+      else if (e.key === 'Enter') close(true);
+    };
+    // (Re-)attach per-invocation handlers via cloneNode so previous resolves
+    // don't fire when reused. Simpler than a manual dedupe and very fast.
+    const newOk = okBtn.cloneNode(true);
+    const newCancel = cancel.cloneNode(true);
+    okBtn.parentNode.replaceChild(newOk, okBtn);
+    cancel.parentNode.replaceChild(newCancel, cancel);
+    newOk.addEventListener('click', () => close(true));
+    newCancel.addEventListener('click', () => close(false));
+    bd.addEventListener('click', (e) => { if (e.target === bd) close(false); }, { once: true });
+    document.addEventListener('keydown', onKey);
+
+    bd.classList.add('visible');
+    newOk.focus();
+  });
 }
 
 async function save() {
+  // Grooped publishes weekly on Sundays. Confirm before committing an
+  // off-cycle save. The save still goes through if the user confirms.
+  const picked = _getPickerDate();
+  if (picked && picked.getDay() !== 0) {
+    const ok = await _confirmModal({
+      title: 'Not a Sunday publish date',
+      body: `This puzzle's publish date is ${_formatDateForModal(picked)}. Grooped publishes weekly on Sundays. Save anyway?`,
+      confirmLabel: 'Save anyway',
+    });
+    if (!ok) {
+      setStatus('Save cancelled', 'info', 2000);
+      return;
+    }
+  }
+
   setStatus('Saving...');
   setButtonLoading('saveBtn', true);
   try {
@@ -796,18 +867,8 @@ async function save() {
     updateExportButtonState();
 
     setButtonSuccess('saveBtn');
-
-    // Grooped publishes weekly on Sundays. Saving on another weekday is
-    // allowed (off-cycle posts happen), but we surface a soft amber warning
-    // so the user notices.
-    const picked = _getPickerDate();
-    const isSunday = picked && picked.getDay() === 0;
-    _markPickerNonSunday(picked && !isSunday);
-    if (picked && !isSunday) {
-      setStatus('Saved — but this date is not a Sunday. Grooped publishes weekly on Sundays.', 'warning', 6000);
-    } else {
-      setStatus('Puzzle saved', 'success', 3000);
-    }
+    setStatus('Puzzle saved', 'success', 3000);
+    _refreshNonSundayMark();
   } catch (e) {
     setStatus('Save failed', 'error', 4000);
     setButtonLoading('saveBtn', false);
@@ -839,6 +900,20 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   if (hasUnsavedChanges) {
     alert('Please save the puzzle before exporting.');
     return;
+  }
+
+  // Same safety gate as Save: confirm before exporting an off-cycle puzzle.
+  const picked = _getPickerDate();
+  if (picked && picked.getDay() !== 0) {
+    const ok = await _confirmModal({
+      title: 'Export with a non-Sunday date?',
+      body: `This puzzle is set for ${_formatDateForModal(picked)}. Grooped publishes weekly on Sundays. Export anyway?`,
+      confirmLabel: 'Export anyway',
+    });
+    if (!ok) {
+      setStatus('Export cancelled', 'info', 2000);
+      return;
+    }
   }
 
   setStatus('Exporting...');
@@ -1260,12 +1335,13 @@ function initDatePicker() {
     },
 
     onChange(selectedDates, dateStr) {
-      // Clear any stale non-Sunday warning the moment the user picks a new
-      // date — the warning is meant to reflect what was last saved, so a
-      // change should reset it until the next save evaluates fresh.
-      _markPickerNonSunday(false);
+      // Keep the red non-Sunday warning class in sync the moment the picker
+      // value changes (user click or programmatic select).
+      _refreshNonSundayMark();
       if (dateStr) handleDatePickerChange(dateStr);
     },
+    onReady() { _refreshNonSundayMark(); },
+    onValueUpdate() { _refreshNonSundayMark(); },
   });
 }
 

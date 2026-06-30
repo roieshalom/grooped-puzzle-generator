@@ -217,6 +217,18 @@
     </div>
   </div>
 
+  <!-- Generic confirm modal (used for non-Sunday save/export safety checks) -->
+  <div id="confirmModalBackdrop" class="confirm-modal-backdrop">
+    <div class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+      <h3 id="confirmModalTitle" class="confirm-modal__title"></h3>
+      <p id="confirmModalBody" class="confirm-modal__body"></p>
+      <div class="confirm-modal__actions">
+        <button type="button" id="confirmModalCancel" class="confirm-modal__btn confirm-modal__btn--cancel">Cancel</button>
+        <button type="button" id="confirmModalConfirm" class="confirm-modal__btn confirm-modal__btn--confirm"></button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/static/editor.js"></script>
 </body>
