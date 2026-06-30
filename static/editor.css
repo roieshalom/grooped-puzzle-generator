@@ -549,6 +549,20 @@ input[type="text"]:focus {
   color: #991b1b;
 }
 
+.message-box.warning {
+  background-color: #fef3c7;
+  border-color: #fbbf24;
+  color: #92400e;
+}
+
+/* Amber outline on the publish date picker when it's not a Sunday — pairs
+   with the warning toast after a save with a non-canonical publish day. */
+.publish-date-picker.fp-non-sunday {
+  border-color: #d97706 !important;
+  background-color: #fffbeb !important;
+  color: #92400e !important;
+}
+
 .message-box.info {
   background-color: #e0f2fe;
   border-color: #7fb1e8;

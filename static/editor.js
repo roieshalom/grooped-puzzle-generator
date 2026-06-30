@@ -743,6 +743,29 @@ async function load() {
   }
 }
 
+// Return the date the picker is currently showing as a JS Date, or null.
+// Used by save() to flag off-cycle (non-Sunday) publish dates.
+function _getPickerDate() {
+  if (_flatpickr && _flatpickr.selectedDates && _flatpickr.selectedDates[0]) {
+    return _flatpickr.selectedDates[0];
+  }
+  const picker = document.getElementById('publishDatePicker');
+  if (picker && picker.value) {
+    const [y, m, d] = picker.value.split('-').map(Number);
+    if (y && m && d) return new Date(y, m - 1, d);
+  }
+  return null;
+}
+
+// Apply (or clear) the amber non-Sunday warning class on the visible picker
+// input. flatpickr swaps in an altInput when configured, so we toggle the
+// class on whichever element is actually visible.
+function _markPickerNonSunday(on) {
+  const visible = (_flatpickr && _flatpickr.altInput) ||
+                  document.getElementById('publishDatePicker');
+  if (visible) visible.classList.toggle('fp-non-sunday', on);
+}
+
 async function save() {
   setStatus('Saving...');
   setButtonLoading('saveBtn', true);
@@ -773,7 +796,18 @@ async function save() {
     updateExportButtonState();
 
     setButtonSuccess('saveBtn');
-    setStatus('Puzzle saved', 'success', 3000);
+
+    // Grooped publishes weekly on Sundays. Saving on another weekday is
+    // allowed (off-cycle posts happen), but we surface a soft amber warning
+    // so the user notices.
+    const picked = _getPickerDate();
+    const isSunday = picked && picked.getDay() === 0;
+    _markPickerNonSunday(picked && !isSunday);
+    if (picked && !isSunday) {
+      setStatus('Saved — but this date is not a Sunday. Grooped publishes weekly on Sundays.', 'warning', 6000);
+    } else {
+      setStatus('Puzzle saved', 'success', 3000);
+    }
   } catch (e) {
     setStatus('Save failed', 'error', 4000);
     setButtonLoading('saveBtn', false);
@@ -1226,6 +1260,10 @@ function initDatePicker() {
     },
 
     onChange(selectedDates, dateStr) {
+      // Clear any stale non-Sunday warning the moment the user picks a new
+      // date — the warning is meant to reflect what was last saved, so a
+      // change should reset it until the next save evaluates fresh.
+      _markPickerNonSunday(false);
       if (dateStr) handleDatePickerChange(dateStr);
     },
   });
