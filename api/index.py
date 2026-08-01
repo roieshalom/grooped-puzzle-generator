@@ -184,13 +184,8 @@ def _parse_any_date(ds: str):
 def _next_sunday_after(d):
     """Return the first Sunday strictly after d.
 
-    Grooped publishes weekly on Sundays. This helper drives both the
-    /api/next-date suggestion and the date stamped onto a newly-exported
-    puzzle. 'Strictly after' means: if d is already a Sunday, we return
-    the *following* Sunday (you don't want two puzzles on the same date).
-
-    Accepts a date or datetime; always returns a date. Falls back gracefully
-    on None by returning the next Sunday after today.
+    Pure date math. 'Strictly after' means: if d is already a Sunday, we
+    return the *following* Sunday (never the same date).
     """
     if d is None:
         d = datetime.now().date()
@@ -201,6 +196,25 @@ def _next_sunday_after(d):
     wd = d.weekday()
     days_ahead = 7 if wd == 6 else (6 - wd)
     return d + timedelta(days=days_ahead)
+
+
+def _next_available_sunday(latest):
+    """Next Sunday strictly after max(latest, today).
+
+    Grooped publishes weekly on Sundays. This is what drives both the
+    /api/next-date suggestion and the date stamped onto a newly-exported
+    puzzle. If the latest published date is behind today (e.g. no puzzle
+    was exported for a few weeks), we anchor on today so the suggestion
+    is never in the past.
+    """
+    today = datetime.now().date()
+    if latest is None:
+        anchor = today
+    else:
+        if isinstance(latest, datetime):
+            latest = latest.date()
+        anchor = latest if latest >= today else today
+    return _next_sunday_after(anchor)
 
 
 @app.route("/api/puzzle-by-date", methods=["GET"])
@@ -340,9 +354,11 @@ def export_puzzle():
                     dates.append(datetime.strptime(ds, "%d.%m.%Y"))
                 except ValueError:
                     pass
-        # Weekly cadence: stamp the next Sunday strictly after the latest
-        # published puzzle (or the next Sunday after today on a fresh install).
-        next_d = _next_sunday_after(max(dates) if dates else None)
+        # Weekly cadence: stamp the next available Sunday, i.e. the next
+        # Sunday after max(latest_published, today). Anchoring on today
+        # ensures the exported date is never in the past when nothing has
+        # been published for a while.
+        next_d = _next_available_sunday(max(dates) if dates else None)
         puzzle["date"] = f"{next_d.day}.{next_d.month}.{next_d.year}"
 
     puzzle = _sanitize_for_export(puzzle)
@@ -1334,10 +1350,11 @@ def next_date():  # public
                     dates.append(datetime.strptime(ds, "%d.%m.%Y"))
                 except ValueError:
                     pass
-        # Weekly cadence: the next puzzle publishes on the next Sunday
-        # strictly after the latest existing date (or after today on a
-        # fresh install).
-        next_d = _next_sunday_after(max(dates) if dates else None)
+        # Weekly cadence: the next puzzle publishes on the next available
+        # Sunday, i.e. the next Sunday after max(latest_published, today).
+        # If the latest published date is behind today, we still return a
+        # future date rather than a stale in-the-past Sunday.
+        next_d = _next_available_sunday(max(dates) if dates else None)
         # No leading zeros: 3.5.2026 not 03.05.2026
         return jsonify({"date": f"{next_d.day}.{next_d.month}.{next_d.year}"})
     except Exception as e:
