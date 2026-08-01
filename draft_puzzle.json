@@ -1,78 +1,68 @@
 {
   "id": "182",
-  "date": "30.06.2026",
+  "date": "01.08.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "tier": 2,
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "yellow",
-      "name": "Things you might spill on your shirt",
+      "name": "Things that spin",
       "words": [
-        "COFFEE",
-        "KETCHUP",
-        "INK",
-        "GRAVY"
+        "TOP",
+        "RECORD",
+        "FAN",
+        "WHEEL"
       ]
     },
     {
       "tier": 1,
       "mechanic": "SUFFIX_BLANK",
       "difficulty": "green",
-      "name": "After the rain",
+      "name": "___ WHEEL",
       "words": [
-        "MUSHROOM",
-        "SNAIL",
-        "MIST",
-        "RAINBOW"
+        "FERRIS",
+        "STEERING",
+        "TRAINING",
+        "THIRD"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "blue",
-      "name": "Things that crack",
+      "name": "Kick the ___",
       "words": [
-        "ICE",
-        "GLASS",
-        "LIPS",
-        "KNUCKLES"
+        "BUCKET",
+        "TIRES",
+        "HABIT",
+        "CAN"
       ]
     },
     {
       "tier": 2,
       "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "Associated with Apples",
+      "name": "Sounding lost in conversation",
       "words": [
-        "IDUNN",
-        "NEWTON",
-        "NEW YORK",
-        "WORM"
+        "AT SEA",
+        "IN A FOG",
+        "TURNED AROUND",
+        "OUT OF IT"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ PRESS",
-      "category_b": "Things you might spill on your shirt",
-      "reason_a": "WINE PRESS is a common term for a grape press.",
-      "reason_b": "Red wine is a classic shirt-stainer, tempting a misgroup.",
-      "word": "WINE"
-    },
-    {
-      "category_a": "___ PRESS",
-      "category_b": "Put on hold or pushed aside (figuratively)",
-      "reason_a": "BENCH PRESS is a standard gym lift.",
-      "reason_b": "Being 'benched' means sidelined, so BENCH tempts solvers toward the metaphor group.",
-      "word": "BENCH"
+      "category_a": "Kick the ___",
+      "category_b": "Things that spin",
+      "reason_a": "kick the tires is a common idiom",
+      "reason_b": "Tires literally spin on a car, tempting a physical grouping.",
+      "word": "TIRES"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "MIXED",
-      "reason": "Balanced set using Tier 1 and Tier 2 without needing a Tier 3/4 showcase.",
-      "result": "shipped",
-      "tier": 0
+      "result": "shipped"
     }
   ],
   "_validation": {
