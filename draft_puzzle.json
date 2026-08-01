@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
+      "mechanic": "TAXONOMY",
       "difficulty": "yellow",
-      "name": "___ DROP",
+      "name": "Global dances",
       "words": [
-        "MIC",
-        "EGG",
-        "GUM",
-        "RAIN"
+        "HULA",
+        "TANGO",
+        "SAMBA",
+        "WALTZ"
       ]
     },
     {
@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 3,
-      "mechanic": "HIDDEN_WORD_INSIDE",
+      "tier": 4,
+      "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "purple",
-      "name": "Numbers hitch a ride",
+      "name": "Liquid Accompaniments",
       "words": [
-        "ALONE",
-        "TWOFOLD",
-        "INTENT",
-        "FEMININE"
+        "SALSA",
+        "SPREAD",
+        "SAUCE",
+        "GRAVY"
       ]
     }
   ],
