@@ -1,68 +1,86 @@
 {
-  "id": "182",
+  "id": "208",
   "date": "01.08.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "THINGS_THAT_VERB",
+      "tier": 1,
+      "mechanic": "SUFFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Things that spin",
+      "name": "___ DROP",
       "words": [
-        "TOP",
-        "RECORD",
-        "FAN",
-        "WHEEL"
+        "MIC",
+        "EGG",
+        "GUM",
+        "RAIN"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "green",
+      "name": "Leave in a hurry",
+      "words": [
+        "BOLT",
+        "DIP",
+        "JET",
+        "SPLIT"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "SUFFIX_BLANK",
-      "difficulty": "green",
-      "name": "___ WHEEL",
-      "words": [
-        "FERRIS",
-        "STEERING",
-        "TRAINING",
-        "THIRD"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Kick the ___",
+      "name": "Door hardware bits",
       "words": [
-        "BUCKET",
-        "TIRES",
-        "HABIT",
-        "CAN"
+        "HINGE",
+        "LATCH",
+        "KNOB",
+        "CHAIN"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 3,
+      "mechanic": "HIDDEN_WORD_INSIDE",
       "difficulty": "purple",
-      "name": "Sounding lost in conversation",
+      "name": "Numbers hitch a ride",
       "words": [
-        "AT SEA",
-        "IN A FOG",
-        "TURNED AROUND",
-        "OUT OF IT"
+        "ALONE",
+        "TWOFOLD",
+        "INTENT",
+        "FEMININE"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Kick the ___",
-      "category_b": "Things that spin",
-      "reason_a": "kick the tires is a common idiom",
-      "reason_b": "Tires literally spin on a car, tempting a physical grouping.",
-      "word": "TIRES"
+      "category_a": "Leave in a hurry",
+      "category_b": "Door hardware bits",
+      "reason_a": "Bolt means to dash off quickly.",
+      "reason_b": "A bolt is also a common door fastener, tempting a mis-sort.",
+      "word": "BOLT"
     }
   ],
   "attempt_log": [
     {
-      "result": "shipped"
+      "mechanic": "SUFFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "WAYS_TO_VERB",
+      "result": "shipped",
+      "tier": 2
+    },
+    {
+      "mechanic": "TAXONOMY",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "result": "shipped",
+      "tier": 3,
+      "verification": "ALONE→ONE, TWOFOLD→TWO, INTENT→TEN, FEMININE→NINE all appear as consecutive letters"
     }
   ],
   "_validation": {
