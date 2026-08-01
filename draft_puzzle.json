@@ -1,86 +1,84 @@
 {
-  "id": "208",
+  "id": "181",
   "date": "01.08.2026",
   "categories": [
     {
-      "tier": 1,
-      "mechanic": "TAXONOMY",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "yellow",
-      "name": "Global dances",
+      "name": "Can be rolled",
       "words": [
-        "HULA",
-        "TANGO",
-        "SAMBA",
-        "WALTZ"
+        "DICE",
+        "EYES",
+        "SLEEVES",
+        "CREDITS"
       ]
     },
     {
       "tier": 2,
       "mechanic": "WAYS_TO_VERB",
       "difficulty": "green",
-      "name": "Leave in a hurry",
+      "name": "Ways to say no",
       "words": [
-        "BOLT",
-        "DIP",
-        "JET",
-        "SPLIT"
+        "NAH",
+        "NOPE",
+        "PASS",
+        "DECLINE"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "TAXONOMY",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "Door hardware bits",
+      "name": "___ CHECK",
       "words": [
-        "HINGE",
-        "LATCH",
-        "KNOB",
-        "CHAIN"
+        "RAIN",
+        "GUT",
+        "REALITY",
+        "VIBE"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ACROSTIC_FIRST_LETTERS",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "purple",
-      "name": "Liquid Accompaniments",
+      "name": "Can be canceled",
       "words": [
-        "SALSA",
-        "SPREAD",
-        "SAUCE",
-        "GRAVY"
+        "FLIGHT",
+        "SHOW",
+        "SUBSCRIPTION",
+        "RESERVATION"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "Leave in a hurry",
-      "category_b": "Door hardware bits",
-      "reason_a": "Bolt means to dash off quickly.",
-      "reason_b": "A bolt is also a common door fastener, tempting a mis-sort.",
-      "word": "BOLT"
+      "category_a": "___ CHECK",
+      "category_b": "Ways to say no",
+      "reason_a": "rain check is a common phrase",
+      "reason_b": "taking a rain check is effectively a polite decline, tempting solvers to group it with no-words",
+      "word": "RAIN"
+    },
+    {
+      "category_a": "Can be canceled",
+      "category_b": "Ways to say no",
+      "reason_a": "you can cancel a reservation",
+      "reason_b": "having 'reservations' can signal hesitation or a soft no",
+      "word": "RESERVATION"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "SUFFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
+      "mechanic": "HIDDEN_WORD_INSIDE",
+      "reason": "couldn't find four clean, fun containers for a non-banned hidden set without resorting to obscure words; decoy potential was weak",
+      "result": "abandoned",
+      "tier": 3
     },
     {
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "CAN_BE_VERBED + WAYS_TO_VERB + PREFIX_BLANK",
+      "reason": "varied mechanics with solid cross-pulls between CHECK phrases, rolled items, and polite refusals",
       "result": "shipped",
       "tier": 2
-    },
-    {
-      "mechanic": "TAXONOMY",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "result": "shipped",
-      "tier": 3,
-      "verification": "ALONE→ONE, TWOFOLD→TWO, INTENT→TEN, FEMININE→NINE all appear as consecutive letters"
     }
   ],
   "_validation": {
