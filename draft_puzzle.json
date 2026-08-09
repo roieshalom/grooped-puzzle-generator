@@ -1,99 +1,85 @@
 {
-  "id": "182",
+  "id": "201",
   "date": "09.08.2026",
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "JUMP ___",
+      "name": "In a workshop",
       "words": [
-        "ROPE",
-        "START",
-        "SCARE",
-        "SHIP"
+        "DRILL",
+        "SAW",
+        "CLAMP",
+        "SANDER"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "green",
-      "name": "Type of bird",
+      "name": "POWER ___",
       "words": [
-        "OSTRICH",
-        "ROBIN",
-        "DUCK",
-        "EAGLE"
+        "CORD",
+        "NAP",
+        "TRIP",
+        "PLAY"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "FOUND_IN_SCENE",
+      "tier": 2,
+      "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "On a pirate ship",
+      "name": "Likely to be unplugged",
       "words": [
-        "CANNON",
-        "PARROT",
-        "SPYGLASS",
-        "RUM"
+        "LAMP",
+        "MODEM",
+        "TOASTER",
+        "FAN"
       ]
     },
     {
-      "tier": 4,
-      "mechanic": "ACROSTIC_FIRST_LETTERS",
+      "tier": 2,
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Send",
+      "name": "PULL THE ___",
       "words": [
-        "DISPATCH",
-        "FORWARD",
-        "REMIT",
-        "POST"
+        "PLUG",
+        "RUG",
+        "TRIGGER",
+        "RIPCORD"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "JUMP ___",
-      "category_b": "In your car trunk",
-      "reason_a": "JUMP ROPE is a common phrase",
-      "reason_b": "A tow rope is a plausible trunk item, tempting a misgroup with JACK and SPARE",
-      "word": "ROPE"
+      "category_a": "PULL THE ___",
+      "category_b": "Likely to be unplugged",
+      "reason_a": "Forms the idiom 'pull the plug' (to cancel/end something).",
+      "reason_b": "Looks like it belongs with items you unplug.",
+      "word": "PLUG"
     },
     {
-      "category_a": "Kick the ___",
-      "category_b": "In your car trunk",
-      "reason_a": "Kick the can is a well-known phrase",
-      "reason_b": "A gas can often lives in a trunk, making CAN feel at home with JACK or CABLES",
-      "word": "CAN"
-    },
-    {
-      "category_a": "Kick the ___",
-      "category_b": "In your car trunk",
-      "reason_a": "Kick the tires is a set phrase",
-      "reason_b": "A SPARE tire belongs in the trunk, so TIRES looks like it should join SPARE and JACK",
-      "word": "TIRES"
-    },
-    {
-      "category_a": "Kick the ___",
-      "category_b": "In your car trunk",
-      "reason_a": "Kick the bucket is the idiom",
-      "reason_b": "Some keep a wash bucket with supplies in the trunk, which could lure BUCKET into that set",
-      "word": "BUCKET"
+      "category_a": "POWER ___",
+      "category_b": "PULL THE ___",
+      "reason_a": "POWER CORD is a standard phrase.",
+      "reason_b": "Solvers may think 'pull the cord' fits the idiom pattern.",
+      "word": "CORD"
     }
   ],
   "attempt_log": [
-    {
-      "mechanic": "PREFIX_BLANK",
-      "result": "shipped",
-      "tier": 1
-    },
     {
       "mechanic": "FOUND_IN_SCENE",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "CAN_BE_VERBED",
       "result": "shipped",
       "tier": 2
     },
