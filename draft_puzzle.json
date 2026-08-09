@@ -39,15 +39,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "tier": 4,
+      "mechanic": "ACROSTIC_FIRST_LETTERS",
       "difficulty": "purple",
-      "name": "Kick",
+      "name": "Send",
       "words": [
-        "OFF",
-        "IN",
-        "THE TYRES",
-        "BACK"
+        "DISPATCH",
+        "FORWARD",
+        "REMIT",
+        "POST"
       ]
     }
   ],
