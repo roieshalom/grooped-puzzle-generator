@@ -10,7 +10,7 @@
       "words": [
         "ROPE",
         "START",
-        "THE GUN",
+        "SCARE",
         "SHIP"
       ]
     },
@@ -42,12 +42,12 @@
       "tier": 2,
       "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Kick the ___",
+      "name": "Kick",
       "words": [
-        "BUCKET",
-        "HABIT",
-        "TIRES",
-        "CAN"
+        "OFF",
+        "IN",
+        "THE TYRES",
+        "BACK"
       ]
     }
   ],
