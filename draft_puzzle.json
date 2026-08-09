@@ -4,14 +4,14 @@
   "categories": [
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "difficulty": "yellow",
-      "name": "NIGHT ___",
+      "name": "Filter",
       "words": [
-        "OWL",
-        "SHIFT",
-        "LIGHT",
-        "MARKET"
+        "SIEVE",
+        "SIFT",
+        "REFINE",
+        "STRAIN"
       ]
     },
     {
@@ -28,14 +28,14 @@
     },
     {
       "tier": 1,
-      "mechanic": "SYNONYMS",
+      "mechanic": "TAXONOMY",
       "difficulty": "blue",
-      "name": "Mess up, colloquially",
+      "name": "Used to operate a computer",
       "words": [
-        "FLUB",
-        "BOTCH",
-        "MUFF",
-        "GOOF"
+        "TRACKBALL",
+        "KEYBOARD",
+        "TRACKPAD",
+        "JOYSTICK"
       ]
     },
     {
