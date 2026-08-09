@@ -18,36 +18,36 @@
       "tier": 1,
       "mechanic": "PREFIX_BLANK",
       "difficulty": "green",
-      "name": "POWER ___",
+      "name": "French cuisin",
       "words": [
-        "CORD",
-        "NAP",
-        "TRIP",
-        "PLAY"
+        "COQ AU VIN",
+        "CRÊPE",
+        "CASSOULET",
+        "11111"
       ]
     },
     {
       "tier": 2,
       "mechanic": "CAN_BE_VERBED",
       "difficulty": "blue",
-      "name": "Likely to be unplugged",
+      "name": "",
       "words": [
-        "LAMP",
-        "MODEM",
-        "TOASTER",
-        "FAN"
+        "RATATOUILLE",
+        "UP",
+        "111113",
+        ""
       ]
     },
     {
       "tier": 2,
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "PULL THE ___",
+      "name": "Impressionists",
       "words": [
-        "PLUG",
-        "RUG",
-        "TRIGGER",
-        "RIPCORD"
+        "DEGAS",
+        "MONET",
+        "RENOIR",
+        "MANET"
       ]
     }
   ],
