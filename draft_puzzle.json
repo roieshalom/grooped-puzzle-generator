@@ -18,12 +18,12 @@
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "green",
-      "name": "In your car trunk",
+      "name": "Type of bird",
       "words": [
-        "JACK",
-        "SPARE",
-        "CABLES",
-        "FLASHLIGHT"
+        "OSTRICH",
+        "ROBIN",
+        "DUCK",
+        "EAGLE"
       ]
     },
     {
