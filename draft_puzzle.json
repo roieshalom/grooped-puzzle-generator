@@ -27,15 +27,15 @@
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "tier": 1,
+      "mechanic": "FOUND_IN_SCENE",
       "difficulty": "blue",
-      "name": "Metaphors for an easy task",
+      "name": "On a pirate ship",
       "words": [
-        "BREEZE",
-        "CINCH",
-        "CAKEWALK",
-        "CHILD'S PLAY"
+        "CANNON",
+        "PARROT",
+        "SPYGLASS",
+        "RUM"
       ]
     },
     {
