@@ -1,84 +1,70 @@
 {
-  "id": "181",
-  "date": "01.08.2026",
+  "id": "182",
+  "date": "09.08.2026",
   "categories": [
     {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "yellow",
-      "name": "Can be rolled",
+      "name": "NIGHT ___",
       "words": [
-        "DICE",
-        "EYES",
-        "SLEEVES",
-        "CREDITS"
+        "OWL",
+        "SHIFT",
+        "LIGHT",
+        "MARKET"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Ways to say no",
+      "name": "Things that glow",
       "words": [
-        "NAH",
-        "NOPE",
-        "PASS",
-        "DECLINE"
+        "LAMP",
+        "EMBERS",
+        "FIREFLY",
+        "SCREEN"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "difficulty": "blue",
-      "name": "___ CHECK",
+      "name": "Mess up, colloquially",
       "words": [
-        "RAIN",
-        "GUT",
-        "REALITY",
-        "VIBE"
+        "FLUB",
+        "BOTCH",
+        "MUFF",
+        "GOOF"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "IDIOM_COMPLETION",
       "difficulty": "purple",
-      "name": "Can be canceled",
+      "name": "___ TRAP",
       "words": [
-        "FLIGHT",
-        "SHOW",
-        "SUBSCRIPTION",
-        "RESERVATION"
+        "BEAR",
+        "MOUSE",
+        "BOOBY",
+        "THIRST"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "___ CHECK",
-      "category_b": "Ways to say no",
-      "reason_a": "rain check is a common phrase",
-      "reason_b": "taking a rain check is effectively a polite decline, tempting solvers to group it with no-words",
-      "word": "RAIN"
-    },
-    {
-      "category_a": "Can be canceled",
-      "category_b": "Ways to say no",
-      "reason_a": "you can cancel a reservation",
-      "reason_b": "having 'reservations' can signal hesitation or a soft no",
-      "word": "RESERVATION"
+      "category_a": "NIGHT ___",
+      "category_b": "Things that glow",
+      "reason_a": "Night light is a common phrase completing the stem.",
+      "reason_b": "LIGHT strongly suggests illumination, tempting a move into the glowing set.",
+      "word": "LIGHT"
     }
   ],
   "attempt_log": [
     {
-      "mechanic": "HIDDEN_WORD_INSIDE",
-      "reason": "couldn't find four clean, fun containers for a non-banned hidden set without resorting to obscure words; decoy potential was weak",
-      "result": "abandoned",
-      "tier": 3
-    },
-    {
-      "mechanic": "CAN_BE_VERBED + WAYS_TO_VERB + PREFIX_BLANK",
-      "reason": "varied mechanics with solid cross-pulls between CHECK phrases, rolled items, and polite refusals",
+      "mechanic": "MIXED_SET",
       "result": "shipped",
-      "tier": 2
+      "tier": 0
     }
   ],
   "_validation": {
