@@ -42,12 +42,12 @@
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Impressionists",
+      "name": "Things that turn",
       "words": [
-        "DEGAS",
-        "MONET",
-        "RENOIR",
-        "MANET"
+        "DOORKNOB",
+        "TORNADO",
+        "SUNFLOWER",
+        "TOP"
       ]
     }
   ],
