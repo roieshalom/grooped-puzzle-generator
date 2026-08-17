@@ -1,70 +1,70 @@
 {
-  "id": "201",
-  "date": "09.08.2026",
+  "id": "176",
+  "date": "17.08.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "Purple things",
+      "name": "On a rainy day",
       "words": [
-        "PRINCE",
-        "BARNEY",
-        "AMETHYST",
-        "LAVENDER"
+        "UMBRELLA",
+        "PUDDLE",
+        "RAINCOAT",
+        "WIPERS"
       ]
     },
     {
       "tier": 1,
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "difficulty": "green",
-      "name": "How I met your mother",
+      "name": "Ways to say “maybe”",
       "words": [
-        "TED",
-        "ROBIN",
-        "LILY",
-        "THE CAPTAIN"
-      ]
-    },
-    {
-      "tier": 2,
-      "mechanic": "CAN_BE_VERBED",
-      "difficulty": "blue",
-      "name": "_____ Talk",
-      "words": [
-        "BABY",
-        "BACK",
-        "SMALL",
-        "TABLE"
+        "MAYBE",
+        "PERHAPS",
+        "POSSIBLY",
+        "COULD BE"
       ]
     },
     {
       "tier": 2,
       "mechanic": "SHARED_HIDDEN_PROPERTY",
-      "difficulty": "purple",
-      "name": "Things that turn",
+      "difficulty": "blue",
+      "name": "Things with handles",
       "words": [
-        "DOORKNOB",
-        "TORNADO",
-        "SUNFLOWER",
-        "TOP"
+        "MUG",
+        "PAN",
+        "SUITCASE",
+        "DOOR"
+      ]
+    },
+    {
+      "tier": 2,
+      "mechanic": "WAYS_TO_VERB",
+      "difficulty": "purple",
+      "name": "Ways to blow someone off",
+      "words": [
+        "GHOST",
+        "SNUB",
+        "SHUN",
+        "STONEWALL"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "PULL THE ___",
-      "category_b": "Likely to be unplugged",
-      "reason_a": "Forms the idiom 'pull the plug' (to cancel/end something).",
-      "reason_b": "Looks like it belongs with items you unplug.",
-      "word": "PLUG"
+      "category_a": "On a rainy day",
+      "category_b": "Things with handles",
+      "reason_a": "A go-to item when it’s raining.",
+      "reason_b": "An umbrella literally has a handle, tempting a misgroup.",
+      "word": "UMBRELLA"
     },
     {
-      "category_a": "POWER ___",
-      "category_b": "PULL THE ___",
-      "reason_a": "POWER CORD is a standard phrase.",
-      "reason_b": "Solvers may think 'pull the cord' fits the idiom pattern.",
-      "word": "CORD"
+      "category_a": "Ways to say “maybe”",
+      "category_b": "Ways to blow someone off",
+      "reason_a": "Direct synonym of “maybe.”",
+      "reason_b": "A noncommittal “possibly” can feel like a brush-off, luring it into that set.",
+      "word": "POSSIBLY"
     }
   ],
   "attempt_log": [
@@ -74,17 +74,17 @@
       "tier": 1
     },
     {
-      "mechanic": "PREFIX_BLANK",
+      "mechanic": "SYNONYMS",
       "result": "shipped",
       "tier": 1
     },
     {
-      "mechanic": "CAN_BE_VERBED",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "result": "shipped",
       "tier": 2
     },
     {
-      "mechanic": "IDIOM_COMPLETION",
+      "mechanic": "WAYS_TO_VERB",
       "result": "shipped",
       "tier": 2
     }
