@@ -8,22 +8,22 @@
       "difficulty": "yellow",
       "name": "On a rainy day",
       "words": [
-        "UMBRELLA",
+        "BOOTS",
         "PUDDLE",
         "RAINCOAT",
         "WIPERS"
       ]
     },
     {
-      "tier": 1,
-      "mechanic": "SYNONYMS",
+      "tier": 2,
+      "mechanic": "WORKS_BY_ONE_MAKER",
       "difficulty": "green",
-      "name": "Ways to say “maybe”",
+      "name": "Rihanna's songs",
       "words": [
-        "MAYBE",
-        "PERHAPS",
-        "POSSIBLY",
-        "COULD BE"
+        "UMBRELLA",
+        "DIAMONDS",
+        "DISTURBIA",
+        "UNFAITHFUL"
       ]
     },
     {
