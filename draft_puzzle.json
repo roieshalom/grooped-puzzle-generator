@@ -42,12 +42,12 @@
       "tier": 2,
       "mechanic": "WAYS_TO_VERB",
       "difficulty": "purple",
-      "name": "Ways to blow someone off",
+      "name": "_____ Door",
       "words": [
-        "GHOST",
-        "SNUB",
-        "SHUN",
-        "STONEWALL"
+        "FIRE",
+        "BACK",
+        "STORM",
+        "POCKET"
       ]
     }
   ],
