@@ -1,70 +1,70 @@
 {
-  "id": "176",
-  "date": "17.08.2026",
+  "id": "178",
+  "date": "15.09.2026",
   "categories": [
     {
       "tier": 1,
       "mechanic": "FOUND_IN_SCENE",
       "difficulty": "yellow",
-      "name": "On a rainy day",
+      "name": "Lives in a wallet",
       "words": [
-        "BOOTS",
-        "PUDDLE",
-        "RAINCOAT",
-        "WIPERS"
+        "CASH",
+        "ID",
+        "COUPON",
+        "PHOTO"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WORKS_BY_ONE_MAKER",
+      "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Rihanna's songs",
+      "name": "Clings to you (literally)",
       "words": [
-        "UMBRELLA",
-        "DIAMONDS",
-        "DISTURBIA",
-        "UNFAITHFUL"
+        "GLUE",
+        "TAPE",
+        "GUM",
+        "BURR"
       ]
     },
     {
-      "tier": 2,
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "tier": 1,
+      "mechanic": "PREFIX_BLANK",
       "difficulty": "blue",
-      "name": "Things with handles",
+      "name": "SPARE ___",
       "words": [
-        "MUG",
-        "PAN",
-        "SUITCASE",
-        "DOOR"
+        "TIRE",
+        "TIME",
+        "ROOM",
+        "KEY"
       ]
     },
     {
       "tier": 2,
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "difficulty": "purple",
-      "name": "_____ Door",
+      "name": "Metaphors for being clueless",
       "words": [
-        "FIRE",
-        "BACK",
-        "STORM",
-        "POCKET"
+        "IN THE DARK",
+        "AT SEA",
+        "OUT TO LUNCH",
+        "LOST"
       ]
     }
   ],
   "decoys": [
     {
-      "category_a": "On a rainy day",
-      "category_b": "Things with handles",
-      "reason_a": "A go-to item when it’s raining.",
-      "reason_b": "An umbrella literally has a handle, tempting a misgroup.",
-      "word": "UMBRELLA"
+      "category_a": "Clings to you (literally)",
+      "category_b": "Lives in a wallet",
+      "reason_a": "GUM literally sticks to things.",
+      "reason_b": "A stick of gum is often carried in a wallet, tempting a misgroup.",
+      "word": "GUM"
     },
     {
-      "category_a": "Ways to say “maybe”",
-      "category_b": "Ways to blow someone off",
-      "reason_a": "Direct synonym of “maybe.”",
-      "reason_b": "A noncommittal “possibly” can feel like a brush-off, luring it into that set.",
-      "word": "POSSIBLY"
+      "category_a": "Lives in a wallet",
+      "category_b": "SPARE ___",
+      "reason_a": "Common wallet item.",
+      "reason_b": "“Spare cash” is a familiar phrase, pulling CASH toward the SPARE set.",
+      "word": "CASH"
     }
   ],
   "attempt_log": [
@@ -74,17 +74,17 @@
       "tier": 1
     },
     {
-      "mechanic": "SYNONYMS",
-      "result": "shipped",
-      "tier": 1
-    },
-    {
-      "mechanic": "SHARED_HIDDEN_PROPERTY",
+      "mechanic": "THINGS_THAT_VERB",
       "result": "shipped",
       "tier": 2
     },
     {
-      "mechanic": "WAYS_TO_VERB",
+      "mechanic": "PREFIX_BLANK",
+      "result": "shipped",
+      "tier": 1
+    },
+    {
+      "mechanic": "METAPHOR_SUBSTITUTES",
       "result": "shipped",
       "tier": 2
     }
