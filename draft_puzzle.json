@@ -18,12 +18,12 @@
       "tier": 2,
       "mechanic": "THINGS_THAT_VERB",
       "difficulty": "green",
-      "name": "Clings to you (literally)",
+      "name": "Clings to you",
       "words": [
         "GLUE",
         "TAPE",
         "GUM",
-        "BURR"
+        "LEECH"
       ]
     },
     {
