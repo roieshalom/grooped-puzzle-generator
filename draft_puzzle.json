@@ -8,7 +8,7 @@
       "difficulty": "yellow",
       "name": "Lives in a wallet",
       "words": [
-        "CASH",
+        "COIN",
         "ID",
         "COUPON",
         "PHOTO"
@@ -40,14 +40,14 @@
     },
     {
       "tier": 2,
-      "mechanic": "METAPHOR_SUBSTITUTES",
+      "mechanic": "SHARED_HIDDEN_PROPERTY",
       "difficulty": "purple",
-      "name": "Metaphors for being clueless",
+      "name": "Country singers",
       "words": [
-        "IN THE DARK",
-        "AT SEA",
-        "OUT TO LUNCH",
-        "LOST"
+        "CASH",
+        "URBAN",
+        "PARTON",
+        "BROOKS"
       ]
     }
   ],
